@@ -1,0 +1,514 @@
+{
+  "scene": "tour-ch02",
+  "script": [
+    {
+      "duration": 0,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "id": "Beach_cliff_cloudy__portal",
+      "op": "bg",
+      "sprite_url": "/content/bg/Beach_cliff_cloudy__portal.jpg"
+    },
+    {
+      "duration": 1,
+      "op": "fade",
+      "to": "clear"
+    },
+    {
+      "color": "#9fe8a8",
+      "id": "code",
+      "op": "text",
+      "size": 50,
+      "text": "coins = 3",
+      "x": 3,
+      "y": 12.5
+    },
+    {
+      "expr": "3",
+      "key": "coins",
+      "op": "set"
+    },
+    {
+      "emotion": "idle",
+      "height": 1.3,
+      "id": "hill",
+      "op": "actor",
+      "position": "left",
+      "show": true,
+      "width": 1,
+      "x": 0.24,
+      "y": 0.92
+    },
+    {
+      "emotion": "neutral",
+      "id": "codel",
+      "op": "actor",
+      "position": "right",
+      "show": true
+    },
+    {
+      "op": "say",
+      "text": "Lesson two. This cliff grants wishes — for a price. You have {coins} coins.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "worried",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Where did I get coins?",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "smirk",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Line one of this chapter. Variables spring into being the moment you assign them.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "- \"Wish for wisdom\" -\u003e wise"
+    },
+    {
+      "op": "say",
+      "text": "A choice is just lines that start with a dash. Pick, test subject.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "op": "choice",
+      "options": [
+        {
+          "goto": "wise",
+          "text": "Wish for wisdom"
+        },
+        {
+          "goto": "snacks",
+          "text": "Wish for snacks"
+        }
+      ]
+    },
+    {
+      "id": "wise",
+      "op": "label"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "wisdom = wisdom + 1"
+    },
+    {
+      "expr": "wisdom + 1",
+      "key": "wisdom",
+      "op": "set"
+    },
+    {
+      "emotion": "serious",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "I feel... documented.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "label": "after_wish",
+      "op": "goto"
+    },
+    {
+      "id": "snacks",
+      "op": "label"
+    },
+    {
+      "emotion": "happy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "No regrets.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "label": "after_wish",
+      "op": "goto"
+    },
+    {
+      "id": "after_wish",
+      "op": "label"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "- \"Golden wish\" -\u003e gold cost=\"2 coins\""
+    },
+    {
+      "op": "say",
+      "text": "Options can carry a price tag. The engine SHOWS the cost — deducting is the author's line, so the economy stays honest.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "op": "choice",
+      "options": [
+        {
+          "cost": "2 coins",
+          "goto": "gold",
+          "text": "Golden wish (2 coins)"
+        },
+        {
+          "goto": "thrifty",
+          "text": "Keep my coins"
+        }
+      ]
+    },
+    {
+      "id": "gold",
+      "op": "label"
+    },
+    {
+      "expr": "coins - 2",
+      "key": "coins",
+      "op": "set"
+    },
+    {
+      "emotion": "delight",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "And now you have {coins}. The button wore the price; this line paid it.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "label": "after_gold",
+      "op": "goto"
+    },
+    {
+      "id": "thrifty",
+      "op": "label"
+    },
+    {
+      "emotion": "sarcasm",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Fiscal responsibility. In MY tour.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "label": "after_gold",
+      "op": "goto"
+    },
+    {
+      "id": "after_gold",
+      "op": "label"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "- \"Secret wish\" -\u003e secret expr=\"wisdom \u003e= 1\""
+    },
+    {
+      "op": "say",
+      "text": "Options can hide behind an expression. If you wished for wisdom earlier, there are THREE buttons now. Otherwise — two, and you'll never know.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "op": "choice",
+      "options": [
+        {
+          "expr": "wisdom \u003e= 1",
+          "goto": "secret",
+          "text": "Secret wish"
+        },
+        {
+          "goto": "ordinary",
+          "text": "Ordinary wish"
+        },
+        {
+          "goto": "after_secret",
+          "text": "No more wishes"
+        }
+      ]
+    },
+    {
+      "id": "secret",
+      "op": "label"
+    },
+    {
+      "emotion": "flustered",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "The cliff remembered my wisdom!",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "op": "say",
+      "text": "The VARIABLE remembered. The cliff is a JPEG.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "label": "after_secret",
+      "op": "goto"
+    },
+    {
+      "id": "ordinary",
+      "op": "label"
+    },
+    {
+      "emotion": "neutral",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Solid. Dependable. Boring.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "label": "after_secret",
+      "op": "goto"
+    },
+    {
+      "id": "after_secret",
+      "op": "label"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "choice timeout=5 timeout_goto=frozen"
+    },
+    {
+      "op": "say",
+      "text": "And options can RUSH you. Five seconds. The bar is the engine's; the panic is yours.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "op": "choice",
+      "options": [
+        {
+          "goto": "grabbed",
+          "text": "Grab the rope!"
+        },
+        {
+          "goto": "grabbed",
+          "text": "Grab the... other rope!"
+        }
+      ],
+      "timeout": 5,
+      "timeout_goto": "frozen"
+    },
+    {
+      "id": "grabbed",
+      "op": "label"
+    },
+    {
+      "emotion": "nervous",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "I chose! I chose!",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "label": "after_timer",
+      "op": "goto"
+    },
+    {
+      "id": "frozen",
+      "op": "label"
+    },
+    {
+      "emotion": "smirk",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Frozen solid. The timeout branch is also a choice — the story just made it for you.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "label": "after_timer",
+      "op": "goto"
+    },
+    {
+      "id": "after_timer",
+      "op": "label"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "input var=wish prompt=\"One word: your wish\""
+    },
+    {
+      "default": "peace",
+      "max": 16,
+      "op": "input",
+      "prompt": "One word: your wish",
+      "var": "wish"
+    },
+    {
+      "op": "say",
+      "text": "You typed \"{wish}\". It's a variable now — the story can quote you forever.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "flustered",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "That feels legally binding.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "if coins \u003e= 1 -\u003e rich"
+    },
+    {
+      "else": "__nf1",
+      "expr": "coins \u003e= 1",
+      "op": "if",
+      "then": "rich"
+    },
+    {
+      "id": "__nf1",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "Broke. The `if` fell through to the next line — that IS the else.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "label": "after_if",
+      "op": "goto"
+    },
+    {
+      "id": "rich",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "Still {coins} coin(s) to your name. An `if` that holds jumps; one that doesn't just walks on.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "label": "after_if",
+      "op": "goto"
+    },
+    {
+      "id": "after_if",
+      "op": "label"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "global.tour_graduate = 1"
+    },
+    {
+      "expr": "1",
+      "key": "global.tour_graduate",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "One more trick. Variables with `global.` persist across EVERY novel on this device — finish the tour and other stories can greet you as a graduate.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "shy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "...Will they be nice about it?",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "op": "say",
+      "text": "Next lesson — the stage itself: backgrounds, framing, and clickable scenery.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "pout",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "The scenery is going to be clickable?",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "happy",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Everything is clickable if you're brave enough.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "fade to=\"black\" duration=1"
+    },
+    {
+      "duration": 1,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    }
+  ]
+}

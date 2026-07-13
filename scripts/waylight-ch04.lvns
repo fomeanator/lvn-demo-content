@@ -1,0 +1,92 @@
+scene waylight_ch04
+
+// ═══ WAYLIGHT · Chapter 4 — The Glass Court ═══
+// Pressure mechanics: timed choices (choice timeout=...), free text input
+// (input var=...), and a scored quiz — the queen's riddles, on the clock.
+
+right = 0
+
+bg /content/pixel/bg/sea_palace.png
+fade to="clear" duration=1.2
+
+The Sea Palace grew out of the water like frozen music. Every wall listened.
+
+actor queen sprite_url="/content/pixel/cast/fairy_queen.png" position=right height=0.44
+Queen: The third spark is mine to give and mine to refuse. At my court, we play an old game.
+
+actor hero sprite_url="/content/pixel/cast/hero.png" position=left height=0.42
+Arno: Let me guess. Riddles.
+
+Queen: Riddles. Answer as the wave breaks — a court of water does not wait.
+
+Queen: First. I have no wings, yet I taught your kind to fly. I have no voice, yet I fill your sails with argument.
+
+choice timeout=8 timeout_goto=miss1
+- The wind -> right1
+- A bird -> wrong1
+- A dream -> wrong1
+
+:right1
+right = right + 1
+Queen: The wind. Yes. It argued my palace into these shapes.
+-> q2
+:wrong1
+Queen: No. Listen to what moves you, boy, not what you can catch.
+-> q2
+:miss1
+Queen: The wave broke. The answer was the wind — and it has already left.
+-> q2
+
+:q2
+Queen: Second. The more of me you take, the more you leave behind.
+
+choice timeout=8 timeout_goto=miss2
+- Footsteps -> right2
+- Memories -> wrong2
+- Water -> wrong2
+
+:right2
+right = right + 1
+Queen: Footsteps. You have left a trail of them through my kingdom — all pointing forward. I noticed.
+-> q3
+:wrong2
+Queen: A lovely answer. A wrong one. Footsteps, child.
+-> q3
+:miss2
+Queen: Too slow. Footsteps. Though hesitation is also an answer.
+-> q3
+
+:q3
+Queen: Last. Not a riddle. A truth for a truth — that is the oldest price. Tell me, in one word, what you miss most from home.
+
+input var=missed prompt="One word — what do you miss?" default="home" max=20
+
+Queen: "{missed}." Spoken plainly. Do you know how rare that is at a court of glass?
+
+if right >= 2 -> spark_earned
+if right >= 1 -> spark_grudging
+-> spark_mercy
+
+:spark_earned
+Queen: Sharp AND honest. Take the spark, Waylighter — it has been bored here for a century.
+kindness = kindness + 1
+-> leave
+
+:spark_grudging
+Queen: Half-sharp. Wholly honest. The honesty carries it. Take the spark.
+-> leave
+
+:spark_mercy
+Queen: You lost my game entirely. But "{missed}" bought what cleverness could not. Take it — and tell no one I have gone soft.
+kindness = kindness + 1
+-> leave
+
+:leave
+The third spark tasted like salt and holidays. One left.
+actor queen show=false
+bg /content/pixel/bg/sunset.png
+Ash was waiting on the shore, watching the sun drown itself in gold.
+actor fairy sprite_url="/content/pixel/cast/fairy_ash.png" position=right height=0.4
+Ash: The last one is the worst one. Sleep first. Tomorrow we walk into the storm.
+fade to="black" duration=1.5
+-> __end

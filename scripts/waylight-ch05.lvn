@@ -1,0 +1,365 @@
+{
+  "scene": "waylight_ch05",
+  "script": [
+    {
+      "color": "#ffd76a",
+      "id": "hud",
+      "op": "text",
+      "size": 30,
+      "text": "♥ {hp}   ✨ grit {grit}   ❤ kindness {kindness}",
+      "x": 3,
+      "y": 4
+    },
+    {
+      "id": "dunes_storm",
+      "op": "bg",
+      "sprite_url": "/content/pixel/bg/dunes_storm.png"
+    },
+    {
+      "duration": 1,
+      "op": "fade",
+      "to": "clear"
+    },
+    {
+      "op": "say",
+      "text": "The last spark was not hidden. It was guarded — by a storm that walked the dunes on legs of sand."
+    },
+    {
+      "height": 0.4,
+      "id": "fairy",
+      "op": "actor",
+      "position": "right",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/fairy_ash.png"
+    },
+    {
+      "op": "say",
+      "text": "There. In the eye. And Arno — the storm is not a beast. It is a wound. Remember that.",
+      "who": "Ash"
+    },
+    {
+      "id": "fairy",
+      "op": "actor",
+      "show": "false"
+    },
+    {
+      "id": "storm_wall",
+      "op": "bg",
+      "sprite_url": "/content/pixel/bg/storm_wall.png"
+    },
+    {
+      "action": "shake",
+      "amplitude": 0.03,
+      "duration": 0.8,
+      "op": "camera"
+    },
+    {
+      "op": "say",
+      "text": "The wall of sand screamed past his ears. Somewhere inside it, something enormous turned to look."
+    },
+    {
+      "id": "dragon",
+      "op": "bg",
+      "sprite_url": "/content/pixel/bg/dragon.png"
+    },
+    {
+      "color": "white",
+      "duration": 0.3,
+      "op": "flash"
+    },
+    {
+      "op": "say",
+      "text": "A dragon. Made of storm and old grief, wings tearing the sky into ribbons."
+    },
+    {
+      "op": "say",
+      "text": "MORE THIEVES. MORE HANDS. THE LAST WARM THING IS MINE.",
+      "who": "Dragon"
+    },
+    {
+      "op": "choice",
+      "options": [
+        {
+          "expr": "kindness \u003e= 3",
+          "goto": "speak",
+          "text": "Stand your ground and speak"
+        },
+        {
+          "expr": "grit \u003e= 2",
+          "goto": "press",
+          "text": "Weather the blast and press in"
+        },
+        {
+          "goto": "offer",
+          "text": "Hold up everything you carry"
+        }
+      ]
+    },
+    {
+      "id": "speak",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "I'm not here to take it from you. I'm here because everything is going out. Yours too.",
+      "who": "Arno"
+    },
+    {
+      "op": "say",
+      "text": "The storm faltered. Grief listens to grief."
+    },
+    {
+      "op": "say",
+      "text": "...The fairies sent a child. And the child speaks instead of stealing.",
+      "who": "Dragon"
+    },
+    {
+      "label": "yield",
+      "op": "goto"
+    },
+    {
+      "id": "press",
+      "op": "label"
+    },
+    {
+      "expr": "hp - 1",
+      "key": "hp",
+      "op": "set"
+    },
+    {
+      "height": 0.42,
+      "id": "hero",
+      "op": "actor",
+      "position": "left",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/hero_rough.png"
+    },
+    {
+      "op": "say",
+      "text": "He walked INTO the sand. It stripped his sleeves, his breath, almost his name."
+    },
+    {
+      "op": "say",
+      "text": "You'll have to do better than weather!",
+      "who": "Arno"
+    },
+    {
+      "op": "say",
+      "text": "...It walks through my storm. The small thing has iron in it.",
+      "who": "Dragon"
+    },
+    {
+      "expr": "grit + 1",
+      "key": "grit",
+      "op": "set"
+    },
+    {
+      "label": "yield",
+      "op": "goto"
+    },
+    {
+      "id": "offer",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "Look — three sparks. I could have run home with them. I'm still here.",
+      "who": "Arno"
+    },
+    {
+      "op": "say",
+      "text": "The dragon's eye, huge as a door, tracked the three warm lights."
+    },
+    {
+      "op": "say",
+      "text": "...It gathers, but does not keep. Strange little courier.",
+      "who": "Dragon"
+    },
+    {
+      "label": "yield",
+      "op": "goto"
+    },
+    {
+      "id": "yield",
+      "op": "label"
+    },
+    {
+      "id": "dunes_storm",
+      "op": "bg",
+      "sprite_url": "/content/pixel/bg/dunes_storm.png"
+    },
+    {
+      "op": "say",
+      "text": "The storm folded its wings. In the sudden quiet, the fourth spark lay in the sand like a fallen star."
+    },
+    {
+      "op": "say",
+      "text": "Take it. Light the Way. And when it burns again — tell it the storm remembers the warmth too.",
+      "who": "Dragon"
+    },
+    {
+      "duration": 1.2,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "id": "winter_park",
+      "op": "bg",
+      "sprite_url": "/content/pixel/bg/winter_park.png"
+    },
+    {
+      "duration": 1.2,
+      "op": "fade",
+      "to": "clear"
+    },
+    {
+      "op": "say",
+      "text": "The Waylight tree stood in the frozen park at the heart of the kingdom. Four sparks left his pocket like birds."
+    },
+    {
+      "color": "white",
+      "duration": 0.5,
+      "op": "flash"
+    },
+    {
+      "action": "shake",
+      "amplitude": 0.015,
+      "duration": 0.4,
+      "op": "camera"
+    },
+    {
+      "height": 0.42,
+      "id": "fairy",
+      "op": "actor",
+      "position": "right",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/fairy_ash.png"
+    },
+    {
+      "height": 0.4,
+      "id": "queen",
+      "op": "actor",
+      "position": "center",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/fairy_queen.png"
+    },
+    {
+      "height": 0.4,
+      "id": "king",
+      "op": "actor",
+      "position": "right",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/fairy_king.png",
+      "x": 0.9
+    },
+    {
+      "op": "say",
+      "text": "Light ran up the branches like water running backwards. The kingdom took one long breath — and glowed."
+    },
+    {
+      "else": "__nf1",
+      "expr": "kindness \u003e= 4",
+      "op": "if",
+      "then": "end_heart"
+    },
+    {
+      "id": "__nf1",
+      "op": "label"
+    },
+    {
+      "else": "__nf2",
+      "expr": "grit \u003e= 3",
+      "op": "if",
+      "then": "end_iron"
+    },
+    {
+      "id": "__nf2",
+      "op": "label"
+    },
+    {
+      "label": "end_way",
+      "op": "goto"
+    },
+    {
+      "id": "end_heart",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "The kingdom will remember you as the Kind Way, Arno. Doors will find you all your life.",
+      "who": "Queen"
+    },
+    {
+      "op": "say",
+      "text": "Which means, unfortunately, we will too. Get used to me, mop-boy.",
+      "who": "Ash"
+    },
+    {
+      "op": "say",
+      "text": "...I can live with that.",
+      "who": "Arno"
+    },
+    {
+      "label": "home",
+      "op": "goto"
+    },
+    {
+      "id": "end_iron",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "Iron in the spine, fire in the pocket. The storm speaks well of you, boy — and it speaks of NO ONE.",
+      "who": "King"
+    },
+    {
+      "op": "say",
+      "text": "The Hard Way home is still a way home. Walk it proud.",
+      "who": "Ash"
+    },
+    {
+      "label": "home",
+      "op": "goto"
+    },
+    {
+      "id": "end_way",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "Not the kindest way. Not the hardest. YOUR way — and the light is lit. That is the whole job.",
+      "who": "Ash"
+    },
+    {
+      "op": "say",
+      "text": "Good. Because I have a dog to feed.",
+      "who": "Arno"
+    },
+    {
+      "label": "home",
+      "op": "goto"
+    },
+    {
+      "id": "home",
+      "op": "label"
+    },
+    {
+      "id": "pines_morning",
+      "op": "bg",
+      "sprite_url": "/content/pixel/bg/pines_morning.png"
+    },
+    {
+      "op": "say",
+      "text": "The pines smelled of rain again. Behind the third ridge, faint as a struck match, a light stayed on."
+    },
+    {
+      "duration": 2,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    }
+  ]
+}

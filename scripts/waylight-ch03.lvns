@@ -1,0 +1,73 @@
+scene waylight_ch03
+
+// ═══ WAYLIGHT · Chapter 3 — The Sleeping Falls ═══
+// Point-and-click: the scene IS the puzzle. Clickable hotspots (obj +
+// on_click), a found item you DRAG onto a target (draggable + on_drop),
+// and the background itself as the reward — cursed falls turning clear.
+
+found_bell = 0
+
+bg /content/pixel/bg/falls_cursed.png
+fade to="clear" duration=1.2
+
+The Sleeping Falls were not asleep. They were sealed — frozen red, veined like cracked glass.
+
+actor fairy sprite_url="/content/pixel/cast/fairy_ash.png" position=right height=0.4
+Ash: The second spark is behind the water. The curse listens for one true sound. Look around, Arno.
+actor fairy show=false
+
+// The scene is playable — click things.
+obj id=reeds  sprite_url="/content/pixel/cast/dog.png"        x=0.15 y=0.78 width=0.14 anchor="0.5,0.5" opacity=0.01 on_click="reeds"
+obj id=cairn  sprite_url="/content/pixel/cast/shadow.png"     x=0.82 y=0.72 width=0.12 anchor="0.5,0.5" opacity=0.01 on_click="cairn"
+obj id=crack  sprite_url="/content/pixel/cast/fairy_ash.png"  x=0.52 y=0.38 width=0.16 anchor="0.5,0.5" opacity=0.01 on_click="crack"
+
+Something by the reeds. A stack of stones. And that bright crack in the middle of the seal.
+-> __end
+
+:reeds
+if found_bell >= 1 -> reeds_again
+found_bell = 1
+In the reeds — a small silver bell, wax pressed into its mouth. Someone silenced it on purpose.
+obj id=bell sprite_url="/content/pixel/cast/fairy_queen.png" x=0.2 y=0.55 width=0.1 anchor="0.5,0.5" draggable=true on_drop="crack:ring"
+Arno: A bell with no voice. Rude. Let's find where you sing.
+Drag the bell to where the seal is thinnest.
+-> __end
+
+:reeds_again
+Arno: Just reeds now. And frog judgement.
+-> __end
+
+:cairn
+Someone stacked seven stones here and left in a hurry. The moss on top grows in the shape of a hand.
+Arno: Pilgrims. So people DID come to wake the falls.
+-> __end
+
+:crack
+if found_bell >= 1 -> crack_hint
+Arno: The seal is thinnest here. I need... something. A key. A sound.
+-> __end
+
+:crack_hint
+Arno: This is the spot. Now — the bell goes here.
+-> __end
+
+:ring
+obj id=bell show=false
+obj id=reeds show=false
+obj id=cairn show=false
+obj id=crack show=false
+flash color="white" duration=0.4
+The wax cracked. The bell sang one note — low, round, older than the cliff.
+
+bg /content/pixel/bg/falls.png
+camera action=shake amplitude=0.02 duration=0.5
+And the falls woke up. Red glass burst into spray and rainbow; water remembered how to fall.
+
+actor fairy sprite_url="/content/pixel/cast/fairy_ash.png" position=right height=0.4
+Ash: ...You found its voice. I have watched heroes with swords fail this door.
+Arno: Swords don't listen.
+kindness = kindness + 1
+
+The second spark rode the spray into his pocket. Half way there.
+fade to="black" duration=1.5
+-> __end

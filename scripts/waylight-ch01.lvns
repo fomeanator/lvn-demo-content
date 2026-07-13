@@ -1,0 +1,75 @@
+scene waylight_ch01
+
+// ═══ WAYLIGHT · Chapter 1 — The Light in the Pines ═══
+// The visual-novel core: backgrounds, portrait cast, narration vs dialogue,
+// branching choices, variables that later chapters will inherit.
+
+kindness = 0
+grit = 0
+
+bg /content/pixel/bg/pines_morning.png
+fade to="clear" duration=1.2
+
+The pines smelled of rain and something else. Something like struck matches.
+Arno had followed the dog in past the third ridge, farther than he had ever gone.
+
+actor hero sprite_url="/content/pixel/cast/hero.png" position=left height=0.42
+Arno: Biscuit! Where are you, you useless mop?
+
+actor dog sprite_url="/content/pixel/cast/dog.png" position=right height=0.3
+The dog stood dead still between the trees, staring at a light that had no business being there.
+
+bg /content/pixel/bg/forest.png
+The forest changed around one more step. The pines went silver-blue, and the air hummed like a struck string.
+
+Arno: Okay. That's... new.
+
+actor fairy sprite_url="/content/pixel/cast/fairy_ash.png" position=right height=0.42
+actor dog show=false
+???: You are leaking warmth, boy. Do all your kind glow like that?
+
+Arno: Do all YOUR kind sneak up on people?
+
+Ash: Fair. I am Ash. And you are standing in the last lit corner of a kingdom that is going out.
+
+She said it the way you'd mention bad weather. The light between the trees pulsed, once, like something breathing.
+
+Ash: The Waylight is dying. Four sparks would relight it. I cannot carry them. You could.
+
+- Ask what happens if the light goes out -> ask
+- Promise to help, no questions -> promise
+- Say you just want your dog back -> dog_first
+
+:ask
+kindness = kindness + 1
+Arno: What happens to all this... if it goes out?
+Ash: The cold walks in. First here. Then, in a year or ten, through your pines too. Doors do not only open one way.
+Arno: ...Right. Where do we start?
+-> accept
+
+:promise
+grit = grit + 1
+Arno: I'll do it. Show me where.
+Ash: No questions? Either very brave or very foolish. History rarely bothers to tell those apart.
+-> accept
+
+:dog_first
+kindness = kindness + 1
+Arno: First — my dog. Then your kingdom.
+Ash: The mop is already home, asleep by your stove. This place returns what it does not need.
+Arno: ...And it needs me?
+Ash: We shall see.
+-> accept
+
+:accept
+bg /content/pixel/bg/forest_clearing.png
+Ash: The first spark sleeps in the Hollow Cave. Mind the dark. It bites.
+
+Ash: One more thing, boy. Your name. Names hold better than rope here.
+
+Arno: Arno.
+
+Ash: Then walk carefully, Arno. The kingdom is watching what you choose.
+
+fade to="black" duration=1.5
+-> __end

@@ -1,0 +1,100 @@
+scene waylight_ch05
+
+// ═══ WAYLIGHT · Chapter 5 — The Storm That Walks ═══
+// The payoff chapter: staging as drama (camera, flash, bg as an event),
+// a stat-driven "boss" resolved by everything the player carried here —
+// grit, kindness, hp — and endings that remember the whole journey.
+
+text hud x=3 y=4 size=30 color=#ffd76a «♥ {hp}   ✨ grit {grit}   ❤ kindness {kindness}»
+
+bg /content/pixel/bg/dunes_storm.png
+fade to="clear" duration=1.0
+
+The last spark was not hidden. It was guarded — by a storm that walked the dunes on legs of sand.
+
+actor fairy sprite_url="/content/pixel/cast/fairy_ash.png" position=right height=0.4
+Ash: There. In the eye. And Arno — the storm is not a beast. It is a wound. Remember that.
+actor fairy show=false
+
+bg /content/pixel/bg/storm_wall.png
+camera action=shake amplitude=0.03 duration=0.8
+The wall of sand screamed past his ears. Somewhere inside it, something enormous turned to look.
+
+bg /content/pixel/bg/dragon.png
+flash color="white" duration=0.3
+
+A dragon. Made of storm and old grief, wings tearing the sky into ribbons.
+
+Dragon: MORE THIEVES. MORE HANDS. THE LAST WARM THING IS MINE.
+
+- Stand your ground and speak -> speak expr="kindness >= 3"
+- Weather the blast and press in -> press expr="grit >= 2"
+- Hold up everything you carry -> offer
+
+:speak
+Arno: I'm not here to take it from you. I'm here because everything is going out. Yours too.
+The storm faltered. Grief listens to grief.
+Dragon: ...The fairies sent a child. And the child speaks instead of stealing.
+-> yield
+
+:press
+hp = hp - 1
+actor hero sprite_url="/content/pixel/cast/hero_rough.png" position=left height=0.42
+He walked INTO the sand. It stripped his sleeves, his breath, almost his name.
+Arno: You'll have to do better than weather!
+Dragon: ...It walks through my storm. The small thing has iron in it.
+grit = grit + 1
+-> yield
+
+:offer
+Arno: Look — three sparks. I could have run home with them. I'm still here.
+The dragon's eye, huge as a door, tracked the three warm lights.
+Dragon: ...It gathers, but does not keep. Strange little courier.
+-> yield
+
+:yield
+bg /content/pixel/bg/dunes_storm.png
+The storm folded its wings. In the sudden quiet, the fourth spark lay in the sand like a fallen star.
+
+Dragon: Take it. Light the Way. And when it burns again — tell it the storm remembers the warmth too.
+
+fade to="black" duration=1.2
+bg /content/pixel/bg/winter_park.png
+fade to="clear" duration=1.2
+
+The Waylight tree stood in the frozen park at the heart of the kingdom. Four sparks left his pocket like birds.
+
+flash color="white" duration=0.5
+camera action=shake amplitude=0.015 duration=0.4
+
+actor fairy sprite_url="/content/pixel/cast/fairy_ash.png" position=right height=0.42
+actor queen sprite_url="/content/pixel/cast/fairy_queen.png" position=center height=0.4
+actor king sprite_url="/content/pixel/cast/fairy_king.png" position=right x=0.9 height=0.4
+
+Light ran up the branches like water running backwards. The kingdom took one long breath — and glowed.
+
+if kindness >= 4 -> end_heart
+if grit >= 3 -> end_iron
+-> end_way
+
+:end_heart
+Queen: The kingdom will remember you as the Kind Way, Arno. Doors will find you all your life.
+Ash: Which means, unfortunately, we will too. Get used to me, mop-boy.
+Arno: ...I can live with that.
+-> home
+
+:end_iron
+King: Iron in the spine, fire in the pocket. The storm speaks well of you, boy — and it speaks of NO ONE.
+Ash: The Hard Way home is still a way home. Walk it proud.
+-> home
+
+:end_way
+Ash: Not the kindest way. Not the hardest. YOUR way — and the light is lit. That is the whole job.
+Arno: Good. Because I have a dog to feed.
+-> home
+
+:home
+bg /content/pixel/bg/pines_morning.png
+The pines smelled of rain again. Behind the third ridge, faint as a struck match, a light stayed on.
+fade to="black" duration=2
+-> __end

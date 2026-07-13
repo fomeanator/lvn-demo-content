@@ -1,0 +1,333 @@
+{
+  "scene": "waylight_ch04",
+  "script": [
+    {
+      "expr": "0",
+      "key": "right",
+      "op": "set"
+    },
+    {
+      "id": "sea_palace",
+      "op": "bg",
+      "sprite_url": "/content/pixel/bg/sea_palace.png"
+    },
+    {
+      "duration": 1.2,
+      "op": "fade",
+      "to": "clear"
+    },
+    {
+      "op": "say",
+      "text": "The Sea Palace grew out of the water like frozen music. Every wall listened."
+    },
+    {
+      "height": 0.44,
+      "id": "queen",
+      "op": "actor",
+      "position": "right",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/fairy_queen.png"
+    },
+    {
+      "op": "say",
+      "text": "The third spark is mine to give and mine to refuse. At my court, we play an old game.",
+      "who": "Queen"
+    },
+    {
+      "height": 0.42,
+      "id": "hero",
+      "op": "actor",
+      "position": "left",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/hero.png"
+    },
+    {
+      "op": "say",
+      "text": "Let me guess. Riddles.",
+      "who": "Arno"
+    },
+    {
+      "op": "say",
+      "text": "Riddles. Answer as the wave breaks — a court of water does not wait.",
+      "who": "Queen"
+    },
+    {
+      "op": "say",
+      "text": "First. I have no wings, yet I taught your kind to fly. I have no voice, yet I fill your sails with argument.",
+      "who": "Queen"
+    },
+    {
+      "op": "choice",
+      "options": [
+        {
+          "goto": "right1",
+          "text": "The wind"
+        },
+        {
+          "goto": "wrong1",
+          "text": "A bird"
+        },
+        {
+          "goto": "wrong1",
+          "text": "A dream"
+        }
+      ],
+      "timeout": 8,
+      "timeout_goto": "miss1"
+    },
+    {
+      "id": "right1",
+      "op": "label"
+    },
+    {
+      "expr": "right + 1",
+      "key": "right",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "The wind. Yes. It argued my palace into these shapes.",
+      "who": "Queen"
+    },
+    {
+      "label": "q2",
+      "op": "goto"
+    },
+    {
+      "id": "wrong1",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "No. Listen to what moves you, boy, not what you can catch.",
+      "who": "Queen"
+    },
+    {
+      "label": "q2",
+      "op": "goto"
+    },
+    {
+      "id": "miss1",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "The wave broke. The answer was the wind — and it has already left.",
+      "who": "Queen"
+    },
+    {
+      "label": "q2",
+      "op": "goto"
+    },
+    {
+      "id": "q2",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "Second. The more of me you take, the more you leave behind.",
+      "who": "Queen"
+    },
+    {
+      "op": "choice",
+      "options": [
+        {
+          "goto": "right2",
+          "text": "Footsteps"
+        },
+        {
+          "goto": "wrong2",
+          "text": "Memories"
+        },
+        {
+          "goto": "wrong2",
+          "text": "Water"
+        }
+      ],
+      "timeout": 8,
+      "timeout_goto": "miss2"
+    },
+    {
+      "id": "right2",
+      "op": "label"
+    },
+    {
+      "expr": "right + 1",
+      "key": "right",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "Footsteps. You have left a trail of them through my kingdom — all pointing forward. I noticed.",
+      "who": "Queen"
+    },
+    {
+      "label": "q3",
+      "op": "goto"
+    },
+    {
+      "id": "wrong2",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "A lovely answer. A wrong one. Footsteps, child.",
+      "who": "Queen"
+    },
+    {
+      "label": "q3",
+      "op": "goto"
+    },
+    {
+      "id": "miss2",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "Too slow. Footsteps. Though hesitation is also an answer.",
+      "who": "Queen"
+    },
+    {
+      "label": "q3",
+      "op": "goto"
+    },
+    {
+      "id": "q3",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "Last. Not a riddle. A truth for a truth — that is the oldest price. Tell me, in one word, what you miss most from home.",
+      "who": "Queen"
+    },
+    {
+      "default": "home",
+      "max": 20,
+      "op": "input",
+      "prompt": "One word — what do you miss?",
+      "var": "missed"
+    },
+    {
+      "op": "say",
+      "text": "\"{missed}.\" Spoken plainly. Do you know how rare that is at a court of glass?",
+      "who": "Queen"
+    },
+    {
+      "else": "__nf1",
+      "expr": "right \u003e= 2",
+      "op": "if",
+      "then": "spark_earned"
+    },
+    {
+      "id": "__nf1",
+      "op": "label"
+    },
+    {
+      "else": "__nf2",
+      "expr": "right \u003e= 1",
+      "op": "if",
+      "then": "spark_grudging"
+    },
+    {
+      "id": "__nf2",
+      "op": "label"
+    },
+    {
+      "label": "spark_mercy",
+      "op": "goto"
+    },
+    {
+      "id": "spark_earned",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "Sharp AND honest. Take the spark, Waylighter — it has been bored here for a century.",
+      "who": "Queen"
+    },
+    {
+      "expr": "kindness + 1",
+      "key": "kindness",
+      "op": "set"
+    },
+    {
+      "label": "leave",
+      "op": "goto"
+    },
+    {
+      "id": "spark_grudging",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "Half-sharp. Wholly honest. The honesty carries it. Take the spark.",
+      "who": "Queen"
+    },
+    {
+      "label": "leave",
+      "op": "goto"
+    },
+    {
+      "id": "spark_mercy",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "You lost my game entirely. But \"{missed}\" bought what cleverness could not. Take it — and tell no one I have gone soft.",
+      "who": "Queen"
+    },
+    {
+      "expr": "kindness + 1",
+      "key": "kindness",
+      "op": "set"
+    },
+    {
+      "label": "leave",
+      "op": "goto"
+    },
+    {
+      "id": "leave",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "The third spark tasted like salt and holidays. One left."
+    },
+    {
+      "id": "queen",
+      "op": "actor",
+      "show": "false"
+    },
+    {
+      "id": "sunset",
+      "op": "bg",
+      "sprite_url": "/content/pixel/bg/sunset.png"
+    },
+    {
+      "op": "say",
+      "text": "Ash was waiting on the shore, watching the sun drown itself in gold."
+    },
+    {
+      "height": 0.4,
+      "id": "fairy",
+      "op": "actor",
+      "position": "right",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/fairy_ash.png"
+    },
+    {
+      "op": "say",
+      "text": "The last one is the worst one. Sleep first. Tomorrow we walk into the storm.",
+      "who": "Ash"
+    },
+    {
+      "duration": 1.5,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+# Runtime state the server mutates in place — never content.
+state/
+services/analytics/
+
+# Server-generated downscale cache (@2k variants are derived on demand).
+*@2k*
+
+# Partner-licensed character pack (hill) — local only, do not publish.
+sprites/hill/
+
+# Proprietary fonts used for local demos (e.g. Comic Sans copy) — local only.
+fonts/
+
+# Pixel-art pack pending license/attribution review before publishing.
+pixel/

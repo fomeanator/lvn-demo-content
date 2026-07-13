@@ -1,0 +1,101 @@
+scene tour-ch01
+
+// ═════════════════ LVN TOUR · 01 · WORDS ═════════════════
+// The living changelog. Every beat plays by one rule: the green label up
+// top shows a real .lvns line, then that line runs on stage. Season 1
+// walks the whole language; every engine release appends a chapter with
+// only what's new — so the novel IS the documentation, and the
+// documentation always runs.
+
+actor_map Ash=hill
+actor_map Codel=codel
+
+fade to="black" duration=0
+bg /content/bg/fantasy_forest.jpg
+fade to="clear" duration=1
+
+Somewhere between the trees, a test scene finishes booting.
+This box you are reading is narration — a line with no speaker in front.
+
+text code x=3 y=12.5 size=50 color=#9fe8a8 «Just a plain line.»
+Just a plain line.
+From here on, the green label at the top shows the exact .lvns source of what happens next. One line of code — one beat of story.
+
+text code «actor hill left idle»
+actor id=hill position=left emotion=idle x=.24 y=.92 h=1.3 w=1
+Ash: There we go. Hi — I'm Ash. Your guide. I came bundled with the engine.
+
+text code «actor hill hair=red»
+actor id=hill hair=red
+Ash [smirk]: See that? One field — new hair. I'm not a picture, I'm five layers on axes: body, outfit, face, hair, jewellery. Chapter six hands you my whole wardrobe.
+Ash: This novel is the engine documenting itself. Every chapter is a lesson. Every release adds one more.
+
+text code «Ash: A spoken line.»
+Ash: Put a name before the colon and the line becomes dialogue. The box grows a nameplate — and I light up while everyone else dims.
+
+text code «actor codel right neutral»
+actor codel right neutral
+Ash: This is Codel. She was downloaded from the internet, which legally makes her our test subject.
+Codel [annoyed]: I agreed to nothing.
+Ash [sarcasm]: The best test subjects never do.
+
+// ── speaker emotions: «Name [emotion]:» swaps the face mid-line ──
+text code «Codel [pout]: Fine. One lesson.»
+Codel [pout]: Fine. One lesson.
+Ash [delight]: Brackets after the name switch the speaker's emotion — the say line itself drives the face. She has ten of those.
+Codel [flustered]: Please don't scroll through all of them.
+
+text code «guillemets: one narration across several lines»
+«The clearing listened politely.
+ The trees took notes.
+ Somewhere nearby, a dog decided this lecture was worth attending.»
+
+text code «actor dog center»
+actor dog center h=.18 sprite_url="/content/pixel/cast/dog.png"
+Codel [worried]: ...Why is the dog eight pixels?
+Ash: Because he's a plain PNG, dear. You are a layered character with a face axis; he is one flat file. The stage takes both without complaint.
+
+// ── interpolation: {expression} inside any text ──
+text code «sparks = 4»
+sparks = 4
+Ash: Variables live right in the text. Watch the label — braces in the source, values on stage.
+
+text code «Ash: Sparks in my pocket: {{sparks}}.»
+Ash: Sparks in my pocket: {sparks}.
+
+text code «sparks = sparks - 1»
+sparks = sparks - 1
+Ash: One went to taxes. Sparks now: {sparks}. Same braces, new number.
+Codel [neutral]: Do I get the spark at the end of the lesson?
+Ash [happy]: {sparks} of them, if you behave.
+
+// ── hint: a self-hiding toast ──
+text code «hint text="Hold a finger anywhere — the UI hides." duration=6»
+hint text="Hold a finger anywhere — the UI hides." duration=6
+Ash: That toast is a hint. It waves, waits six seconds, and leaves. Politest op in the language.
+
+// ── the label is eating its own dog food ──
+Ash: One more secret. The green label itself is just a `text code ...` op — styled once at the start, then fed bare text. We document the engine with the engine.
+Codel [happy]: So the lesson about text... is written in text.
+Ash [smirk]: She CAN be taught.
+
+// ── fonts are content: swap the label's typeface live ──
+text code «text code font="/content/fonts/mono.ttf"»
+text code font="/content/fonts/mono.ttf"
+Ash: Watch the label — new typeface, mid-scene. That font didn't ship inside the app: it came with the story, downloaded and cached like any sprite.
+Codel [flustered]: It documented its own makeover.
+Ash: Themes can do the same for the dialogue — one line in the manifest, and the whole novel wears its author's type.
+
+// ── reader-side tools: no code, just the player ──
+Ash: A few powers you own without any code: scroll back to reread me, auto-play to watch hands-free, skip to fast-forward my jokes.
+Codel [shy]: Watch hands-free? Like a film?
+Ash: Like a film where you are the projector. Try the menu in the corner.
+
+// ── teaser ──
+Ash: Next lesson — choices and memory. The story starts writing things down about you.
+Codel [nervous]: That sounds like a threat.
+Ash: It's a variable, dear. It's only a threat if you misbehave.
+
+text code «fade to="black" duration=1»
+fade to="black" duration=1
+-> __end

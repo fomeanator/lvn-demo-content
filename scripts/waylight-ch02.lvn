@@ -1,0 +1,340 @@
+{
+  "scene": "waylight_ch02",
+  "script": [
+    {
+      "expr": "3",
+      "key": "hp",
+      "op": "set"
+    },
+    {
+      "expr": "[]",
+      "key": "inv",
+      "op": "set"
+    },
+    {
+      "color": "#ffd76a",
+      "id": "hud",
+      "op": "text",
+      "size": 30,
+      "text": "♥ {hp}   ✨ grit {grit}   ❤ kindness {kindness}",
+      "x": 3,
+      "y": 4
+    },
+    {
+      "id": "cave",
+      "op": "bg",
+      "sprite_url": "/content/pixel/bg/cave.png"
+    },
+    {
+      "duration": 1,
+      "op": "fade",
+      "to": "clear"
+    },
+    {
+      "height": 0.42,
+      "id": "hero",
+      "op": "actor",
+      "position": "left",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/hero.png"
+    },
+    {
+      "op": "say",
+      "text": "The Hollow Cave did not echo. It swallowed. Arno's steps landed like coins in wool."
+    },
+    {
+      "op": "say",
+      "text": "Hello, spark? Small, glowy, possibly cursed?",
+      "who": "Arno"
+    },
+    {
+      "op": "say",
+      "text": "Something answered. Not with sound — with weight. The dark leaned on him."
+    },
+    {
+      "op": "choice",
+      "options": [
+        {
+          "expr": "grit \u003e= 1",
+          "goto": "push",
+          "text": "Brace and push through the dark"
+        },
+        {
+          "goto": "careful",
+          "text": "Feel along the wall, slow and careful"
+        },
+        {
+          "goto": "match",
+          "text": "Light your last match"
+        }
+      ]
+    },
+    {
+      "id": "push",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "I didn't come this far to be leaned on.",
+      "who": "Arno"
+    },
+    {
+      "op": "say",
+      "text": "The dark shoved back. Claws of cold raked his sleeve."
+    },
+    {
+      "expr": "hp - 1",
+      "key": "hp",
+      "op": "set"
+    },
+    {
+      "height": 0.42,
+      "id": "hero",
+      "op": "actor",
+      "position": "left",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/hero_rough.png"
+    },
+    {
+      "op": "say",
+      "text": "Ow. Fine. FINE. Noted.",
+      "who": "Arno"
+    },
+    {
+      "expr": "inv + [\"cold shard\"]",
+      "key": "inv",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "He came out of it holding a shard of frozen dark. It hummed, faintly useful."
+    },
+    {
+      "label": "deeper",
+      "op": "goto"
+    },
+    {
+      "id": "careful",
+      "op": "label"
+    },
+    {
+      "expr": "kindness + 1",
+      "key": "kindness",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "The wall was carved. Hundreds of small hands had smoothed this path before him."
+    },
+    {
+      "op": "say",
+      "text": "Someone made this easy on purpose. Thanks, someones.",
+      "who": "Arno"
+    },
+    {
+      "expr": "inv + [\"carved token\"]",
+      "key": "inv",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "A loose stone dropped a small carved token into his palm."
+    },
+    {
+      "label": "deeper",
+      "op": "goto"
+    },
+    {
+      "id": "match",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "The match flared — and the dark flinched. In that one second he saw the whole cavern."
+    },
+    {
+      "expr": "inv + [\"memory of the map\"]",
+      "key": "inv",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "Okay. Left, left, down, and the ugly statue. Got it.",
+      "who": "Arno"
+    },
+    {
+      "label": "deeper",
+      "op": "goto"
+    },
+    {
+      "id": "deeper",
+      "op": "label"
+    },
+    {
+      "id": "cave_morning",
+      "op": "bg",
+      "sprite_url": "/content/pixel/bg/cave_morning.png"
+    },
+    {
+      "op": "say",
+      "text": "Morning light fell through a crack ahead — and under it, on a pedestal of ice, the first spark."
+    },
+    {
+      "op": "say",
+      "text": "A shape peeled off the wall. Tall. Wrong. Made of everything the light wasn't."
+    },
+    {
+      "height": 0.46,
+      "id": "shadow",
+      "op": "actor",
+      "position": "right",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/shadow.png"
+    },
+    {
+      "op": "say",
+      "text": "The boy carries warmth. Leave it. Walk out colder and alive.",
+      "who": "Shadow"
+    },
+    {
+      "op": "choice",
+      "options": [
+        {
+          "expr": "has(inv, \"cold shard\")",
+          "goto": "trade",
+          "text": "Trade the cold shard for passage"
+        },
+        {
+          "expr": "has(inv, \"carved token\")",
+          "goto": "token",
+          "text": "Show the carved token"
+        },
+        {
+          "goto": "run",
+          "text": "Take the spark and RUN"
+        }
+      ]
+    },
+    {
+      "id": "trade",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "You want cold? Here. Take your own back.",
+      "who": "Arno"
+    },
+    {
+      "op": "say",
+      "text": "He tossed the shard. The Shadow caught it and turned it over like a jeweler."
+    },
+    {
+      "op": "say",
+      "text": "...Acceptable. The spark buys itself, then.",
+      "who": "Shadow"
+    },
+    {
+      "id": "shadow",
+      "op": "actor",
+      "show": "false"
+    },
+    {
+      "label": "spark",
+      "op": "goto"
+    },
+    {
+      "id": "token",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "The someones who carved your walls left me this.",
+      "who": "Arno"
+    },
+    {
+      "op": "say",
+      "text": "The Shadow recoiled from the token as if from a small sun."
+    },
+    {
+      "op": "say",
+      "text": "The old debt. Paid is paid. Take it and go, debt-bearer.",
+      "who": "Shadow"
+    },
+    {
+      "id": "shadow",
+      "op": "actor",
+      "show": "false"
+    },
+    {
+      "expr": "kindness + 1",
+      "key": "kindness",
+      "op": "set"
+    },
+    {
+      "label": "spark",
+      "op": "goto"
+    },
+    {
+      "id": "run",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "Sorry — borrowing this!",
+      "who": "Arno"
+    },
+    {
+      "expr": "hp - 1",
+      "key": "hp",
+      "op": "set"
+    },
+    {
+      "height": 0.42,
+      "id": "hero",
+      "op": "actor",
+      "position": "left",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/hero_bandaged.png"
+    },
+    {
+      "expr": "grit + 1",
+      "key": "grit",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "The cold caught his shoulder as he dove. But his fingers closed on the spark first."
+    },
+    {
+      "id": "shadow",
+      "op": "actor",
+      "show": "false"
+    },
+    {
+      "label": "spark",
+      "op": "goto"
+    },
+    {
+      "id": "spark",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "The spark settled into his jacket pocket like a warm coin. One of four."
+    },
+    {
+      "op": "say",
+      "text": "One down. Ash better have snacks at the next one.",
+      "who": "Arno"
+    },
+    {
+      "duration": 1.5,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    }
+  ]
+}

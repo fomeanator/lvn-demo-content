@@ -1,0 +1,280 @@
+{
+  "scene": "waylight_ch03",
+  "script": [
+    {
+      "expr": "0",
+      "key": "found_bell",
+      "op": "set"
+    },
+    {
+      "id": "falls_cursed",
+      "op": "bg",
+      "sprite_url": "/content/pixel/bg/falls_cursed.png"
+    },
+    {
+      "duration": 1.2,
+      "op": "fade",
+      "to": "clear"
+    },
+    {
+      "op": "say",
+      "text": "The Sleeping Falls were not asleep. They were sealed — frozen red, veined like cracked glass."
+    },
+    {
+      "height": 0.4,
+      "id": "fairy",
+      "op": "actor",
+      "position": "right",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/fairy_ash.png"
+    },
+    {
+      "op": "say",
+      "text": "The second spark is behind the water. The curse listens for one true sound. Look around, Arno.",
+      "who": "Ash"
+    },
+    {
+      "id": "fairy",
+      "op": "actor",
+      "show": "false"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "reeds",
+      "on_click": "reeds",
+      "op": "obj",
+      "opacity": 0.01,
+      "sprite_url": "/content/pixel/cast/dog.png",
+      "width": 0.14,
+      "x": 0.15,
+      "y": 0.78
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "cairn",
+      "on_click": "cairn",
+      "op": "obj",
+      "opacity": 0.01,
+      "sprite_url": "/content/pixel/cast/shadow.png",
+      "width": 0.12,
+      "x": 0.82,
+      "y": 0.72
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "crack",
+      "on_click": "crack",
+      "op": "obj",
+      "opacity": 0.01,
+      "sprite_url": "/content/pixel/cast/fairy_ash.png",
+      "width": 0.16,
+      "x": 0.52,
+      "y": 0.38
+    },
+    {
+      "op": "say",
+      "text": "Something by the reeds. A stack of stones. And that bright crack in the middle of the seal."
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    },
+    {
+      "id": "reeds",
+      "op": "label"
+    },
+    {
+      "else": "__nf1",
+      "expr": "found_bell \u003e= 1",
+      "op": "if",
+      "then": "reeds_again"
+    },
+    {
+      "id": "__nf1",
+      "op": "label"
+    },
+    {
+      "expr": "1",
+      "key": "found_bell",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "In the reeds — a small silver bell, wax pressed into its mouth. Someone silenced it on purpose."
+    },
+    {
+      "anchor": "0.5,0.5",
+      "draggable": true,
+      "id": "bell",
+      "on_drop": "crack:ring",
+      "op": "obj",
+      "sprite_url": "/content/pixel/cast/fairy_queen.png",
+      "width": 0.1,
+      "x": 0.2,
+      "y": 0.55
+    },
+    {
+      "op": "say",
+      "text": "A bell with no voice. Rude. Let's find where you sing.",
+      "who": "Arno"
+    },
+    {
+      "op": "say",
+      "text": "Drag the bell to where the seal is thinnest."
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    },
+    {
+      "id": "reeds_again",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "Just reeds now. And frog judgement.",
+      "who": "Arno"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    },
+    {
+      "id": "cairn",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "Someone stacked seven stones here and left in a hurry. The moss on top grows in the shape of a hand."
+    },
+    {
+      "op": "say",
+      "text": "Pilgrims. So people DID come to wake the falls.",
+      "who": "Arno"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    },
+    {
+      "id": "crack",
+      "op": "label"
+    },
+    {
+      "else": "__nf2",
+      "expr": "found_bell \u003e= 1",
+      "op": "if",
+      "then": "crack_hint"
+    },
+    {
+      "id": "__nf2",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "The seal is thinnest here. I need... something. A key. A sound.",
+      "who": "Arno"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    },
+    {
+      "id": "crack_hint",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "This is the spot. Now — the bell goes here.",
+      "who": "Arno"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    },
+    {
+      "id": "ring",
+      "op": "label"
+    },
+    {
+      "id": "bell",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "reeds",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "cairn",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "crack",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "color": "white",
+      "duration": 0.4,
+      "op": "flash"
+    },
+    {
+      "op": "say",
+      "text": "The wax cracked. The bell sang one note — low, round, older than the cliff."
+    },
+    {
+      "id": "falls",
+      "op": "bg",
+      "sprite_url": "/content/pixel/bg/falls.png"
+    },
+    {
+      "action": "shake",
+      "amplitude": 0.02,
+      "duration": 0.5,
+      "op": "camera"
+    },
+    {
+      "op": "say",
+      "text": "And the falls woke up. Red glass burst into spray and rainbow; water remembered how to fall."
+    },
+    {
+      "height": 0.4,
+      "id": "fairy",
+      "op": "actor",
+      "position": "right",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/fairy_ash.png"
+    },
+    {
+      "op": "say",
+      "text": "...You found its voice. I have watched heroes with swords fail this door.",
+      "who": "Ash"
+    },
+    {
+      "op": "say",
+      "text": "Swords don't listen.",
+      "who": "Arno"
+    },
+    {
+      "expr": "kindness + 1",
+      "key": "kindness",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "The second spark rode the spray into his pocket. Half way there."
+    },
+    {
+      "duration": 1.5,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    }
+  ]
+}

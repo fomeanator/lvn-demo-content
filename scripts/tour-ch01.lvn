@@ -1,0 +1,423 @@
+{
+  "scene": "tour-ch01",
+  "script": [
+    {
+      "duration": 0,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "id": "fantasy_forest",
+      "op": "bg",
+      "sprite_url": "/content/bg/fantasy_forest.jpg"
+    },
+    {
+      "duration": 1,
+      "op": "fade",
+      "to": "clear"
+    },
+    {
+      "op": "say",
+      "text": "Somewhere between the trees, a test scene finishes booting."
+    },
+    {
+      "op": "say",
+      "text": "This box you are reading is narration — a line with no speaker in front."
+    },
+    {
+      "color": "#9fe8a8",
+      "id": "code",
+      "op": "text",
+      "size": 50,
+      "text": "Just a plain line.",
+      "x": 3,
+      "y": 12.5
+    },
+    {
+      "op": "say",
+      "text": "Just a plain line."
+    },
+    {
+      "op": "say",
+      "text": "From here on, the green label at the top shows the exact .lvns source of what happens next. One line of code — one beat of story."
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor hill left idle"
+    },
+    {
+      "emotion": "idle",
+      "h": 1.3,
+      "id": "hill",
+      "op": "actor",
+      "position": "left",
+      "w": 1,
+      "x": 0.24,
+      "y": 0.92
+    },
+    {
+      "op": "say",
+      "text": "There we go. Hi — I'm Ash. Your guide. I came bundled with the engine.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor hill hair=red"
+    },
+    {
+      "hair": "red",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "emotion": "smirk",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "See that? One field — new hair. I'm not a picture, I'm five layers on axes: body, outfit, face, hair, jewellery. Chapter six hands you my whole wardrobe.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "op": "say",
+      "text": "This novel is the engine documenting itself. Every chapter is a lesson. Every release adds one more.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "Ash: A spoken line."
+    },
+    {
+      "op": "say",
+      "text": "Put a name before the colon and the line becomes dialogue. The box grows a nameplate — and I light up while everyone else dims.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor codel right neutral"
+    },
+    {
+      "emotion": "neutral",
+      "id": "codel",
+      "op": "actor",
+      "position": "right",
+      "show": true
+    },
+    {
+      "op": "say",
+      "text": "This is Codel. She was downloaded from the internet, which legally makes her our test subject.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "annoyed",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "I agreed to nothing.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "sarcasm",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "The best test subjects never do.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "Codel [pout]: Fine. One lesson."
+    },
+    {
+      "emotion": "pout",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Fine. One lesson.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "delight",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Brackets after the name switch the speaker's emotion — the say line itself drives the face. She has ten of those.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "flustered",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Please don't scroll through all of them.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "guillemets: one narration across several lines"
+    },
+    {
+      "op": "say",
+      "text": "The clearing listened politely.\n The trees took notes.\n Somewhere nearby, a dog decided this lecture was worth attending."
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor dog center"
+    },
+    {
+      "height": 0.18,
+      "id": "dog",
+      "op": "actor",
+      "position": "center",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/dog.png"
+    },
+    {
+      "emotion": "worried",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "...Why is the dog eight pixels?",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "op": "say",
+      "text": "Because he's a plain PNG, dear. You are a layered character with a face axis; he is one flat file. The stage takes both without complaint.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "sparks = 4"
+    },
+    {
+      "expr": "4",
+      "key": "sparks",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "Variables live right in the text. Watch the label — braces in the source, values on stage.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "Ash: Sparks in my pocket: {{sparks}}."
+    },
+    {
+      "op": "say",
+      "text": "Sparks in my pocket: {sparks}.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "sparks = sparks - 1"
+    },
+    {
+      "expr": "sparks - 1",
+      "key": "sparks",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "One went to taxes. Sparks now: {sparks}. Same braces, new number.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "neutral",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Do I get the spark at the end of the lesson?",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "happy",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "{sparks} of them, if you behave.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "hint text=\"Hold a finger anywhere — the UI hides.\" duration=6"
+    },
+    {
+      "duration": 6,
+      "op": "hint",
+      "text": "Hold a finger anywhere — the UI hides."
+    },
+    {
+      "op": "say",
+      "text": "That toast is a hint. It waves, waits six seconds, and leaves. Politest op in the language.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "op": "say",
+      "text": "One more secret. The green label itself is just a `text code ...` op — styled once at the start, then fed bare text. We document the engine with the engine.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "happy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "So the lesson about text... is written in text.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "smirk",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "She CAN be taught.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "text code font=\"/content/fonts/mono.ttf\""
+    },
+    {
+      "font": "/content/fonts/mono.ttf",
+      "id": "code",
+      "op": "text"
+    },
+    {
+      "op": "say",
+      "text": "Watch the label — new typeface, mid-scene. That font didn't ship inside the app: it came with the story, downloaded and cached like any sprite.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "flustered",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "It documented its own makeover.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "op": "say",
+      "text": "Themes can do the same for the dialogue — one line in the manifest, and the whole novel wears its author's type.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "op": "say",
+      "text": "A few powers you own without any code: scroll back to reread me, auto-play to watch hands-free, skip to fast-forward my jokes.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "shy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Watch hands-free? Like a film?",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "op": "say",
+      "text": "Like a film where you are the projector. Try the menu in the corner.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "op": "say",
+      "text": "Next lesson — choices and memory. The story starts writing things down about you.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "nervous",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "That sounds like a threat.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "op": "say",
+      "text": "It's a variable, dear. It's only a threat if you misbehave.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "fade to=\"black\" duration=1"
+    },
+    {
+      "duration": 1,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    }
+  ]
+}

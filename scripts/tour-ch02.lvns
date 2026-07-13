@@ -1,0 +1,125 @@
+scene tour-ch02
+
+// ═════════════ LVN TOUR · 02 · CHOICES & MEMORY ═════════════
+// Lesson format (see tour-ch01): the green label shows a real .lvns line,
+// then it runs. This chapter: choices (plain, gated, priced, timed), text
+// input, variables and branching, and the cross-novel global.* stats.
+
+actor_map Ash=hill
+actor_map Codel=codel
+
+fade to="black" duration=0
+bg /content/bg/Beach_cliff_cloudy__portal.jpg
+fade to="clear" duration=1
+
+text code x=3 y=12.5 size=50 color=#9fe8a8 «coins = 3»
+coins = 3
+
+actor hill left idle x=.24 y=.92 h=1.3 w=1
+actor codel right neutral
+Ash: Lesson two. This cliff grants wishes — for a price. You have {coins} coins.
+Codel [worried]: Where did I get coins?
+Ash [smirk]: Line one of this chapter. Variables spring into being the moment you assign them.
+
+// ── a plain choice: consecutive «- text -> label» lines ──
+text code «- "Wish for wisdom" -> wise»
+Ash: A choice is just lines that start with a dash. Pick, test subject.
+
+- "Wish for wisdom" -> wise
+- "Wish for snacks" -> snacks
+
+:wise
+text code «wisdom = wisdom + 1»
+wisdom = wisdom + 1
+Codel [serious]: I feel... documented.
+-> after_wish
+
+:snacks
+Codel [happy]: No regrets.
+-> after_wish
+
+:after_wish
+// ── a PRICED choice: cost shows on the button; we deduct explicitly ──
+text code «- "Golden wish" -> gold cost="2 coins"»
+Ash: Options can carry a price tag. The engine SHOWS the cost — deducting is the author's line, so the economy stays honest.
+
+- "Golden wish (2 coins)" -> gold cost="2 coins"
+- "Keep my coins" -> thrifty
+
+:gold
+coins = coins - 2
+Ash [delight]: And now you have {coins}. The button wore the price; this line paid it.
+-> after_gold
+
+:thrifty
+Ash [sarcasm]: Fiscal responsibility. In MY tour.
+-> after_gold
+
+:after_gold
+// ── a GATED choice: hidden until an expression holds ──
+text code «- "Secret wish" -> secret expr="wisdom >= 1"»
+Ash: Options can hide behind an expression. If you wished for wisdom earlier, there are THREE buttons now. Otherwise — two, and you'll never know.
+
+- "Secret wish" -> secret expr="wisdom >= 1"
+- "Ordinary wish" -> ordinary
+- "No more wishes" -> after_secret
+
+:secret
+Codel [flustered]: The cliff remembered my wisdom!
+Ash: The VARIABLE remembered. The cliff is a JPEG.
+-> after_secret
+
+:ordinary
+Codel [neutral]: Solid. Dependable. Boring.
+-> after_secret
+
+:after_secret
+// ── a TIMED choice: a countdown bar; silence takes the timeout branch ──
+text code «choice timeout=5 timeout_goto=frozen»
+Ash: And options can RUSH you. Five seconds. The bar is the engine's; the panic is yours.
+
+choice timeout=5 timeout_goto=frozen
+- "Grab the rope!" -> grabbed
+- "Grab the... other rope!" -> grabbed
+
+:grabbed
+Codel [nervous]: I chose! I chose!
+-> after_timer
+
+:frozen
+Ash [smirk]: Frozen solid. The timeout branch is also a choice — the story just made it for you.
+-> after_timer
+
+:after_timer
+// ── text input: the player's word becomes a variable ──
+text code «input var=wish prompt="One word: your wish"»
+input var=wish prompt="One word: your wish" default="peace" max=16
+
+Ash: You typed "{wish}". It's a variable now — the story can quote you forever.
+Codel [flustered]: That feels legally binding.
+
+// ── branching on state ──
+text code «if coins >= 1 -> rich»
+if coins >= 1 -> rich
+Ash: Broke. The `if` fell through to the next line — that IS the else.
+-> after_if
+
+:rich
+Ash: Still {coins} coin(s) to your name. An `if` that holds jumps; one that doesn't just walks on.
+-> after_if
+
+:after_if
+// ── global.* — stats that OUTLIVE this novel ──
+text code «global.tour_graduate = 1»
+global.tour_graduate = 1
+Ash: One more trick. Variables with `global.` persist across EVERY novel on this device — finish the tour and other stories can greet you as a graduate.
+Codel [shy]: ...Will they be nice about it?
+
+// ── teaser ──
+Ash: Next lesson — the stage itself: backgrounds, framing, and clickable scenery.
+Codel [pout]: The scenery is going to be clickable?
+Ash [happy]: Everything is clickable if you're brave enough.
+
+text code «fade to="black" duration=1»
+fade to="black" duration=1
+-> __end

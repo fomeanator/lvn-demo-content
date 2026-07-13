@@ -1,0 +1,639 @@
+{
+  "scene": "tour-ch03",
+  "script": [
+    {
+      "duration": 0,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "id": "Bolshoi_Theatre_scene_CLOSED",
+      "op": "bg",
+      "sprite_url": "/content/bg/Bolshoi_Theatre_scene_CLOSED.jpg"
+    },
+    {
+      "duration": 1,
+      "op": "fade",
+      "to": "clear"
+    },
+    {
+      "color": "#9fe8a8",
+      "id": "code",
+      "op": "text",
+      "size": 50,
+      "text": "bg /content/bg/…_CLOSED.jpg",
+      "x": 3,
+      "y": 12.5
+    },
+    {
+      "emotion": "idle",
+      "height": 1.3,
+      "id": "hill",
+      "op": "actor",
+      "position": "left",
+      "show": true,
+      "width": 1,
+      "x": 0.24,
+      "y": 0.92
+    },
+    {
+      "emotion": "neutral",
+      "id": "codel",
+      "op": "actor",
+      "position": "right",
+      "show": true
+    },
+    {
+      "op": "say",
+      "text": "Lesson three — the stage itself. I booked us an actual one.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "worried",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "The curtain is closed.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "smirk",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Because the next line of code opens it.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "bg /content/bg/…_OPEN.jpg"
+    },
+    {
+      "id": "Bolshoi_Theatre_scene_OPEN",
+      "op": "bg",
+      "sprite_url": "/content/bg/Bolshoi_Theatre_scene_OPEN.jpg"
+    },
+    {
+      "emotion": "delight",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "`bg` swaps the whole backdrop in one line. Instant by default — wrap it in `fade` when the moment deserves ceremony.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "happy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "I would like ceremony EVERY time.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor codel far_left"
+    },
+    {
+      "id": "codel",
+      "op": "actor",
+      "position": "far_left",
+      "show": true
+    },
+    {
+      "op": "say",
+      "text": "Placement. Seven named slots: far_left, left, center_left, center, center_right, right, far_right.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "annoyed",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "I have been YEETED.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor codel center"
+    },
+    {
+      "id": "codel",
+      "op": "actor",
+      "position": "center",
+      "show": true
+    },
+    {
+      "op": "say",
+      "text": "Or skip slots and give x/y as fractions of the screen — 0,0 is the top-left corner, 1,1 the bottom-right. My x is .24. No slot has that kind of taste.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor codel h=.45"
+    },
+    {
+      "height": 0.45,
+      "id": "codel",
+      "op": "actor",
+      "show": true
+    },
+    {
+      "emotion": "sarcasm",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "`w` and `h` are fractions too. Behold: travel-size test subject.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "pout",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Restore me. RESTORE ME.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor codel h=.93"
+    },
+    {
+      "height": 0.93,
+      "id": "codel",
+      "op": "actor",
+      "show": true
+    },
+    {
+      "emotion": "serious",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "We never speak of this again.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor codel flip=true"
+    },
+    {
+      "flip": "true",
+      "id": "codel",
+      "op": "actor",
+      "show": true
+    },
+    {
+      "op": "say",
+      "text": "`flip` mirrors the art. One sprite, both profiles — half a staging budget, saved.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "nervous",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "My hair parts the WRONG WAY now.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor codel flip=false"
+    },
+    {
+      "flip": "false",
+      "id": "codel",
+      "op": "actor",
+      "show": true
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor codel opacity=.35"
+    },
+    {
+      "id": "codel",
+      "op": "actor",
+      "opacity": 0.35,
+      "show": true
+    },
+    {
+      "emotion": "dreamy",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Opacity. For ghosts, memories, and test subjects who question the curriculum.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "flustered",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "I can see THROUGH my own hands!",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor codel opacity=1"
+    },
+    {
+      "id": "codel",
+      "op": "actor",
+      "opacity": 1,
+      "show": true
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor hill face=north"
+    },
+    {
+      "face": "north",
+      "id": "hill",
+      "op": "actor",
+      "show": true
+    },
+    {
+      "op": "say",
+      "text": "Layered characters take ANY of their axes as a field. `face` turns my whole base — different body sprite, same wardrobe stacked on top.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "shy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Warn me before you rotate.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor hill face=west"
+    },
+    {
+      "face": "west",
+      "id": "hill",
+      "op": "actor",
+      "show": true
+    },
+    {
+      "emotion": "smirk",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Chapter six takes this system apart properly. Wardrobe and all.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "op": "say",
+      "text": "Now the fun part — scenery you can CLICK. Field trip.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "bg /content/bg/Пещера.jpg"
+    },
+    {
+      "duration": 0.6,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "id": "Пещера",
+      "op": "bg",
+      "sprite_url": "/content/bg/Пещера.jpg"
+    },
+    {
+      "emotion": "idle",
+      "height": 1.1,
+      "id": "hill",
+      "op": "actor",
+      "position": "left",
+      "show": true,
+      "width": 0.85,
+      "x": 0.15,
+      "y": 0.92
+    },
+    {
+      "id": "codel",
+      "op": "actor",
+      "show": false
+    },
+    {
+      "duration": 0.6,
+      "op": "fade",
+      "to": "clear"
+    },
+    {
+      "op": "say",
+      "text": "A grotto. Someone lost three things down here. `obj` puts ANY sprite on stage; add `on_click=\"label\"` and it becomes a hotspot.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "obj id=skull … on_click=\"take_skull\""
+    },
+    {
+      "expr": "0",
+      "key": "found",
+      "op": "set"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "skull",
+      "on_click": "take_skull",
+      "op": "obj",
+      "sprite_url": "/content/ui/icons/skull.png",
+      "width": 0.11,
+      "x": 0.24,
+      "y": 0.66
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "tome",
+      "on_click": "take_tome",
+      "op": "obj",
+      "sprite_url": "/content/ui/icons/book_closed.png",
+      "width": 0.11,
+      "x": 0.8,
+      "y": 0.52
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "lock",
+      "on_click": "take_lock",
+      "op": "obj",
+      "sprite_url": "/content/ui/icons/lock_closed.png",
+      "width": 0.1,
+      "x": 0.56,
+      "y": 0.3
+    },
+    {
+      "label": "cave",
+      "op": "goto"
+    },
+    {
+      "id": "cave",
+      "op": "label"
+    },
+    {
+      "else": "__nf1",
+      "expr": "found \u003e= 3",
+      "op": "if",
+      "then": "hunt_done"
+    },
+    {
+      "id": "__nf1",
+      "op": "label"
+    },
+    {
+      "expr": "3 - found",
+      "key": "left_to_find",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "{left_to_find} to go. Tap what doesn't belong in a cave. A hotspot SWALLOWS its tap — the story only advances when you tap empty space.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "label": "cave",
+      "op": "goto"
+    },
+    {
+      "id": "take_skull",
+      "op": "label"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "obj id=skull show=false"
+    },
+    {
+      "id": "skull",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "expr": "found + 1",
+      "key": "found",
+      "op": "set"
+    },
+    {
+      "emotion": "surprised",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "A skull. Lovely. This was a museum trip until JUST now.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "label": "cave",
+      "op": "goto"
+    },
+    {
+      "id": "take_tome",
+      "op": "label"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "obj id=tome show=false"
+    },
+    {
+      "id": "tome",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "expr": "found + 1",
+      "key": "found",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "A tome. Damp, annotated, and — judging by the stamp — sixty years overdue.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "label": "cave",
+      "op": "goto"
+    },
+    {
+      "id": "take_lock",
+      "op": "label"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "obj id=lock show=false"
+    },
+    {
+      "id": "lock",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "expr": "found + 1",
+      "key": "found",
+      "op": "set"
+    },
+    {
+      "emotion": "smirk",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "A lock with no door. The door is sold separately.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "label": "cave",
+      "op": "goto"
+    },
+    {
+      "id": "hunt_done",
+      "op": "label"
+    },
+    {
+      "emotion": "delight",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "All three. Now notice what you just PLAYED: labels, variables, `if`, and clickable objects. Chapter two plus chapter three is the entire point-and-click genre.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "neutral",
+      "id": "codel",
+      "op": "actor",
+      "position": "center",
+      "show": true
+    },
+    {
+      "emotion": "happy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "I found none of them and yet I feel accomplished.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "sarcasm",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "That's called producing, dear.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "op": "say",
+      "text": "Next lesson — motion. Everything you just placed learns to MOVE.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "worried",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "The skull too?",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "op": "say",
+      "text": "ESPECIALLY the skull.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "fade to=\"black\" duration=1"
+    },
+    {
+      "duration": 1,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    }
+  ]
+}

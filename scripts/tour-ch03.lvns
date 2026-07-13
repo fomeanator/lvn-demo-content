@@ -1,0 +1,137 @@
+scene tour-ch03
+
+// ═════════════ LVN TOUR · 03 · THE STAGE ═════════════
+// Lesson format (see tour-ch01): the green label shows a real .lvns line,
+// then it runs. This chapter: backgrounds, actor placement (slots, x/y,
+// size, flip, opacity), layered-axis swaps, and obj hotspots — a tiny
+// hidden-object game inside the lesson.
+
+actor_map Ash=hill
+actor_map Codel=codel
+
+fade to="black" duration=0
+bg /content/bg/Bolshoi_Theatre_scene_CLOSED.jpg
+fade to="clear" duration=1
+
+text code x=3 y=12.5 size=50 color=#9fe8a8 «bg /content/bg/…_CLOSED.jpg»
+
+actor hill left idle x=.24 y=.92 h=1.3 w=1
+actor codel right neutral
+Ash: Lesson three — the stage itself. I booked us an actual one.
+Codel [worried]: The curtain is closed.
+Ash [smirk]: Because the next line of code opens it.
+
+// ── bg: one op, new world ──
+text code «bg /content/bg/…_OPEN.jpg»
+bg /content/bg/Bolshoi_Theatre_scene_OPEN.jpg
+Ash [delight]: `bg` swaps the whole backdrop in one line. Instant by default — wrap it in `fade` when the moment deserves ceremony.
+Codel [happy]: I would like ceremony EVERY time.
+
+// ── named slots ──
+text code «actor codel far_left»
+actor codel far_left
+Ash: Placement. Seven named slots: far_left, left, center_left, center, center_right, right, far_right.
+Codel [annoyed]: I have been YEETED.
+
+text code «actor codel center»
+actor codel center
+Ash: Or skip slots and give x/y as fractions of the screen — 0,0 is the top-left corner, 1,1 the bottom-right. My x is .24. No slot has that kind of taste.
+
+// ── size ──
+text code «actor codel h=.45»
+actor codel h=.45
+Ash [sarcasm]: `w` and `h` are fractions too. Behold: travel-size test subject.
+Codel [pout]: Restore me. RESTORE ME.
+
+text code «actor codel h=.93»
+actor codel h=.93
+Codel [serious]: We never speak of this again.
+
+// ── flip ──
+text code «actor codel flip=true»
+actor codel flip=true
+Ash: `flip` mirrors the art. One sprite, both profiles — half a staging budget, saved.
+Codel [nervous]: My hair parts the WRONG WAY now.
+
+text code «actor codel flip=false»
+actor codel flip=false
+
+// ── opacity ──
+text code «actor codel opacity=.35»
+actor codel opacity=.35
+Ash [dreamy]: Opacity. For ghosts, memories, and test subjects who question the curriculum.
+Codel [flustered]: I can see THROUGH my own hands!
+
+text code «actor codel opacity=1»
+actor codel opacity=1
+
+// ── layered axes: any axis is just a field ──
+text code «actor hill face=north»
+actor hill face=north
+Ash: Layered characters take ANY of their axes as a field. `face` turns my whole base — different body sprite, same wardrobe stacked on top.
+Codel [shy]: Warn me before you rotate.
+
+text code «actor hill face=west»
+actor hill face=west
+Ash [smirk]: Chapter six takes this system apart properly. Wardrobe and all.
+
+// ── obj + on_click: the stage becomes a game ──
+Ash: Now the fun part — scenery you can CLICK. Field trip.
+
+text code «bg /content/bg/Пещера.jpg»
+fade to="black" duration=.6
+bg /content/bg/Пещера.jpg
+actor hill left idle x=.15 y=.92 h=1.1 w=.85
+actor codel hide
+fade to="clear" duration=.6
+
+Ash: A grotto. Someone lost three things down here. `obj` puts ANY sprite on stage; add `on_click="label"` and it becomes a hotspot.
+text code «obj id=skull … on_click="take_skull"»
+
+found = 0
+obj id=skull sprite_url="/content/ui/icons/skull.png" x=0.24 y=0.66 width=0.11 anchor="0.5,0.5" on_click="take_skull"
+obj id=tome  sprite_url="/content/ui/icons/book_closed.png" x=0.80 y=0.52 width=0.11 anchor="0.5,0.5" on_click="take_tome"
+obj id=lock  sprite_url="/content/ui/icons/lock_closed.png" x=0.56 y=0.30 width=0.10 anchor="0.5,0.5" on_click="take_lock"
+-> cave
+
+:cave
+if found >= 3 -> hunt_done
+left_to_find = 3 - found
+Ash: {left_to_find} to go. Tap what doesn't belong in a cave. A hotspot SWALLOWS its tap — the story only advances when you tap empty space.
+-> cave
+
+:take_skull
+text code «obj id=skull show=false»
+obj id=skull show=false
+found = found + 1
+Ash [surprised]: A skull. Lovely. This was a museum trip until JUST now.
+-> cave
+
+:take_tome
+text code «obj id=tome show=false»
+obj id=tome show=false
+found = found + 1
+Ash: A tome. Damp, annotated, and — judging by the stamp — sixty years overdue.
+-> cave
+
+:take_lock
+text code «obj id=lock show=false»
+obj id=lock show=false
+found = found + 1
+Ash [smirk]: A lock with no door. The door is sold separately.
+-> cave
+
+:hunt_done
+Ash [delight]: All three. Now notice what you just PLAYED: labels, variables, `if`, and clickable objects. Chapter two plus chapter three is the entire point-and-click genre.
+actor codel center neutral
+Codel [happy]: I found none of them and yet I feel accomplished.
+Ash [sarcasm]: That's called producing, dear.
+
+// ── teaser ──
+Ash: Next lesson — motion. Everything you just placed learns to MOVE.
+Codel [worried]: The skull too?
+Ash: ESPECIALLY the skull.
+
+text code «fade to="black" duration=1»
+fade to="black" duration=1
+-> __end

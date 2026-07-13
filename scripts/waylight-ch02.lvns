@@ -1,0 +1,90 @@
+scene waylight_ch02
+
+// ═══ WAYLIGHT · Chapter 2 — The Hollow Cave ═══
+// The RPG layer: stats on a live HUD, an inventory list, expr-gated choices,
+// and the hero's PORTRAIT changing with his condition (art as game state).
+
+hp = 3
+inv = []
+text hud x=3 y=4 size=30 color=#ffd76a «♥ {hp}   ✨ grit {grit}   ❤ kindness {kindness}»
+
+bg /content/pixel/bg/cave.png
+fade to="clear" duration=1.0
+
+actor hero sprite_url="/content/pixel/cast/hero.png" position=left height=0.42
+The Hollow Cave did not echo. It swallowed. Arno's steps landed like coins in wool.
+
+Arno: Hello, spark? Small, glowy, possibly cursed?
+
+Something answered. Not with sound — with weight. The dark leaned on him.
+
+- Brace and push through the dark -> push expr="grit >= 1"
+- Feel along the wall, slow and careful -> careful
+- Light your last match -> match
+
+:push
+Arno: I didn't come this far to be leaned on.
+The dark shoved back. Claws of cold raked his sleeve.
+hp = hp - 1
+actor hero sprite_url="/content/pixel/cast/hero_rough.png" position=left height=0.42
+Arno: Ow. Fine. FINE. Noted.
+inv = inv + ["cold shard"]
+He came out of it holding a shard of frozen dark. It hummed, faintly useful.
+-> deeper
+
+:careful
+kindness = kindness + 1
+The wall was carved. Hundreds of small hands had smoothed this path before him.
+Arno: Someone made this easy on purpose. Thanks, someones.
+inv = inv + ["carved token"]
+A loose stone dropped a small carved token into his palm.
+-> deeper
+
+:match
+The match flared — and the dark flinched. In that one second he saw the whole cavern.
+inv = inv + ["memory of the map"]
+Arno: Okay. Left, left, down, and the ugly statue. Got it.
+-> deeper
+
+:deeper
+bg /content/pixel/bg/cave_morning.png
+Morning light fell through a crack ahead — and under it, on a pedestal of ice, the first spark.
+
+A shape peeled off the wall. Tall. Wrong. Made of everything the light wasn't.
+
+actor shadow sprite_url="/content/pixel/cast/shadow.png" position=right height=0.46
+Shadow: The boy carries warmth. Leave it. Walk out colder and alive.
+
+- Trade the cold shard for passage -> trade expr="has(inv, \"cold shard\")"
+- Show the carved token -> token expr="has(inv, \"carved token\")"
+- Take the spark and RUN -> run
+
+:trade
+Arno: You want cold? Here. Take your own back.
+He tossed the shard. The Shadow caught it and turned it over like a jeweler.
+Shadow: ...Acceptable. The spark buys itself, then.
+actor shadow show=false
+-> spark
+
+:token
+Arno: The someones who carved your walls left me this.
+The Shadow recoiled from the token as if from a small sun.
+Shadow: The old debt. Paid is paid. Take it and go, debt-bearer.
+actor shadow show=false
+kindness = kindness + 1
+-> spark
+
+:run
+Arno: Sorry — borrowing this!
+hp = hp - 1
+actor hero sprite_url="/content/pixel/cast/hero_bandaged.png" position=left height=0.42
+grit = grit + 1
+The cold caught his shoulder as he dove. But his fingers closed on the spark first.
+actor shadow show=false
+-> spark
+
+:spark
+The spark settled into his jacket pocket like a warm coin. One of four.
+Arno: One down. Ash better have snacks at the next one.
+fade to="black" duration=1.5
+-> __end

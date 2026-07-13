@@ -1,0 +1,248 @@
+{
+  "scene": "waylight_ch01",
+  "script": [
+    {
+      "expr": "0",
+      "key": "kindness",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "grit",
+      "op": "set"
+    },
+    {
+      "id": "pines_morning",
+      "op": "bg",
+      "sprite_url": "/content/pixel/bg/pines_morning.png"
+    },
+    {
+      "duration": 1.2,
+      "op": "fade",
+      "to": "clear"
+    },
+    {
+      "op": "say",
+      "text": "The pines smelled of rain and something else. Something like struck matches."
+    },
+    {
+      "op": "say",
+      "text": "Arno had followed the dog in past the third ridge, farther than he had ever gone."
+    },
+    {
+      "height": 0.42,
+      "id": "hero",
+      "op": "actor",
+      "position": "left",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/hero.png"
+    },
+    {
+      "op": "say",
+      "text": "Biscuit! Where are you, you useless mop?",
+      "who": "Arno"
+    },
+    {
+      "height": 0.3,
+      "id": "dog",
+      "op": "actor",
+      "position": "right",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/dog.png"
+    },
+    {
+      "op": "say",
+      "text": "The dog stood dead still between the trees, staring at a light that had no business being there."
+    },
+    {
+      "id": "forest",
+      "op": "bg",
+      "sprite_url": "/content/pixel/bg/forest.png"
+    },
+    {
+      "op": "say",
+      "text": "The forest changed around one more step. The pines went silver-blue, and the air hummed like a struck string."
+    },
+    {
+      "op": "say",
+      "text": "Okay. That's... new.",
+      "who": "Arno"
+    },
+    {
+      "height": 0.42,
+      "id": "fairy",
+      "op": "actor",
+      "position": "right",
+      "show": true,
+      "sprite_url": "/content/pixel/cast/fairy_ash.png"
+    },
+    {
+      "id": "dog",
+      "op": "actor",
+      "show": "false"
+    },
+    {
+      "op": "say",
+      "text": "You are leaking warmth, boy. Do all your kind glow like that?",
+      "who": "???"
+    },
+    {
+      "op": "say",
+      "text": "Do all YOUR kind sneak up on people?",
+      "who": "Arno"
+    },
+    {
+      "op": "say",
+      "text": "Fair. I am Ash. And you are standing in the last lit corner of a kingdom that is going out.",
+      "who": "Ash"
+    },
+    {
+      "op": "say",
+      "text": "She said it the way you'd mention bad weather. The light between the trees pulsed, once, like something breathing."
+    },
+    {
+      "op": "say",
+      "text": "The Waylight is dying. Four sparks would relight it. I cannot carry them. You could.",
+      "who": "Ash"
+    },
+    {
+      "op": "choice",
+      "options": [
+        {
+          "goto": "ask",
+          "text": "Ask what happens if the light goes out"
+        },
+        {
+          "goto": "promise",
+          "text": "Promise to help, no questions"
+        },
+        {
+          "goto": "dog_first",
+          "text": "Say you just want your dog back"
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "op": "label"
+    },
+    {
+      "expr": "kindness + 1",
+      "key": "kindness",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "What happens to all this... if it goes out?",
+      "who": "Arno"
+    },
+    {
+      "op": "say",
+      "text": "The cold walks in. First here. Then, in a year or ten, through your pines too. Doors do not only open one way.",
+      "who": "Ash"
+    },
+    {
+      "op": "say",
+      "text": "...Right. Where do we start?",
+      "who": "Arno"
+    },
+    {
+      "label": "accept",
+      "op": "goto"
+    },
+    {
+      "id": "promise",
+      "op": "label"
+    },
+    {
+      "expr": "grit + 1",
+      "key": "grit",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "I'll do it. Show me where.",
+      "who": "Arno"
+    },
+    {
+      "op": "say",
+      "text": "No questions? Either very brave or very foolish. History rarely bothers to tell those apart.",
+      "who": "Ash"
+    },
+    {
+      "label": "accept",
+      "op": "goto"
+    },
+    {
+      "id": "dog_first",
+      "op": "label"
+    },
+    {
+      "expr": "kindness + 1",
+      "key": "kindness",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "First — my dog. Then your kingdom.",
+      "who": "Arno"
+    },
+    {
+      "op": "say",
+      "text": "The mop is already home, asleep by your stove. This place returns what it does not need.",
+      "who": "Ash"
+    },
+    {
+      "op": "say",
+      "text": "...And it needs me?",
+      "who": "Arno"
+    },
+    {
+      "op": "say",
+      "text": "We shall see.",
+      "who": "Ash"
+    },
+    {
+      "label": "accept",
+      "op": "goto"
+    },
+    {
+      "id": "accept",
+      "op": "label"
+    },
+    {
+      "id": "forest_clearing",
+      "op": "bg",
+      "sprite_url": "/content/pixel/bg/forest_clearing.png"
+    },
+    {
+      "op": "say",
+      "text": "The first spark sleeps in the Hollow Cave. Mind the dark. It bites.",
+      "who": "Ash"
+    },
+    {
+      "op": "say",
+      "text": "One more thing, boy. Your name. Names hold better than rope here.",
+      "who": "Ash"
+    },
+    {
+      "op": "say",
+      "text": "Arno.",
+      "who": "Arno"
+    },
+    {
+      "op": "say",
+      "text": "Then walk carefully, Arno. The kingdom is watching what you choose.",
+      "who": "Ash"
+    },
+    {
+      "duration": 1.5,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    }
+  ]
+}

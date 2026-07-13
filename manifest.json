@@ -1735,6 +1735,86 @@
   },
   "titles": [
     {
+      "id": "tour",
+      "name": "LVN Tour",
+      "subtitle": "The living changelog — the language, taught by itself",
+      "cover_url": "/content/bg/fantasy_forest.jpg",
+      "seasons": [
+        {
+          "chapters": [
+            {
+              "id": "tour-ch01",
+              "name": "01 · Words",
+              "number": 1,
+              "bg_url": "/content/bg/fantasy_forest.jpg",
+              "script_url": "/content/scripts/tour-ch01.lvn"
+            },
+            {
+              "id": "tour-ch02",
+              "name": "02 · Choices & Memory",
+              "number": 2,
+              "bg_url": "/content/bg/Beach_cliff_cloudy__portal.jpg",
+              "script_url": "/content/scripts/tour-ch02.lvn"
+            },
+            {
+              "id": "tour-ch03",
+              "name": "03 · The Stage",
+              "number": 3,
+              "bg_url": "/content/bg/Bolshoi_Theatre_scene_OPEN.jpg",
+              "script_url": "/content/scripts/tour-ch03.lvn"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "waylight",
+      "name": "Waylight",
+      "subtitle": "A fading fairy kingdom, four sparks, and one very stubborn boy. Each chapter is a different mechanic.",
+      "cover_url": "/content/pixel/bg/forest.png",
+      "seasons": [
+        {
+          "chapters": [
+            {
+              "id": "waylight-ch01",
+              "name": "Chapter 1 · The Light in the Pines",
+              "number": 1,
+              "bg_url": "/content/pixel/bg/pines_morning.png",
+              "script_url": "/content/scripts/waylight-ch01.lvn"
+            },
+            {
+              "id": "waylight-ch02",
+              "name": "Chapter 2 · The Hollow Cave",
+              "number": 2,
+              "bg_url": "/content/pixel/bg/cave.png",
+              "script_url": "/content/scripts/waylight-ch02.lvn"
+            },
+            {
+              "id": "waylight-ch03",
+              "name": "Chapter 3 · The Sleeping Falls",
+              "number": 3,
+              "bg_url": "/content/pixel/bg/falls_cursed.png",
+              "script_url": "/content/scripts/waylight-ch03.lvn"
+            },
+            {
+              "id": "waylight-ch04",
+              "name": "Chapter 4 · The Glass Court",
+              "number": 4,
+              "bg_url": "/content/pixel/bg/sea_palace.png",
+              "script_url": "/content/scripts/waylight-ch04.lvn"
+            },
+            {
+              "id": "waylight-ch05",
+              "name": "Chapter 5 · The Storm That Walks",
+              "number": 5,
+              "bg_url": "/content/pixel/bg/dunes_storm.png",
+              "script_url": "/content/scripts/waylight-ch05.lvn"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "description": "Локальная тестовая сцена: героиня Хилл, эмоции и гардероб по ходу сюжета.",
       "id": "wardrobe-test",
       "name": "Гардероб — тест",
@@ -5453,6 +5533,15 @@
       },
       "remove_text": "Снять",
       "title": "Гардероб"
+    },
+    "transitions": {
+      "screen_fade": 0.5,
+      "loading_floor": 0.3,
+      "backdrop_grace": 2.0
+    },
+    "loading": {
+      "min_seconds": 1.2,
+      "scrim_opacity": 0.55
     }
   }
 }
