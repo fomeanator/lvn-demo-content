@@ -1733,6 +1733,7 @@
       }
     }
   },
+  "languages": ["ru"],
   "titles": [
     {
       "id": "tour",
@@ -1762,6 +1763,34 @@
               "number": 3,
               "bg_url": "/content/bg/Bolshoi_Theatre_scene_OPEN.jpg",
               "script_url": "/content/scripts/tour-ch03.lvn"
+            },
+            {
+              "id": "tour-ch04",
+              "name": "04 · Motion",
+              "number": 4,
+              "bg_url": "/content/bg/Bolshoi_Theatre_scene_OPEN.jpg",
+              "script_url": "/content/scripts/tour-ch04.lvn"
+            },
+            {
+              "id": "tour-ch05",
+              "name": "05 · Weather & Mood",
+              "number": 5,
+              "bg_url": "/content/bg/Autumn_street.jpg",
+              "script_url": "/content/scripts/tour-ch05.lvn"
+            },
+            {
+              "id": "tour-ch06",
+              "name": "06 · Living Art",
+              "number": 6,
+              "bg_url": "/content/bg/fantasy_forest.jpg",
+              "script_url": "/content/scripts/tour-ch06.lvn"
+            },
+            {
+              "id": "tour-ch07",
+              "name": "07 · Meta",
+              "number": 7,
+              "bg_url": "/content/bg/fantasy_forest.jpg",
+              "script_url": "/content/scripts/tour-ch07.lvn"
             }
           ]
         }

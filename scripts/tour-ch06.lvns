@@ -1,0 +1,87 @@
+scene tour-ch06
+
+// ═════════════ LVN TOUR · 06 · LIVING ART ═════════════
+// Lesson format (see tour-ch01): the green label shows a real .lvns line,
+// then it runs. This chapter: the four tiers of character art — layered
+// axes (wardrobe), bones + springs (paper-doll), rigged frame tracks
+// (pixel walk cycles), and full Spine skeletons.
+
+actor_map Ash=hill
+actor_map Codel=codel
+
+fade to="black" duration=0
+bg /content/bg/fantasy_forest.jpg
+fade to="clear" duration=1
+
+text code x=3 y=12.5 size=50 color=#9fe8a8 «actor hill outfit=rose»
+
+actor hill left idle x=.24 y=.92 h=1.3 w=1
+actor codel right neutral
+Ash: Lesson six — living art. Every way a character can be MORE than a picture. We start with me, obviously.
+
+// ── tier 1: layered axes = wardrobe ──
+actor hill outfit=rose hairstyle=rose decor=rose
+Ash [delight]: Remember chapter one — I'm five layers on axes. `outfit` is just an axis. So is `hairstyle`. So is the flower.
+Codel [flustered]: You changed CLOTHES mid-sentence!
+
+text code «actor hill hair=blond»
+actor hill hair=blond
+Ash [flirt]: Hair is an axis too. The whole wardrobe system — shops, lockers, dress-up scenes — is nothing but axes plus variables.
+Codel [pout]: And MY only axis is my face.
+
+text code «actor hill outfit=poppy hair=black»
+actor hill outfit=poppy hairstyle=poppy decor=poppy hair=black
+Ash: Back to uniform. Chapter one promised you my wardrobe; consider the promise kept.
+
+// ── tier 2: bones + springs (paper-doll) ──
+text code «actor doll center»
+actor doll center w=.42 h=.78
+Ash: Tier two. Meet the doll. Her layers are PARENTED — the head rides the body, the hair rides the head — and she plays her own idle: bones, not a GIF.
+Codel [worried]: She's... swaying. Nobody told her to sway.
+Ash: Her catalog entry did. `anim` tracks live in the manifest — art directors animate; scripts just place her.
+
+text code «camera action=shake amplitude=14»
+camera action=shake amplitude=14 duration=.7
+Ash [smirk]: And the hair is on a SPRING. Shake the world — physics answers. No keyframes anywhere.
+Codel [nervous]: Her hair is still settling. That is deeply unsettling.
+
+text code «actor doll hide»
+actor doll hide
+
+// ── tier 3: rigged frame tracks (pixel cycles) ──
+text code «actor hero center armor=chain weapon=heavy»
+actor hero center y=.62 w=.5 h=.5 armor=chain weapon=heavy
+Ash: Tier three — the wanderer. His `pose` axis holds a walk cycle; a frame track flips through it forever. And look: `armor` and `weapon` are axes, so his gear walks WITH him, frame-perfect.
+Codel [happy]: Tiny! Armoured! Committed to his cardio!
+
+text code «actor hero armor=leather weapon=sword»
+actor hero armor=leather weapon=sword
+Ash: Swap mid-stride. The cycle never hiccups.
+
+text code «actor hero hide»
+actor hero hide
+
+// ── tier 4: Spine skeletons ──
+text code «actor id=dragon play="back_static_2" loop=true»
+actor id=dragon show=true play="back_static_2" loop=true
+Ash: And tier four. Full Spine skeletons — mesh deforms, weighted bones, an animator's timeline. The engine streams it like any other actor.
+Codel [nervous]: That's a DRAGON.
+Ash [happy]: A licensed, fully-rigged dragon. The skull sends his regards.
+
+text code «actor id=dragon show=false»
+actor id=dragon show=false
+Codel [serious]: I have re-evaluated the skull.
+
+// ── the point ──
+Ash: One language, four tiers: axes, bones, frame tracks, skeletons. Pick per character — the stage takes them all in the same `actor` op.
+Codel [shy]: ...Could I get a spring? For my hair?
+Ash [smirk]: Ask the art department, dear.
+
+// ── teaser ──
+Ash: Last lesson — the meta layer. Saves, the gallery, and the novel switching languages while you WATCH.
+Codel [worried]: Switching wh— в смысле?
+Ash: Exactly that, dear.
+
+text code «fade to="black" duration=1»
+fade to="black" duration=1
+-> __end

@@ -1,0 +1,342 @@
+{
+  "scene": "tour-ch07",
+  "script": [
+    {
+      "duration": 0,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "id": "fantasy_forest",
+      "op": "bg",
+      "sprite_url": "/content/bg/fantasy_forest.jpg"
+    },
+    {
+      "duration": 1,
+      "op": "fade",
+      "to": "clear"
+    },
+    {
+      "color": "#9fe8a8",
+      "id": "code",
+      "op": "text",
+      "size": 50,
+      "text": "text_pace cps=10",
+      "x": 3,
+      "y": 12.5
+    },
+    {
+      "emotion": "idle",
+      "height": 1.3,
+      "id": "hill",
+      "op": "actor",
+      "position": "left",
+      "show": true,
+      "width": 1,
+      "x": 0.24,
+      "y": 0.92
+    },
+    {
+      "emotion": "neutral",
+      "id": "codel",
+      "op": "actor",
+      "position": "right",
+      "show": true
+    },
+    {
+      "op": "say",
+      "text": "Last lesson. Not the stage, not the story — the machinery AROUND them. The meta layer.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "cps": 10,
+      "op": "text_pace"
+    },
+    {
+      "op": "say",
+      "text": "Feel that? `text_pace` sets the typing speed in characters per second. Ten is... agonising, isn't it.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "annoyed",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Sooooo sloooow.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "text_pace cps=0"
+    },
+    {
+      "cps": 0,
+      "op": "text_pace"
+    },
+    {
+      "op": "say",
+      "text": "Zero means instant. And the reader always wins: their settings override whatever an author dares to set.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "text_pace cps=40"
+    },
+    {
+      "cps": 40,
+      "op": "text_pace"
+    },
+    {
+      "emotion": "happy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Back to normal. My heart rate thanks you.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "save slot=tour"
+    },
+    {
+      "op": "save",
+      "slot": "tour"
+    },
+    {
+      "op": "say",
+      "text": "`save` — the ENTIRE moment, one op: variables, staging, music, the line we're standing on. Into a named slot.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "worried",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "You saved me. Am I... backed up?",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "smirk",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "You're a checkpoint, dear. `load slot=tour` would put us right back on this sentence — and the player has their own saves, rollback and auto-resume on top. Authors save for STORY reasons: checkpoints before boss fights, timeline tricks, regret mechanics.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "op": "say",
+      "text": "Meanwhile, the engine has been keeping receipts. Every background you've seen this season is already in the GALLERY — the menu in the corner. Authors do nothing; viewers get a museum.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "shy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Even the grotto? With my... producing?",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "op": "say",
+      "text": "Especially the grotto.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "else": "__nf1",
+      "expr": "global.tour_graduate \u003e= 1",
+      "op": "if",
+      "then": "graduate"
+    },
+    {
+      "id": "__nf1",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "And here I WOULD greet you as a graduate — but chapter two's `global.tour_graduate` isn't set on this device. Skipped a lesson, did we?",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "pout",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "The cliff chapter. They skipped the CLIFF chapter.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "label": "after_global",
+      "op": "goto"
+    },
+    {
+      "id": "graduate",
+      "op": "label"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "if global.tour_graduate \u003e= 1 -\u003e …"
+    },
+    {
+      "emotion": "delight",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Chapter two, you touched a wishing cliff and I wrote `global.tour_graduate = 1`. Different chapter, same device — and the variable is still here. It outlives this novel: any OTHER story on this device can greet you as a tour graduate too.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "flustered",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "I'm FAMOUS across novels.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "label": "after_global",
+      "op": "goto"
+    },
+    {
+      "id": "after_global",
+      "op": "label"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "ext op=... (host extensions)"
+    },
+    {
+      "op": "say",
+      "text": "One op we won't run today: `ext`. It's the trapdoor to the HOST — shops, ads, achievements, whatever the app around this engine offers. The language stays tiny; the platform stays open.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "serious",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "A door we don't open. Ominous. Educational, but ominous.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "Settings → Language → Русский"
+    },
+    {
+      "op": "say",
+      "text": "And now the finale. Open the menu in the corner — Settings, the Language row. This whole novel ships with a Russian catalog: same beats, same code labels, translated words.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "duration": 10,
+      "op": "hint",
+      "text": "Menu → Settings → Language — switch it right now, mid-scene."
+    },
+    {
+      "op": "say",
+      "text": "Go on. Switch it. I'll wait. The line you're reading right now will change its clothes — the CODE labels stay English, because code is code everywhere.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "nervous",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Что… what does this feel like for YOU?",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "smirk",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Like a wardrobe swap, dear. For every word I own.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "op": "say",
+      "text": "And that's Season One. Words. Choices. The stage. Motion. Mood. Living art. And today — the machinery around the play.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "happy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "I came here as a downloaded test subject and leave as a checkpointed, multilingual, cross-novel CELEBRITY.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "op": "say",
+      "text": "Every engine release appends a chapter to this novel. The documentation RUNS. See you in the changelog, dear.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "fade to=\"black\" duration=2"
+    },
+    {
+      "duration": 2,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    }
+  ]
+}

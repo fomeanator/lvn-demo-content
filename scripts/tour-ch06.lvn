@@ -1,0 +1,402 @@
+{
+  "scene": "tour-ch06",
+  "script": [
+    {
+      "duration": 0,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "id": "fantasy_forest",
+      "op": "bg",
+      "sprite_url": "/content/bg/fantasy_forest.jpg"
+    },
+    {
+      "duration": 1,
+      "op": "fade",
+      "to": "clear"
+    },
+    {
+      "color": "#9fe8a8",
+      "id": "code",
+      "op": "text",
+      "size": 50,
+      "text": "actor hill outfit=rose",
+      "x": 3,
+      "y": 12.5
+    },
+    {
+      "emotion": "idle",
+      "height": 1.3,
+      "id": "hill",
+      "op": "actor",
+      "position": "left",
+      "show": true,
+      "width": 1,
+      "x": 0.24,
+      "y": 0.92
+    },
+    {
+      "emotion": "neutral",
+      "id": "codel",
+      "op": "actor",
+      "position": "right",
+      "show": true
+    },
+    {
+      "op": "say",
+      "text": "Lesson six — living art. Every way a character can be MORE than a picture. We start with me, obviously.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "decor": "rose",
+      "hairstyle": "rose",
+      "id": "hill",
+      "op": "actor",
+      "outfit": "rose",
+      "show": true
+    },
+    {
+      "emotion": "delight",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Remember chapter one — I'm five layers on axes. `outfit` is just an axis. So is `hairstyle`. So is the flower.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "flustered",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "You changed CLOTHES mid-sentence!",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor hill hair=blond"
+    },
+    {
+      "hair": "blond",
+      "id": "hill",
+      "op": "actor",
+      "show": true
+    },
+    {
+      "emotion": "flirt",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Hair is an axis too. The whole wardrobe system — shops, lockers, dress-up scenes — is nothing but axes plus variables.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "pout",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "And MY only axis is my face.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor hill outfit=poppy hair=black"
+    },
+    {
+      "decor": "poppy",
+      "hair": "black",
+      "hairstyle": "poppy",
+      "id": "hill",
+      "op": "actor",
+      "outfit": "poppy",
+      "show": true
+    },
+    {
+      "op": "say",
+      "text": "Back to uniform. Chapter one promised you my wardrobe; consider the promise kept.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor doll center"
+    },
+    {
+      "height": 0.78,
+      "id": "doll",
+      "op": "actor",
+      "position": "center",
+      "show": true,
+      "width": 0.42
+    },
+    {
+      "op": "say",
+      "text": "Tier two. Meet the doll. Her layers are PARENTED — the head rides the body, the hair rides the head — and she plays her own idle: bones, not a GIF.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "worried",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "She's... swaying. Nobody told her to sway.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "op": "say",
+      "text": "Her catalog entry did. `anim` tracks live in the manifest — art directors animate; scripts just place her.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "camera action=shake amplitude=14"
+    },
+    {
+      "action": "shake",
+      "amplitude": 14,
+      "duration": 0.7,
+      "op": "camera"
+    },
+    {
+      "emotion": "smirk",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "And the hair is on a SPRING. Shake the world — physics answers. No keyframes anywhere.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "nervous",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Her hair is still settling. That is deeply unsettling.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor doll hide"
+    },
+    {
+      "id": "doll",
+      "op": "actor",
+      "show": false
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor hero center armor=chain weapon=heavy"
+    },
+    {
+      "armor": "chain",
+      "height": 0.5,
+      "id": "hero",
+      "op": "actor",
+      "position": "center",
+      "show": true,
+      "weapon": "heavy",
+      "width": 0.5,
+      "y": 0.62
+    },
+    {
+      "op": "say",
+      "text": "Tier three — the wanderer. His `pose` axis holds a walk cycle; a frame track flips through it forever. And look: `armor` and `weapon` are axes, so his gear walks WITH him, frame-perfect.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "happy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Tiny! Armoured! Committed to his cardio!",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor hero armor=leather weapon=sword"
+    },
+    {
+      "armor": "leather",
+      "id": "hero",
+      "op": "actor",
+      "show": true,
+      "weapon": "sword"
+    },
+    {
+      "op": "say",
+      "text": "Swap mid-stride. The cycle never hiccups.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor hero hide"
+    },
+    {
+      "id": "hero",
+      "op": "actor",
+      "show": false
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor id=dragon play=\"back_static_2\" loop=true"
+    },
+    {
+      "id": "dragon",
+      "loop": true,
+      "op": "actor",
+      "play": "back_static_2",
+      "show": true
+    },
+    {
+      "op": "say",
+      "text": "And tier four. Full Spine skeletons — mesh deforms, weighted bones, an animator's timeline. The engine streams it like any other actor.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "nervous",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "That's a DRAGON.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "happy",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "A licensed, fully-rigged dragon. The skull sends his regards.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "actor id=dragon show=false"
+    },
+    {
+      "id": "dragon",
+      "op": "actor",
+      "show": false
+    },
+    {
+      "emotion": "serious",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "I have re-evaluated the skull.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "op": "say",
+      "text": "One language, four tiers: axes, bones, frame tracks, skeletons. Pick per character — the stage takes them all in the same `actor` op.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "shy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "...Could I get a spring? For my hair?",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "smirk",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Ask the art department, dear.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "op": "say",
+      "text": "Last lesson — the meta layer. Saves, the gallery, and the novel switching languages while you WATCH.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "worried",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Switching wh— в смысле?",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "op": "say",
+      "text": "Exactly that, dear.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "fade to=\"black\" duration=1"
+    },
+    {
+      "duration": 1,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    }
+  ]
+}

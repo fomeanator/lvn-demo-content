@@ -1,0 +1,80 @@
+scene tour-ch07
+
+// ═════════════ LVN TOUR · 07 · META ═════════════
+// Lesson format (see tour-ch01): the green label shows a real .lvns line,
+// then it runs. The season finale: text pacing, snapshots, the gallery,
+// the global.* payoff from chapter two, ext ops, and the novel switching
+// languages while you watch (Settings → Language).
+
+actor_map Ash=hill
+actor_map Codel=codel
+
+fade to="black" duration=0
+bg /content/bg/fantasy_forest.jpg
+fade to="clear" duration=1
+
+text code x=3 y=12.5 size=50 color=#9fe8a8 «text_pace cps=10»
+
+actor hill left idle x=.24 y=.92 h=1.3 w=1
+actor codel right neutral
+Ash: Last lesson. Not the stage, not the story — the machinery AROUND them. The meta layer.
+
+// ── text_pace ──
+text_pace cps=10
+Ash: Feel that? `text_pace` sets the typing speed in characters per second. Ten is... agonising, isn't it.
+Codel [annoyed]: Sooooo sloooow.
+
+text code «text_pace cps=0»
+text_pace cps=0
+Ash: Zero means instant. And the reader always wins: their settings override whatever an author dares to set.
+
+text code «text_pace cps=40»
+text_pace cps=40
+Codel [happy]: Back to normal. My heart rate thanks you.
+
+// ── save: snapshots are one op ──
+text code «save slot=tour»
+save slot=tour
+Ash: `save` — the ENTIRE moment, one op: variables, staging, music, the line we're standing on. Into a named slot.
+Codel [worried]: You saved me. Am I... backed up?
+Ash [smirk]: You're a checkpoint, dear. `load slot=tour` would put us right back on this sentence — and the player has their own saves, rollback and auto-resume on top. Authors save for STORY reasons: checkpoints before boss fights, timeline tricks, regret mechanics.
+
+// ── the gallery: free ──
+Ash: Meanwhile, the engine has been keeping receipts. Every background you've seen this season is already in the GALLERY — the menu in the corner. Authors do nothing; viewers get a museum.
+Codel [shy]: Even the grotto? With my... producing?
+Ash: Especially the grotto.
+
+// ── the global.* payoff (set in chapter two) ──
+if global.tour_graduate >= 1 -> graduate
+Ash: And here I WOULD greet you as a graduate — but chapter two's `global.tour_graduate` isn't set on this device. Skipped a lesson, did we?
+Codel [pout]: The cliff chapter. They skipped the CLIFF chapter.
+-> after_global
+
+:graduate
+text code «if global.tour_graduate >= 1 -> …»
+Ash [delight]: Chapter two, you touched a wishing cliff and I wrote `global.tour_graduate = 1`. Different chapter, same device — and the variable is still here. It outlives this novel: any OTHER story on this device can greet you as a tour graduate too.
+Codel [flustered]: I'm FAMOUS across novels.
+-> after_global
+
+:after_global
+// ── ext: the trapdoor to the host ──
+text code «ext op=... (host extensions)»
+Ash: One op we won't run today: `ext`. It's the trapdoor to the HOST — shops, ads, achievements, whatever the app around this engine offers. The language stays tiny; the platform stays open.
+Codel [serious]: A door we don't open. Ominous. Educational, but ominous.
+
+// ── the finale: switch the language, live ──
+text code «Settings → Language → Русский»
+Ash: And now the finale. Open the menu in the corner — Settings, the Language row. This whole novel ships with a Russian catalog: same beats, same code labels, translated words.
+hint text="Menu → Settings → Language — switch it right now, mid-scene." duration=10
+Ash: Go on. Switch it. I'll wait. The line you're reading right now will change its clothes — the CODE labels stay English, because code is code everywhere.
+Codel [nervous]: Что… what does this feel like for YOU?
+Ash [smirk]: Like a wardrobe swap, dear. For every word I own.
+
+// ── season wrap ──
+Ash: And that's Season One. Words. Choices. The stage. Motion. Mood. Living art. And today — the machinery around the play.
+Codel [happy]: I came here as a downloaded test subject and leave as a checkpointed, multilingual, cross-novel CELEBRITY.
+Ash: Every engine release appends a chapter to this novel. The documentation RUNS. See you in the changelog, dear.
+
+text code «fade to="black" duration=2»
+fade to="black" duration=2
+-> __end

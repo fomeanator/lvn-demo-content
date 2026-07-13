@@ -1,0 +1,578 @@
+{
+  "scene": "tour-ch04",
+  "script": [
+    {
+      "duration": 0,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "id": "Bolshoi_Theatre_scene_OPEN",
+      "op": "bg",
+      "sprite_url": "/content/bg/Bolshoi_Theatre_scene_OPEN.jpg"
+    },
+    {
+      "duration": 1,
+      "op": "fade",
+      "to": "clear"
+    },
+    {
+      "color": "#9fe8a8",
+      "id": "code",
+      "op": "text",
+      "size": 50,
+      "text": "obj id=skull …",
+      "x": 3,
+      "y": 12.5
+    },
+    {
+      "emotion": "idle",
+      "height": 1.3,
+      "id": "hill",
+      "op": "actor",
+      "position": "left",
+      "show": true,
+      "width": 1,
+      "x": 0.24,
+      "y": 0.92
+    },
+    {
+      "emotion": "neutral",
+      "id": "codel",
+      "op": "actor",
+      "position": "right",
+      "show": true
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "skull",
+      "op": "obj",
+      "sprite_url": "/content/ui/icons/skull.png",
+      "width": 0.11,
+      "x": 0.5,
+      "y": 0.42
+    },
+    {
+      "op": "say",
+      "text": "Lesson four — motion. I brought the skull.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "worried",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "You PROMISED.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "smirk",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "I promised the opposite, dear. Word for word.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "anim skull scale to=1.4 dur=.5 ease=outBack"
+    },
+    {
+      "anim": {
+        "duration": 0.5,
+        "loop": false,
+        "tracks": [
+          {
+            "ease": "outBack",
+            "keys": [
+              [
+                0,
+                1
+              ],
+              [
+                0.5,
+                1.4
+              ]
+            ],
+            "prop": "scale"
+          }
+        ]
+      },
+      "id": "skull",
+      "op": "anim"
+    },
+    {
+      "op": "say",
+      "text": "`anim` in one line — property, target, duration, easing. It tweens from wherever the value is NOW; no start value needed.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "anim skull scale to=1 dur=.3 ease=inBack"
+    },
+    {
+      "anim": {
+        "duration": 0.3,
+        "loop": false,
+        "tracks": [
+          {
+            "ease": "inBack",
+            "keys": [
+              [
+                0,
+                1
+              ],
+              [
+                0.3,
+                1
+              ]
+            ],
+            "prop": "scale"
+          }
+        ]
+      },
+      "id": "skull",
+      "op": "anim"
+    },
+    {
+      "emotion": "neutral",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "It breathed. The skull just breathed.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "anim skull rotation [0 12 -12 0] 2s yoyo"
+    },
+    {
+      "anim": {
+        "duration": 2,
+        "loop": true,
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                0.6666666666666666,
+                12
+              ],
+              [
+                1.3333333333333333,
+                -12
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            "prop": "rotation"
+          }
+        ],
+        "yoyo": true
+      },
+      "id": "skull",
+      "op": "anim"
+    },
+    {
+      "op": "say",
+      "text": "A bracket list stretches its values across the duration; `yoyo` plays it there-and-back, forever. And the rule that matters: a looping animation NEVER blocks the story. We keep talking; it keeps swaying.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "nervous",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "While the skull dances. Completely normal lesson.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "anim id=skull prop=y keys=\"0:0 .5:-.4 1:0\" loop=yoyo"
+    },
+    {
+      "anim": {
+        "duration": 1,
+        "loop": true,
+        "tracks": [
+          {
+            "ease": "inOutSine",
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                0.5,
+                -0.4
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            "prop": "y"
+          }
+        ],
+        "yoyo": true
+      },
+      "id": "skull",
+      "op": "anim"
+    },
+    {
+      "op": "say",
+      "text": "Keyframes — \"time:value\" pairs — when you want full control. Now it floats too: rotation and y are separate CHANNELS, and channels run in parallel. Keys inside one channel run in order.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "flustered",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "It's doing BOTH. Who taught it both?!",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "anim skull stop"
+    },
+    {
+      "id": "skull",
+      "op": "anim",
+      "stop": "all"
+    },
+    {
+      "op": "say",
+      "text": "`stop` ends all of an entity's script animations at once.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "happy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "The exorcism op.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "move id=skull path=\"…\" interp=spline orient=true"
+    },
+    {
+      "anim": {
+        "duration": 3,
+        "loop": false,
+        "tracks": [
+          {
+            "interp": "spline",
+            "keys": [
+              [
+                0,
+                0.5
+              ],
+              [
+                1,
+                0.28
+              ],
+              [
+                2,
+                0.72
+              ],
+              [
+                3,
+                0.5
+              ]
+            ],
+            "orient": true,
+            "prop": "screen_x"
+          },
+          {
+            "interp": "spline",
+            "keys": [
+              [
+                0,
+                0.42
+              ],
+              [
+                1,
+                0.25
+              ],
+              [
+                2,
+                0.2
+              ],
+              [
+                3,
+                0.42
+              ]
+            ],
+            "prop": "screen_y"
+          }
+        ]
+      },
+      "id": "skull",
+      "op": "anim"
+    },
+    {
+      "op": "say",
+      "text": "`move` sends an entity along a path. `interp=spline` bends a smooth curve through the points; `orient=true` turns the nose along the direction of travel.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "annoyed",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Skulls don't HAVE a direction of travel!",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "delight",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "This one does. Look at him go.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "move id=codel path=\"0.75,1 0.42,1\" dur=1.2"
+    },
+    {
+      "anim": {
+        "duration": 1.2,
+        "loop": false,
+        "tracks": [
+          {
+            "ease": "inOutSine",
+            "keys": [
+              [
+                0,
+                0.75
+              ],
+              [
+                1.2,
+                0.42
+              ]
+            ],
+            "prop": "screen_x"
+          },
+          {
+            "ease": "inOutSine",
+            "keys": [
+              [
+                0,
+                1
+              ],
+              [
+                1.2,
+                1
+              ]
+            ],
+            "prop": "screen_y"
+          }
+        ]
+      },
+      "id": "codel",
+      "op": "anim"
+    },
+    {
+      "op": "say",
+      "text": "Anything placed can move — actors included. You just crossed half the stage in one op.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "pout",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Against my will. For educational purposes.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "camera action=shake amplitude=12 duration=.5"
+    },
+    {
+      "action": "shake",
+      "amplitude": 12,
+      "duration": 0.5,
+      "op": "camera"
+    },
+    {
+      "op": "say",
+      "text": "The camera is an entity of its own. Shake, for impacts…",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "camera action=zoom factor=1.25 duration=.8"
+    },
+    {
+      "action": "zoom",
+      "duration": 0.8,
+      "factor": 1.25,
+      "op": "camera"
+    },
+    {
+      "op": "say",
+      "text": "…zoom, for intimacy…",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "camera action=pan x=.1 duration=.8"
+    },
+    {
+      "action": "pan",
+      "duration": 0.8,
+      "op": "camera",
+      "x": 0.1
+    },
+    {
+      "op": "say",
+      "text": "…pan, for wandering eyes. Zoom and pan PERSIST — they're framing, not effects. Which is why the last camera op is:",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "camera action=reset"
+    },
+    {
+      "action": "reset",
+      "op": "camera"
+    },
+    {
+      "emotion": "serious",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Put the audience back where you found it.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "wait ms=800"
+    },
+    {
+      "op": "say",
+      "text": "One more. `wait` holds the SCRIPT — the next line simply refuses to happen for a beat. Watch.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "ms": 800,
+      "op": "wait"
+    },
+    {
+      "emotion": "flustered",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "…I felt that pause in my soul.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "op": "say",
+      "text": "Next lesson — weather and mood. Rain, snow, thunder, and the colour a scene feels in.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "worried",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Indoor rain?",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "smirk",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "The best KIND of rain.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "fade to=\"black\" duration=1"
+    },
+    {
+      "duration": 1,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    }
+  ]
+}

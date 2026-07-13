@@ -1,0 +1,94 @@
+scene tour-ch04
+
+// ═════════════ LVN TOUR · 04 · MOTION ═════════════
+// Lesson format (see tour-ch01): the green label shows a real .lvns line,
+// then it runs. This chapter: anim one-liners, bracket lists, keyframes,
+// parallel channels, move with spline paths and orient, camera, wait.
+
+actor_map Ash=hill
+actor_map Codel=codel
+
+fade to="black" duration=0
+bg /content/bg/Bolshoi_Theatre_scene_OPEN.jpg
+fade to="clear" duration=1
+
+text code x=3 y=12.5 size=50 color=#9fe8a8 «obj id=skull …»
+
+actor hill left idle x=.24 y=.92 h=1.3 w=1
+actor codel right neutral
+obj id=skull sprite_url="/content/ui/icons/skull.png" x=0.5 y=0.42 width=0.11 anchor="0.5,0.5"
+Ash: Lesson four — motion. I brought the skull.
+Codel [worried]: You PROMISED.
+Ash [smirk]: I promised the opposite, dear. Word for word.
+
+// ── one-liner tween: from the current value to a target ──
+text code «anim skull scale to=1.4 dur=.5 ease=outBack»
+anim skull scale to=1.4 dur=.5 ease=outBack
+Ash: `anim` in one line — property, target, duration, easing. It tweens from wherever the value is NOW; no start value needed.
+
+text code «anim skull scale to=1 dur=.3 ease=inBack»
+anim skull scale to=1 dur=.3 ease=inBack
+Codel [neutral]: It breathed. The skull just breathed.
+
+// ── bracket list: values stretched over the duration ──
+text code «anim skull rotation [0 12 -12 0] 2s yoyo»
+anim skull rotation [0 12 -12 0] 2s yoyo
+Ash: A bracket list stretches its values across the duration; `yoyo` plays it there-and-back, forever. And the rule that matters: a looping animation NEVER blocks the story. We keep talking; it keeps swaying.
+Codel [nervous]: While the skull dances. Completely normal lesson.
+
+// ── keyframes: "time:value" pairs, channels run in parallel ──
+text code «anim id=skull prop=y keys="0:0 .5:-.4 1:0" loop=yoyo»
+anim id=skull prop=y keys="0:0 .5:-.4 1:0" loop=yoyo ease=inOutSine
+Ash: Keyframes — "time:value" pairs — when you want full control. Now it floats too: rotation and y are separate CHANNELS, and channels run in parallel. Keys inside one channel run in order.
+Codel [flustered]: It's doing BOTH. Who taught it both?!
+
+// ── stop ──
+text code «anim skull stop»
+anim skull stop
+Ash: `stop` ends all of an entity's script animations at once.
+Codel [happy]: The exorcism op.
+
+// ── move: paths, spline, orient ──
+text code «move id=skull path="…" interp=spline orient=true»
+move id=skull path="0.5,0.42 0.28,0.25 0.72,0.2 0.5,0.42" dur=3 interp=spline orient=true
+Ash: `move` sends an entity along a path. `interp=spline` bends a smooth curve through the points; `orient=true` turns the nose along the direction of travel.
+Codel [annoyed]: Skulls don't HAVE a direction of travel!
+Ash [delight]: This one does. Look at him go.
+
+// ── actors are entities too ──
+text code «move id=codel path="0.75,1 0.42,1" dur=1.2»
+move id=codel path="0.75,1 0.42,1" dur=1.2 ease=inOutSine
+Ash: Anything placed can move — actors included. You just crossed half the stage in one op.
+Codel [pout]: Against my will. For educational purposes.
+
+// ── camera: shake / zoom / pan / reset ──
+text code «camera action=shake amplitude=12 duration=.5»
+camera action=shake amplitude=12 duration=.5
+Ash: The camera is an entity of its own. Shake, for impacts…
+
+text code «camera action=zoom factor=1.25 duration=.8»
+camera action=zoom factor=1.25 duration=.8
+Ash: …zoom, for intimacy…
+
+text code «camera action=pan x=.1 duration=.8»
+camera action=pan x=.1 duration=.8
+Ash: …pan, for wandering eyes. Zoom and pan PERSIST — they're framing, not effects. Which is why the last camera op is:
+
+text code «camera action=reset»
+camera action=reset
+Codel [serious]: Put the audience back where you found it.
+
+// ── wait: hold the script itself ──
+text code «wait ms=800»
+Ash: One more. `wait` holds the SCRIPT — the next line simply refuses to happen for a beat. Watch.
+wait ms=800
+Codel [flustered]: …I felt that pause in my soul.
+
+// ── teaser ──
+Ash: Next lesson — weather and mood. Rain, snow, thunder, and the colour a scene feels in.
+Codel [worried]: Indoor rain?
+Ash [smirk]: The best KIND of rain.
+
+text code «fade to="black" duration=1»
+fade to="black" duration=1
+-> __end

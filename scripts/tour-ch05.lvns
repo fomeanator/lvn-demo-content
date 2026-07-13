@@ -1,0 +1,100 @@
+scene tour-ch05
+
+// ═════════════ LVN TOUR · 05 · WEATHER & MOOD ═════════════
+// Lesson format (see tour-ch01): the green label shows a real .lvns line,
+// then it runs. This chapter: the audio channels (music/ambient/sfx),
+// dim/tint/blur mood filters, particles (rain/snow), flash, and how
+// effects compose. All three tracks were synthesized for this tour —
+// license-clean, tiny, and looped.
+
+actor_map Ash=hill
+actor_map Codel=codel
+
+fade to="black" duration=0
+bg /content/bg/Autumn_street.jpg
+fade to="clear" duration=1
+
+text code x=3 y=12.5 size=50 color=#9fe8a8 «audio channel=music action=play url="…/theme.ogg"»
+
+actor hill left idle x=.24 y=.92 h=1.3 w=1
+actor codel right neutral
+Ash: Lesson five — mood. A scene isn't what it shows; it's what it feels like. First: sound.
+
+audio channel=music action=play url="/content/audio/tour/theme.ogg" volume=.7 fade=2
+Ash: Three channels: `music`, `ambient`, `sfx`. Music and ambient LOOP by default and crossfade with `fade=`; sfx fires once and gets out of the way.
+Codel [happy]: We have a soundtrack now? Since WHEN?
+Ash [smirk]: Since line four of this chapter. It was composed by the engine's toolchain. Royalty-free, dear — the composer is a sine wave.
+
+// ── dim: focus ──
+text code «dim alpha=.5»
+dim alpha=.5
+Ash: `dim` darkens the WORLD but not the people. Use it when the words matter more than the scenery.
+
+text code «dim alpha=0»
+dim alpha=0
+Codel [neutral]: The scenery forgives you.
+
+// ── tint: the colour of a feeling ──
+text code «tint color=#3a4a6b alpha=.4»
+tint color=#3a4a6b alpha=.4
+Ash: `tint` pulls the whole frame toward a colour. Blue-grey — and the same street remembers something sad.
+Codel [sad]: I didn't agree to feel this.
+
+text code «tint color=#c96a2b alpha=.3»
+tint color=#c96a2b alpha=.3
+Ash: Amber — and now it's nostalgia. Same pixels. Different heart.
+
+text code «tint alpha=0»
+tint alpha=0
+
+// ── blur: the memory lens ──
+text code «blur alpha=.6»
+blur alpha=.6
+Ash [dreamy]: `blur` for dreams, flashbacks, and mornings you'd rather not render sharply.
+Codel [flustered]: My glasses! I don't WEAR glasses, but still!
+
+text code «blur alpha=0»
+blur alpha=0
+
+// ── particles + ambient: weather is two lines ──
+text code «particles type=rain on=true»
+particles type=rain on=true
+audio channel=ambient action=play url="/content/audio/tour/rain.ogg" volume=.8 fade=1.5
+Ash: Weather. `particles` draws the rain; the `ambient` channel plays it. Two lines, and the scene is wet.
+Codel [worried]: Indoor rain. You DID promise this one.
+
+// ── compose: flash + sfx + camera in one beat ──
+text code «flash + sfx thunder + camera shake»
+flash color="white" duration=.25
+audio channel=sfx action=play url="/content/audio/tour/thunder.ogg" volume=.9
+camera action=shake amplitude=10 duration=.6
+Ash: And here's the real lesson — effects COMPOSE. A flash, a thunderclap, a camera shake: three ops, one beat, one storm.
+Codel [nervous]: WARN me before the sky does that!
+
+// ── swap the season ──
+text code «particles type=rain on=false»
+particles type=rain on=false
+audio channel=ambient action=stop fade=1.5
+
+text code «particles type=snow on=true»
+particles type=snow on=true
+tint color=#9fb8d9 alpha=.25
+Ash: Rain off, snow on, a cold tint — the street just skipped a season.
+Codel [happy]: Snow! On MY street!
+Ash [happy]: Technically the engine's street. But yes, dear. Your snow.
+
+// ── clean up: mood is stateful, leave the stage as you found it ──
+text code «particles type=snow on=false»
+particles type=snow on=false
+tint alpha=0
+Ash: Mood ops PERSIST — tint, dim, particles, music all stay until you change them. End of scene, sweep your stage.
+
+// ── teaser ──
+Ash: Next lesson — living art. Characters with bones, skeletons that breathe, and my entire wardrobe.
+Codel [shy]: Skeletons that WHAT?
+Ash [smirk]: Breathe, dear. You've met the skull; wait until you meet the dragon.
+
+text code «fade to="black" duration=1»
+audio channel=music action=stop fade=1.5
+fade to="black" duration=1
+-> __end

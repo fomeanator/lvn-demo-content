@@ -1,0 +1,418 @@
+{
+  "scene": "tour-ch05",
+  "script": [
+    {
+      "duration": 0,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "id": "Autumn_street",
+      "op": "bg",
+      "sprite_url": "/content/bg/Autumn_street.jpg"
+    },
+    {
+      "duration": 1,
+      "op": "fade",
+      "to": "clear"
+    },
+    {
+      "color": "#9fe8a8",
+      "id": "code",
+      "op": "text",
+      "size": 50,
+      "text": "audio channel=music action=play url=\"…/theme.ogg\"",
+      "x": 3,
+      "y": 12.5
+    },
+    {
+      "emotion": "idle",
+      "height": 1.3,
+      "id": "hill",
+      "op": "actor",
+      "position": "left",
+      "show": true,
+      "width": 1,
+      "x": 0.24,
+      "y": 0.92
+    },
+    {
+      "emotion": "neutral",
+      "id": "codel",
+      "op": "actor",
+      "position": "right",
+      "show": true
+    },
+    {
+      "op": "say",
+      "text": "Lesson five — mood. A scene isn't what it shows; it's what it feels like. First: sound.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "action": "play",
+      "channel": "music",
+      "fade": 2,
+      "op": "audio",
+      "url": "/content/audio/tour/theme.ogg",
+      "volume": 0.7
+    },
+    {
+      "op": "say",
+      "text": "Three channels: `music`, `ambient`, `sfx`. Music and ambient LOOP by default and crossfade with `fade=`; sfx fires once and gets out of the way.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "happy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "We have a soundtrack now? Since WHEN?",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "smirk",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Since line four of this chapter. It was composed by the engine's toolchain. Royalty-free, dear — the composer is a sine wave.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "dim alpha=.5"
+    },
+    {
+      "alpha": 0.5,
+      "op": "dim"
+    },
+    {
+      "op": "say",
+      "text": "`dim` darkens the WORLD but not the people. Use it when the words matter more than the scenery.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "dim alpha=0"
+    },
+    {
+      "alpha": 0,
+      "op": "dim"
+    },
+    {
+      "emotion": "neutral",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "The scenery forgives you.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "tint color=#3a4a6b alpha=.4"
+    },
+    {
+      "alpha": 0.4,
+      "color": "#3a4a6b",
+      "op": "tint"
+    },
+    {
+      "op": "say",
+      "text": "`tint` pulls the whole frame toward a colour. Blue-grey — and the same street remembers something sad.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "sad",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "I didn't agree to feel this.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "tint color=#c96a2b alpha=.3"
+    },
+    {
+      "alpha": 0.3,
+      "color": "#c96a2b",
+      "op": "tint"
+    },
+    {
+      "op": "say",
+      "text": "Amber — and now it's nostalgia. Same pixels. Different heart.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "tint alpha=0"
+    },
+    {
+      "alpha": 0,
+      "op": "tint"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "blur alpha=.6"
+    },
+    {
+      "alpha": 0.6,
+      "op": "blur"
+    },
+    {
+      "emotion": "dreamy",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "`blur` for dreams, flashbacks, and mornings you'd rather not render sharply.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "flustered",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "My glasses! I don't WEAR glasses, but still!",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "blur alpha=0"
+    },
+    {
+      "alpha": 0,
+      "op": "blur"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "particles type=rain on=true"
+    },
+    {
+      "on": true,
+      "op": "particles",
+      "type": "rain"
+    },
+    {
+      "action": "play",
+      "channel": "ambient",
+      "fade": 1.5,
+      "op": "audio",
+      "url": "/content/audio/tour/rain.ogg",
+      "volume": 0.8
+    },
+    {
+      "op": "say",
+      "text": "Weather. `particles` draws the rain; the `ambient` channel plays it. Two lines, and the scene is wet.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "worried",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Indoor rain. You DID promise this one.",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "flash + sfx thunder + camera shake"
+    },
+    {
+      "color": "white",
+      "duration": 0.25,
+      "op": "flash"
+    },
+    {
+      "action": "play",
+      "channel": "sfx",
+      "op": "audio",
+      "url": "/content/audio/tour/thunder.ogg",
+      "volume": 0.9
+    },
+    {
+      "action": "shake",
+      "amplitude": 10,
+      "duration": 0.6,
+      "op": "camera"
+    },
+    {
+      "op": "say",
+      "text": "And here's the real lesson — effects COMPOSE. A flash, a thunderclap, a camera shake: three ops, one beat, one storm.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "nervous",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "WARN me before the sky does that!",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "particles type=rain on=false"
+    },
+    {
+      "on": false,
+      "op": "particles",
+      "type": "rain"
+    },
+    {
+      "action": "stop",
+      "channel": "ambient",
+      "fade": 1.5,
+      "op": "audio"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "particles type=snow on=true"
+    },
+    {
+      "on": true,
+      "op": "particles",
+      "type": "snow"
+    },
+    {
+      "alpha": 0.25,
+      "color": "#9fb8d9",
+      "op": "tint"
+    },
+    {
+      "op": "say",
+      "text": "Rain off, snow on, a cold tint — the street just skipped a season.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "happy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Snow! On MY street!",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "happy",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Technically the engine's street. But yes, dear. Your snow.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "particles type=snow on=false"
+    },
+    {
+      "on": false,
+      "op": "particles",
+      "type": "snow"
+    },
+    {
+      "alpha": 0,
+      "op": "tint"
+    },
+    {
+      "op": "say",
+      "text": "Mood ops PERSIST — tint, dim, particles, music all stay until you change them. End of scene, sweep your stage.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "op": "say",
+      "text": "Next lesson — living art. Characters with bones, skeletons that breathe, and my entire wardrobe.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "emotion": "shy",
+      "id": "codel",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Skeletons that WHAT?",
+      "who": "Codel",
+      "who_id": "codel"
+    },
+    {
+      "emotion": "smirk",
+      "id": "hill",
+      "op": "actor"
+    },
+    {
+      "op": "say",
+      "text": "Breathe, dear. You've met the skull; wait until you meet the dragon.",
+      "who": "Ash",
+      "who_id": "hill"
+    },
+    {
+      "id": "code",
+      "op": "text",
+      "text": "fade to=\"black\" duration=1"
+    },
+    {
+      "action": "stop",
+      "channel": "music",
+      "fade": 1.5,
+      "op": "audio"
+    },
+    {
+      "duration": 1,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    }
+  ]
+}
