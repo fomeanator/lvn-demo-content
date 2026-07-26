@@ -13,3 +13,25 @@ fonts/
 
 # Pixel-art pack pending license/attribution review before publishing.
 pixel/
+
+# Server-generated KTX2 encodes (derived on demand).
+*.ktx2
+
+# Partner-licensed "Cold" bundle (articy import: scripts, character art,
+# heroine wardrobe, backgrounds) — local/private deploys only, never publish.
+scripts/cold-*
+art/
+sprites/cold*/
+sprites/geroinya*/
+
+# ПАРТНЁРСКИЙ КОНТЕНТ — репозиторий ПУБЛИЧНЫЙ, здесь этого быть не может.
+# «Советское воспитание» и Cold — частные новеллы партнёра. Soviet пролежал
+# тут открытым с 12.07 по 26.07 вместе с полным текстом (.lvns), Cold в git
+# не попадал. Файлы остаются на диске для локальной разработки.
+soviet-*.lvn
+soviet-*.lvns
+scripts/soviet-*
+cold-*.lvn
+cold-*.lvns
+scripts/cold*
+import-templates/cold.json
