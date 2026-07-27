@@ -1,0 +1,65 @@
+// ⚡ EC — ПОЛНАЯ ПРЕДЗАГРУЗКА (сгенерировано: все ассеты игры).
+// Подключается ПЕРВОЙ строкой каждой главы: include "ec-preload.lvns".
+// Регенерация: собрать url из скомпилированных глав + каталог ec_* из
+// манифеста с раскрытием осей. Файл — только preload, механик тут нет.
+
+preload url="/content/audio/ec/block.ogg" kind=audio
+preload url="/content/audio/ec/hit.ogg" kind=audio
+preload url="/content/audio/ec/lose.ogg" kind=audio
+preload url="/content/audio/ec/step.ogg" kind=audio
+preload url="/content/audio/ec/whoosh.ogg" kind=audio
+preload url="/content/audio/ec/win.ogg" kind=audio
+preload url="/content/audio/music/beanfeast.mp3" kind=audio
+preload url="/content/audio/music/dramatic_boi.mp3" kind=audio
+preload url="/content/audio/music/dramatic_boi_v5.mp3" kind=audio
+preload url="/content/audio/music/frozen_winter.mp3" kind=audio
+preload url="/content/audio/music/hope.mp3" kind=audio
+preload url="/content/audio/music/woo_scary.mp3" kind=audio
+preload url="/content/bg/ec/abyss.jpg" kind=sprite
+preload url="/content/bg/ec/arctic.jpg" kind=sprite
+preload url="/content/bg/ec/crystal_catacombs.jpg" kind=sprite
+preload url="/content/bg/ec/dead_city.jpg" kind=sprite
+preload url="/content/bg/ec/desert.jpg" kind=sprite
+preload url="/content/bg/ec/efiria.jpg" kind=sprite
+preload url="/content/bg/ec/geysers.jpg" kind=sprite
+preload url="/content/bg/ec/glass_waste.jpg" kind=sprite
+preload url="/content/bg/ec/moon.jpg" kind=sprite
+preload url="/content/bg/ec/road_north.jpg" kind=sprite
+preload url="/content/bg/ec/shining_zone.jpg" kind=sprite
+preload url="/content/bg/ec/spirit_forest.jpg" kind=sprite
+preload url="/content/bg/ec/taiga.jpg" kind=sprite
+preload url="/content/bg/ec/technogard.jpg" kind=sprite
+preload url="/content/bg/ec/temple_fire.jpg" kind=sprite
+preload url="/content/sprites/ec_cast_v2/cyberguard.png" kind=sprite
+preload url="/content/sprites/ec_cast_v2/druid.png" kind=sprite
+preload url="/content/sprites/ec_cast_v2/necromancer.png" kind=sprite
+preload url="/content/sprites/ec_cast_v2/niharis.png" kind=sprite
+preload url="/content/sprites/ec_cast_v2/skeleton.png" kind=sprite
+preload url="/content/sprites/ec_cast_v2/spirit.png" kind=sprite
+preload url="/content/sprites/ec_cast_v2/techno.png" kind=sprite
+preload url="/content/sprites/ec_cast_v2/tyrant.png" kind=sprite
+preload url="/content/sprites/ec_combat_fp/hands_sword_attack.png" kind=sprite
+preload url="/content/sprites/ec_combat_fp/hands_sword_block.png" kind=sprite
+preload url="/content/sprites/ec_combat_fp/hands_sword_idle.png?v=tight2" kind=sprite
+preload url="/content/sprites/ec_combat_fp/skeleton_attack.png" kind=sprite
+preload url="/content/sprites/ec_combat_fp/skeleton_hurt.png" kind=sprite
+preload url="/content/sprites/ec_combat_fp/skeleton_idle.png" kind=sprite
+preload url="/content/sprites/ec_combat_ui/action_attack.png" kind=sprite
+preload url="/content/sprites/ec_combat_ui/action_back.png" kind=sprite
+preload url="/content/sprites/ec_combat_ui/action_block.png" kind=sprite
+preload url="/content/sprites/ec_combat_ui/action_forward.png" kind=sprite
+preload url="/content/sprites/ec_hero_v2/body_armor.png" kind=sprite
+preload url="/content/sprites/ec_hero_v2/body_traveler.png" kind=sprite
+preload url="/content/sprites/ec_hero_v2/face_angry.png" kind=sprite
+preload url="/content/sprites/ec_hero_v2/face_neutral.png" kind=sprite
+preload url="/content/sprites/ec_hero_v2/face_smile.png" kind=sprite
+preload url="/content/sprites/ec_hero_v2/face_worried.png" kind=sprite
+preload url="/content/sprites/ec_hero_v2/weapon_none.png" kind=sprite
+preload url="/content/sprites/ec_hero_v2/weapon_sword.png" kind=sprite
+preload url="/content/sprites/ec_combat_ui/zone_guard_body.png" kind=sprite
+preload url="/content/sprites/ec_combat_ui/zone_guard_head.png" kind=sprite
+preload url="/content/sprites/ec_combat_ui/zone_guard_legs.png" kind=sprite
+preload url="/content/sprites/ec_combat_ui/zone_hit_body.png" kind=sprite
+preload url="/content/sprites/ec_combat_ui/zone_hit_head.png" kind=sprite
+preload url="/content/sprites/ec_combat_ui/zone_hit_legs.png" kind=sprite
+preload url="/content/sprites/ec_combat_ui/timer_bar.png" kind=sprite

@@ -1,0 +1,1143 @@
+// ⚔ ELEMENTAL CHRONICLES — ЗОННЫЙ БОЙ (три зоны, паттерны врагов)
+//
+// Подключается главой, которой нужен бой:
+//     scene ec_ch07
+//     include "ec-battle.lvns"        // сам подтянет ec-mechanics.lvns
+//
+// И вызывается ОДНОЙ строкой:
+//     battle("Костолом", 5)
+//     if бой_победа == 0 -> оформлен_по_форме
+//     -> отбился
+//
+// ══════════════════════════════════════════════════════════════════════
+//  ПРАВИЛА, КОТОРЫЕ ЗДЕСЬ РЕАЛИЗОВАНЫ (решение владельца и Феди)
+// ══════════════════════════════════════════════════════════════════════
+//
+//  ТРИ ЗОНЫ: голова, корпус, ноги.
+//
+//  ХОД ИГРОКА — ДВА выбора по ТРИ опции: сначала «куда бью», потом «что
+//  закрываю». Именно два выбора, а не один список из девяти комбинаций:
+//  девять пунктов забракованы прямым текстом. В скомпилированном .lvn это
+//  два отдельных `choice` по три опции — их разделяет строка-подсказка
+//  («Что закрываешь?»), и она же показывается ВМЕСТЕ с опциями, без лишнего
+//  клика (рантайм спаривает say + choice).
+//
+//  У КАЖДОГО ВРАГА СВОЙ ПАТТЕРН. НИКАКОГО РАНДОМА. rand() в этом файле нет
+//  ни одного — ни в выборе действий врага, ни в уклонении, ни в побеге.
+//  Со случайным врагом защита это угадывание один к трём, и умения не
+//  существует; с паттерном игрок УЧИТСЯ (модель Punch-Out!!).
+//
+//  ПАТТЕРН — ТАБЛИЦА: новый враг это ОДНА строка в `паттерн`. Ход паттерна =
+//  list(куда бьёт, что закрывает, тычок, сила удара в процентах).
+//    · пустая зона удара ("") — этот ход враг НЕ БЬЁТ (замах, подзарядка);
+//    · пустая зона защиты ("") — он НЕ ЗАКРЫВАЕТСЯ вовсе (окно для игрока);
+//    · четвёртое поле можно не писать — тогда 100.
+//  Схватка длиннее паттерна — паттерн повторяется с начала.
+//
+//  ТЫЧОК (tell) показывается ПЕРЕД выбором игрока и привязан к шагу
+//  паттерна: паттерн выучиваем с первого боя, мастерство — это память о нём.
+//  Без тычка первый бой с новым врагом был бы слепым угадыванием.
+//
+//  РАЗРЕШЕНИЕ ХОДА. Мой удар попал, если моя зона удара НЕ совпала с зоной,
+//  которую враг закрывает этот ход. Удар врага попал, если его зона удара НЕ
+//  совпала с моей зоной защиты. Оба удара разрешаются в одном ходу: могут
+//  попасть оба, ни один, или один.
+//
+//  КАМЕНЬ-НОЖНИЦЫ-БУМАГА между зонами УДАРА, когда попали ОБА: голова бьёт
+//  ноги, ноги бьют корпус, корпус бьёт голову. Выигравший в тройке бьёт на
+//  +50%, проигравший на -30% (таблица `зона_вес`). Ради этого зоны и
+//  вводились: выбор зоны значит что-то сам, а не только как угадывание.
+//
+//  ЭФФЕКТЫ ЗОН при попадании — В ОБЕ СТОРОНЫ (и по врагу, и по игроку):
+//    ГОЛОВА — оглушение, пропуск следующего хода;
+//    НОГИ   — не сможет убежать и теряет уклонение;
+//    КОРПУС — самый высокий базовый урон, без эффекта.
+//
+//  СТИХИИ ПОВЕРХ ЗОН: урон считается через готовые hit()/foedmg()/
+//  advantage()/elpow() из ec-mechanics.lvns, а не заново. Стихия выбирается
+//  автоматически — лучшая из выученных против этого врага (иначе «кулак»),
+//  чтобы у игрока по-прежнему было ДВА выбора, а не три.
+//
+//  ДЛИНА СХВАТКИ 4–6 ходов: второй аргумент battle() зажимается в 4..6.
+//  Никто не умер за лимит — итог решается по состоянию (у кого процент
+//  здоровья ниже, тот и разрывает дистанцию).
+//
+//  ПРОИГРЫШ — НЕ ЗАГРУЗКА СЕЙВА, а поворот сюжета: процедура возвращается
+//  в главу, и глава идёт другой веткой. Ни save, ни load здесь нет.
+//
+// ══════════════════════════════════════════════════════════════════════
+//  ЧТО ПРОЦЕДУРА ОТДАЁТ ОБРАТНО В ГЛАВУ
+// ══════════════════════════════════════════════════════════════════════
+//   бой_победа      1 — выиграл, 0 — нет. Ветвиться проще всего по нему.
+//   бой_итог        "убил" | "прогнал" | "выстоял" | "пал" | "отступил"
+//   бой_ноги_мои    1 — ноги перебиты, уйти ты не можешь (ветка плена)
+//   бой_ноги_врага  1 — перебиты ему (он не убежал и не убежит)
+//   бой_ход         сколько ходов заняла схватка
+//   бой_хп          сколько здоровья осталось врагу
+//   бой_стихия      чем ты дрался
+// Награда (опыт, кристалл, победы/поражения, уровень) начисляется ВНУТРИ —
+// главе не надо помнить про reward()/drop(), иначе это опять копипаста.
+//
+// Необязательный вход, ставится ПЕРЕД вызовом:
+//   бой_фора = 12    // вычесть из стартового здоровья врага (урон_тирану и т.п.)
+// Фора сбрасывается в 0 после боя, чтобы не протекла в следующую схватку.
+//
+// ⚠ ФОН СТАВИТ ГЛАВА, а не бой: sprite_url у команды `bg` в рантайме НЕ
+// интерполируется ({бой_фон} уехал бы в загрузчик как есть). Так что перед
+// вызовом просто напиши `desert` или свой `bg` — это одна строка постановки.
+
+include "ec-mechanics.lvns"
+
+// ══════════════════════════════════════════════════════════════════════
+//  0. ПОСТАНОВКА ОТ ПЕРВОГО ЛИЦА (слита из ec-battle-fp.lvns)
+// ══════════════════════════════════════════════════════════════════════
+// Бой теперь ОДИН: зонная механика + камера-глаза. Герой существует как
+// руки с мечом, враг — спрайт, растущий с сокращением дистанции. Дистанция
+// из механики стала постановкой: она дышит характером хода (замах — враг
+// отходит и копит, атака — надвигается), но НЕ добавляет третьего выбора —
+// канон «два выбора по три опции» не тронут.
+//
+// ⚠ СПРАЙТЫ ПОКА СКЕЛЕТНЫЕ ДЛЯ ВСЕХ (решение владельца: «спрайты потом
+// будут»). Когда появится арт врага — добавляется свой набор поз в
+// ecfp_enemy по образцу скелета, механику трогать не нужно.
+
+// ─── 0.1. Боевая дистанция — характер врага, одна строка на врага ─────
+// С какой дистанции враг ведёт бой: паук липнет вплотную, некромант и
+// тиран держатся подальше, червь вообще из-под земли. Дефолт 4.
+враг_даль = {}
+враг_даль = put(враг_даль, "скелет", 4)
+враг_даль = put(враг_даль, "дрон", 5)
+враг_даль = put(враг_даль, "Ржавый", 4)
+враг_даль = put(враг_даль, "Костолом", 3)
+враг_даль = put(враг_даль, "матёрый скелет", 4)
+враг_даль = put(враг_даль, "глитч", 3)
+враг_даль = put(враг_даль, "некромант", 6)
+враг_даль = put(враг_даль, "кристальный паук", 2)
+враг_даль = put(враг_даль, "песчаный червь", 7)
+враг_даль = put(враг_даль, "меха-полковник", 5)
+враг_даль = put(враг_даль, "ледяной великан", 6)
+враг_даль = put(враг_даль, "страж огня", 5)
+враг_даль = put(враг_даль, "страж воды", 5)
+враг_даль = put(враг_даль, "страж земли", 5)
+враг_даль = put(враг_даль, "страж ветра", 5)
+враг_даль = put(враг_даль, "звёздный тиран", 7)
+враг_даль = put(враг_даль, "Нихарис", 3)
+
+func fdist(f) { return get(враг_даль, f, 4) }
+
+// ─── 0.1a. Радиус удара — с какой дистанции враг ДОСТАЁТ ─────────────
+// Ближник (радиус 2) обязан дойти до тебя — и идёт, честно, не сдвигая
+// паттерн. Дальнобойный (9) бьёт с места, к нему идёшь сам под обстрелом.
+// Твой меч достаёт с 2. Дефолт 2 — ближники.
+враг_радиус = {}
+враг_радиус = put(враг_радиус, "дрон", 9)
+враг_радиус = put(враг_радиус, "некромант", 9)
+враг_радиус = put(враг_радиус, "песчаный червь", 9)
+враг_радиус = put(враг_радиус, "меха-полковник", 9)
+враг_радиус = put(враг_радиус, "ледяной великан", 3)
+враг_радиус = put(враг_радиус, "страж огня", 9)
+враг_радиус = put(враг_радиус, "страж воды", 9)
+враг_радиус = put(враг_радиус, "страж земли", 9)
+враг_радиус = put(враг_радиус, "страж ветра", 9)
+враг_радиус = put(враг_радиус, "звёздный тиран", 9)
+враг_радиус = put(враг_радиус, "Нихарис", 3)
+
+func frange(f) { return get(враг_радиус, f, 2) }
+
+// ─── 0.2. Спрайт врага: поза × девять дистанций ──────────────────────
+// Числовые поля obj не принимают выражения, поэтому девять явных размеров —
+// по одному на клетку. На distance=1 нижняя половина противника намеренно
+// уходит за экран: это уже не фигурка, а враг в метре.
+func ecfp_enemy(pose) {
+  if pose == "attack" -> ecfp_enemy_attack
+  if pose == "hurt" -> ecfp_enemy_hurt
+  -> ecfp_enemy_idle
+
+  :ecfp_enemy_attack
+  if fp_distance <= 1 -> ecfp_attack_d1
+  if fp_distance <= 2 -> ecfp_attack_d2
+  if fp_distance <= 3 -> ecfp_attack_d3
+  if fp_distance <= 4 -> ecfp_attack_d4
+  if fp_distance <= 5 -> ecfp_attack_d5
+  if fp_distance <= 6 -> ecfp_attack_d6
+  if fp_distance <= 7 -> ecfp_attack_d7
+  if fp_distance <= 8 -> ecfp_attack_d8
+  -> ecfp_attack_d9
+  :ecfp_attack_d1
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_attack.png" x=0.5 y=0.56 width=1.44 height=2.10 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_attack_d2
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_attack.png" x=0.5 y=0.56 width=0.72 height=1.05 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_attack_d3
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_attack.png" x=0.5 y=0.54 width=0.56 height=0.82 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_attack_d4
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_attack.png" x=0.5 y=0.53 width=0.46 height=0.68 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_attack_d5
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_attack.png" x=0.5 y=0.52 width=0.39 height=0.58 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_attack_d6
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_attack.png" x=0.5 y=0.51 width=0.34 height=0.50 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_attack_d7
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_attack.png" x=0.5 y=0.50 width=0.29 height=0.43 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_attack_d8
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_attack.png" x=0.5 y=0.50 width=0.25 height=0.37 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_attack_d9
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_attack.png" x=0.5 y=0.50 width=0.22 height=0.32 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+
+  :ecfp_enemy_hurt
+  if fp_distance <= 1 -> ecfp_hurt_d1
+  if fp_distance <= 2 -> ecfp_hurt_d2
+  if fp_distance <= 3 -> ecfp_hurt_d3
+  if fp_distance <= 4 -> ecfp_hurt_d4
+  if fp_distance <= 5 -> ecfp_hurt_d5
+  if fp_distance <= 6 -> ecfp_hurt_d6
+  if fp_distance <= 7 -> ecfp_hurt_d7
+  if fp_distance <= 8 -> ecfp_hurt_d8
+  -> ecfp_hurt_d9
+  :ecfp_hurt_d1
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_hurt.png" x=0.5 y=0.56 width=1.44 height=2.10 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_hurt_d2
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_hurt.png" x=0.5 y=0.56 width=0.72 height=1.05 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_hurt_d3
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_hurt.png" x=0.5 y=0.54 width=0.56 height=0.82 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_hurt_d4
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_hurt.png" x=0.5 y=0.53 width=0.46 height=0.68 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_hurt_d5
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_hurt.png" x=0.5 y=0.52 width=0.39 height=0.58 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_hurt_d6
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_hurt.png" x=0.5 y=0.51 width=0.34 height=0.50 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_hurt_d7
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_hurt.png" x=0.5 y=0.50 width=0.29 height=0.43 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_hurt_d8
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_hurt.png" x=0.5 y=0.50 width=0.25 height=0.37 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_hurt_d9
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_hurt.png" x=0.5 y=0.50 width=0.22 height=0.32 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+
+  :ecfp_enemy_idle
+  if fp_distance <= 1 -> ecfp_idle_d1
+  if fp_distance <= 2 -> ecfp_idle_d2
+  if fp_distance <= 3 -> ecfp_idle_d3
+  if fp_distance <= 4 -> ecfp_idle_d4
+  if fp_distance <= 5 -> ecfp_idle_d5
+  if fp_distance <= 6 -> ecfp_idle_d6
+  if fp_distance <= 7 -> ecfp_idle_d7
+  if fp_distance <= 8 -> ecfp_idle_d8
+  -> ecfp_idle_d9
+  :ecfp_idle_d1
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_idle.png" x=0.5 y=0.56 width=1.44 height=2.10 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_idle_d2
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_idle.png" x=0.5 y=0.56 width=0.72 height=1.05 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_idle_d3
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_idle.png" x=0.5 y=0.54 width=0.56 height=0.82 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_idle_d4
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_idle.png" x=0.5 y=0.53 width=0.46 height=0.68 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_idle_d5
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_idle.png" x=0.5 y=0.52 width=0.39 height=0.58 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_idle_d6
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_idle.png" x=0.5 y=0.51 width=0.34 height=0.50 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_idle_d7
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_idle.png" x=0.5 y=0.50 width=0.29 height=0.43 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_idle_d8
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_idle.png" x=0.5 y=0.50 width=0.25 height=0.37 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+  :ecfp_idle_d9
+  obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_idle.png" x=0.5 y=0.50 width=0.22 height=0.32 anchor="0.5,0.5" z=10
+  -> ecfp_enemy_done
+
+  :ecfp_enemy_done
+}
+
+// ─── 0.3. Руки героя ─────────────────────────────────────────────────
+func ecfp_hands(pose) {
+  if pose == "attack" -> ecfp_hands_attack
+  if pose == "block" -> ecfp_hands_block
+  obj id=fp_hands sprite_url="/content/sprites/ec_combat_fp/hands_sword_idle.png?v=tight2" x=0.5 y=1.02 width=1.34 anchor="0.5,1" z=80
+  -> ecfp_hands_done
+
+  :ecfp_hands_attack
+  obj id=fp_hands sprite_url="/content/sprites/ec_combat_fp/hands_sword_attack.png" x=0.5 y=1.02 width=1.34 anchor="0.5,1" z=80
+  -> ecfp_hands_done
+
+  :ecfp_hands_block
+  obj id=fp_hands sprite_url="/content/sprites/ec_combat_fp/hands_sword_block.png" x=0.5 y=1.02 width=1.34 anchor="0.5,1" z=80
+  -> ecfp_hands_done
+
+  :ecfp_hands_done
+}
+
+// ─── 0.4. Убрать постановку (конец боя) ──────────────────────────────
+func ecfp_hide() {
+  obj id=fp_enemy show=false
+  obj id=fp_hands show=false
+  text dmg_e hide
+  text dmg_p hide
+  zbhide()
+}
+
+// ─── 0.5. Ход игрока: иконки-действия + зонные подменю ───────────────
+// Четыре бронзовых медальона на сцене (⚔ 🛡 ↑ ↓) — решение владельца:
+// «жму удар — открывается меню куда ударить». Промах мимо иконок не
+// листает диалог: «Твой ход.» зациклен, экран ждёт именно действие.
+//   ⚔ удар    — только вплотную (fp_distance <= 2), иначе подсказка;
+//               открывает «куда бьёшь», затем «что закрываешь»;
+//   🛡 стойка  — не бьёшь; удар врага вполсилы, даже если зону не угадал;
+//   ↑ / ↓     — два шага дистанции вместо удара, защита остаётся.
+// Выставляет: бой_атака, бой_защита, бой_глухо, fp_distance.
+func zbhide() {
+  obj id=fp_action_attack show=false
+  obj id=fp_action_block show=false
+  obj id=fp_action_forward show=false
+  obj id=fp_action_back show=false
+  zbzhide()
+}
+
+// Три слота зонных иконок. Id одни и те же для фаз удара и защиты — арт и
+// on_click перезадаются при каждом показе, слот переиспользуется.
+func zbzhide() {
+  obj id=fp_zone_head show=false
+  obj id=fp_zone_body show=false
+  obj id=fp_zone_legs show=false
+  obj id=fp_timer show=false
+  text fp_prompt hide
+}
+
+func zbturn() {
+  бой_атака = ""
+  бой_защита = ""
+  бой_защита2 = ""
+  бой_глухо = 0
+  -> zb_menu
+
+  :zb_menu
+  obj id=fp_action_attack sprite_url="/content/sprites/ec_combat_ui/action_attack.png" x=0.15 y=0.62 width=0.14 height=0.14 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_hit"
+  obj id=fp_action_block sprite_url="/content/sprites/ec_combat_ui/action_block.png" x=0.38 y=0.62 width=0.14 height=0.14 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_guard"
+  obj id=fp_action_forward sprite_url="/content/sprites/ec_combat_ui/action_forward.png" x=0.62 y=0.62 width=0.14 height=0.14 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_fwd"
+  obj id=fp_action_back sprite_url="/content/sprites/ec_combat_ui/action_back.png" x=0.85 y=0.62 width=0.14 height=0.14 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_back"
+  «Твой ход.»
+  -> zb_menu
+
+  // ─── Куда бьёшь: колонка зонных иконок вдоль врага ────────────────────
+  :zb_hit
+  zbhide()
+  if fp_distance > 2 -> zb_far
+  -> zb_aim
+  :zb_aim
+  obj id=fp_zone_head sprite_url="/content/sprites/ec_combat_ui/zone_hit_head.png" x=0.80 y=0.30 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_aim_head"
+  obj id=fp_zone_body sprite_url="/content/sprites/ec_combat_ui/zone_hit_body.png" x=0.80 y=0.48 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_aim_body"
+  obj id=fp_zone_legs sprite_url="/content/sprites/ec_combat_ui/zone_hit_legs.png" x=0.80 y=0.66 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_aim_legs"
+  «Куда бьёшь?»
+  -> zb_aim
+
+  :zb_aim_head
+  zbzhide()
+  бой_атака = "голова"
+  -> zb_guard_pick
+  :zb_aim_body
+  zbzhide()
+  бой_атака = "корпус"
+  -> zb_guard_pick
+  :zb_aim_legs
+  zbzhide()
+  бой_атака = "ноги"
+  -> zb_guard_pick
+
+  :zb_far
+  «Отсюда клинок не достанет — между вами {fp_distance}. Сократи дистанцию.»
+  -> zb_menu
+
+  :zb_guard
+  zbhide()
+  бой_глухо = 1
+  ecfp_hands("block")
+  «Ты убираешь плечо за клинок и уходишь в глухую стойку: бить не будешь, зато закроешь ДВЕ зоны, а удар в открытую примешь вполсилы.»
+  -> zb_guard_pick
+
+  :zb_fwd
+  zbhide()
+  fp_distance = max(1, fp_distance - 2)
+  ecfp_enemy("idle")
+  anim fp_enemy scale [0.85 1] 0.3s
+  audio channel=sfx action=play url="/content/audio/ec/step.ogg" volume=.8
+  «Два шага вперёд. Между вами {fp_distance}.»
+  -> zb_guard_pick
+
+  :zb_back
+  zbhide()
+  fp_distance = min(8, fp_distance + 2)
+  ecfp_enemy("idle")
+  anim fp_enemy scale [1.15 1] 0.3s
+  audio channel=sfx action=play url="/content/audio/ec/step.ogg" volume=.8
+  «Ты отходишь, держа остриё перед собой. Между вами {fp_distance}.»
+  -> zb_guard_pick
+
+  :zb_guard_pick
+  // Режим «на реакцию» (выбирается в обучалке первого боя): на защиту пять
+  // секунд текстовым выбором — таймер живёт только в choice. Спокойный
+  // режим закрывается зонными иконками. Старый сейв без выбора режима
+  // попадает в спокойную ветку: неопределённая бой_реакция не равна 1.
+  if бой_реакция == 1 -> zb_guard_fast
+  -> zb_gicons
+
+  // ─── Спокойный режим: иконки. Второй круг глухой стойки прячет уже
+  //     выбранную зону — ветка на каждую.
+  :zb_gicons
+  if бой_защита == "голова" -> zb_gi_nohead
+  if бой_защита == "корпус" -> zb_gi_nobody
+  if бой_защита == "ноги" -> zb_gi_nolegs
+  obj id=fp_zone_head sprite_url="/content/sprites/ec_combat_ui/zone_guard_head.png" x=0.80 y=0.30 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_head"
+  obj id=fp_zone_body sprite_url="/content/sprites/ec_combat_ui/zone_guard_body.png" x=0.80 y=0.48 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_body"
+  obj id=fp_zone_legs sprite_url="/content/sprites/ec_combat_ui/zone_guard_legs.png" x=0.80 y=0.66 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_legs"
+  «Что закрываешь?»
+  -> zb_gicons
+
+  :zb_gi_nohead
+  obj id=fp_zone_body sprite_url="/content/sprites/ec_combat_ui/zone_guard_body.png" x=0.80 y=0.48 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_body"
+  obj id=fp_zone_legs sprite_url="/content/sprites/ec_combat_ui/zone_guard_legs.png" x=0.80 y=0.66 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_legs"
+  «Вторая зона глухой стойки?»
+  -> zb_gi_nohead
+  :zb_gi_nobody
+  obj id=fp_zone_head sprite_url="/content/sprites/ec_combat_ui/zone_guard_head.png" x=0.80 y=0.30 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_head"
+  obj id=fp_zone_legs sprite_url="/content/sprites/ec_combat_ui/zone_guard_legs.png" x=0.80 y=0.66 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_legs"
+  «Вторая зона глухой стойки?»
+  -> zb_gi_nobody
+  :zb_gi_nolegs
+  obj id=fp_zone_head sprite_url="/content/sprites/ec_combat_ui/zone_guard_head.png" x=0.80 y=0.30 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_head"
+  obj id=fp_zone_body sprite_url="/content/sprites/ec_combat_ui/zone_guard_body.png" x=0.80 y=0.48 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_body"
+  «Вторая зона глухой стойки?»
+  -> zb_gi_nolegs
+
+  :zb_g_head
+  zbzhide()
+  if бой_защита == "" {
+    бой_защита = "голова"
+  } else {
+    бой_защита2 = "голова"
+  }
+  -> zb_g_next
+  :zb_g_body
+  zbzhide()
+  if бой_защита == "" {
+    бой_защита = "корпус"
+  } else {
+    бой_защита2 = "корпус"
+  }
+  -> zb_g_next
+  :zb_g_legs
+  zbzhide()
+  if бой_защита == "" {
+    бой_защита = "ноги"
+  } else {
+    бой_защита2 = "ноги"
+  }
+  -> zb_g_next
+
+  :zb_g_next
+  if бой_глухо == 0 -> zb_done
+  if бой_защита2 != "" -> zb_done
+  if бой_реакция == 1 -> zb_gfast2
+  -> zb_gicons
+
+  // ─── Режим «на реакцию»: ТЕ ЖЕ зонные иконки, таймер — золотая полоска,
+  //     тающая за пять секунд. Под капотом прерываемый wait: клик по иконке
+  //     снимает таймер (движковый CancelPendingWait), таймаут ведёт в
+  //     zb_late. Тап мимо иконок во время wait диалог не листает — экран
+  //     ждёт именно зону. Подпись — text, не say: say остановил бы скрипт
+  //     и таймер не тикал бы.
+  :zb_guard_fast
+  text fp_prompt x=52 y=16 size=44 color=#3d4046 «Что закрываешь?»
+  obj id=fp_zone_head sprite_url="/content/sprites/ec_combat_ui/zone_guard_head.png" x=0.80 y=0.30 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_head"
+  obj id=fp_zone_body sprite_url="/content/sprites/ec_combat_ui/zone_guard_body.png" x=0.80 y=0.48 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_body"
+  obj id=fp_zone_legs sprite_url="/content/sprites/ec_combat_ui/zone_guard_legs.png" x=0.80 y=0.66 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_legs"
+  obj id=fp_timer sprite_url="/content/sprites/ec_combat_ui/timer_bar.png" x=0.5 y=0.13 width=0.6 height=0.018 anchor="0.5,0.5" z=95
+  anim id=fp_timer prop=scalex keys="0:1 5:0"
+  wait ms=5000
+  zbzhide()
+  -> zb_late
+
+  // Вторая зона глухой стойки на реакции: снова иконки без выбранной,
+  // таймаут здесь НЕ наказывает — одна зона уже закрыта.
+  :zb_gfast2
+  if бой_защита == "голова" -> zb_gf2_nohead
+  if бой_защита == "корпус" -> zb_gf2_nobody
+  -> zb_gf2_nolegs
+
+  :zb_gf2_nohead
+  text fp_prompt x=52 y=16 size=44 color=#3d4046 «Вторая зона?»
+  obj id=fp_zone_body sprite_url="/content/sprites/ec_combat_ui/zone_guard_body.png" x=0.80 y=0.48 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_body"
+  obj id=fp_zone_legs sprite_url="/content/sprites/ec_combat_ui/zone_guard_legs.png" x=0.80 y=0.66 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_legs"
+  obj id=fp_timer sprite_url="/content/sprites/ec_combat_ui/timer_bar.png" x=0.5 y=0.13 width=0.6 height=0.018 anchor="0.5,0.5" z=95
+  anim id=fp_timer prop=scalex keys="0:1 5:0"
+  wait ms=5000
+  zbzhide()
+  -> zb_done
+  :zb_gf2_nobody
+  text fp_prompt x=52 y=16 size=44 color=#3d4046 «Вторая зона?»
+  obj id=fp_zone_head sprite_url="/content/sprites/ec_combat_ui/zone_guard_head.png" x=0.80 y=0.30 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_head"
+  obj id=fp_zone_legs sprite_url="/content/sprites/ec_combat_ui/zone_guard_legs.png" x=0.80 y=0.66 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_legs"
+  obj id=fp_timer sprite_url="/content/sprites/ec_combat_ui/timer_bar.png" x=0.5 y=0.13 width=0.6 height=0.018 anchor="0.5,0.5" z=95
+  anim id=fp_timer prop=scalex keys="0:1 5:0"
+  wait ms=5000
+  zbzhide()
+  -> zb_done
+  :zb_gf2_nolegs
+  text fp_prompt x=52 y=16 size=44 color=#3d4046 «Вторая зона?»
+  obj id=fp_zone_head sprite_url="/content/sprites/ec_combat_ui/zone_guard_head.png" x=0.80 y=0.30 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_head"
+  obj id=fp_zone_body sprite_url="/content/sprites/ec_combat_ui/zone_guard_body.png" x=0.80 y=0.48 width=0.16 height=0.16 anchor="0.5,0.5" z=90 opacity=0.97 hover_opacity=0.72 on_click="zb_g_body"
+  obj id=fp_timer sprite_url="/content/sprites/ec_combat_ui/timer_bar.png" x=0.5 y=0.13 width=0.6 height=0.018 anchor="0.5,0.5" z=95
+  anim id=fp_timer prop=scalex keys="0:1 5:0"
+  wait ms=5000
+  zbzhide()
+  -> zb_done
+
+  :zb_late
+  бой_защита = ""
+  «Пальцы не успели за мыслью — ты остался открыт.»
+  -> zb_done
+
+  :zb_done
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  1. ТАБЛИЦЫ ЗОН
+// ══════════════════════════════════════════════════════════════════════
+
+// ─── 1.1. Базовый урон зоны в ПРОЦЕНТАХ ──────────────────────────────
+// Корпус бьёт сильнее всех и не даёт эффекта — за эффект платят уроном.
+зона_урон = {}
+зона_урон = put(зона_урон, "голова", 90)
+зона_урон = put(зона_урон, "корпус", 120)
+зона_урон = put(зона_урон, "ноги", 80)
+
+// Винительный падеж зоны — чтобы в репликах было «бьёшь в голову», а не
+// «бьёшь в голова». Склонение это данные, а не ветвление.
+зона_вин = {}
+зона_вин = put(зона_вин, "голова", "голову")
+зона_вин = put(зона_вин, "корпус", "корпус")
+зона_вин = put(зона_вин, "ноги", "ноги")
+
+// ─── 1.2. Камень-ножницы-бумага между зонами УДАРА ────────────────────
+// Ключ "моя_зона>его_зона", значение — процент урона. Совпали зоны — ключа
+// нет, и обоим достаётся ровно 100. Тот же приём, что `преимущество` у
+// стихий: правило лежит данными, а не ветвлением.
+зона_вес = {}
+зона_вес = put(зона_вес, "голова>ноги", 150)
+зона_вес = put(зона_вес, "ноги>корпус", 150)
+зона_вес = put(зона_вес, "корпус>голова", 150)
+зона_вес = put(зона_вес, "ноги>голова", 70)
+зона_вес = put(зона_вес, "корпус>ноги", 70)
+зона_вес = put(зона_вес, "голова>корпус", 70)
+
+// ══════════════════════════════════════════════════════════════════════
+//  2. ПАТТЕРНЫ ВРАГОВ — ОДНА СТРОКА НА ВРАГА
+// ══════════════════════════════════════════════════════════════════════
+// Ход паттерна: list(бьёт, закрывает, тычок, сила%). "" — не бьёт / не
+// закрывается. Новичку два шага, боссу четыре. Паттерн выражает характер:
+// это половина смысла затеи, поэтому тычок пишется голосом врага.
+//
+// ⚠ ЕДИНСТВЕННОЕ, чего нельзя в тычке — ДВОЙНЫЕ КАВЫЧКИ: они закрывают строку
+// раньше времени. Компилятор при этом молчит («0 warning(s)»), выражение падает
+// уже в рантайме, `паттерн` становится нулём — и ВСЕ враги главы начинают
+// драться по `паттерн_умолч`. Проверено плеером, поэтому и написано.
+// «Ёлочки» и двоеточие внутри тычка безопасны: строка попадает в say через
+// {бой_тычок}, то есть после разбора, и заново уже не парсится (тоже проверено).
+паттерн = {}
+
+// Новички: два шага, без окон, читаются с первого взгляда.
+паттерн = put(паттерн, "скелет", list(list("голова", "голова", "Костяная рука идёт к твоему лицу, вторая прикрывает череп."), list("ноги", "ноги", "Он приседает и метит в колено, прикрывая голени.")))
+паттерн = put(паттерн, "дрон", list(list("корпус", "голова", "Дрон разворачивает разрядник на твою грудь и прячет камеру под кожух."), list("ноги", "корпус", "Он проседает к земле, целит в стопы и подставляет броневую пластину на боку.")))
+
+// РЖАВЫЙ, робот на четырёх процентах заряда. Бьёт ЧЕРЕЗ ХОД, а в ход
+// подзарядки не закрывается вовсе — это окно для игрока, и это его характер.
+паттерн = put(паттерн, "Ржавый", list(list("корпус", "голова", "Пи. Манипулятор заводится назад для прямого в корпус, свободная лапа закрывает решётку динамика на голове."), list("", "", "Пи. Заряд четыре процента. Он замирает и гудит на подзарядке — этот ход он не бьёт и не закрывает ничего.")))
+
+// КОСТОЛОМ, отдел учёта поднятого имущества. Бьёт строго по расписанию,
+// сверху вниз по форме Н-13, и ВСЕГДА закрывает одну зону — папку у груди
+// он не опускает. Предсказуем, и это его характер, а не недоработка.
+паттерн = put(паттерн, "Костолом", list(list("голова", "корпус", "Костолом держит папку у груди и постукивает пальцем по верхней графе."), list("корпус", "корпус", "Он перелистывает на второй лист. Папка по-прежнему у груди."), list("ноги", "корпус", "Третий лист. Печать ставится у нижнего края, и он смотрит тебе на ноги. Папка у груди.")))
+
+// Матёрый скелет — колесо на один шаг за ход, ничего не открывает.
+паттерн = put(паттерн, "матёрый скелет", list(list("корпус", "голова", "Он бьёт снизу под рёбра, а череп уводит за плечо."), list("голова", "ноги", "Замах идёт сверху, к твоему лицу, а голени он подбирает под себя."), list("ноги", "корпус", "Он метит в колено и прикрывает грудь предплечьем.")))
+
+// Некромант — трус, который платит открытым ходом за тяжёлый удар.
+паттерн = put(паттерн, "некромант", list(list("голова", "голова", "Некромант тычет пальцем тебе в лоб и прячет лицо в капюшон."), list("", "голова", "Он читает по свитку и не бьёт — только держит капюшон, чтобы не сдуло."), list("корпус", "", "Обе руки уходят вверх с проклятием. Он открыт целиком, но ударит в грудь тяжело.", 150)))
+
+// Кристальный паук — рубит по ногам, пока не соберётся в прыжок сверху.
+паттерн = put(паттерн, "кристальный паук", list(list("ноги", "корпус", "Паук стрижёт кромкой по земле, к твоим ногам, и подбирает брюшко."), list("ноги", "голова", "Ещё раз по ногам. Головогрудь он прячет за хелицерами."), list("голова", "корпус", "Он подгибает лапы для прыжка. Ударит сверху, по голове, и тяжело; брюшко прижато.", 150)))
+
+// Песчаный червь — два шага, огромный замах и полное раскрытие в ударе.
+паттерн = put(паттерн, "песчаный червь", list(list("", "корпус", "Червь уходит в песок целиком. Этот ход он не бьёт, и туловище его не достать."), list("корпус", "", "Песок вспухает горбом. Он выйдет снизу всей массой, в грудь, и в этот миг открыт весь.", 200)))
+
+// Ледяной великан — закрывает то, чем не бьёт.
+паттерн = put(паттерн, "ледяной великан", list(list("голова", "ноги", "Кулак уходит вверх, к твоей голове, а ступни он вмораживает в наст."), list("ноги", "голова", "Он размахивается по земле, по твоим ногам, и вжимает голову в плечи."), list("корпус", "корпус", "Великан наваливается грудью вперёд. Тяжело, и грудь же закрыта наростом льда.", 150)))
+
+// Глитч — рассинхрон. Колесо удара и колесо защиты крутятся с РАЗНОЙ
+// скоростью (удар залипает на кадре и повторяется, защита уезжает дальше),
+// поэтому его последовательность не совпадает ни с чьей другой.
+// ⚠ НЕ делай ему колесо матёрого скелета со сдвигом на шаг: цикл
+// (корпус-голова-ноги) со сдвигом — это ТОТ ЖЕ враг, только с другого хода,
+// и после первого хода двух врагов не отличить. Паттерны обязаны быть разными.
+паттерн = put(паттерн, "глитч", list(list("голова", "ноги", "Глитч мигает. Рука уже у твоего лица, а ноги дублируются в четыре копии — не разберёшь, какие настоящие."), list("голова", "корпус", "Кадр залип. Та же рука идёт к лицу второй раз, а корпус закрыт копией, наехавшей на настоящий."), list("ноги", "голова", "Копии рассинхронились. Пяткой целят в твоё колено, а голов стало две, и обе смотрят в стороны.")))
+
+// Стражи стихий — по три шага, у каждого своя стойка.
+паттерн = put(паттерн, "страж огня", list(list("голова", "корпус", "Страж бьёт факелом сверху и держит горнило груди закрытым."), list("голова", "корпус", "Второй такой же удар сверху. Горнило по-прежнему прикрыто."), list("корпус", "", "Он распахивает горнило, чтобы ударить всей грудью. Тяжело и открыто.", 150)))
+паттерн = put(паттерн, "страж воды", list(list("корпус", "голова", "Вода собирается в таран напротив твоей груди, а над головой стража стоит купол."), list("ноги", "корпус", "Поток стелется по земле к твоим ногам, грудь закрыта стеной воды."), list("голова", "ноги", "Волна встаёт к твоему лицу, а ноги стража растеклись лужей — их не достать.")))
+паттерн = put(паттерн, "страж земли", list(list("корпус", "ноги", "Каменный кулак идёт в грудь. Ноги стража вросли в породу."), list("голова", "ноги", "Кулак поднимается к голове. Ноги всё так же в породе."), list("", "ноги", "Страж врастает глубже и этот ход только стоит. Удара не будет, ноги в породе.")))
+паттерн = put(паттерн, "страж ветра", list(list("ноги", "", "Ветер срывается низом, к твоим ногам. Закрываться страж не умеет вовсе."), list("голова", "", "Смерч поднимается к твоему лицу. Он снова открыт целиком."), list("корпус", "", "Воздух сжимается перед твоей грудью. Открыт, как и всегда.")))
+
+// Боссы — четыре шага.
+паттерн = put(паттерн, "меха-полковник", list(list("корпус", "корпус", "Полковник упирает щиток в грудь и коротко бьёт в корпус."), list("голова", "корпус", "Щиток на месте, а плечевой манипулятор поднимается к твоей голове."), list("", "", "Гудит накопитель. Он не бьёт и не закрывается — вся броня отведена на заряд."), list("корпус", "голова", "Накопитель полон. Пушка идёт в грудь вдвое, кабину он прикрывает створкой.", 200)))
+
+// ЗВЁЗДНЫЙ ТИРАН, равнодушная космическая инстанция. Длинный замах на два
+// хода, в замахе не закрывается, зато удар вдвое.
+паттерн = put(паттерн, "звёздный тиран", list(list("", "", "Опись. Планета. Одна. Занята. Тиран поднимает руку и начинает замах. Он открыт весь и не бьёт."), list("", "", "Замах продолжается, свет вокруг него сгущается. Всё ещё открыт и всё ещё не бьёт."), list("голова", "", "Рука дошла до верхней точки. Сейчас он ударит сверху, по голове, и вдвое. Закрываться ему нечем.", 200), list("корпус", "корпус", "После удара он собирается и коротко тычет в корпус, прикрывая грудь.")))
+
+паттерн = put(паттерн, "Нихарис", list(list("", "голова", "Нихарис смотрит в сторону, будто ей скучно, и подпирает щёку ладонью."), list("голова", "голова", "Она наконец поворачивается к тебе и лениво тянет руку к твоему лбу. Ладонь всё ещё у лица.", 150), list("корпус", "ноги", "Она делает шаг и опускает вторую руку к твоей груди. Подол закрывает ноги."), list("ноги", "", "Нихарис приседает к самой земле, к твоим ногам, и на этот миг не закрывает ничего.", 150)))
+
+// Врага без строки бой всё равно проведёт — по этому паттерну. Он есть
+// специально: незаполненная таблица не должна ломать главу. Его шаги нарочно
+// не совпадают ни с одним настоящим врагом (в частности с дроном), иначе
+// безымянный противник дрался бы как уже знакомый.
+паттерн_умолч = list(list("корпус", "ноги", "Он переносит вес вперёд, к твоей груди, и подбирает ноги под себя."), list("голова", "корпус", "Замах идёт сверху, к твоей голове, а грудь он прикрывает предплечьем."))
+
+// ══════════════════════════════════════════════════════════════════════
+//  3. ФУНКЦИИ (латиницей; инлайнятся, лишних команд не оставляют)
+// ══════════════════════════════════════════════════════════════════════
+
+// ─── 3.1. Зоны ───────────────────────────────────────────────────────
+func zbase(z) { return get(зона_урон, z, 100) }
+func zmul(a, b) { return get(зона_вес, a + ">" + b, 100) }
+func zacc(z) { return get(зона_вин, z, z) }
+
+// ─── 3.2. Урон через готовые формулы стихий ──────────────────────────
+// zhit — базовый удар в зону, без тройки зон. Годится подписью под опцией.
+func zhit(e, f, z) { return max(floor(hit(e, f) * zbase(z) / 100), 1) }
+// zpow — то же с учётом камня-ножниц-бумаги (m — процент из zmul).
+func zpow(e, f, z, m) { return max(floor(hit(e, f) * zbase(z) / 100 * m / 100), 1) }
+// fzpow — удар ВРАГА: его урон минус броня, его стихия против твоей,
+// зона, тройка зон (m) и сила шага паттерна (s).
+func fzpow(f, z, m, s, e) { return max(floor(foedmg(f) * advantage(foeel(f), e) / 100 * zbase(z) / 100 * m / 100 * s / 100), 1) }
+
+// ─── 3.3. Чтение паттерна ────────────────────────────────────────────
+func prow(f) { return get(паттерн, f, паттерн_умолч) }
+func plen(f) { return len(prow(f)) }
+func pmove(f, i) { return get(prow(f), i, list()) }
+func pzone(f, i) { return get(pmove(f, i), 0, "корпус") }
+func pguard(f, i) { return get(pmove(f, i), 1, "") }
+func ptell(f, i) { return get(pmove(f, i), 2, "Он переносит вес с ноги на ногу.") }
+func ppow(f, i) { return get(pmove(f, i), 3, 100) }
+
+// ─── 3.4. Уклонение и побег — БЕЗ КУБИКА ─────────────────────────────
+// dodge — процент урона, который уходит вскользь при ударе в КОРПУС.
+// flee — при каком проценте здоровья враг разрывает дистанцию (0 — никогда).
+func dodge(f) { return get(враг_уклон, f, 0) }
+func flee(f) { return get(враг_трус, f, 40) }
+
+// ══════════════════════════════════════════════════════════════════════
+//  4. ПРЕСЕТЫ БОЯ
+// ══════════════════════════════════════════════════════════════════════
+// Боевая полоска живёт НИЖЕ обычного hud (y=5), чтобы не наезжать на него.
+def bhudon text bhud x=3 y=9 size=28 color=#ffe066 «⚔ {бой_враг} ♥{бой_хп}/{бой_хп0}   |   🛡 {имя} ♥{здоровье}/{maxhp()}   |   ⚡ {бой_стихия}   |   ↔ {fp_distance}   |   ⏳ Ход {бой_ход}/{бой_лимит}»
+def bhudoff text bhud hide
+
+// ══════════════════════════════════════════════════════════════════════
+//  5. САМ БОЙ — ПРОЦЕДУРА
+// ══════════════════════════════════════════════════════════════════════
+// battle(враг, лимит). Враг — ключ таблиц ec-mechanics (враг_хп и прочие).
+// Лимит зажимается в 4..6: это новелла, а не JRPG.
+func battle(бой_враг, бой_лимит) {
+  бой_лимит = min(max(бой_лимит, 4), 6)
+  бой_хп0 = max(foehp(бой_враг) - бой_фора, 1)
+  бой_хп = бой_хп0
+  бой_шаг = 0
+  бой_ход = 0
+  бой_итог = ""
+  бой_победа = 0
+  бой_стан = 0
+  бой_стан_врага = 0
+  бой_глухо = 0
+  бой_ноги_мои = 0
+  бой_ноги_врага = 0
+  бой_уклон = dodge(бой_враг)
+  бой_вести = ""
+
+  // Стихия выбирается за игрока — лучшая из выученных против этого врага.
+  // Иначе выборов стало бы три, а договорено про два.
+  бой_стихия = "кулак"
+  for бой_э in стихии {
+    if hit(бой_э, бой_враг) > hit(бой_стихия, бой_враг) {
+      бой_стихия = бой_э
+    } else {
+    }
+  }
+
+  // ─── Постановка: прогрев арта и первый кадр. Спрайты пока скелетные
+  //     для всех врагов (арт «потом»); прогрев — потому что позы живут за
+  //     if-каскадами, куда 25-командный автопрефетч не заглядывает.
+  //     URL рук — с тем же ?v=tight2, что и в obj: иначе греется другая
+  //     запись кэша.
+  preload url="/content/sprites/ec_combat_fp/skeleton_idle.png" kind=sprite
+  preload url="/content/sprites/ec_combat_fp/skeleton_attack.png" kind=sprite
+  preload url="/content/sprites/ec_combat_fp/skeleton_hurt.png" kind=sprite
+  preload url="/content/sprites/ec_combat_fp/hands_sword_idle.png?v=tight2" kind=sprite
+  preload url="/content/sprites/ec_combat_fp/hands_sword_attack.png" kind=sprite
+  preload url="/content/sprites/ec_combat_fp/hands_sword_block.png" kind=sprite
+  preload url="/content/sprites/ec_combat_ui/action_attack.png" kind=sprite
+  preload url="/content/sprites/ec_combat_ui/action_block.png" kind=sprite
+  preload url="/content/sprites/ec_combat_ui/action_forward.png" kind=sprite
+  preload url="/content/sprites/ec_combat_ui/action_back.png" kind=sprite
+  preload url="/content/sprites/ec_combat_ui/zone_hit_head.png" kind=sprite
+  preload url="/content/sprites/ec_combat_ui/zone_hit_body.png" kind=sprite
+  preload url="/content/sprites/ec_combat_ui/zone_hit_legs.png" kind=sprite
+  preload url="/content/sprites/ec_combat_ui/zone_guard_head.png" kind=sprite
+  preload url="/content/sprites/ec_combat_ui/zone_guard_body.png" kind=sprite
+  preload url="/content/sprites/ec_combat_ui/zone_guard_legs.png" kind=sprite
+  preload url="/content/sprites/ec_combat_ui/timer_bar.png" kind=sprite
+  preload url="/content/audio/ec/whoosh.ogg" kind=audio
+  preload url="/content/audio/ec/hit.ogg" kind=audio
+  preload url="/content/audio/ec/block.ogg" kind=audio
+  preload url="/content/audio/ec/step.ogg" kind=audio
+  preload url="/content/audio/ec/win.ogg" kind=audio
+  preload url="/content/audio/ec/lose.ogg" kind=audio
+  fp_distance = fdist(бой_враг)
+  ecfp_enemy("idle")
+  ecfp_hands("idle")
+
+  bhudon
+  // Правила — ровно один раз за прохождение, а не перед каждой схваткой.
+  if бой_обучен == 0 {
+    // ⚠ БЕЗ ДВОЕТОЧИЯ. Двоеточие в однострочной «…» наррации делает из неё
+    // реплику — компилятор молча уносит всё до двоеточия в имя говорящего, и
+    // первое, что игрок читает про бой, выходит табличкой с ёлочкой в имени.
+    // Валидатор об этом не предупреждает (ГРАБЛЯ 2 в ec-mechanics).
+    «Три зоны — голова, корпус, ноги. Каждый ход ты выбираешь дважды. Сначала куда бьёшь, потом что закрываешь.»
+    «Удар проходит, если не совпал с тем, что закрывает противник. Голова оглушает, ноги отнимают побег, корпус бьёт больнее всех. Перед выбором смотри, как он стоит — у каждого свой порядок, и его можно выучить.»
+    // Режим реакции — решение на кампанию, не на схватку. Выученный паттерн
+    // с таймером превращается в рефлекс (Punch-Out), без таймера — в загадку.
+    «Насколько быстрым будет бой?»
+    - На реакцию: на защиту пять секунд {
+      бой_реакция = 1
+    }
+    - Спокойно, без таймера {
+      бой_реакция = 0
+    }
+    бой_обучен = 1
+  } else {
+  }
+  // Здоровье берём из бой_хп0, а НЕ из foehp(): при форе (бой_фора, сюжетный
+  // урон до схватки) таблица и полоска показали бы разные числа, и реплика
+  // соврала бы игроку прямо под честным HUD.
+  «Против тебя {бой_враг} — {бой_хп0} здоровья, стихия {foeel(бой_враг)}. В руке у тебя {бой_стихия}, и это {advantage(бой_стихия, foeel(бой_враг))} процентов урона по нему.»
+
+  while бой_итог == "" {
+    бой_ход = бой_ход + 1
+
+    // ─── Ход врага берётся из паттерна. Оглушённый теряет ход, и шаг
+    //     паттерна при этом НЕ сдвигается: тычок обязан оставаться честным.
+    if бой_стан_врага == 1 {
+      бой_стан_врага = 0
+      бой_дерётся = 0
+      бой_бьёт = ""
+      бой_закр = ""
+      бой_сила = 100
+      бой_тычок = "Противник ещё не пришёл в себя после удара по голове. Стоит открытый и не бьёт."
+    } else {
+      бой_дерётся = 1
+      бой_бьёт = pzone(бой_враг, бой_шаг)
+      бой_закр = pguard(бой_враг, бой_шаг)
+      бой_сила = ppow(бой_враг, бой_шаг)
+      бой_тычок = ptell(бой_враг, бой_шаг)
+    }
+
+    // ─── Радиус: ближник, которому не достать, вместо удара идёт на тебя.
+    //     Паттерн НЕ сдвигается (бой_дерётся = 0) — выученная последовательность
+    //     продолжится с того же шага, когда он доберётся: тычок остаётся честным.
+    бой_идёт = 0
+    if бой_дерётся == 1 {
+      if бой_бьёт != "" {
+        if fp_distance > frange(бой_враг) {
+          бой_идёт = 1
+          бой_дерётся = 0
+          бой_бьёт = ""
+          бой_сила = 100
+          fp_distance = max(frange(бой_враг), fp_distance - 2)
+          бой_тычок = "Ему не достать, и он это знает. Он идёт на тебя — между вами " + fp_distance + "."
+        } else {
+        }
+      } else {
+      }
+    } else {
+    }
+
+    // ─── Что случилось в прошлом ходу (пусто только на первом).
+    if бой_вести != "" {
+      «{бой_вести}»
+    } else {
+    }
+
+    // ─── Кадр тычка. Дистанция теперь МЕХАНИКА (радиусы, шаги), поэтому
+    //     кадр её не выдумывает — только показывает: идущий враг уже сократил
+    //     её выше, оглушённый стоит в hurt-позе. Кадр ставится ЗДЕСЬ, перед
+    //     say-паузой тычка: между репликами команды пролетают мгновенно,
+    //     и кадр без паузы рядом — невидимый кадр.
+    text dmg_e hide
+    text dmg_p hide
+    if бой_идёт == 1 {
+      ecfp_enemy("idle")
+      // Наезд: спрайт врос из глубины, а не телепортировался.
+      anim fp_enemy scale [0.85 1] 0.35s
+      audio channel=sfx action=play url="/content/audio/ec/step.ogg" volume=.8
+    } else {
+      if бой_дерётся == 0 {
+        ecfp_enemy("hurt")
+      } else {
+        ecfp_enemy("idle")
+      }
+    }
+    ecfp_hands("idle")
+
+    // ─── Оглушённый игрок теряет ход целиком, но тычок всё равно видит.
+    if бой_стан == 1 {
+      бой_стан = 0
+      бой_атака = ""
+      бой_защита = ""
+      бой_защита2 = ""
+      бой_глухо = 0
+      «{бой_тычок}»
+      «В голове звенит, картинка плывёт. Этот ход ты проваливаешь — только смотришь.»
+    } else {
+      «{бой_тычок}»
+      // Иконки-действия (⚔ 🛡 ↑ ↓) + зонные подменю — см. zbturn().
+      zbturn()
+    }
+
+    // ─── Кто во что попал. Пустая зона защиты не совпадает ни с чем,
+    //     поэтому по открытому врагу удар проходит всегда.
+    бой_попал = 0
+    if бой_атака != "" {
+      if бой_атака != бой_закр {
+        бой_попал = 1
+      } else {
+      }
+    } else {
+    }
+    бой_попал_он = 0
+    if бой_бьёт != "" {
+      if бой_бьёт != бой_защита {
+        // Глухая стойка закрывает ДВЕ зоны — вторая тоже считается.
+        if бой_бьёт != бой_защита2 {
+          бой_попал_он = 1
+        } else {
+        }
+      } else {
+      }
+    } else {
+    }
+
+    // ─── Камень-ножницы-бумага — только когда попали ОБА.
+    бой_вес = 100
+    бой_вес_он = 100
+    if бой_попал == 1 {
+      if бой_попал_он == 1 {
+        бой_вес = zmul(бой_атака, бой_бьёт)
+        бой_вес_он = zmul(бой_бьёт, бой_атака)
+      } else {
+      }
+    } else {
+    }
+
+    // ─── Мой удар.
+    // Кадр: руки бьют, если ты вообще бил (даже в блок — замах-то был).
+    if бой_атака != "" {
+      ecfp_hands("attack")
+      anim fp_hands scale [1 1.06 1] 0.25s
+      audio channel=sfx action=play url="/content/audio/ec/whoosh.ogg" volume=.9
+    } else {
+    }
+    бой_вести = ""
+    if бой_попал == 1 {
+      ecfp_enemy("hurt")
+      // Встряска врага + хруст попадания + цифра урона над ним.
+      anim id=fp_enemy prop=x keys="0:0 0.1:0.04 0.2:-0.03 0.3:0" ease=outCubic
+      audio channel=sfx action=play url="/content/audio/ec/hit.ogg" volume=1
+      бой_урон = zpow(бой_стихия, бой_враг, бой_атака, бой_вес)
+      if бой_атака == "корпус" {
+        бой_урон = max(floor(бой_урон * (100 - бой_уклон) / 100), 1)
+      } else {
+      }
+      бой_хп = max(бой_хп - бой_урон, 0)
+      text dmg_e x=42 y=26 size=56 color=#ffd76a «−{бой_урон}»
+      бой_вести = "Ты бьёшь в " + zacc(бой_атака) + " — прошло, минус " + бой_урон + ". "
+      if бой_вес == 150 {
+        бой_вести = бой_вести + "Твоя зона перебила его зону, удар вошёл глубже. "
+      } else {
+      }
+      if бой_вес == 70 {
+        бой_вести = бой_вести + "Его зона оказалась старше твоей, вышло вскользь. "
+      } else {
+      }
+      // Оглушение НЕ ЦЕПЛЯЕТСЯ: оглушить того, кто и так стоит в отключке,
+      // нельзя, иначе бей в голову каждый ход — и враг больше никогда не
+      // ходит. Один пропуск хода это темп, бесконечный замок это не бой.
+      if бой_атака == "голова" {
+        if бой_дерётся == 1 {
+          бой_стан_врага = 1
+          бой_вести = бой_вести + "Голова у него мотнулась — следующий ход он потеряет. "
+        } else {
+          бой_вести = бой_вести + "Он и так не в себе, мотать второй раз нечего. "
+        }
+      } else {
+      }
+      if бой_атака == "ноги" {
+        бой_вести = бой_вести + "Ноги подрублены, теперь он не убежит. "
+        if бой_уклон > 0 {
+          бой_вести = бой_вести + "И уворачиваться ему больше нечем. "
+        } else {
+        }
+        бой_ноги_врага = 1
+        бой_уклон = 0
+      } else {
+      }
+    } else {
+      if бой_атака == "" {
+        бой_вести = "Ты не ударил вовсе. "
+      } else {
+        audio channel=sfx action=play url="/content/audio/ec/block.ogg" volume=.8
+        бой_вести = "Он закрыл " + zacc(бой_закр) + " — твой удар ушёл в блок. "
+      }
+    }
+
+    // ─── Его удар.
+    // Кадр: атакующая поза на ЕГО дистанции — ближник бьёт из упора и
+    // заполняет экран, дальнобойный достаёт с места. И при попадании, и
+    // когда удар уйдёт в твой блок (замах-то настоящий).
+    if бой_бьёт != "" {
+      ecfp_enemy("attack")
+      // Рывок выпада — спрайт подаётся на игрока и оседает назад.
+      anim fp_enemy scale [1 1.12 1.03 1] 0.3s
+    } else {
+    }
+    if бой_попал_он == 1 {
+      бой_урон_он = fzpow(бой_враг, бой_бьёт, бой_вес_он, бой_сила, бой_стихия)
+      // Глухая стойка: даже промазав зоной, ты за щитом — урон вполовину.
+      if бой_глухо == 1 {
+        бой_урон_он = max(floor(бой_урон_он / 2), 1)
+        audio channel=sfx action=play url="/content/audio/ec/block.ogg" volume=.9
+        бой_вести = бой_вести + "Глухая стойка съела половину удара. "
+      } else {
+        audio channel=sfx action=play url="/content/audio/ec/hit.ogg" volume=1
+      }
+      здоровье = hurt(бой_урон_он)
+      text dmg_p x=42 y=64 size=56 color=#ff6b5e «−{бой_урон_он}»
+      бой_вести = бой_вести + "Он достаёт тебя в " + zacc(бой_бьёт) + " — минус " + бой_урон_он + ". "
+      if бой_сила >= 200 {
+        бой_вести = бой_вести + "Замах был не зря, удар вдвое. "
+      } else {
+      }
+      // То же правило в обратную сторону: лежачего не оглушают.
+      // Пустая бой_атака означает, что этот ход ты и так проваливал.
+      if бой_бьёт == "голова" {
+        if бой_атака != "" {
+          бой_стан = 1
+          бой_вести = бой_вести + "В затылке гудит — следующий ход ты потеряешь. "
+        } else {
+          бой_вести = бой_вести + "Хуже уже не будет, ты и так не здесь. "
+        }
+      } else {
+      }
+      if бой_бьёт == "ноги" {
+        бой_ноги_мои = 1
+        бой_вести = бой_вести + "Нога подламывается. Убежать ты уже не сможешь. "
+      } else {
+      }
+      boom
+      hurtfx
+    } else {
+      if бой_бьёт == "" {
+        бой_вести = бой_вести + "Этот ход он не бил. "
+      } else {
+        ecfp_hands("block")
+        audio channel=sfx action=play url="/content/audio/ec/block.ogg" volume=.9
+        if бой_бьёт == бой_защита {
+          бой_вести = бой_вести + "Ты закрыл " + zacc(бой_защита) + " — его удар ушёл в защиту. "
+        } else {
+          бой_вести = бой_вести + "Вторая зона стойки поймала удар — " + zacc(бой_защита2) + " была закрыта. "
+        }
+      }
+    }
+
+    // ─── Итоги хода. Смерть врага считается первой: обоюдный размен
+    //     заканчивается в пользу того, кто ещё стоит на ногах, то есть тебя.
+    if бой_хп <= 0 {
+      бой_итог = "убил"
+    } else {
+      if здоровье <= 0 {
+        бой_итог = "пал"
+      } else {
+      }
+    }
+
+    // ─── Побег без кубика: враг разрывает дистанцию, когда его здоровье
+    //     упало ниже его собственного порога трусости. Перебитые ноги
+    //     побег отменяют — в этом весь смысл зоны «ноги».
+    if бой_итог == "" {
+      if бой_ноги_врага == 0 {
+        if бой_хп * 100 / бой_хп0 < flee(бой_враг) {
+          бой_итог = "прогнал"
+        } else {
+        }
+      } else {
+      }
+    } else {
+    }
+
+    // ─── Лимит ходов. Никто не упал — схватка ломается, и разрывает
+    //     дистанцию тот, кому хуже.
+    if бой_итог == "" {
+      if бой_ход >= бой_лимит {
+        if бой_хп * 100 / бой_хп0 < hppct() {
+          бой_итог = "выстоял"
+        } else {
+          бой_итог = "отступил"
+        }
+      } else {
+      }
+    } else {
+    }
+
+    // ─── Сдвиг паттерна. Только если враг этот ход действительно дрался.
+    if бой_дерётся == 1 {
+      бой_шаг = бой_шаг + 1
+      if бой_шаг >= plen(бой_враг) {
+        бой_шаг = 0
+      } else {
+      }
+    } else {
+    }
+  }
+
+  // ─── Последний обмен всё ещё не рассказан — рассказываем.
+  «{бой_вести}»
+  bhudoff
+  бой_фора = 0
+  ходы = ходы + 1
+
+  if бой_итог == "убил" {
+    бой_победа = 1
+    fp_distance = 4
+    ecfp_enemy("hurt")
+    «{бой_враг} складывается и больше не встаёт. Ходов ушло {бой_ход}.»
+  } else {
+  }
+  if бой_итог == "прогнал" {
+    бой_победа = 1
+    fp_distance = 7
+    ecfp_enemy("idle")
+    «{бой_враг} рвёт дистанцию и уходит — у него осталось {бой_хп} здоровья, и рисковать он не стал.»
+  } else {
+  }
+  if бой_итог == "выстоял" {
+    бой_победа = 1
+    fp_distance = 7
+    ecfp_enemy("idle")
+    «Вы оба выдохлись, но хуже ему. {бой_враг} отступает первым — у него {бой_хп} из {бой_хп0}.»
+  } else {
+  }
+  if бой_итог == "отступил" {
+    fp_distance = 6
+    ecfp_enemy("idle")
+    // ⚠ Имя врага подставляется КАК ЕСТЬ и не склоняется. «У {бой_враг}
+    // осталось» давало «У скелет осталось» для каждого врага без исключения,
+    // поэтому фраза построена так, чтобы родительный падеж не требовался.
+    // Правило то же, что у `зона_вин`: склонение либо данными, либо никак.
+    «Ты больше не держишь стойку и разрываешь дистанцию сам. Противнику осталось {бой_хп} из {бой_хп0} — ты его не добил.»
+  } else {
+  }
+  if бой_итог == "пал" {
+    fp_distance = 1
+    ecfp_enemy("attack")
+    «Ноги не держат, и земля оказывается ближе, чем ты думал.»
+  } else {
+  }
+
+  if бой_победа == 1 {
+    winfx
+    audio channel=sfx action=play url="/content/audio/ec/win.ogg" volume=.9
+    победы = победы + 1
+    бой_ранее = lvl()
+    опыт = опыт + reward(бой_враг)
+    сумка = addgem(drop(бой_враг), 1)
+    «Опыта {reward(бой_враг)}, и с него упал кристалл {drop(бой_враг)}.»
+    if lvl() > бой_ранее {
+      levelup
+    } else {
+    }
+  } else {
+    hurtfx
+    audio channel=sfx action=play url="/content/audio/ec/lose.ogg" volume=.9
+    поражения = поражения + 1
+  }
+  ecfp_hide()
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  6. ШПАРГАЛКА ДЛЯ АВТОРА ГЛАВЫ
+// ══════════════════════════════════════════════════════════════════════
+//
+// ВЫЗОВ (три строки, ветки — обычные метки главы):
+//   desert
+//   battle("Костолом", 5)
+//   if бой_победа == 0 -> оформлен_по_форме
+//   -> отбился
+//
+// Ветку нельзя передать строкой: goto по переменной в движке нет, прыгать
+// можно только на статическую метку. Поэтому процедура ВОЗВРАЩАЕТСЯ в главу
+// и ставит бой_победа/бой_итог, а глава ветвится сама — двумя строками.
+//
+// РАЗНЫЕ ПРОИГРЫШИ (ноги решают, дадут ли уйти):
+//   if бой_победа == 1 -> отбился
+//   if бой_ноги_мои == 1 -> плен
+//   -> уполз
+//
+// БОССЫ. За 4–6 ходов босса с сотней здоровья не убивают — и не надо. Лимит
+// вышел, а он ещё стоит: бой_итог == "выстоял" значит «он отступил живым»,
+// и продолжение пишется именно так, а не «ты его добил»:
+//   battle("звёздный тиран", 6)
+//   if бой_итог == "выстоял" -> тиран_ушёл_но_вернётся
+//   if бой_победа == 0 -> тиран_взял_планету
+//   -> тиран_рассыпался
+//
+// ПОДПИСЬ ПОД ОПЦИЕЙ, если главе нужны числа на виду (по умолчанию бой их не
+// показывает — только реплики):  zhit(бой_стихия, бой_враг, "корпус")
+//
+// ФОРА (сюжетный урон, нанесённый врагу до схватки):
+//   бой_фора = урон_тирану
+//   battle("звёздный тиран", 6)
+//
+// НОВЫЙ ВРАГ — четыре строки данных и ни одной строки кода:
+//   враг_хп = put(враг_хп, "болотный тролль", 40)          // в ec-mechanics
+//   враг_стихия = put(враг_стихия, "болотный тролль", "земля")
+//   враг_урон = put(враг_урон, "болотный тролль", 6)
+//   паттерн = put(паттерн, "болотный тролль", list(list("корпус", "ноги", "Тролль оседает на лапы и целит в грудь."), list("голова", "корпус", "Лапа идёт сверху, брюхо он прикрывает.")))

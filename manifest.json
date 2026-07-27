@@ -33,12 +33,6 @@
       ],
       "name": "Антон"
     },
-    "Bogdan_black": {
-      "layers": [
-        "/content/art/Bogdan_black.png"
-      ],
-      "name": "Богдан"
-    },
     "Cat": {
       "axes": {
         "emotion": [
@@ -186,73 +180,6 @@
       ],
       "name": "Мансур"
     },
-    "Matvey_black": {
-      "layers": [
-        "/content/art/2023-10-19_04-17-59.png"
-      ],
-      "name": "Матвей"
-    },
-    "Matvey_dead": {
-      "layers": [
-        "/content/art/Matvey_dead.png"
-      ],
-      "name": "Матвей"
-    },
-    "Matvey_mechanic": {
-      "axes": {
-        "emotion": [
-          "anger",
-          "sad"
-        ]
-      },
-      "layers": [
-        "/content/art/Matvey_mechanic.jpg"
-      ],
-      "name": "Матвей"
-    },
-    "Matvey_neardeath": {
-      "layers": [
-        "/content/art/Matvey_neardeath.png"
-      ],
-      "name": "Матвей"
-    },
-    "Matvey_neardeath_blood": {
-      "layers": [
-        "/content/art/Matvey_neardeath_blood.png"
-      ],
-      "name": "Матвей"
-    },
-    "Matvey_suicide": {
-      "axes": {
-        "emotion": [
-          "anger",
-          "happy",
-          "sad"
-        ]
-      },
-      "layers": [
-        "/content/art/Matvey_suicide.png"
-      ],
-      "name": "Матвей"
-    },
-    "Matvey_torn": {
-      "layers": [
-        "/content/art/Matvey_torn.jpg"
-      ],
-      "name": "Матвей"
-    },
-    "Matvey_wounded": {
-      "axes": {
-        "emotion": [
-          "anger",
-          "sad"
-        ]
-      },
-      "layers": [
-        "/content/art/Matvey_wounded.png"
-      ],
-      "name": "Матвей"
-    },
     "Miron_died": {
       "axes": {
         "emotion": [
@@ -294,6 +221,12 @@
       ],
       "name": "Оля"
     },
+    "Oscar_dead": {
+      "layers": [
+        "/content/art/Oscar_dead.png"
+      ],
+      "name": "Оскар"
+    },
     "Petya_bunny": {
       "axes": {
         "emotion": [
@@ -306,12 +239,6 @@
         "/content/art/Petya_bunny.png"
       ],
       "name": "Петя"
-    },
-    "Philipp_dead": {
-      "layers": [
-        "/content/art/Philipp_dead.png"
-      ],
-      "name": "Филипп"
     },
     "Platon": {
       "axes": {
@@ -349,6 +276,42 @@
       ],
       "name": "Роман"
     },
+    "Roman_black": {
+      "layers": [
+        "/content/art/2023-10-19_04-17-59.png"
+      ],
+      "name": "Роман"
+    },
+    "Roman_dead": {
+      "layers": [
+        "/content/art/Roman_dead.png"
+      ],
+      "name": "Роман"
+    },
+    "Roman_mechanic": {
+      "axes": {
+        "emotion": [
+          "anger",
+          "sad"
+        ]
+      },
+      "layers": [
+        "/content/art/Roman_mechanic.jpg"
+      ],
+      "name": "Роман"
+    },
+    "Roman_neardeath": {
+      "layers": [
+        "/content/art/Roman_neardeath.png"
+      ],
+      "name": "Роман"
+    },
+    "Roman_neardeath_blood": {
+      "layers": [
+        "/content/art/Roman_neardeath_blood.png"
+      ],
+      "name": "Роман"
+    },
     "Roman_pale": {
       "axes": {
         "emotion": [
@@ -358,6 +321,25 @@
       },
       "layers": [
         "/content/art/POKb05wiq6I (2).jpg"
+      ],
+      "name": "Роман"
+    },
+    "Roman_suicide": {
+      "axes": {
+        "emotion": [
+          "anger",
+          "happy",
+          "sad"
+        ]
+      },
+      "layers": [
+        "/content/art/Roman_suicide.png"
+      ],
+      "name": "Роман"
+    },
+    "Roman_torn": {
+      "layers": [
+        "/content/art/Roman_torn.jpg"
       ],
       "name": "Роман"
     },
@@ -426,6 +408,12 @@
         "/content/art/Stepan_New.png"
       ],
       "name": "Степан"
+    },
+    "Timur_black": {
+      "layers": [
+        "/content/art/Timur_black.png"
+      ],
+      "name": "Тимур"
     },
     "Victor": {
       "axes": {
@@ -688,6 +676,280 @@
         "scale": 1,
         "texture": "/content/spine/dragon/back_static_2.png"
       }
+    },
+    "ec_cyberguard": {
+      "axes": {
+        "emotion": [
+          "calm",
+          "angry",
+          "smile"
+        ],
+        "pose": [
+          "stand",
+          "raised"
+        ]
+      },
+      "color": "#b07a4a",
+      "defaults": {
+        "emotion": "calm",
+        "pose": "stand"
+      },
+      "layers": [
+        {
+          "url": "/content/sprites/ec_cast_v2/cyberguard.png"
+        }
+      ],
+      "name": "Ржавый",
+      "aspect": 0.5
+    },
+    "ec_druid": {
+      "axes": {
+        "emotion": [
+          "calm",
+          "angry",
+          "smile"
+        ],
+        "pose": [
+          "stand",
+          "raised"
+        ]
+      },
+      "color": "#4a9a5e",
+      "defaults": {
+        "emotion": "calm",
+        "pose": "stand"
+      },
+      "layers": [
+        {
+          "url": "/content/sprites/ec_cast_v2/druid.png"
+        }
+      ],
+      "name": "Друид Эфирии",
+      "aspect": 0.5
+    },
+    "ec_necromancer": {
+      "axes": {
+        "emotion": [
+          "calm",
+          "angry",
+          "smile"
+        ],
+        "pose": [
+          "stand",
+          "raised"
+        ]
+      },
+      "color": "#9a8f7a",
+      "defaults": {
+        "emotion": "calm",
+        "pose": "stand"
+      },
+      "layers": [
+        {
+          "url": "/content/sprites/ec_cast_v2/necromancer.png"
+        }
+      ],
+      "name": "Костолом",
+      "aspect": 0.5
+    },
+    "ec_hero": {
+      "aspect": 0.5,
+      "axes": {
+        "emotion": [
+          "neutral",
+          "smile",
+          "angry",
+          "worried"
+        ],
+        "outfit": [
+          "traveler",
+          "armor"
+        ],
+        "weapon": [
+          "none",
+          "sword"
+        ]
+      },
+      "color": "#e8c07a",
+      "defaults": {
+        "emotion": "neutral",
+        "outfit": "traveler",
+        "weapon": "none"
+      },
+      "layers": [
+        {
+          "id": "weapon",
+          "url": "/content/sprites/ec_hero_v2/weapon_{weapon}.png"
+        },
+        {
+          "id": "body",
+          "url": "/content/sprites/ec_hero_v2/body_{outfit}.png"
+        },
+        {
+          "id": "face",
+          "url": "/content/sprites/ec_hero_v2/face_{emotion}.png"
+        }
+      ],
+      "name": "Странник",
+      "wardrobe": {
+        "outfit": {
+          "items": [
+            {
+              "icon": "/content/sprites/ec_hero_v2/body_traveler.png",
+              "name": "Дорожный костюм",
+              "value": "traveler"
+            },
+            {
+              "icon": "/content/sprites/ec_hero_v2/body_armor.png",
+              "name": "Лёгкая броня",
+              "value": "armor"
+            }
+          ],
+          "name": "Одежда",
+          "removable": false
+        },
+        "weapon": {
+          "items": [
+            {
+              "icon": "/content/sprites/ec_hero_v2/weapon_none.png",
+              "name": "Без оружия",
+              "value": "none"
+            },
+            {
+              "icon": "/content/sprites/ec_hero_v2/weapon_sword.png",
+              "name": "Меч странника",
+              "value": "sword"
+            }
+          ],
+          "name": "Оружие",
+          "removable": false
+        }
+      }
+    },
+    "ec_niharis": {
+      "axes": {
+        "emotion": [
+          "calm",
+          "angry",
+          "smile"
+        ],
+        "pose": [
+          "stand",
+          "raised"
+        ]
+      },
+      "color": "#c8465a",
+      "defaults": {
+        "emotion": "calm",
+        "pose": "stand"
+      },
+      "layers": [
+        {
+          "url": "/content/sprites/ec_cast_v2/niharis.png"
+        }
+      ],
+      "name": "Нихарис",
+      "aspect": 0.5
+    },
+    "ec_skeleton": {
+      "axes": {
+        "emotion": [
+          "calm",
+          "angry",
+          "smile"
+        ],
+        "pose": [
+          "stand",
+          "raised"
+        ]
+      },
+      "color": "#c9c2b4",
+      "defaults": {
+        "emotion": "calm",
+        "pose": "stand"
+      },
+      "layers": [
+        {
+          "url": "/content/sprites/ec_cast_v2/skeleton.png"
+        }
+      ],
+      "name": "Кнопка",
+      "aspect": 0.667
+    },
+    "ec_spirit": {
+      "axes": {
+        "emotion": [
+          "calm",
+          "angry",
+          "smile"
+        ],
+        "pose": [
+          "stand",
+          "raised"
+        ]
+      },
+      "color": "#667b58",
+      "defaults": {
+        "emotion": "calm",
+        "pose": "stand"
+      },
+      "layers": [
+        {
+          "url": "/content/sprites/ec_cast_v2/spirit.png"
+        }
+      ],
+      "name": "Мшара",
+      "aspect": 0.5
+    },
+    "ec_techno": {
+      "axes": {
+        "emotion": [
+          "calm",
+          "angry",
+          "smile"
+        ],
+        "pose": [
+          "stand",
+          "raised"
+        ]
+      },
+      "color": "#5ec8dc",
+      "defaults": {
+        "emotion": "calm",
+        "pose": "stand"
+      },
+      "layers": [
+        {
+          "url": "/content/sprites/ec_cast_v2/techno.png"
+        }
+      ],
+      "name": "Техник Техногарда",
+      "aspect": 0.5
+    },
+    "ec_tyrant": {
+      "axes": {
+        "emotion": [
+          "calm",
+          "angry",
+          "smile"
+        ],
+        "pose": [
+          "stand",
+          "raised"
+        ]
+      },
+      "color": "#d6b66f",
+      "defaults": {
+        "emotion": "angry",
+        "pose": "stand"
+      },
+      "layers": [
+        {
+          "url": "/content/sprites/ec_cast_v2/tyrant.png"
+        }
+      ],
+      "name": "Звёздный тиран",
+      "aspect": 0.5
     },
     "goblin2": {
       "anim": {
@@ -1281,6 +1543,89 @@
         "scale": 1,
         "texture": "/content/spine/knight/CharacterAnimation_01.png"
       }
+    },
+    "lioren_lael": {
+      "anim": {
+        "idle": {
+          "auto": "true",
+          "duration": 1,
+          "loop": true,
+          "tracks": [
+            {
+              "axis": "pose",
+              "keys": [
+                [
+                  0,
+                  "idle0"
+                ],
+                [
+                  0.1,
+                  "idle1"
+                ],
+                [
+                  0.2,
+                  "idle2"
+                ],
+                [
+                  0.3,
+                  "idle3"
+                ],
+                [
+                  0.4,
+                  "idle4"
+                ],
+                [
+                  0.5,
+                  "idle5"
+                ],
+                [
+                  0.6,
+                  "idle6"
+                ],
+                [
+                  0.7,
+                  "idle7"
+                ],
+                [
+                  0.8,
+                  "idle8"
+                ],
+                [
+                  0.9,
+                  "idle9"
+                ]
+              ],
+              "layer": "body",
+              "prop": "frame"
+            }
+          ]
+        }
+      },
+      "axes": {
+        "pose": [
+          "idle0",
+          "idle1",
+          "idle2",
+          "idle3",
+          "idle4",
+          "idle5",
+          "idle6",
+          "idle7",
+          "idle8",
+          "idle9"
+        ]
+      },
+      "defaults": {
+        "pose": "idle0"
+      },
+      "kind": "rigged",
+      "layers": [
+        {
+          "id": "body",
+          "url": "/content/sprites/lioren/body_{pose}.png"
+        }
+      ],
+      "name": "Lioren Lael"
     },
     "mansion_livingroom": {
       "kind": "spine",
