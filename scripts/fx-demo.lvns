@@ -13,9 +13,36 @@ actor ec_niharis pose=stand emotion=calm
 
 :каталог
 fx off
+sfx id=ec_niharis off
 - Листать всё подряд -> в1
 - Комбо-пресеты -> комбо
+- Спрайтовые: обводка, свечение, растворение -> спрайтовые
 - Выключить и выйти -> финал
+
+:спрайтовые
+fx off
+sfx id=ec_niharis outline=0.7 outline_color=#ffd76a
+«Обводка — контур персонажа золотом.  ›  sfx id=ec_niharis outline=0.7 outline_color=#ffd76a»
+sfx id=ec_niharis off
+sfx id=ec_niharis glow=0.9 glow_color=#7ad0ff
+«Свечение — холодный ореол вокруг силуэта.  ›  sfx id=ec_niharis glow=0.9 glow_color=#7ad0ff»
+sfx id=ec_niharis off
+sfx id=ec_niharis flash=1 dur=0.05
+sfx id=ec_niharis flash=0 dur=0.3
+«Хит-флеш — белая вспышка урона.  ›  sfx id=… flash=1 dur=0.05, затем flash=0 dur=0.3»
+sfx id=ec_niharis off
+sfx id=ec_niharis dark=1
+«Силуэт — незнакомец до знакомства.  ›  sfx id=… dark=1»
+sfx id=ec_niharis off
+sfx id=ec_niharis tint=0.7 tint_color=#7ad0ff
+«Перекрас — заморожена / отравлена / призрак.  ›  sfx id=… tint=0.7 tint_color=#7ad0ff»
+sfx id=ec_niharis off
+sfx id=ec_niharis dissolve=1 dur=2 glow_color=#ff9a3d
+«Растворение — она уходит пеплом за две секунды.  ›  sfx id=ec_niharis dissolve=1 dur=2»
+sfx id=ec_niharis dissolve=0 dur=1.2
+«И возвращается из пепла.  ›  sfx id=ec_niharis dissolve=0 dur=1.2»
+sfx id=ec_niharis off
+-> каталог
 
 :в1
 fx off
@@ -54,6 +81,17 @@ fx contrast=1.5
 fx off
 fx tint=#7a9fff
 «Тонировка кадра любым цветом.  ›  fx tint=#7a9fff»
+fx off
+fx frost=0.75 dur=0.6
+«Заморозка — иней ползёт с краёв.  ›  fx frost=0.75 dur=0.6»
+fx frost=0
+fx blink=1 dur=0.15
+wait ms=320
+fx blink=0 dur=0.4
+«Моргание — веки, как в бою от первого лица.  ›  fx blink=1 dur=0.15 … fx blink=0 dur=0.4»
+fx off
+fx invert=1 dur=0.2
+«Негатив — хоррор-вспышка.  ›  fx invert=1 dur=0.2»
 fx off
 «Это всё по одному. Теперь — как они звучат вместе.»
 -> комбо
