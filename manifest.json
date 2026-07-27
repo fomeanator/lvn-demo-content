@@ -2333,9 +2333,9 @@
       "ui": {
         "dialogue": {
           "panel_image": "/content/ui/frames/ec_panel.png",
-          "panel_slice": 110,
-          "panel_padding_x": 34,
-          "panel_padding_y": 26,
+          "panel_slice": 55,
+          "panel_padding_x": 58,
+          "panel_padding_y": 48,
           "text_color": "#f1e4c9",
           "speaker_color": "#e3b24a",
           "corner_radius": 0
