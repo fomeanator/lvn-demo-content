@@ -290,7 +290,11 @@ func ecfp_hands(pose) {
 
 // ─── 0.4. Убрать постановку (конец боя) ──────────────────────────────
 func ecfp_hide() {
+  // После победы кости остаются лежать до смены сцены.
+  if бой_итог == "убил" -> ecfp_hide_rest
   obj id=fp_enemy show=false
+  -> ecfp_hide_rest
+  :ecfp_hide_rest
   obj id=fp_hands show=false
   obj id=fp_hudbg show=false
   obj id=fp_ehudbg show=false
@@ -796,6 +800,7 @@ func battle(бой_враг, бой_лимит) {
   preload url="/content/sprites/ec_combat_fp/hands_sword_idle.png?v=tight2" kind=sprite
   preload url="/content/sprites/ec_combat_fp/hands_sword_attack.png" kind=sprite
   preload url="/content/sprites/ec_combat_fp/hands_sword_block.png" kind=sprite
+  preload url="/content/sprites/ec_combat_fp/skeleton_death.png" kind=sprite
   preload url="/content/sprites/ec_combat_ui/action_attack.png" kind=sprite
   preload url="/content/sprites/ec_combat_ui/action_block.png" kind=sprite
   preload url="/content/sprites/ec_combat_ui/action_forward.png" kind=sprite
@@ -817,6 +822,7 @@ func battle(бой_враг, бой_лимит) {
   fp_distance = fdist(бой_враг)
   ecfp_enemy("idle")
   ecfp_hands("idle")
+  ecfp_weapfx()
   // Мультиэффект кадра: лёгкая киношность боя (виньетка + зерно). Все
   // «галочки» — поля одного опа: vignette grain chromatic scanlines
   // pixelate glitch bloom rays rays_x rays_y saturation contrast tint.
@@ -1187,8 +1193,10 @@ func battle(бой_враг, бой_лимит) {
 
   if бой_итог == "убил" {
     бой_победа = 1
-    fp_distance = 4
-    ecfp_enemy("hurt")
+    // Труп: кости рассыпаются и ОСТАЮТСЯ лежать — их прячет только смена
+    // сцены в главе (obj id=fp_enemy show=false), не конец боя.
+    obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_death.png" x=0.5 y=0.84 width=0.92 anchor="0.5,0.5" z=10
+    audio channel=sfx action=play url="/content/audio/ec/hit.ogg" volume=1
     «{бой_враг} складывается и больше не встаёт. Ходов ушло {бой_ход}.»
   } else {
   }

@@ -147,6 +147,7 @@ fade to="black" duration=0.8
 // ВСЕХ на затемнении, сцена собирается заново («герои не скрываются» — баг).
 niharis hide
 skeleton hide
+obj id=fp_enemy show=false   // кости побеждённого не переезжают в утро
 bg /content/bg/ec/efiria.jpg
 fade to="clear" duration=0.8
 actor ec_hero center neutral outfit=traveler weapon=sword flip=true
