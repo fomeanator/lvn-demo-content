@@ -1,0 +1,80 @@
+scene fx_demo
+
+// 🎛 FX — витрина шейдеров движка. Каждая сцена: эффект + его строка.
+// Тап — следующий. Все поля — «галочки» одного опа fx, значения 0..1,
+// липкие; fx off сбрасывает всё.
+
+здоровье = 20
+
+bg /content/bg/ec/spirit_forest.jpg
+actor ec_niharis pose=stand emotion=calm
+«Витрина шейдеров. Смотри, как каждый эффект красит ВЕСЬ кадр — фон и персонажа, — а текст остаётся резким. Тап — следующий эффект.»
+
+:каталог
+fx off
+- Листать всё подряд -> в1
+- Комбо-пресеты -> комбо
+- Выключить и выйти -> финал
+
+:в1
+fx off
+fx vignette=0.6
+«vignette — виньетка, взгляд стягивается к центру.  ›  fx vignette=0.6»
+fx off
+fx grain=0.5
+«grain — плёночное зерно, живёт и шевелится.  ›  fx grain=0.5»
+fx off
+fx chromatic=0.8
+«chromatic — линза расщепляет цвет к краям.  ›  fx chromatic=0.8»
+fx off
+fx scanlines=0.6
+«scanlines — строчки старого экрана.  ›  fx scanlines=0.6»
+fx off
+fx pixelate=6
+«pixelate — крупный пиксель, ретро-сетка.  ›  fx pixelate=6»
+fx off
+fx glitch=0.9
+«glitch — строки дрожат и рвутся, аналоговый сбой.  ›  fx glitch=0.9»
+fx off
+fx bloom=0.8
+«bloom — яркое светится и заливает соседей.  ›  fx bloom=0.8»
+fx off
+fx rays=0.8 rays_x=0.7 rays_y=0.15 tint=#ffe9c4
+«rays — лучи света из точки (окно, солнце, сияние).  ›  fx rays=0.8 rays_x=0.7 rays_y=0.15»
+fx off
+fx distort=0.8
+«distort — марево, жара, вода.  ›  fx distort=0.8»
+fx off
+fx saturation=0
+«saturation — цвет уходит до чёрно-белого.  ›  fx saturation=0»
+fx off
+fx contrast=1.5
+«contrast — свет и тень расходятся жёстче.  ›  fx contrast=1.5»
+fx off
+fx tint=#7a9fff
+«tint — тонировка кадра любым цветом.  ›  fx tint=#7a9fff»
+fx off
+«Это всё по одному. Теперь — как они звучат вместе.»
+-> комбо
+
+:комбо
+fx off
+fx saturation=0.12 vignette=0.55 grain=0.3 contrast=1.12
+«НУАР — воспоминание, допрос, потеря.  ›  fx saturation=0.12 vignette=0.55 grain=0.3 contrast=1.12»
+fx off
+fx tint=#ffd9a0 rays=0.7 rays_x=0.65 rays_y=0.15 bloom=0.45 contrast=1.08
+«ТЁПЛЫЙ ВЕЧЕР — свет из окна, дом, покой.  ›  fx tint=#ffd9a0 rays=0.7 bloom=0.45»
+fx off
+fx glitch=0.8 chromatic=0.6 scanlines=0.4
+«ТЕХНО-СБОЙ — мёртвый мегаполис, глитч-фракция.  ›  fx glitch=0.8 chromatic=0.6 scanlines=0.4»
+fx off
+fx distort=0.6 tint=#a8d8ff saturation=0.8 vignette=0.35
+«ПОД ВОДОЙ — храм Воды, сон, туман.  ›  fx distort=0.6 tint=#a8d8ff saturation=0.8»
+fx off
+fx vignette=0.32 grain=0.08
+«МЯГКОЕ КИНО — так сейчас выглядит наш бой.  ›  fx vignette=0.32 grain=0.08»
+-> каталог
+
+:финал
+fx off
+«Чистый кадр. Все строки из витрины можно вставлять в любую главу как есть.»
