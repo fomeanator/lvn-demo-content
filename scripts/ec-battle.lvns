@@ -402,6 +402,7 @@ func zbturn() {
   -> zb_menu
 
   :zb_menu
+  fx vignette=0.32 grain=0.08
   obj id=fp_action_attack sprite_url="/content/sprites/ec_combat_ui/action_attack.png" x=0.15 y=0.74 width=0.13 height=0.13 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_hit"
   obj id=fp_action_block sprite_url="/content/sprites/ec_combat_ui/action_block.png" x=0.38 y=0.74 width=0.13 height=0.13 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_guard"
   obj id=fp_action_forward sprite_url="/content/sprites/ec_combat_ui/action_forward.png" x=0.62 y=0.74 width=0.13 height=0.13 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_fwd"
@@ -799,6 +800,7 @@ func battle(бой_враг, бой_лимит) {
   // Мультиэффект кадра: лёгкая киношность боя (виньетка + зерно). Все
   // «галочки» — поля одного опа: vignette grain chromatic scanlines
   // pixelate glitch bloom rays rays_x rays_y saturation contrast tint.
+  fx vignette=0.32 grain=0.08
 
   // Один фон на всю боевую строку: меньше визуального шума, центр свободен.
   // Полоса не лезет под кнопку меню благодаря правому запасу.
