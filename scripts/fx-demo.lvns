@@ -9,6 +9,7 @@ scene fx_demo
 bg /content/bg/ec/spirit_forest.jpg
 actor ec_niharis pose=stand emotion=calm
 «Витрина шейдеров. Смотри, как каждый эффект красит ВЕСЬ кадр — фон и персонажа, — а текст остаётся резким. Тап — следующий эффект.»
+-> каталог
 
 :каталог
 fx off
@@ -40,7 +41,7 @@ fx bloom=0.8
 «bloom — яркое светится и заливает соседей.  ›  fx bloom=0.8»
 fx off
 fx rays=0.8 rays_x=0.7 rays_y=0.15 tint=#ffe9c4
-«rays — лучи света из точки (окно, солнце, сияние).  ›  fx rays=0.8 rays_x=0.7 rays_y=0.15»
+«Лучи света из точки — окно, солнце, сияние.  ›  fx rays=0.8 rays_x=0.7 rays_y=0.15»
 fx off
 fx distort=0.8
 «distort — марево, жара, вода.  ›  fx distort=0.8»
@@ -52,7 +53,7 @@ fx contrast=1.5
 «contrast — свет и тень расходятся жёстче.  ›  fx contrast=1.5»
 fx off
 fx tint=#7a9fff
-«tint — тонировка кадра любым цветом.  ›  fx tint=#7a9fff»
+«Тонировка кадра любым цветом.  ›  fx tint=#7a9fff»
 fx off
 «Это всё по одному. Теперь — как они звучат вместе.»
 -> комбо
