@@ -295,9 +295,76 @@ func ecfp_hide() {
   obj id=fp_hudbg show=false
   obj id=fp_ehudbg show=false
   text ehud hide
+  ecfp_weapfx_hide()
   text dmg_e hide
   text dmg_p hide
   zbhide()
+}
+
+
+// ─── 0.6. Аура стихии на клинке — флипбук из Free Pixel Effects Pack
+//     (CodeManu, public domain, кадры 100×100). Стихия боя выбирается
+//     автоматически — аура просто показывает её на мече.
+func ecfp_weapfx() {
+  if бой_стихия == "огонь" -> wfx_fire
+  if бой_стихия == "лёд" -> wfx_freezing
+  if бой_стихия == "тьма" -> wfx_midnight
+  if бой_стихия == "свет" -> wfx_sunburn
+  if бой_стихия == "молния" -> wfx_bluefire
+  if бой_стихия == "вода" -> wfx_bubbles
+  if бой_стихия == "ветер" -> wfx_vortex
+  if бой_стихия == "кристалл" -> wfx_crystal
+  if бой_стихия == "хаос" -> wfx_phantom
+  -> wfx_done
+  :wfx_fire
+  obj id=fx_fire frame=0 x=0.63 y=0.72 width=0.30 anchor="0.5,0.5" z=81
+  anim id=fx_fire prop=frame keys="0:0 2.5:60" loop=true interp=step
+  -> wfx_done
+  :wfx_freezing
+  obj id=fx_freezing frame=0 x=0.63 y=0.72 width=0.30 anchor="0.5,0.5" z=81
+  anim id=fx_freezing prop=frame keys="0:0 2.5:60" loop=true interp=step
+  -> wfx_done
+  :wfx_midnight
+  obj id=fx_midnight frame=0 x=0.63 y=0.72 width=0.30 anchor="0.5,0.5" z=81
+  anim id=fx_midnight prop=frame keys="0:0 2.5:60" loop=true interp=step
+  -> wfx_done
+  :wfx_sunburn
+  obj id=fx_sunburn frame=0 x=0.63 y=0.72 width=0.30 anchor="0.5,0.5" z=81
+  anim id=fx_sunburn prop=frame keys="0:0 2.5:60" loop=true interp=step
+  -> wfx_done
+  :wfx_bluefire
+  obj id=fx_bluefire frame=0 x=0.63 y=0.72 width=0.30 anchor="0.5,0.5" z=81
+  anim id=fx_bluefire prop=frame keys="0:0 2.5:60" loop=true interp=step
+  -> wfx_done
+  :wfx_bubbles
+  obj id=fx_bubbles frame=0 x=0.63 y=0.72 width=0.30 anchor="0.5,0.5" z=81
+  anim id=fx_bubbles prop=frame keys="0:0 2.5:60" loop=true interp=step
+  -> wfx_done
+  :wfx_vortex
+  obj id=fx_vortex frame=0 x=0.63 y=0.72 width=0.30 anchor="0.5,0.5" z=81
+  anim id=fx_vortex prop=frame keys="0:0 2.5:60" loop=true interp=step
+  -> wfx_done
+  :wfx_crystal
+  obj id=fx_crystal frame=0 x=0.63 y=0.72 width=0.30 anchor="0.5,0.5" z=81
+  anim id=fx_crystal prop=frame keys="0:0 2.5:60" loop=true interp=step
+  -> wfx_done
+  :wfx_phantom
+  obj id=fx_phantom frame=0 x=0.63 y=0.72 width=0.30 anchor="0.5,0.5" z=81
+  anim id=fx_phantom prop=frame keys="0:0 2.5:60" loop=true interp=step
+  -> wfx_done
+  :wfx_done
+}
+
+func ecfp_weapfx_hide() {
+  obj id=fx_fire show=false
+  obj id=fx_freezing show=false
+  obj id=fx_midnight show=false
+  obj id=fx_sunburn show=false
+  obj id=fx_bluefire show=false
+  obj id=fx_bubbles show=false
+  obj id=fx_vortex show=false
+  obj id=fx_crystal show=false
+  obj id=fx_phantom show=false
 }
 
 // ─── 0.5. Ход игрока: иконки-действия + зонные подменю ───────────────
@@ -335,10 +402,10 @@ func zbturn() {
   -> zb_menu
 
   :zb_menu
-  obj id=fp_action_attack sprite_url="/content/sprites/ec_combat_ui/action_attack.png" x=0.15 y=0.62 width=0.14 height=0.14 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_hit"
-  obj id=fp_action_block sprite_url="/content/sprites/ec_combat_ui/action_block.png" x=0.38 y=0.62 width=0.14 height=0.14 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_guard"
-  obj id=fp_action_forward sprite_url="/content/sprites/ec_combat_ui/action_forward.png" x=0.62 y=0.62 width=0.14 height=0.14 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_fwd"
-  obj id=fp_action_back sprite_url="/content/sprites/ec_combat_ui/action_back.png" x=0.85 y=0.62 width=0.14 height=0.14 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_back"
+  obj id=fp_action_attack sprite_url="/content/sprites/ec_combat_ui/action_attack.png" x=0.15 y=0.74 width=0.13 height=0.13 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_hit"
+  obj id=fp_action_block sprite_url="/content/sprites/ec_combat_ui/action_block.png" x=0.38 y=0.74 width=0.13 height=0.13 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_guard"
+  obj id=fp_action_forward sprite_url="/content/sprites/ec_combat_ui/action_forward.png" x=0.62 y=0.74 width=0.13 height=0.13 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_fwd"
+  obj id=fp_action_back sprite_url="/content/sprites/ec_combat_ui/action_back.png" x=0.85 y=0.74 width=0.13 height=0.13 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_back"
   «Твой ход.»
   -> zb_menu
 
@@ -661,8 +728,9 @@ func flee(f) { return get(враг_трус, f, 40) }
 // ══════════════════════════════════════════════════════════════════════
 //  4. ПРЕСЕТЫ БОЯ
 // ══════════════════════════════════════════════════════════════════════
-// Боевая полоска живёт НИЖЕ обычного hud (y=5), чтобы не наезжать на него.
-def bhudon text bhud x=5 y=10.6 size=24 color=#f1e4c9 «♥ {здоровье}/{maxhp()}   ⚡ {бой_стихия}   ⏳ {бой_ход}/{бой_лимит}»
+// Один компактный боевой HUD вместо двух несвязанных плашек. Справа оставлено
+// место под системную кнопку меню; системный progress HUD скрыт темой титула.
+def bhudon text bhud x=5 y=5.6 size=21 color=#f1e4c9 «♥{здоровье}/{maxhp()}  ⚡{бой_стихия}  |  ☠{бой_хп}/{бой_хп0}  ↔{fp_distance}  ⏳{бой_ход}/{бой_лимит}»
 def bhudoff text bhud hide
 
 // ══════════════════════════════════════════════════════════════════════
@@ -728,14 +796,13 @@ func battle(бой_враг, бой_лимит) {
   fp_distance = fdist(бой_враг)
   ecfp_enemy("idle")
   ecfp_hands("idle")
+  // Мультиэффект кадра: лёгкая киношность боя (виньетка + зерно). Все
+  // «галочки» — поля одного опа: vignette grain chromatic scanlines
+  // pixelate glitch bloom rays rays_x rays_y saturation contrast tint.
 
-  // Плашка под боевой HUD: жёлтый текст на светлом небе не читался, теперь
-  // он лежит на тёмной коже с золотыми кромками (вырез из рамки темы).
-  obj id=fp_hudbg sprite_url="/content/sprites/ec_combat_ui/hud_panel.png" x=0.27 y=0.115 width=0.50 height=0.075 anchor="0.5,0.5" z=85 opacity=0.96
-  // Бабл врага — его цифры живут ПРЯМО НАД НИМ, не в общей строке:
-  // ♥ хп и дистанция; текст реактивный, обновляется сам.
-  obj id=fp_ehudbg sprite_url="/content/sprites/ec_combat_ui/hud_panel.png" x=0.5 y=0.235 width=0.27 height=0.06 anchor="0.5,0.5" z=85 opacity=0.92
-  text ehud x=40.5 y=22.5 size=22 color=#f1e4c9 «♥ {бой_хп}/{бой_хп0}   ↔ {fp_distance}»
+  // Один фон на всю боевую строку: меньше визуального шума, центр свободен.
+  // Полоса не лезет под кнопку меню благодаря правому запасу.
+  obj id=fp_hudbg sprite_url="/content/sprites/ec_combat_ui/hud_panel.png" x=0.41 y=0.060 width=0.78 height=0.058 anchor="0.5,0.5" z=85 opacity=0.96
   bhudon
   // Правила — ровно один раз за прохождение, а не перед каждой схваткой.
   if бой_обучен == 0 {
