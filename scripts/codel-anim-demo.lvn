@@ -49,7 +49,8 @@
     {
       "op": "say",
       "text": "Я покачиваюсь — это anim из .lvns, без правки байткода.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel"
     },
     {
       "anim": {
@@ -87,7 +88,8 @@
     {
       "op": "say",
       "text": "И дышу масштабом — две анимации одновременно.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel"
     },
     {
       "anim": {
@@ -138,7 +140,8 @@
     {
       "op": "say",
       "text": "А теперь двигаюсь по пути — это move.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel"
     },
     {
       "anim": {
@@ -225,7 +228,8 @@
     {
       "op": "say",
       "text": "А это три шага подряд через mode=queue — очередь на канале.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel"
     }
   ]
 }

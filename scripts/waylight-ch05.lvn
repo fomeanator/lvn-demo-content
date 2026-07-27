@@ -257,23 +257,23 @@
       "text": "Light ran up the branches like water running backwards. The kingdom took one long breath — and glowed."
     },
     {
-      "else": "__nf1",
+      "else": "__nf_yield_1",
       "expr": "kindness \u003e= 4",
       "op": "if",
       "then": "end_heart"
     },
     {
-      "id": "__nf1",
+      "id": "__nf_yield_1",
       "op": "label"
     },
     {
-      "else": "__nf2",
+      "else": "__nf_yield_2",
       "expr": "grit \u003e= 3",
       "op": "if",
       "then": "end_iron"
     },
     {
-      "id": "__nf2",
+      "id": "__nf_yield_2",
       "op": "label"
     },
     {

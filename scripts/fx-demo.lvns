@@ -15,8 +15,11 @@ actor ec_niharis pose=stand emotion=calm
 fx off
 sfx id=ec_niharis off
 - Листать всё подряд -> в1
+- Атмосфера: туман, погода, искры -> атмосфера
+- Бой: кровь, яд, волна, скорость -> бой
+- Стили: сон, сепия, постер, кино -> стили
 - Комбо-пресеты -> комбо
-- Спрайтовые: обводка, свечение, растворение -> спрайтовые
+- Спрайтовые эффекты персонажа -> спрайтовые
 - Выключить и выйти -> финал
 
 :спрайтовые
@@ -41,6 +44,23 @@ sfx id=ec_niharis dissolve=1 dur=2 glow_color=#ff9a3d
 «Растворение — она уходит пеплом за две секунды.  ›  sfx id=ec_niharis dissolve=1 dur=2»
 sfx id=ec_niharis dissolve=0 dur=1.2
 «И возвращается из пепла.  ›  sfx id=ec_niharis dissolve=0 dur=1.2»
+sfx id=ec_niharis off
+sfx id=ec_niharis ghost=0.85 ghost_color=#87dfff rim=0.45 rim_color=#b8efff
+«ПРИЗРАК — силуэт плывёт, дышит прозрачностью и ловит холодный контровой свет.  ›  sfx id=… ghost=0.85 rim=0.45»
+sfx id=ec_niharis off
+sfx id=ec_niharis petrify=1 dur=0.7
+«ОКАМЕНЕНИЕ — цвет уходит в зернистый камень.  ›  sfx id=… petrify=1 dur=0.7»
+sfx id=ec_niharis off
+sfx id=ec_niharis hologram=0.9 hologram_color=#51efff
+«ГОЛОГРАММА — скан-линии, холодный свет и цифровые разрывы силуэта.  ›  sfx id=… hologram=0.9»
+sfx id=ec_niharis off
+sfx id=ec_niharis burn=0.55 burn_color=#ff4b12 dur=0.8
+«ГОРЕНИЕ — снизу ползёт обугленная зона с огненной кромкой.  ›  sfx id=… burn=0.55 dur=0.8»
+sfx id=ec_niharis off
+sfx id=ec_niharis rim=0.9 rim_color=#ffd56d
+«КОНТРОВОЙ СВЕТ — золотая кромка внутри силуэта.  ›  sfx id=… rim=0.9»
+sfx id=ec_niharis shake=0.5
+«ДРОЖЬ — спрайт трясёт от удара, холода или ярости.  ›  sfx id=… shake=0.5»
 sfx id=ec_niharis off
 -> каталог
 
@@ -96,6 +116,60 @@ fx off
 «Это всё по одному. Теперь — как они звучат вместе.»
 -> комбо
 
+:атмосфера
+fx off
+fx fog=0.72 fog_color=#b9cad2 dur=0.8
+«ТУМАН — два живых слоя стелются над землёй.  ›  fx fog=0.72 fog_color=#b9cad2 dur=0.8»
+fx off
+fx rain=0.85 vignette=0.18 tint=#d7e6ff
+«ДОЖДЬ — диагональные струи и холодный мокрый кадр.  ›  fx rain=0.85 vignette=0.18 tint=#d7e6ff»
+fx off
+fx snow=0.9 frost=0.22 tint=#e9f4ff
+«СНЕГ — хлопья двух размеров плюс лёгкий иней.  ›  fx snow=0.9 frost=0.22»
+fx off
+fx embers=0.9 embers_color=#ff541c bloom=0.22 vignette=0.24
+«ИСКРЫ — угли летят вверх, у каждого есть яркое ядро.  ›  fx embers=0.9 bloom=0.22»
+fx off
+fx fog=0.42 rain=0.62 tint=#b9cee8 saturation=0.72 contrast=1.08 vignette=0.3
+«ШТОРМ — туман, дождь и холодный грейдинг одним пресетом.»
+-> каталог
+
+:бой
+fx off
+fx blood=0.9 blood_color=#76070b dur=0.18
+«РАНЕНИЕ — красная пульсация только по краям, враг остаётся виден.  ›  fx blood=0.9 dur=0.18»
+fx off
+fx poison=0.9 poison_color=#3c9b25
+«ЯД — зелёная живая порча ползёт по периферии.  ›  fx poison=0.9»
+fx off
+fx speedlines=0.95 chromatic=0.18
+«РЫВОК — радиальные линии скорости и лёгкое расщепление линзы.  ›  fx speedlines=0.95»
+fx off
+fx shockwave=1 shock_x=0.5 shock_y=0.46 dur=0.55
+«УДАРНАЯ ВОЛНА — кольцо расширяется из точки попадания.  ›  fx shockwave=1 shock_x=0.5 shock_y=0.46 dur=0.55»
+fx shockwave=0
+fx blink=0.28 blood=0.38 chromatic=0.32 vignette=0.4
+«ОГЛУШЕНИЕ — веки, кровь, аберрация и потеря периферии вместе.»
+-> каталог
+
+:стили
+fx off
+fx dream=0.82 bloom=0.2 tint=#efe4ff
+«СОН — плавающая линза, мягкий фокус и лиловый свет.  ›  fx dream=0.82 bloom=0.2»
+fx off
+fx sepia=0.92 grain=0.18 vignette=0.38
+«СТАРАЯ ХРОНИКА — сепия, плёнка и оптика.  ›  fx sepia=0.92 grain=0.18»
+fx off
+fx posterize=0.82 contrast=1.14
+«ПОСТЕР — ограниченная палитра для видения, комикса или интерфейса артефакта.  ›  fx posterize=0.82»
+fx off
+fx letterbox=0.72 saturation=0.78 contrast=1.08
+«КИНО — плавные широкоформатные полосы и спокойный грейдинг.  ›  fx letterbox=0.72»
+fx off
+fx dream=0.48 sepia=0.28 grain=0.14 letterbox=0.45 vignette=0.25
+«ВОСПОМИНАНИЕ — мягкий фокус, выцветшая теплота и кинематографическая рамка.»
+-> каталог
+
 :комбо
 fx off
 fx saturation=0.12 vignette=0.55 grain=0.3 contrast=1.12
@@ -109,6 +183,12 @@ fx glitch=0.8 chromatic=0.6 scanlines=0.4
 fx off
 fx distort=0.6 tint=#a8d8ff saturation=0.8 vignette=0.35
 «ПОД ВОДОЙ — храм Воды, сон, туман.  ›  fx distort=0.6 tint=#a8d8ff saturation=0.8»
+fx off
+fx fog=0.5 embers=0.72 bloom=0.3 tint=#ffd2a0 contrast=1.12 vignette=0.36
+«ПОЖАР В ТУМАНЕ — тёплые искры режут холодную дымку.»
+fx off
+fx rain=0.72 blood=0.38 saturation=0.42 contrast=1.18 vignette=0.5
+«ПОСЛЕ БОЯ — дождь, обесцвеченный мир и остаточная боль.»
 fx off
 fx vignette=0.32 grain=0.08
 «МЯГКОЕ КИНО — так сейчас выглядит наш бой.  ›  fx vignette=0.32 grain=0.08»

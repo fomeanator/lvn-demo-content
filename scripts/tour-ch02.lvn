@@ -404,13 +404,13 @@
       "text": "if coins \u003e= 1 -\u003e rich"
     },
     {
-      "else": "__nf1",
+      "else": "__nf_after_timer_1",
       "expr": "coins \u003e= 1",
       "op": "if",
       "then": "rich"
     },
     {
-      "id": "__nf1",
+      "id": "__nf_after_timer_1",
       "op": "label"
     },
     {

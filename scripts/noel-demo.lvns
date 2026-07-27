@@ -7,6 +7,7 @@ actor id=noel x=0.5 y=0.60 height=1.4 play="static_Noel_Phantom" loop=true dragg
 
 Знакомься: Noel и её Phantom. 49 костей, Spine 4.2.
 Видно её целиком? Скажи — подстрою размер.
+-> hold
 :hold
 Таскай пальцем. Надоест — «Занавес».
 - Ещё -> hold

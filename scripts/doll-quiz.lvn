@@ -182,13 +182,13 @@
       "op": "anim"
     },
     {
-      "else": "__nf1",
+      "else": "__nf_finale_1",
       "expr": "score \u003e= 1",
       "op": "if",
       "then": "praise"
     },
     {
-      "id": "__nf1",
+      "id": "__nf_finale_1",
       "op": "label"
     },
     {

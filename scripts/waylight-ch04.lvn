@@ -213,23 +213,23 @@
       "who": "Queen"
     },
     {
-      "else": "__nf1",
+      "else": "__nf_q3_1",
       "expr": "right \u003e= 2",
       "op": "if",
       "then": "spark_earned"
     },
     {
-      "id": "__nf1",
+      "id": "__nf_q3_1",
       "op": "label"
     },
     {
-      "else": "__nf2",
+      "else": "__nf_q3_2",
       "expr": "right \u003e= 1",
       "op": "if",
       "then": "spark_grudging"
     },
     {
-      "id": "__nf2",
+      "id": "__nf_q3_2",
       "op": "label"
     },
     {

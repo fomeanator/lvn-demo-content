@@ -21,7 +21,8 @@
     {
       "op": "say",
       "text": "Это слоёный персонаж: тело + лицо отдельным слоем.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel_layered"
     },
     {
       "emotion": "happy",
@@ -31,7 +32,8 @@
     {
       "op": "say",
       "text": "Лицо-оверлей меняется по оси emotion: happy.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel_layered"
     },
     {
       "emotion": "nervous",
@@ -41,7 +43,8 @@
     {
       "op": "say",
       "text": "nervous — открытый рот, слёзы.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel_layered"
     },
     {
       "emotion": "annoyed",
@@ -51,7 +54,8 @@
     {
       "op": "say",
       "text": "annoyed.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel_layered"
     },
     {
       "emotion": "sad",
@@ -61,7 +65,8 @@
     {
       "op": "say",
       "text": "sad.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel_layered"
     },
     {
       "emotion": "flustered",
@@ -71,7 +76,8 @@
     {
       "op": "say",
       "text": "flustered.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel_layered"
     }
   ]
 }

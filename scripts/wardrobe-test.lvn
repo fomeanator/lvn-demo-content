@@ -7,7 +7,7 @@
       "sprite_url": "/content/bg/Dressing_room.jpg"
     },
     {
-      "label": "__fnskip1",
+      "label": "__fnskip_show_hill",
       "op": "goto"
     },
     {
@@ -29,7 +29,7 @@
       "op": "return"
     },
     {
-      "id": "__fnskip1",
+      "id": "__fnskip_show_hill",
       "op": "label"
     },
     {

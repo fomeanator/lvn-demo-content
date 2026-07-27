@@ -20,8 +20,9 @@
     },
     {
       "op": "say",
-      "text": "Привет. Я Codel — настоящий персонаж, скачанный из интернетаыфв.",
-      "who": "Codel"
+      "text": "Привет. Я Codel — настоящий персонаж, скачанный из интернета.",
+      "who": "Codel",
+      "who_id": "codel"
     },
     {
       "emotion": "happy",
@@ -31,7 +32,8 @@
     {
       "op": "say",
       "text": "А эмоции переключаются прямо из скрипта: вот я радуюсь.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel"
     },
     {
       "emotion": "serious",
@@ -41,7 +43,8 @@
     {
       "op": "say",
       "text": "Теперь серьёзна.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel"
     },
     {
       "emotion": "annoyed",
@@ -51,12 +54,8 @@
     {
       "op": "say",
       "text": "Немного раздражена.",
-      "who": "Codel"
-    },
-    {
-      "op": "say",
-      "text": "Привет",
-      "who": "..."
+      "who": "Codel",
+      "who_id": "codel"
     },
     {
       "emotion": "pout",
@@ -65,8 +64,9 @@
     },
     {
       "op": "say",
-      "text": "Надулас",
-      "who": "Codel"
+      "text": "Надулась.",
+      "who": "Codel",
+      "who_id": "codel"
     },
     {
       "emotion": "sad",
@@ -76,7 +76,8 @@
     {
       "op": "say",
       "text": "Грустно…",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel"
     },
     {
       "emotion": "worried",
@@ -86,7 +87,8 @@
     {
       "op": "say",
       "text": "Беспокоюсь.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel"
     },
     {
       "emotion": "nervous",
@@ -96,7 +98,8 @@
     {
       "op": "say",
       "text": "Нервничаю!",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel"
     },
     {
       "emotion": "shy",
@@ -106,7 +109,8 @@
     {
       "op": "say",
       "text": "Засмущалась.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel"
     },
     {
       "emotion": "flustered",
@@ -116,7 +120,8 @@
     {
       "op": "say",
       "text": "Совсем растерялась.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel"
     },
     {
       "emotion": "happy",
@@ -126,7 +131,8 @@
     {
       "op": "say",
       "text": "Всё это — одна команда actor с осью emotion. Каталог заполнен автоматически.",
-      "who": "Codel"
+      "who": "Codel",
+      "who_id": "codel"
     }
   ]
 }

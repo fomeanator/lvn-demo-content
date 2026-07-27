@@ -18,7 +18,8 @@
     {
       "op": "say",
       "text": "Hello.",
-      "who": "Mara"
+      "who": "Mara",
+      "who_id": "mara"
     },
     {
       "op": "choice",
@@ -45,7 +46,8 @@
     {
       "op": "say",
       "text": "Glad you stayed.",
-      "who": "Mara"
+      "who": "Mara",
+      "who_id": "mara"
     },
     {
       "label": "__end",

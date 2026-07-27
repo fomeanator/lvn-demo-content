@@ -433,13 +433,13 @@
       "op": "label"
     },
     {
-      "else": "__nf1",
+      "else": "__nf_cave_1",
       "expr": "found \u003e= 3",
       "op": "if",
       "then": "hunt_done"
     },
     {
-      "id": "__nf1",
+      "id": "__nf_cave_1",
       "op": "label"
     },
     {

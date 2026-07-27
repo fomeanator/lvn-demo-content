@@ -12,7 +12,7 @@ need = 10
 maxhp = 24
 hp = 24
 atk = 4
-def = 1
+оборона = 1
 gold = 12
 watk = 0
 darm = 0
@@ -31,7 +31,7 @@ func show_hero() {
 
 // — постоянный реактивный HUD (значения сами обновляются) —
 text hud x=3 y=80 size=46 color=#f1e4c9 «Ур.{level}   ♥{hp}/{maxhp}   атк {atk+watk}   
-защ {def+darm}   зол {gold}   сумка {len(inv)}»
+защ {оборона+darm}   зол {gold}   сумка {len(inv)}»
 
 bg /content/bg/fantasy_forest.jpg
 Холодное утро. Ты — безвестный странник на тропе к деревне Двуречье. Говорят, в пещере за околицей пробудился орк-вожак, и староста сулит золото смельчаку.
@@ -69,6 +69,10 @@ save
 -> tavern
 :doload
 load
+// `load` переносит игрока в сохранённую точку. Если сохранения нет, поток идёт
+// дальше — то есть сюда, в отдых. Так было и до правки; `-> rest` только делает
+// провал явным, иначе валидатор справедливо ругается на метку-ловушку.
+-> rest
 :rest
 if gold >= 6 {
   gold = gold - 6
@@ -303,6 +307,7 @@ if has(inv, "зелье") {
   -> fight
 }
 
+-> f_defend
 :f_defend
 guard = 1
 Ты вскидываешь руку, готовясь принять удар.
@@ -317,8 +322,9 @@ if chance(0.5) {
   -> f_enemy
 }
 
+-> f_enemy
 :f_enemy
-edmg = max(0, eatk - def - darm - guard * 3 + rand(0,2))
+edmg = max(0, eatk - оборона - darm - guard * 3 + rand(0,2))
 guard = 0
 hp = hp - edmg
 {ename} бьёт в ответ — {edmg} урона.
@@ -333,6 +339,7 @@ xp = xp + xpw
 if loot_has == 1 {
   inv = push(inv, loot)
   В добыче — {loot}.
+} else {
 }
 call levelup
 return
@@ -345,7 +352,7 @@ while xp >= need {
   maxhp = maxhp + 6
   hp = maxhp
   atk = atk + 2
-  def = def + 1
+  оборона = оборона + 1
   need = floor(need * 1.5)
   ✨ Новый уровень — {level}! Здоровье и сила возросли.
 }

@@ -1177,6 +1177,2953 @@
     },
     {
       "expr": "{}",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"скелет\", 4)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"дрон\", 5)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"Ржавый\", 4)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"Костолом\", 3)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"матёрый скелет\", 4)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"глитч\", 3)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"некромант\", 6)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"кристальный паук\", 2)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"песчаный червь\", 7)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"меха-полковник\", 5)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"ледяной великан\", 6)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"страж огня\", 5)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"страж воды\", 5)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"страж земли\", 5)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"страж ветра\", 5)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"звёздный тиран\", 7)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_даль, \"Нихарис\", 3)",
+      "key": "враг_даль",
+      "op": "set"
+    },
+    {
+      "expr": "{}",
+      "key": "враг_радиус",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_радиус, \"дрон\", 9)",
+      "key": "враг_радиус",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_радиус, \"некромант\", 9)",
+      "key": "враг_радиус",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_радиус, \"песчаный червь\", 9)",
+      "key": "враг_радиус",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_радиус, \"меха-полковник\", 9)",
+      "key": "враг_радиус",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_радиус, \"ледяной великан\", 3)",
+      "key": "враг_радиус",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_радиус, \"страж огня\", 9)",
+      "key": "враг_радиус",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_радиус, \"страж воды\", 9)",
+      "key": "враг_радиус",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_радиус, \"страж земли\", 9)",
+      "key": "враг_радиус",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_радиус, \"страж ветра\", 9)",
+      "key": "враг_радиус",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_радиус, \"звёздный тиран\", 9)",
+      "key": "враг_радиус",
+      "op": "set"
+    },
+    {
+      "expr": "put(враг_радиус, \"Нихарис\", 3)",
+      "key": "враг_радиус",
+      "op": "set"
+    },
+    {
+      "label": "__fnskip_ecfp_enemy",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_ecfp_enemy",
+      "op": "label"
+    },
+    {
+      "else": "__nf_head_1",
+      "expr": "pose == \"attack\"",
+      "op": "if",
+      "then": "ecfp_enemy_attack"
+    },
+    {
+      "id": "__nf_head_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_head_2",
+      "expr": "pose == \"hurt\"",
+      "op": "if",
+      "then": "ecfp_enemy_hurt"
+    },
+    {
+      "id": "__nf_head_2",
+      "op": "label"
+    },
+    {
+      "label": "ecfp_enemy_idle",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_enemy_attack",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_attack_1",
+      "expr": "fp_distance \u003c= 1",
+      "op": "if",
+      "then": "ecfp_attack_d1"
+    },
+    {
+      "id": "__nf_ecfp_enemy_attack_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_attack_2",
+      "expr": "fp_distance \u003c= 2",
+      "op": "if",
+      "then": "ecfp_attack_d2"
+    },
+    {
+      "id": "__nf_ecfp_enemy_attack_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_attack_3",
+      "expr": "fp_distance \u003c= 3",
+      "op": "if",
+      "then": "ecfp_attack_d3"
+    },
+    {
+      "id": "__nf_ecfp_enemy_attack_3",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_attack_4",
+      "expr": "fp_distance \u003c= 4",
+      "op": "if",
+      "then": "ecfp_attack_d4"
+    },
+    {
+      "id": "__nf_ecfp_enemy_attack_4",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_attack_5",
+      "expr": "fp_distance \u003c= 5",
+      "op": "if",
+      "then": "ecfp_attack_d5"
+    },
+    {
+      "id": "__nf_ecfp_enemy_attack_5",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_attack_6",
+      "expr": "fp_distance \u003c= 6",
+      "op": "if",
+      "then": "ecfp_attack_d6"
+    },
+    {
+      "id": "__nf_ecfp_enemy_attack_6",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_attack_7",
+      "expr": "fp_distance \u003c= 7",
+      "op": "if",
+      "then": "ecfp_attack_d7"
+    },
+    {
+      "id": "__nf_ecfp_enemy_attack_7",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_attack_8",
+      "expr": "fp_distance \u003c= 8",
+      "op": "if",
+      "then": "ecfp_attack_d8"
+    },
+    {
+      "id": "__nf_ecfp_enemy_attack_8",
+      "op": "label"
+    },
+    {
+      "label": "ecfp_attack_d9",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_attack_d1",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 2.1,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_attack.png",
+      "width": 1.44,
+      "x": 0.5,
+      "y": 0.56,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_attack_d2",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 1.05,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_attack.png",
+      "width": 0.72,
+      "x": 0.5,
+      "y": 0.56,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_attack_d3",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.82,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_attack.png",
+      "width": 0.56,
+      "x": 0.5,
+      "y": 0.54,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_attack_d4",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.68,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_attack.png",
+      "width": 0.46,
+      "x": 0.5,
+      "y": 0.53,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_attack_d5",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.58,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_attack.png",
+      "width": 0.39,
+      "x": 0.5,
+      "y": 0.52,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_attack_d6",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.5,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_attack.png",
+      "width": 0.34,
+      "x": 0.5,
+      "y": 0.51,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_attack_d7",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.43,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_attack.png",
+      "width": 0.29,
+      "x": 0.5,
+      "y": 0.5,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_attack_d8",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.37,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_attack.png",
+      "width": 0.25,
+      "x": 0.5,
+      "y": 0.5,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_attack_d9",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.32,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_attack.png",
+      "width": 0.22,
+      "x": 0.5,
+      "y": 0.5,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_enemy_hurt",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_hurt_1",
+      "expr": "fp_distance \u003c= 1",
+      "op": "if",
+      "then": "ecfp_hurt_d1"
+    },
+    {
+      "id": "__nf_ecfp_enemy_hurt_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_hurt_2",
+      "expr": "fp_distance \u003c= 2",
+      "op": "if",
+      "then": "ecfp_hurt_d2"
+    },
+    {
+      "id": "__nf_ecfp_enemy_hurt_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_hurt_3",
+      "expr": "fp_distance \u003c= 3",
+      "op": "if",
+      "then": "ecfp_hurt_d3"
+    },
+    {
+      "id": "__nf_ecfp_enemy_hurt_3",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_hurt_4",
+      "expr": "fp_distance \u003c= 4",
+      "op": "if",
+      "then": "ecfp_hurt_d4"
+    },
+    {
+      "id": "__nf_ecfp_enemy_hurt_4",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_hurt_5",
+      "expr": "fp_distance \u003c= 5",
+      "op": "if",
+      "then": "ecfp_hurt_d5"
+    },
+    {
+      "id": "__nf_ecfp_enemy_hurt_5",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_hurt_6",
+      "expr": "fp_distance \u003c= 6",
+      "op": "if",
+      "then": "ecfp_hurt_d6"
+    },
+    {
+      "id": "__nf_ecfp_enemy_hurt_6",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_hurt_7",
+      "expr": "fp_distance \u003c= 7",
+      "op": "if",
+      "then": "ecfp_hurt_d7"
+    },
+    {
+      "id": "__nf_ecfp_enemy_hurt_7",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_hurt_8",
+      "expr": "fp_distance \u003c= 8",
+      "op": "if",
+      "then": "ecfp_hurt_d8"
+    },
+    {
+      "id": "__nf_ecfp_enemy_hurt_8",
+      "op": "label"
+    },
+    {
+      "label": "ecfp_hurt_d9",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_hurt_d1",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 2.1,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_hurt.png",
+      "width": 1.44,
+      "x": 0.5,
+      "y": 0.56,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_hurt_d2",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 1.05,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_hurt.png",
+      "width": 0.72,
+      "x": 0.5,
+      "y": 0.56,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_hurt_d3",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.82,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_hurt.png",
+      "width": 0.56,
+      "x": 0.5,
+      "y": 0.54,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_hurt_d4",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.68,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_hurt.png",
+      "width": 0.46,
+      "x": 0.5,
+      "y": 0.53,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_hurt_d5",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.58,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_hurt.png",
+      "width": 0.39,
+      "x": 0.5,
+      "y": 0.52,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_hurt_d6",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.5,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_hurt.png",
+      "width": 0.34,
+      "x": 0.5,
+      "y": 0.51,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_hurt_d7",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.43,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_hurt.png",
+      "width": 0.29,
+      "x": 0.5,
+      "y": 0.5,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_hurt_d8",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.37,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_hurt.png",
+      "width": 0.25,
+      "x": 0.5,
+      "y": 0.5,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_hurt_d9",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.32,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_hurt.png",
+      "width": 0.22,
+      "x": 0.5,
+      "y": 0.5,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_enemy_idle",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_idle_1",
+      "expr": "fp_distance \u003c= 1",
+      "op": "if",
+      "then": "ecfp_idle_d1"
+    },
+    {
+      "id": "__nf_ecfp_enemy_idle_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_idle_2",
+      "expr": "fp_distance \u003c= 2",
+      "op": "if",
+      "then": "ecfp_idle_d2"
+    },
+    {
+      "id": "__nf_ecfp_enemy_idle_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_idle_3",
+      "expr": "fp_distance \u003c= 3",
+      "op": "if",
+      "then": "ecfp_idle_d3"
+    },
+    {
+      "id": "__nf_ecfp_enemy_idle_3",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_idle_4",
+      "expr": "fp_distance \u003c= 4",
+      "op": "if",
+      "then": "ecfp_idle_d4"
+    },
+    {
+      "id": "__nf_ecfp_enemy_idle_4",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_idle_5",
+      "expr": "fp_distance \u003c= 5",
+      "op": "if",
+      "then": "ecfp_idle_d5"
+    },
+    {
+      "id": "__nf_ecfp_enemy_idle_5",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_idle_6",
+      "expr": "fp_distance \u003c= 6",
+      "op": "if",
+      "then": "ecfp_idle_d6"
+    },
+    {
+      "id": "__nf_ecfp_enemy_idle_6",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_idle_7",
+      "expr": "fp_distance \u003c= 7",
+      "op": "if",
+      "then": "ecfp_idle_d7"
+    },
+    {
+      "id": "__nf_ecfp_enemy_idle_7",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_idle_8",
+      "expr": "fp_distance \u003c= 8",
+      "op": "if",
+      "then": "ecfp_idle_d8"
+    },
+    {
+      "id": "__nf_ecfp_enemy_idle_8",
+      "op": "label"
+    },
+    {
+      "label": "ecfp_idle_d9",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_idle_d1",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 2.1,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_idle.png",
+      "width": 1.44,
+      "x": 0.5,
+      "y": 0.56,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_idle_d2",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 1.05,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_idle.png",
+      "width": 0.72,
+      "x": 0.5,
+      "y": 0.56,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_idle_d3",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.82,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_idle.png",
+      "width": 0.56,
+      "x": 0.5,
+      "y": 0.54,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_idle_d4",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.68,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_idle.png",
+      "width": 0.46,
+      "x": 0.5,
+      "y": 0.53,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_idle_d5",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.58,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_idle.png",
+      "width": 0.39,
+      "x": 0.5,
+      "y": 0.52,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_idle_d6",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.5,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_idle.png",
+      "width": 0.34,
+      "x": 0.5,
+      "y": 0.51,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_idle_d7",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.43,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_idle.png",
+      "width": 0.29,
+      "x": 0.5,
+      "y": 0.5,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_idle_d8",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.37,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_idle.png",
+      "width": 0.25,
+      "x": 0.5,
+      "y": 0.5,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_idle_d9",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.32,
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_idle.png",
+      "width": 0.22,
+      "x": 0.5,
+      "y": 0.5,
+      "z": 10
+    },
+    {
+      "label": "ecfp_enemy_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_enemy_done",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_ecfp_enemy",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_ecfp_hands",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_ecfp_hands",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_done_1",
+      "expr": "pose == \"attack\"",
+      "op": "if",
+      "then": "ecfp_hands_attack"
+    },
+    {
+      "id": "__nf_ecfp_enemy_done_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_enemy_done_2",
+      "expr": "pose == \"block\"",
+      "op": "if",
+      "then": "ecfp_hands_block"
+    },
+    {
+      "id": "__nf_ecfp_enemy_done_2",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,1",
+      "id": "fp_hands",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/hands_sword_idle.png?v=tight2",
+      "width": 1.34,
+      "x": 0.5,
+      "y": 1.02,
+      "z": 80
+    },
+    {
+      "label": "ecfp_hands_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_hands_attack",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,1",
+      "id": "fp_hands",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/hands_sword_attack.png",
+      "width": 1.34,
+      "x": 0.5,
+      "y": 1.02,
+      "z": 80
+    },
+    {
+      "label": "ecfp_hands_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_hands_block",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,1",
+      "id": "fp_hands",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/hands_sword_block.png",
+      "width": 1.34,
+      "x": 0.5,
+      "y": 1.02,
+      "z": 80
+    },
+    {
+      "label": "ecfp_hands_done",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_hands_done",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_ecfp_hands",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_ecfp_hide",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_ecfp_hide",
+      "op": "label"
+    },
+    {
+      "id": "fp_enemy",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fp_hands",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fp_hudbg",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fp_ehudbg",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "hide": true,
+      "id": "ehud",
+      "op": "text"
+    },
+    {
+      "label": "__fn_ecfp_weapfx_hide",
+      "op": "call"
+    },
+    {
+      "hide": true,
+      "id": "dmg_e",
+      "op": "text"
+    },
+    {
+      "hide": true,
+      "id": "dmg_p",
+      "op": "text"
+    },
+    {
+      "label": "__fn_zbhide",
+      "op": "call"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_ecfp_hide",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_ecfp_weapfx",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_ecfp_weapfx",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_hands_done_1",
+      "expr": "бой_стихия == \"огонь\"",
+      "op": "if",
+      "then": "wfx_fire"
+    },
+    {
+      "id": "__nf_ecfp_hands_done_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_hands_done_2",
+      "expr": "бой_стихия == \"лёд\"",
+      "op": "if",
+      "then": "wfx_freezing"
+    },
+    {
+      "id": "__nf_ecfp_hands_done_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_hands_done_3",
+      "expr": "бой_стихия == \"тьма\"",
+      "op": "if",
+      "then": "wfx_midnight"
+    },
+    {
+      "id": "__nf_ecfp_hands_done_3",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_hands_done_4",
+      "expr": "бой_стихия == \"свет\"",
+      "op": "if",
+      "then": "wfx_sunburn"
+    },
+    {
+      "id": "__nf_ecfp_hands_done_4",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_hands_done_5",
+      "expr": "бой_стихия == \"молния\"",
+      "op": "if",
+      "then": "wfx_bluefire"
+    },
+    {
+      "id": "__nf_ecfp_hands_done_5",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_hands_done_6",
+      "expr": "бой_стихия == \"вода\"",
+      "op": "if",
+      "then": "wfx_bubbles"
+    },
+    {
+      "id": "__nf_ecfp_hands_done_6",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_hands_done_7",
+      "expr": "бой_стихия == \"ветер\"",
+      "op": "if",
+      "then": "wfx_vortex"
+    },
+    {
+      "id": "__nf_ecfp_hands_done_7",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_hands_done_8",
+      "expr": "бой_стихия == \"кристалл\"",
+      "op": "if",
+      "then": "wfx_crystal"
+    },
+    {
+      "id": "__nf_ecfp_hands_done_8",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ecfp_hands_done_9",
+      "expr": "бой_стихия == \"хаос\"",
+      "op": "if",
+      "then": "wfx_phantom"
+    },
+    {
+      "id": "__nf_ecfp_hands_done_9",
+      "op": "label"
+    },
+    {
+      "label": "wfx_done",
+      "op": "goto"
+    },
+    {
+      "id": "wfx_fire",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "frame": 0,
+      "id": "fx_fire",
+      "op": "obj",
+      "width": 0.3,
+      "x": 0.63,
+      "y": 0.72,
+      "z": 81
+    },
+    {
+      "anim": {
+        "duration": 2.5,
+        "loop": true,
+        "tracks": [
+          {
+            "interp": "step",
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                2.5,
+                60
+              ]
+            ],
+            "prop": "frame"
+          }
+        ]
+      },
+      "id": "fx_fire",
+      "op": "anim"
+    },
+    {
+      "label": "wfx_done",
+      "op": "goto"
+    },
+    {
+      "id": "wfx_freezing",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "frame": 0,
+      "id": "fx_freezing",
+      "op": "obj",
+      "width": 0.3,
+      "x": 0.63,
+      "y": 0.72,
+      "z": 81
+    },
+    {
+      "anim": {
+        "duration": 2.5,
+        "loop": true,
+        "tracks": [
+          {
+            "interp": "step",
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                2.5,
+                60
+              ]
+            ],
+            "prop": "frame"
+          }
+        ]
+      },
+      "id": "fx_freezing",
+      "op": "anim"
+    },
+    {
+      "label": "wfx_done",
+      "op": "goto"
+    },
+    {
+      "id": "wfx_midnight",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "frame": 0,
+      "id": "fx_midnight",
+      "op": "obj",
+      "width": 0.3,
+      "x": 0.63,
+      "y": 0.72,
+      "z": 81
+    },
+    {
+      "anim": {
+        "duration": 2.5,
+        "loop": true,
+        "tracks": [
+          {
+            "interp": "step",
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                2.5,
+                60
+              ]
+            ],
+            "prop": "frame"
+          }
+        ]
+      },
+      "id": "fx_midnight",
+      "op": "anim"
+    },
+    {
+      "label": "wfx_done",
+      "op": "goto"
+    },
+    {
+      "id": "wfx_sunburn",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "frame": 0,
+      "id": "fx_sunburn",
+      "op": "obj",
+      "width": 0.3,
+      "x": 0.63,
+      "y": 0.72,
+      "z": 81
+    },
+    {
+      "anim": {
+        "duration": 2.5,
+        "loop": true,
+        "tracks": [
+          {
+            "interp": "step",
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                2.5,
+                60
+              ]
+            ],
+            "prop": "frame"
+          }
+        ]
+      },
+      "id": "fx_sunburn",
+      "op": "anim"
+    },
+    {
+      "label": "wfx_done",
+      "op": "goto"
+    },
+    {
+      "id": "wfx_bluefire",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "frame": 0,
+      "id": "fx_bluefire",
+      "op": "obj",
+      "width": 0.3,
+      "x": 0.63,
+      "y": 0.72,
+      "z": 81
+    },
+    {
+      "anim": {
+        "duration": 2.5,
+        "loop": true,
+        "tracks": [
+          {
+            "interp": "step",
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                2.5,
+                60
+              ]
+            ],
+            "prop": "frame"
+          }
+        ]
+      },
+      "id": "fx_bluefire",
+      "op": "anim"
+    },
+    {
+      "label": "wfx_done",
+      "op": "goto"
+    },
+    {
+      "id": "wfx_bubbles",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "frame": 0,
+      "id": "fx_bubbles",
+      "op": "obj",
+      "width": 0.3,
+      "x": 0.63,
+      "y": 0.72,
+      "z": 81
+    },
+    {
+      "anim": {
+        "duration": 2.5,
+        "loop": true,
+        "tracks": [
+          {
+            "interp": "step",
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                2.5,
+                60
+              ]
+            ],
+            "prop": "frame"
+          }
+        ]
+      },
+      "id": "fx_bubbles",
+      "op": "anim"
+    },
+    {
+      "label": "wfx_done",
+      "op": "goto"
+    },
+    {
+      "id": "wfx_vortex",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "frame": 0,
+      "id": "fx_vortex",
+      "op": "obj",
+      "width": 0.3,
+      "x": 0.63,
+      "y": 0.72,
+      "z": 81
+    },
+    {
+      "anim": {
+        "duration": 2.5,
+        "loop": true,
+        "tracks": [
+          {
+            "interp": "step",
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                2.5,
+                60
+              ]
+            ],
+            "prop": "frame"
+          }
+        ]
+      },
+      "id": "fx_vortex",
+      "op": "anim"
+    },
+    {
+      "label": "wfx_done",
+      "op": "goto"
+    },
+    {
+      "id": "wfx_crystal",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "frame": 0,
+      "id": "fx_crystal",
+      "op": "obj",
+      "width": 0.3,
+      "x": 0.63,
+      "y": 0.72,
+      "z": 81
+    },
+    {
+      "anim": {
+        "duration": 2.5,
+        "loop": true,
+        "tracks": [
+          {
+            "interp": "step",
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                2.5,
+                60
+              ]
+            ],
+            "prop": "frame"
+          }
+        ]
+      },
+      "id": "fx_crystal",
+      "op": "anim"
+    },
+    {
+      "label": "wfx_done",
+      "op": "goto"
+    },
+    {
+      "id": "wfx_phantom",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "frame": 0,
+      "id": "fx_phantom",
+      "op": "obj",
+      "width": 0.3,
+      "x": 0.63,
+      "y": 0.72,
+      "z": 81
+    },
+    {
+      "anim": {
+        "duration": 2.5,
+        "loop": true,
+        "tracks": [
+          {
+            "interp": "step",
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                2.5,
+                60
+              ]
+            ],
+            "prop": "frame"
+          }
+        ]
+      },
+      "id": "fx_phantom",
+      "op": "anim"
+    },
+    {
+      "label": "wfx_done",
+      "op": "goto"
+    },
+    {
+      "id": "wfx_done",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_ecfp_weapfx",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_ecfp_weapfx_hide",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_ecfp_weapfx_hide",
+      "op": "label"
+    },
+    {
+      "id": "fx_fire",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fx_freezing",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fx_midnight",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fx_sunburn",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fx_bluefire",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fx_bubbles",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fx_vortex",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fx_crystal",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fx_phantom",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_ecfp_weapfx_hide",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_zbhide",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_zbhide",
+      "op": "label"
+    },
+    {
+      "id": "fp_action_attack",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fp_action_block",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fp_action_forward",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fp_action_back",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "label": "__fn_zbzhide",
+      "op": "call"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_zbhide",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_zbzhide",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_zbzhide",
+      "op": "label"
+    },
+    {
+      "id": "fp_zone_head",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fp_zone_body",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fp_zone_legs",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "fp_timer",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "hide": true,
+      "id": "fp_prompt",
+      "op": "text"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_zbzhide",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_zbturn",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_zbturn",
+      "op": "label"
+    },
+    {
+      "expr": "\"\"",
+      "key": "бой_атака",
+      "op": "set"
+    },
+    {
+      "expr": "\"\"",
+      "key": "бой_защита",
+      "op": "set"
+    },
+    {
+      "expr": "\"\"",
+      "key": "бой_защита2",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "бой_глухо",
+      "op": "set"
+    },
+    {
+      "label": "zb_menu",
+      "op": "goto"
+    },
+    {
+      "id": "zb_menu",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.13,
+      "hover_opacity": 0.72,
+      "id": "fp_action_attack",
+      "on_click": "zb_hit",
+      "op": "obj",
+      "opacity": 0.96,
+      "sprite_url": "/content/sprites/ec_combat_ui/action_attack.png",
+      "width": 0.13,
+      "x": 0.15,
+      "y": 0.74,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.13,
+      "hover_opacity": 0.72,
+      "id": "fp_action_block",
+      "on_click": "zb_guard",
+      "op": "obj",
+      "opacity": 0.96,
+      "sprite_url": "/content/sprites/ec_combat_ui/action_block.png",
+      "width": 0.13,
+      "x": 0.38,
+      "y": 0.74,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.13,
+      "hover_opacity": 0.72,
+      "id": "fp_action_forward",
+      "on_click": "zb_fwd",
+      "op": "obj",
+      "opacity": 0.96,
+      "sprite_url": "/content/sprites/ec_combat_ui/action_forward.png",
+      "width": 0.13,
+      "x": 0.62,
+      "y": 0.74,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.13,
+      "hover_opacity": 0.72,
+      "id": "fp_action_back",
+      "on_click": "zb_back",
+      "op": "obj",
+      "opacity": 0.96,
+      "sprite_url": "/content/sprites/ec_combat_ui/action_back.png",
+      "width": 0.13,
+      "x": 0.85,
+      "y": 0.74,
+      "z": 90
+    },
+    {
+      "op": "say",
+      "text": "Твой ход."
+    },
+    {
+      "label": "zb_menu",
+      "op": "goto"
+    },
+    {
+      "id": "zb_hit",
+      "op": "label"
+    },
+    {
+      "label": "__fn_zbhide",
+      "op": "call"
+    },
+    {
+      "else": "__nf_zb_hit_1",
+      "expr": "fp_distance \u003e 2",
+      "op": "if",
+      "then": "zb_far"
+    },
+    {
+      "id": "__nf_zb_hit_1",
+      "op": "label"
+    },
+    {
+      "label": "zb_aim",
+      "op": "goto"
+    },
+    {
+      "id": "zb_aim",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_head",
+      "on_click": "zb_aim_head",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_hit_head.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.3,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_body",
+      "on_click": "zb_aim_body",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_hit_body.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.48,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_legs",
+      "on_click": "zb_aim_legs",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_hit_legs.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.66,
+      "z": 90
+    },
+    {
+      "op": "say",
+      "text": "Куда бьёшь?"
+    },
+    {
+      "label": "zb_aim",
+      "op": "goto"
+    },
+    {
+      "id": "zb_aim_head",
+      "op": "label"
+    },
+    {
+      "label": "__fn_zbzhide",
+      "op": "call"
+    },
+    {
+      "expr": "\"голова\"",
+      "key": "бой_атака",
+      "op": "set"
+    },
+    {
+      "label": "zb_guard_pick",
+      "op": "goto"
+    },
+    {
+      "id": "zb_aim_body",
+      "op": "label"
+    },
+    {
+      "label": "__fn_zbzhide",
+      "op": "call"
+    },
+    {
+      "expr": "\"корпус\"",
+      "key": "бой_атака",
+      "op": "set"
+    },
+    {
+      "label": "zb_guard_pick",
+      "op": "goto"
+    },
+    {
+      "id": "zb_aim_legs",
+      "op": "label"
+    },
+    {
+      "label": "__fn_zbzhide",
+      "op": "call"
+    },
+    {
+      "expr": "\"ноги\"",
+      "key": "бой_атака",
+      "op": "set"
+    },
+    {
+      "label": "zb_guard_pick",
+      "op": "goto"
+    },
+    {
+      "id": "zb_far",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "Отсюда клинок не достанет — между вами {fp_distance}. Сократи дистанцию."
+    },
+    {
+      "label": "zb_menu",
+      "op": "goto"
+    },
+    {
+      "id": "zb_guard",
+      "op": "label"
+    },
+    {
+      "label": "__fn_zbhide",
+      "op": "call"
+    },
+    {
+      "expr": "1",
+      "key": "бой_глухо",
+      "op": "set"
+    },
+    {
+      "expr": "\"block\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_hands",
+      "op": "call"
+    },
+    {
+      "op": "say",
+      "text": "бить не будешь, зато закроешь ДВЕ зоны, а удар в открытую примешь вполсилы.»",
+      "who": "«Ты убираешь плечо за клинок и уходишь в глухую стойку"
+    },
+    {
+      "label": "zb_guard_pick",
+      "op": "goto"
+    },
+    {
+      "id": "zb_fwd",
+      "op": "label"
+    },
+    {
+      "label": "__fn_zbhide",
+      "op": "call"
+    },
+    {
+      "expr": "max(1, fp_distance - 2)",
+      "key": "fp_distance",
+      "op": "set"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_enemy",
+      "op": "call"
+    },
+    {
+      "anim": {
+        "duration": 0.3,
+        "loop": false,
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                0.85
+              ],
+              [
+                0.3,
+                1
+              ]
+            ],
+            "prop": "scale"
+          }
+        ]
+      },
+      "id": "fp_enemy",
+      "op": "anim"
+    },
+    {
+      "action": "play",
+      "channel": "sfx",
+      "op": "audio",
+      "url": "/content/audio/ec/step.ogg",
+      "volume": 0.8
+    },
+    {
+      "op": "say",
+      "text": "Два шага вперёд. Между вами {fp_distance}."
+    },
+    {
+      "label": "zb_guard_pick",
+      "op": "goto"
+    },
+    {
+      "id": "zb_back",
+      "op": "label"
+    },
+    {
+      "label": "__fn_zbhide",
+      "op": "call"
+    },
+    {
+      "expr": "min(8, fp_distance + 2)",
+      "key": "fp_distance",
+      "op": "set"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_enemy",
+      "op": "call"
+    },
+    {
+      "anim": {
+        "duration": 0.3,
+        "loop": false,
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                1.15
+              ],
+              [
+                0.3,
+                1
+              ]
+            ],
+            "prop": "scale"
+          }
+        ]
+      },
+      "id": "fp_enemy",
+      "op": "anim"
+    },
+    {
+      "action": "play",
+      "channel": "sfx",
+      "op": "audio",
+      "url": "/content/audio/ec/step.ogg",
+      "volume": 0.8
+    },
+    {
+      "op": "say",
+      "text": "Ты отходишь, держа остриё перед собой. Между вами {fp_distance}."
+    },
+    {
+      "label": "zb_guard_pick",
+      "op": "goto"
+    },
+    {
+      "id": "zb_guard_pick",
+      "op": "label"
+    },
+    {
+      "else": "__nf_zb_guard_pick_1",
+      "expr": "бой_реакция == 1",
+      "op": "if",
+      "then": "zb_guard_fast"
+    },
+    {
+      "id": "__nf_zb_guard_pick_1",
+      "op": "label"
+    },
+    {
+      "label": "zb_gicons",
+      "op": "goto"
+    },
+    {
+      "id": "zb_gicons",
+      "op": "label"
+    },
+    {
+      "else": "__nf_zb_gicons_1",
+      "expr": "бой_защита == \"голова\"",
+      "op": "if",
+      "then": "zb_gi_nohead"
+    },
+    {
+      "id": "__nf_zb_gicons_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_zb_gicons_2",
+      "expr": "бой_защита == \"корпус\"",
+      "op": "if",
+      "then": "zb_gi_nobody"
+    },
+    {
+      "id": "__nf_zb_gicons_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_zb_gicons_3",
+      "expr": "бой_защита == \"ноги\"",
+      "op": "if",
+      "then": "zb_gi_nolegs"
+    },
+    {
+      "id": "__nf_zb_gicons_3",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_head",
+      "on_click": "zb_g_head",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_head.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.3,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_body",
+      "on_click": "zb_g_body",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_body.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.48,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_legs",
+      "on_click": "zb_g_legs",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_legs.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.66,
+      "z": 90
+    },
+    {
+      "op": "say",
+      "text": "Что закрываешь?"
+    },
+    {
+      "label": "zb_gicons",
+      "op": "goto"
+    },
+    {
+      "id": "zb_gi_nohead",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_body",
+      "on_click": "zb_g_body",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_body.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.48,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_legs",
+      "on_click": "zb_g_legs",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_legs.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.66,
+      "z": 90
+    },
+    {
+      "op": "say",
+      "text": "Вторая зона глухой стойки?"
+    },
+    {
+      "label": "zb_gi_nohead",
+      "op": "goto"
+    },
+    {
+      "id": "zb_gi_nobody",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_head",
+      "on_click": "zb_g_head",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_head.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.3,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_legs",
+      "on_click": "zb_g_legs",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_legs.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.66,
+      "z": 90
+    },
+    {
+      "op": "say",
+      "text": "Вторая зона глухой стойки?"
+    },
+    {
+      "label": "zb_gi_nobody",
+      "op": "goto"
+    },
+    {
+      "id": "zb_gi_nolegs",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_head",
+      "on_click": "zb_g_head",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_head.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.3,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_body",
+      "on_click": "zb_g_body",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_body.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.48,
+      "z": 90
+    },
+    {
+      "op": "say",
+      "text": "Вторая зона глухой стойки?"
+    },
+    {
+      "label": "zb_gi_nolegs",
+      "op": "goto"
+    },
+    {
+      "id": "zb_g_head",
+      "op": "label"
+    },
+    {
+      "label": "__fn_zbzhide",
+      "op": "call"
+    },
+    {
+      "else": "__else_zb_g_head_1",
+      "expr": "бой_защита == \"\"",
+      "op": "if",
+      "then": "__then_zb_g_head_1"
+    },
+    {
+      "id": "__then_zb_g_head_1",
+      "op": "label"
+    },
+    {
+      "expr": "\"голова\"",
+      "key": "бой_защита",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_g_head_1",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_g_head_1",
+      "op": "label"
+    },
+    {
+      "expr": "\"голова\"",
+      "key": "бой_защита2",
+      "op": "set"
+    },
+    {
+      "id": "__end_zb_g_head_1",
+      "op": "label"
+    },
+    {
+      "label": "zb_g_next",
+      "op": "goto"
+    },
+    {
+      "id": "zb_g_body",
+      "op": "label"
+    },
+    {
+      "label": "__fn_zbzhide",
+      "op": "call"
+    },
+    {
+      "else": "__else_zb_g_body_1",
+      "expr": "бой_защита == \"\"",
+      "op": "if",
+      "then": "__then_zb_g_body_1"
+    },
+    {
+      "id": "__then_zb_g_body_1",
+      "op": "label"
+    },
+    {
+      "expr": "\"корпус\"",
+      "key": "бой_защита",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_g_body_1",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_g_body_1",
+      "op": "label"
+    },
+    {
+      "expr": "\"корпус\"",
+      "key": "бой_защита2",
+      "op": "set"
+    },
+    {
+      "id": "__end_zb_g_body_1",
+      "op": "label"
+    },
+    {
+      "label": "zb_g_next",
+      "op": "goto"
+    },
+    {
+      "id": "zb_g_legs",
+      "op": "label"
+    },
+    {
+      "label": "__fn_zbzhide",
+      "op": "call"
+    },
+    {
+      "else": "__else_zb_g_legs_1",
+      "expr": "бой_защита == \"\"",
+      "op": "if",
+      "then": "__then_zb_g_legs_1"
+    },
+    {
+      "id": "__then_zb_g_legs_1",
+      "op": "label"
+    },
+    {
+      "expr": "\"ноги\"",
+      "key": "бой_защита",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_g_legs_1",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_g_legs_1",
+      "op": "label"
+    },
+    {
+      "expr": "\"ноги\"",
+      "key": "бой_защита2",
+      "op": "set"
+    },
+    {
+      "id": "__end_zb_g_legs_1",
+      "op": "label"
+    },
+    {
+      "label": "zb_g_next",
+      "op": "goto"
+    },
+    {
+      "id": "zb_g_next",
+      "op": "label"
+    },
+    {
+      "else": "__nf_zb_g_next_1",
+      "expr": "бой_глухо == 0",
+      "op": "if",
+      "then": "zb_done"
+    },
+    {
+      "id": "__nf_zb_g_next_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_zb_g_next_2",
+      "expr": "бой_защита2 != \"\"",
+      "op": "if",
+      "then": "zb_done"
+    },
+    {
+      "id": "__nf_zb_g_next_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_zb_g_next_3",
+      "expr": "бой_реакция == 1",
+      "op": "if",
+      "then": "zb_gfast2"
+    },
+    {
+      "id": "__nf_zb_g_next_3",
+      "op": "label"
+    },
+    {
+      "label": "zb_gicons",
+      "op": "goto"
+    },
+    {
+      "id": "zb_guard_fast",
+      "op": "label"
+    },
+    {
+      "color": "#3d4046",
+      "id": "fp_prompt",
+      "op": "text",
+      "size": 44,
+      "text": "Что закрываешь?",
+      "x": 52,
+      "y": 16
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_head",
+      "on_click": "zb_g_head",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_head.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.3,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_body",
+      "on_click": "zb_g_body",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_body.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.48,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_legs",
+      "on_click": "zb_g_legs",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_legs.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.66,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.018,
+      "id": "fp_timer",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_ui/timer_bar.png",
+      "width": 0.6,
+      "x": 0.5,
+      "y": 0.13,
+      "z": 95
+    },
+    {
+      "anim": {
+        "duration": 5,
+        "loop": false,
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                1
+              ],
+              [
+                5,
+                0
+              ]
+            ],
+            "prop": "scalex"
+          }
+        ]
+      },
+      "id": "fp_timer",
+      "op": "anim"
+    },
+    {
+      "ms": 5000,
+      "op": "wait"
+    },
+    {
+      "label": "__fn_zbzhide",
+      "op": "call"
+    },
+    {
+      "label": "zb_late",
+      "op": "goto"
+    },
+    {
+      "id": "zb_gfast2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_zb_gfast2_1",
+      "expr": "бой_защита == \"голова\"",
+      "op": "if",
+      "then": "zb_gf2_nohead"
+    },
+    {
+      "id": "__nf_zb_gfast2_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_zb_gfast2_2",
+      "expr": "бой_защита == \"корпус\"",
+      "op": "if",
+      "then": "zb_gf2_nobody"
+    },
+    {
+      "id": "__nf_zb_gfast2_2",
+      "op": "label"
+    },
+    {
+      "label": "zb_gf2_nolegs",
+      "op": "goto"
+    },
+    {
+      "id": "zb_gf2_nohead",
+      "op": "label"
+    },
+    {
+      "color": "#3d4046",
+      "id": "fp_prompt",
+      "op": "text",
+      "size": 44,
+      "text": "Вторая зона?",
+      "x": 52,
+      "y": 16
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_body",
+      "on_click": "zb_g_body",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_body.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.48,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_legs",
+      "on_click": "zb_g_legs",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_legs.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.66,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.018,
+      "id": "fp_timer",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_ui/timer_bar.png",
+      "width": 0.6,
+      "x": 0.5,
+      "y": 0.13,
+      "z": 95
+    },
+    {
+      "anim": {
+        "duration": 5,
+        "loop": false,
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                1
+              ],
+              [
+                5,
+                0
+              ]
+            ],
+            "prop": "scalex"
+          }
+        ]
+      },
+      "id": "fp_timer",
+      "op": "anim"
+    },
+    {
+      "ms": 5000,
+      "op": "wait"
+    },
+    {
+      "label": "__fn_zbzhide",
+      "op": "call"
+    },
+    {
+      "label": "zb_done",
+      "op": "goto"
+    },
+    {
+      "id": "zb_gf2_nobody",
+      "op": "label"
+    },
+    {
+      "color": "#3d4046",
+      "id": "fp_prompt",
+      "op": "text",
+      "size": 44,
+      "text": "Вторая зона?",
+      "x": 52,
+      "y": 16
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_head",
+      "on_click": "zb_g_head",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_head.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.3,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_legs",
+      "on_click": "zb_g_legs",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_legs.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.66,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.018,
+      "id": "fp_timer",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_ui/timer_bar.png",
+      "width": 0.6,
+      "x": 0.5,
+      "y": 0.13,
+      "z": 95
+    },
+    {
+      "anim": {
+        "duration": 5,
+        "loop": false,
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                1
+              ],
+              [
+                5,
+                0
+              ]
+            ],
+            "prop": "scalex"
+          }
+        ]
+      },
+      "id": "fp_timer",
+      "op": "anim"
+    },
+    {
+      "ms": 5000,
+      "op": "wait"
+    },
+    {
+      "label": "__fn_zbzhide",
+      "op": "call"
+    },
+    {
+      "label": "zb_done",
+      "op": "goto"
+    },
+    {
+      "id": "zb_gf2_nolegs",
+      "op": "label"
+    },
+    {
+      "color": "#3d4046",
+      "id": "fp_prompt",
+      "op": "text",
+      "size": 44,
+      "text": "Вторая зона?",
+      "x": 52,
+      "y": 16
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_head",
+      "on_click": "zb_g_head",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_head.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.3,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.16,
+      "hover_opacity": 0.72,
+      "id": "fp_zone_body",
+      "on_click": "zb_g_body",
+      "op": "obj",
+      "opacity": 0.97,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_guard_body.png",
+      "width": 0.16,
+      "x": 0.8,
+      "y": 0.48,
+      "z": 90
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.018,
+      "id": "fp_timer",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_ui/timer_bar.png",
+      "width": 0.6,
+      "x": 0.5,
+      "y": 0.13,
+      "z": 95
+    },
+    {
+      "anim": {
+        "duration": 5,
+        "loop": false,
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                1
+              ],
+              [
+                5,
+                0
+              ]
+            ],
+            "prop": "scalex"
+          }
+        ]
+      },
+      "id": "fp_timer",
+      "op": "anim"
+    },
+    {
+      "ms": 5000,
+      "op": "wait"
+    },
+    {
+      "label": "__fn_zbzhide",
+      "op": "call"
+    },
+    {
+      "label": "zb_done",
+      "op": "goto"
+    },
+    {
+      "id": "zb_late",
+      "op": "label"
+    },
+    {
+      "expr": "\"\"",
+      "key": "бой_защита",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "Пальцы не успели за мыслью — ты остался открыт."
+    },
+    {
+      "label": "zb_done",
+      "op": "goto"
+    },
+    {
+      "id": "zb_done",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_zbturn",
+      "op": "label"
+    },
+    {
+      "expr": "{}",
       "key": "зона_урон",
       "op": "set"
     },
@@ -1400,6 +4347,11 @@
     },
     {
       "expr": "0",
+      "key": "бой_глухо",
+      "op": "set"
+    },
+    {
+      "expr": "0",
       "key": "бой_ноги_мои",
       "op": "set"
     },
@@ -1425,41 +4377,41 @@
     },
     {
       "expr": "стихии",
-      "key": "__src_head_3",
+      "key": "__src_zb_done_1",
       "op": "set"
     },
     {
-      "key": "__i_head_3",
+      "key": "__i_zb_done_1",
       "op": "set",
       "value": 0
     },
     {
-      "id": "__loop_head_3",
+      "id": "__loop_zb_done_1",
       "op": "label"
     },
     {
-      "else": "__end_head_3",
-      "expr": "__i_head_3 \u003c len(__src_head_3)",
+      "else": "__end_zb_done_1",
+      "expr": "__i_zb_done_1 \u003c len(__src_zb_done_1)",
       "op": "if",
-      "then": "__body_head_3"
+      "then": "__body_zb_done_1"
     },
     {
-      "id": "__body_head_3",
+      "id": "__body_zb_done_1",
       "op": "label"
     },
     {
-      "expr": "__src_head_3[__i_head_3]",
+      "expr": "__src_zb_done_1[__i_zb_done_1]",
       "key": "бой_э",
       "op": "set"
     },
     {
-      "else": "__else_head_4",
+      "else": "__else_zb_done_2",
       "expr": "(max(floor(((get(сила, бой_э, 1)) + мощь + (1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1)))) * (get(преимущество, бой_э + \"\u003e\" + (get(враг_стихия, бой_враг, \"земля\")), 100)) / 100), 1)) \u003e (max(floor(((get(сила, бой_стихия, 1)) + мощь + (1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1)))) * (get(преимущество, бой_стихия + \"\u003e\" + (get(враг_стихия, бой_враг, \"земля\")), 100)) / 100), 1))",
       "op": "if",
-      "then": "__then_head_4"
+      "then": "__then_zb_done_2"
     },
     {
-      "id": "__then_head_4",
+      "id": "__then_zb_done_2",
       "op": "label"
     },
     {
@@ -1468,47 +4420,202 @@
       "op": "set"
     },
     {
-      "label": "__end_head_4",
+      "label": "__end_zb_done_2",
       "op": "goto"
     },
     {
-      "id": "__else_head_4",
+      "id": "__else_zb_done_2",
       "op": "label"
     },
     {
-      "id": "__end_head_4",
+      "id": "__end_zb_done_2",
       "op": "label"
     },
     {
-      "expr": "__i_head_3 + 1",
-      "key": "__i_head_3",
+      "expr": "__i_zb_done_1 + 1",
+      "key": "__i_zb_done_1",
       "op": "set"
     },
     {
-      "label": "__loop_head_3",
+      "label": "__loop_zb_done_1",
       "op": "goto"
     },
     {
-      "id": "__end_head_3",
+      "id": "__end_zb_done_1",
       "op": "label"
     },
     {
-      "color": "#ff9f6a",
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_fp/skeleton_idle.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_fp/skeleton_attack.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_fp/skeleton_hurt.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_fp/hands_sword_idle.png?v=tight2"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_fp/hands_sword_attack.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_fp/hands_sword_block.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/action_attack.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/action_block.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/action_forward.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/action_back.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/zone_hit_head.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/zone_hit_body.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/zone_hit_legs.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/zone_guard_head.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/zone_guard_body.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/zone_guard_legs.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/timer_bar.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/hud_panel.png"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/ec/whoosh.ogg"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/ec/hit.ogg"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/ec/block.ogg"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/ec/step.ogg"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/ec/win.ogg"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/ec/lose.ogg"
+    },
+    {
+      "expr": "(get(враг_даль, бой_враг, 4))",
+      "key": "fp_distance",
+      "op": "set"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_enemy",
+      "op": "call"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_hands",
+      "op": "call"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.058,
+      "id": "fp_hudbg",
+      "op": "obj",
+      "opacity": 0.96,
+      "sprite_url": "/content/sprites/ec_combat_ui/hud_panel.png",
+      "width": 0.78,
+      "x": 0.41,
+      "y": 0.06,
+      "z": 85
+    },
+    {
+      "color": "#f1e4c9",
       "id": "bhud",
       "op": "text",
-      "size": 28,
-      "text": "⚔ {бой_враг} ♥{бой_хп}/{бой_хп0}   ты ♥{здоровье}/{(20 + ((1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1))) - 1) * 6)}   в руке {бой_стихия}   ход {бой_ход} из {бой_лимит}",
-      "x": 3,
-      "y": 11
+      "size": 21,
+      "text": "♥{здоровье}/{(20 + ((1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1))) - 1) * 6)}  ⚡{бой_стихия}  |  ☠{бой_хп}/{бой_хп0}  ↔{fp_distance}  ⏳{бой_ход}/{бой_лимит}",
+      "x": 5,
+      "y": 5.6
     },
     {
-      "else": "__else_head_5",
+      "else": "__else_zb_done_3",
       "expr": "бой_обучен == 0",
       "op": "if",
-      "then": "__then_head_5"
+      "then": "__then_zb_done_3"
     },
     {
-      "id": "__then_head_5",
+      "id": "__then_zb_done_3",
       "op": "label"
     },
     {
@@ -1520,20 +4627,49 @@
       "text": "Удар проходит, если не совпал с тем, что закрывает противник. Голова оглушает, ноги отнимают побег, корпус бьёт больнее всех. Перед выбором смотри, как он стоит — у каждого свой порядок, и его можно выучить."
     },
     {
+      "op": "say",
+      "text": "Насколько быстрым будет бой?"
+    },
+    {
+      "op": "choice",
+      "options": [
+        {
+          "body": [
+            {
+              "expr": "1",
+              "key": "бой_реакция",
+              "op": "set"
+            }
+          ],
+          "text": "На реакцию: на защиту пять секунд"
+        },
+        {
+          "body": [
+            {
+              "expr": "0",
+              "key": "бой_реакция",
+              "op": "set"
+            }
+          ],
+          "text": "Спокойно, без таймера"
+        }
+      ]
+    },
+    {
       "expr": "1",
       "key": "бой_обучен",
       "op": "set"
     },
     {
-      "label": "__end_head_5",
+      "label": "__end_zb_done_3",
       "op": "goto"
     },
     {
-      "id": "__else_head_5",
+      "id": "__else_zb_done_3",
       "op": "label"
     },
     {
-      "id": "__end_head_5",
+      "id": "__end_zb_done_3",
       "op": "label"
     },
     {
@@ -1541,17 +4677,17 @@
       "text": "Против тебя {бой_враг} — {бой_хп0} здоровья, стихия {(get(враг_стихия, бой_враг, \"земля\"))}. В руке у тебя {бой_стихия}, и это {(get(преимущество, бой_стихия + \"\u003e\" + (get(враг_стихия, бой_враг, \"земля\")), 100))} процентов урона по нему."
     },
     {
-      "id": "__loop_head_6",
+      "id": "__loop_zb_done_4",
       "op": "label"
     },
     {
-      "else": "__end_head_6",
+      "else": "__end_zb_done_4",
       "expr": "бой_итог == \"\"",
       "op": "if",
-      "then": "__body_head_6"
+      "then": "__body_zb_done_4"
     },
     {
-      "id": "__body_head_6",
+      "id": "__body_zb_done_4",
       "op": "label"
     },
     {
@@ -1560,13 +4696,13 @@
       "op": "set"
     },
     {
-      "else": "__else_head_7",
+      "else": "__else_zb_done_5",
       "expr": "бой_стан_врага == 1",
       "op": "if",
-      "then": "__then_head_7"
+      "then": "__then_zb_done_5"
     },
     {
-      "id": "__then_head_7",
+      "id": "__then_zb_done_5",
       "op": "label"
     },
     {
@@ -1600,11 +4736,11 @@
       "op": "set"
     },
     {
-      "label": "__end_head_7",
+      "label": "__end_zb_done_5",
       "op": "goto"
     },
     {
-      "id": "__else_head_7",
+      "id": "__else_zb_done_5",
       "op": "label"
     },
     {
@@ -1633,17 +4769,118 @@
       "op": "set"
     },
     {
-      "id": "__end_head_7",
+      "id": "__end_zb_done_5",
       "op": "label"
     },
     {
-      "else": "__else_head_8",
-      "expr": "бой_вести != \"\"",
-      "op": "if",
-      "then": "__then_head_8"
+      "expr": "0",
+      "key": "бой_идёт",
+      "op": "set"
     },
     {
-      "id": "__then_head_8",
+      "else": "__else_zb_done_6",
+      "expr": "бой_дерётся == 1",
+      "op": "if",
+      "then": "__then_zb_done_6"
+    },
+    {
+      "id": "__then_zb_done_6",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_7",
+      "expr": "бой_бьёт != \"\"",
+      "op": "if",
+      "then": "__then_zb_done_7"
+    },
+    {
+      "id": "__then_zb_done_7",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_8",
+      "expr": "fp_distance \u003e (get(враг_радиус, бой_враг, 2))",
+      "op": "if",
+      "then": "__then_zb_done_8"
+    },
+    {
+      "id": "__then_zb_done_8",
+      "op": "label"
+    },
+    {
+      "expr": "1",
+      "key": "бой_идёт",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "бой_дерётся",
+      "op": "set"
+    },
+    {
+      "expr": "\"\"",
+      "key": "бой_бьёт",
+      "op": "set"
+    },
+    {
+      "expr": "100",
+      "key": "бой_сила",
+      "op": "set"
+    },
+    {
+      "expr": "max((get(враг_радиус, бой_враг, 2)), fp_distance - 2)",
+      "key": "fp_distance",
+      "op": "set"
+    },
+    {
+      "expr": "\"Ему не достать, и он это знает. Он идёт на тебя — между вами \" + fp_distance + \".\"",
+      "key": "бой_тычок",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_8",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_8",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_8",
+      "op": "label"
+    },
+    {
+      "label": "__end_zb_done_7",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_7",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_7",
+      "op": "label"
+    },
+    {
+      "label": "__end_zb_done_6",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_6",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_6",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_9",
+      "expr": "бой_вести != \"\"",
+      "op": "if",
+      "then": "__then_zb_done_9"
+    },
+    {
+      "id": "__then_zb_done_9",
       "op": "label"
     },
     {
@@ -1651,25 +4888,145 @@
       "text": "{бой_вести}"
     },
     {
-      "label": "__end_head_8",
+      "label": "__end_zb_done_9",
       "op": "goto"
     },
     {
-      "id": "__else_head_8",
+      "id": "__else_zb_done_9",
       "op": "label"
     },
     {
-      "id": "__end_head_8",
+      "id": "__end_zb_done_9",
       "op": "label"
     },
     {
-      "else": "__else_head_9",
+      "hide": true,
+      "id": "dmg_e",
+      "op": "text"
+    },
+    {
+      "hide": true,
+      "id": "dmg_p",
+      "op": "text"
+    },
+    {
+      "else": "__else_zb_done_10",
+      "expr": "бой_идёт == 1",
+      "op": "if",
+      "then": "__then_zb_done_10"
+    },
+    {
+      "id": "__then_zb_done_10",
+      "op": "label"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_enemy",
+      "op": "call"
+    },
+    {
+      "anim": {
+        "duration": 0.35,
+        "loop": false,
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                0.85
+              ],
+              [
+                0.35,
+                1
+              ]
+            ],
+            "prop": "scale"
+          }
+        ]
+      },
+      "id": "fp_enemy",
+      "op": "anim"
+    },
+    {
+      "action": "play",
+      "channel": "sfx",
+      "op": "audio",
+      "url": "/content/audio/ec/step.ogg",
+      "volume": 0.8
+    },
+    {
+      "label": "__end_zb_done_10",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_10",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_11",
+      "expr": "бой_дерётся == 0",
+      "op": "if",
+      "then": "__then_zb_done_11"
+    },
+    {
+      "id": "__then_zb_done_11",
+      "op": "label"
+    },
+    {
+      "expr": "\"hurt\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_enemy",
+      "op": "call"
+    },
+    {
+      "label": "__end_zb_done_11",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_11",
+      "op": "label"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_enemy",
+      "op": "call"
+    },
+    {
+      "id": "__end_zb_done_11",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_10",
+      "op": "label"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_hands",
+      "op": "call"
+    },
+    {
+      "else": "__else_zb_done_12",
       "expr": "бой_стан == 1",
       "op": "if",
-      "then": "__then_head_9"
+      "then": "__then_zb_done_12"
     },
     {
-      "id": "__then_head_9",
+      "id": "__then_zb_done_12",
       "op": "label"
     },
     {
@@ -1688,6 +5045,16 @@
       "op": "set"
     },
     {
+      "expr": "\"\"",
+      "key": "бой_защита2",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "бой_глухо",
+      "op": "set"
+    },
+    {
       "op": "say",
       "text": "{бой_тычок}"
     },
@@ -1696,103 +5063,23 @@
       "text": "В голове звенит, картинка плывёт. Этот ход ты проваливаешь — только смотришь."
     },
     {
-      "label": "__end_head_9",
+      "label": "__end_zb_done_12",
       "op": "goto"
     },
     {
-      "id": "__else_head_9",
+      "id": "__else_zb_done_12",
       "op": "label"
-    },
-    {
-      "expr": "\"\"",
-      "key": "бой_атака",
-      "op": "set"
-    },
-    {
-      "expr": "\"\"",
-      "key": "бой_защита",
-      "op": "set"
     },
     {
       "op": "say",
       "text": "{бой_тычок}"
     },
     {
-      "op": "choice",
-      "options": [
-        {
-          "body": [
-            {
-              "expr": "\"голова\"",
-              "key": "бой_атака",
-              "op": "set"
-            }
-          ],
-          "text": "Бить в голову"
-        },
-        {
-          "body": [
-            {
-              "expr": "\"корпус\"",
-              "key": "бой_атака",
-              "op": "set"
-            }
-          ],
-          "text": "Бить в корпус"
-        },
-        {
-          "body": [
-            {
-              "expr": "\"ноги\"",
-              "key": "бой_атака",
-              "op": "set"
-            }
-          ],
-          "text": "Бить в ноги"
-        }
-      ]
+      "label": "__fn_zbturn",
+      "op": "call"
     },
     {
-      "op": "say",
-      "text": "Что закрываешь?"
-    },
-    {
-      "op": "choice",
-      "options": [
-        {
-          "body": [
-            {
-              "expr": "\"голова\"",
-              "key": "бой_защита",
-              "op": "set"
-            }
-          ],
-          "text": "Закрыть голову"
-        },
-        {
-          "body": [
-            {
-              "expr": "\"корпус\"",
-              "key": "бой_защита",
-              "op": "set"
-            }
-          ],
-          "text": "Закрыть корпус"
-        },
-        {
-          "body": [
-            {
-              "expr": "\"ноги\"",
-              "key": "бой_защита",
-              "op": "set"
-            }
-          ],
-          "text": "Закрыть ноги"
-        }
-      ]
-    },
-    {
-      "id": "__end_head_9",
+      "id": "__end_zb_done_12",
       "op": "label"
     },
     {
@@ -1801,23 +5088,23 @@
       "op": "set"
     },
     {
-      "else": "__else_head_10",
+      "else": "__else_zb_done_13",
       "expr": "бой_атака != \"\"",
       "op": "if",
-      "then": "__then_head_10"
+      "then": "__then_zb_done_13"
     },
     {
-      "id": "__then_head_10",
+      "id": "__then_zb_done_13",
       "op": "label"
     },
     {
-      "else": "__else_head_11",
+      "else": "__else_zb_done_14",
       "expr": "бой_атака != бой_закр",
       "op": "if",
-      "then": "__then_head_11"
+      "then": "__then_zb_done_14"
     },
     {
-      "id": "__then_head_11",
+      "id": "__then_zb_done_14",
       "op": "label"
     },
     {
@@ -1826,27 +5113,27 @@
       "op": "set"
     },
     {
-      "label": "__end_head_11",
+      "label": "__end_zb_done_14",
       "op": "goto"
     },
     {
-      "id": "__else_head_11",
+      "id": "__else_zb_done_14",
       "op": "label"
     },
     {
-      "id": "__end_head_11",
+      "id": "__end_zb_done_14",
       "op": "label"
     },
     {
-      "label": "__end_head_10",
+      "label": "__end_zb_done_13",
       "op": "goto"
     },
     {
-      "id": "__else_head_10",
+      "id": "__else_zb_done_13",
       "op": "label"
     },
     {
-      "id": "__end_head_10",
+      "id": "__end_zb_done_13",
       "op": "label"
     },
     {
@@ -1855,23 +5142,33 @@
       "op": "set"
     },
     {
-      "else": "__else_head_12",
+      "else": "__else_zb_done_15",
       "expr": "бой_бьёт != \"\"",
       "op": "if",
-      "then": "__then_head_12"
+      "then": "__then_zb_done_15"
     },
     {
-      "id": "__then_head_12",
+      "id": "__then_zb_done_15",
       "op": "label"
     },
     {
-      "else": "__else_head_13",
+      "else": "__else_zb_done_16",
       "expr": "бой_бьёт != бой_защита",
       "op": "if",
-      "then": "__then_head_13"
+      "then": "__then_zb_done_16"
     },
     {
-      "id": "__then_head_13",
+      "id": "__then_zb_done_16",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_17",
+      "expr": "бой_бьёт != бой_защита2",
+      "op": "if",
+      "then": "__then_zb_done_17"
+    },
+    {
+      "id": "__then_zb_done_17",
       "op": "label"
     },
     {
@@ -1880,27 +5177,39 @@
       "op": "set"
     },
     {
-      "label": "__end_head_13",
+      "label": "__end_zb_done_17",
       "op": "goto"
     },
     {
-      "id": "__else_head_13",
+      "id": "__else_zb_done_17",
       "op": "label"
     },
     {
-      "id": "__end_head_13",
+      "id": "__end_zb_done_17",
       "op": "label"
     },
     {
-      "label": "__end_head_12",
+      "label": "__end_zb_done_16",
       "op": "goto"
     },
     {
-      "id": "__else_head_12",
+      "id": "__else_zb_done_16",
       "op": "label"
     },
     {
-      "id": "__end_head_12",
+      "id": "__end_zb_done_16",
+      "op": "label"
+    },
+    {
+      "label": "__end_zb_done_15",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_15",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_15",
       "op": "label"
     },
     {
@@ -1914,23 +5223,23 @@
       "op": "set"
     },
     {
-      "else": "__else_head_14",
+      "else": "__else_zb_done_18",
       "expr": "бой_попал == 1",
       "op": "if",
-      "then": "__then_head_14"
+      "then": "__then_zb_done_18"
     },
     {
-      "id": "__then_head_14",
+      "id": "__then_zb_done_18",
       "op": "label"
     },
     {
-      "else": "__else_head_15",
+      "else": "__else_zb_done_19",
       "expr": "бой_попал_он == 1",
       "op": "if",
-      "then": "__then_head_15"
+      "then": "__then_zb_done_19"
     },
     {
-      "id": "__then_head_15",
+      "id": "__then_zb_done_19",
       "op": "label"
     },
     {
@@ -1944,27 +5253,92 @@
       "op": "set"
     },
     {
-      "label": "__end_head_15",
+      "label": "__end_zb_done_19",
       "op": "goto"
     },
     {
-      "id": "__else_head_15",
+      "id": "__else_zb_done_19",
       "op": "label"
     },
     {
-      "id": "__end_head_15",
+      "id": "__end_zb_done_19",
       "op": "label"
     },
     {
-      "label": "__end_head_14",
+      "label": "__end_zb_done_18",
       "op": "goto"
     },
     {
-      "id": "__else_head_14",
+      "id": "__else_zb_done_18",
       "op": "label"
     },
     {
-      "id": "__end_head_14",
+      "id": "__end_zb_done_18",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_20",
+      "expr": "бой_атака != \"\"",
+      "op": "if",
+      "then": "__then_zb_done_20"
+    },
+    {
+      "id": "__then_zb_done_20",
+      "op": "label"
+    },
+    {
+      "expr": "\"attack\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_hands",
+      "op": "call"
+    },
+    {
+      "anim": {
+        "duration": 0.25,
+        "loop": false,
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                1
+              ],
+              [
+                0.125,
+                1.06
+              ],
+              [
+                0.25,
+                1
+              ]
+            ],
+            "prop": "scale"
+          }
+        ]
+      },
+      "id": "fp_hands",
+      "op": "anim"
+    },
+    {
+      "action": "play",
+      "channel": "sfx",
+      "op": "audio",
+      "url": "/content/audio/ec/whoosh.ogg",
+      "volume": 0.9
+    },
+    {
+      "label": "__end_zb_done_20",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_20",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_20",
       "op": "label"
     },
     {
@@ -1973,14 +5347,62 @@
       "op": "set"
     },
     {
-      "else": "__else_head_16",
+      "else": "__else_zb_done_21",
       "expr": "бой_попал == 1",
       "op": "if",
-      "then": "__then_head_16"
+      "then": "__then_zb_done_21"
     },
     {
-      "id": "__then_head_16",
+      "id": "__then_zb_done_21",
       "op": "label"
+    },
+    {
+      "expr": "\"hurt\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_enemy",
+      "op": "call"
+    },
+    {
+      "anim": {
+        "duration": 0.3,
+        "loop": false,
+        "tracks": [
+          {
+            "ease": "outCubic",
+            "keys": [
+              [
+                0,
+                0
+              ],
+              [
+                0.1,
+                0.04
+              ],
+              [
+                0.2,
+                -0.03
+              ],
+              [
+                0.3,
+                0
+              ]
+            ],
+            "prop": "x"
+          }
+        ]
+      },
+      "id": "fp_enemy",
+      "op": "anim"
+    },
+    {
+      "action": "play",
+      "channel": "sfx",
+      "op": "audio",
+      "url": "/content/audio/ec/hit.ogg",
+      "volume": 1
     },
     {
       "expr": "(max(floor((max(floor(((get(сила, бой_стихия, 1)) + мощь + (1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1)))) * (get(преимущество, бой_стихия + \"\u003e\" + (get(враг_стихия, бой_враг, \"земля\")), 100)) / 100), 1)) * (get(зона_урон, бой_атака, 100)) / 100 * бой_вес / 100), 1))",
@@ -1988,13 +5410,13 @@
       "op": "set"
     },
     {
-      "else": "__else_head_17",
+      "else": "__else_zb_done_22",
       "expr": "бой_атака == \"корпус\"",
       "op": "if",
-      "then": "__then_head_17"
+      "then": "__then_zb_done_22"
     },
     {
-      "id": "__then_head_17",
+      "id": "__then_zb_done_22",
       "op": "label"
     },
     {
@@ -2003,15 +5425,15 @@
       "op": "set"
     },
     {
-      "label": "__end_head_17",
+      "label": "__end_zb_done_22",
       "op": "goto"
     },
     {
-      "id": "__else_head_17",
+      "id": "__else_zb_done_22",
       "op": "label"
     },
     {
-      "id": "__end_head_17",
+      "id": "__end_zb_done_22",
       "op": "label"
     },
     {
@@ -2020,18 +5442,27 @@
       "op": "set"
     },
     {
+      "color": "#ffd76a",
+      "id": "dmg_e",
+      "op": "text",
+      "size": 56,
+      "text": "−{бой_урон}",
+      "x": 42,
+      "y": 26
+    },
+    {
       "expr": "\"Ты бьёшь в \" + (get(зона_вин, бой_атака, бой_атака)) + \" — прошло, минус \" + бой_урон + \". \"",
       "key": "бой_вести",
       "op": "set"
     },
     {
-      "else": "__else_head_18",
+      "else": "__else_zb_done_23",
       "expr": "бой_вес == 150",
       "op": "if",
-      "then": "__then_head_18"
+      "then": "__then_zb_done_23"
     },
     {
-      "id": "__then_head_18",
+      "id": "__then_zb_done_23",
       "op": "label"
     },
     {
@@ -2040,25 +5471,25 @@
       "op": "set"
     },
     {
-      "label": "__end_head_18",
+      "label": "__end_zb_done_23",
       "op": "goto"
     },
     {
-      "id": "__else_head_18",
+      "id": "__else_zb_done_23",
       "op": "label"
     },
     {
-      "id": "__end_head_18",
+      "id": "__end_zb_done_23",
       "op": "label"
     },
     {
-      "else": "__else_head_19",
+      "else": "__else_zb_done_24",
       "expr": "бой_вес == 70",
       "op": "if",
-      "then": "__then_head_19"
+      "then": "__then_zb_done_24"
     },
     {
-      "id": "__then_head_19",
+      "id": "__then_zb_done_24",
       "op": "label"
     },
     {
@@ -2067,35 +5498,35 @@
       "op": "set"
     },
     {
-      "label": "__end_head_19",
+      "label": "__end_zb_done_24",
       "op": "goto"
     },
     {
-      "id": "__else_head_19",
+      "id": "__else_zb_done_24",
       "op": "label"
     },
     {
-      "id": "__end_head_19",
+      "id": "__end_zb_done_24",
       "op": "label"
     },
     {
-      "else": "__else_head_20",
+      "else": "__else_zb_done_25",
       "expr": "бой_атака == \"голова\"",
       "op": "if",
-      "then": "__then_head_20"
+      "then": "__then_zb_done_25"
     },
     {
-      "id": "__then_head_20",
+      "id": "__then_zb_done_25",
       "op": "label"
     },
     {
-      "else": "__else_head_21",
+      "else": "__else_zb_done_26",
       "expr": "бой_дерётся == 1",
       "op": "if",
-      "then": "__then_head_21"
+      "then": "__then_zb_done_26"
     },
     {
-      "id": "__then_head_21",
+      "id": "__then_zb_done_26",
       "op": "label"
     },
     {
@@ -2109,11 +5540,11 @@
       "op": "set"
     },
     {
-      "label": "__end_head_21",
+      "label": "__end_zb_done_26",
       "op": "goto"
     },
     {
-      "id": "__else_head_21",
+      "id": "__else_zb_done_26",
       "op": "label"
     },
     {
@@ -2122,29 +5553,29 @@
       "op": "set"
     },
     {
-      "id": "__end_head_21",
+      "id": "__end_zb_done_26",
       "op": "label"
     },
     {
-      "label": "__end_head_20",
+      "label": "__end_zb_done_25",
       "op": "goto"
     },
     {
-      "id": "__else_head_20",
+      "id": "__else_zb_done_25",
       "op": "label"
     },
     {
-      "id": "__end_head_20",
+      "id": "__end_zb_done_25",
       "op": "label"
     },
     {
-      "else": "__else_head_22",
+      "else": "__else_zb_done_27",
       "expr": "бой_атака == \"ноги\"",
       "op": "if",
-      "then": "__then_head_22"
+      "then": "__then_zb_done_27"
     },
     {
-      "id": "__then_head_22",
+      "id": "__then_zb_done_27",
       "op": "label"
     },
     {
@@ -2153,13 +5584,13 @@
       "op": "set"
     },
     {
-      "else": "__else_head_23",
+      "else": "__else_zb_done_28",
       "expr": "бой_уклон \u003e 0",
       "op": "if",
-      "then": "__then_head_23"
+      "then": "__then_zb_done_28"
     },
     {
-      "id": "__then_head_23",
+      "id": "__then_zb_done_28",
       "op": "label"
     },
     {
@@ -2168,15 +5599,15 @@
       "op": "set"
     },
     {
-      "label": "__end_head_23",
+      "label": "__end_zb_done_28",
       "op": "goto"
     },
     {
-      "id": "__else_head_23",
+      "id": "__else_zb_done_28",
       "op": "label"
     },
     {
-      "id": "__end_head_23",
+      "id": "__end_zb_done_28",
       "op": "label"
     },
     {
@@ -2190,33 +5621,33 @@
       "op": "set"
     },
     {
-      "label": "__end_head_22",
+      "label": "__end_zb_done_27",
       "op": "goto"
     },
     {
-      "id": "__else_head_22",
+      "id": "__else_zb_done_27",
       "op": "label"
     },
     {
-      "id": "__end_head_22",
+      "id": "__end_zb_done_27",
       "op": "label"
     },
     {
-      "label": "__end_head_16",
+      "label": "__end_zb_done_21",
       "op": "goto"
     },
     {
-      "id": "__else_head_16",
+      "id": "__else_zb_done_21",
       "op": "label"
     },
     {
-      "else": "__else_head_24",
+      "else": "__else_zb_done_29",
       "expr": "бой_атака == \"\"",
       "op": "if",
-      "then": "__then_head_24"
+      "then": "__then_zb_done_29"
     },
     {
-      "id": "__then_head_24",
+      "id": "__then_zb_done_29",
       "op": "label"
     },
     {
@@ -2225,12 +5656,19 @@
       "op": "set"
     },
     {
-      "label": "__end_head_24",
+      "label": "__end_zb_done_29",
       "op": "goto"
     },
     {
-      "id": "__else_head_24",
+      "id": "__else_zb_done_29",
       "op": "label"
+    },
+    {
+      "action": "play",
+      "channel": "sfx",
+      "op": "audio",
+      "url": "/content/audio/ec/block.ogg",
+      "volume": 0.8
     },
     {
       "expr": "\"Он закрыл \" + (get(зона_вин, бой_закр, бой_закр)) + \" — твой удар ушёл в блок. \"",
@@ -2238,21 +5676,83 @@
       "op": "set"
     },
     {
-      "id": "__end_head_24",
+      "id": "__end_zb_done_29",
       "op": "label"
     },
     {
-      "id": "__end_head_16",
+      "id": "__end_zb_done_21",
       "op": "label"
     },
     {
-      "else": "__else_head_25",
+      "else": "__else_zb_done_30",
+      "expr": "бой_бьёт != \"\"",
+      "op": "if",
+      "then": "__then_zb_done_30"
+    },
+    {
+      "id": "__then_zb_done_30",
+      "op": "label"
+    },
+    {
+      "expr": "\"attack\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_enemy",
+      "op": "call"
+    },
+    {
+      "anim": {
+        "duration": 0.3,
+        "loop": false,
+        "tracks": [
+          {
+            "keys": [
+              [
+                0,
+                1
+              ],
+              [
+                0.09999999999999999,
+                1.12
+              ],
+              [
+                0.19999999999999998,
+                1.03
+              ],
+              [
+                0.3,
+                1
+              ]
+            ],
+            "prop": "scale"
+          }
+        ]
+      },
+      "id": "fp_enemy",
+      "op": "anim"
+    },
+    {
+      "label": "__end_zb_done_30",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_30",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_30",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_31",
       "expr": "бой_попал_он == 1",
       "op": "if",
-      "then": "__then_head_25"
+      "then": "__then_zb_done_31"
     },
     {
-      "id": "__then_head_25",
+      "id": "__then_zb_done_31",
       "op": "label"
     },
     {
@@ -2261,9 +5761,64 @@
       "op": "set"
     },
     {
+      "else": "__else_zb_done_32",
+      "expr": "бой_глухо == 1",
+      "op": "if",
+      "then": "__then_zb_done_32"
+    },
+    {
+      "id": "__then_zb_done_32",
+      "op": "label"
+    },
+    {
+      "expr": "max(floor(бой_урон_он / 2), 1)",
+      "key": "бой_урон_он",
+      "op": "set"
+    },
+    {
+      "action": "play",
+      "channel": "sfx",
+      "op": "audio",
+      "url": "/content/audio/ec/block.ogg",
+      "volume": 0.9
+    },
+    {
+      "expr": "бой_вести + \"Глухая стойка съела половину удара. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_32",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_32",
+      "op": "label"
+    },
+    {
+      "action": "play",
+      "channel": "sfx",
+      "op": "audio",
+      "url": "/content/audio/ec/hit.ogg",
+      "volume": 1
+    },
+    {
+      "id": "__end_zb_done_32",
+      "op": "label"
+    },
+    {
       "expr": "(max(здоровье - бой_урон_он, 0))",
       "key": "здоровье",
       "op": "set"
+    },
+    {
+      "color": "#ff6b5e",
+      "id": "dmg_p",
+      "op": "text",
+      "size": 56,
+      "text": "−{бой_урон_он}",
+      "x": 42,
+      "y": 64
     },
     {
       "expr": "бой_вести + \"Он достаёт тебя в \" + (get(зона_вин, бой_бьёт, бой_бьёт)) + \" — минус \" + бой_урон_он + \". \"",
@@ -2271,13 +5826,13 @@
       "op": "set"
     },
     {
-      "else": "__else_head_26",
+      "else": "__else_zb_done_33",
       "expr": "бой_сила \u003e= 200",
       "op": "if",
-      "then": "__then_head_26"
+      "then": "__then_zb_done_33"
     },
     {
-      "id": "__then_head_26",
+      "id": "__then_zb_done_33",
       "op": "label"
     },
     {
@@ -2286,35 +5841,35 @@
       "op": "set"
     },
     {
-      "label": "__end_head_26",
+      "label": "__end_zb_done_33",
       "op": "goto"
     },
     {
-      "id": "__else_head_26",
+      "id": "__else_zb_done_33",
       "op": "label"
     },
     {
-      "id": "__end_head_26",
+      "id": "__end_zb_done_33",
       "op": "label"
     },
     {
-      "else": "__else_head_27",
+      "else": "__else_zb_done_34",
       "expr": "бой_бьёт == \"голова\"",
       "op": "if",
-      "then": "__then_head_27"
+      "then": "__then_zb_done_34"
     },
     {
-      "id": "__then_head_27",
+      "id": "__then_zb_done_34",
       "op": "label"
     },
     {
-      "else": "__else_head_28",
+      "else": "__else_zb_done_35",
       "expr": "бой_атака != \"\"",
       "op": "if",
-      "then": "__then_head_28"
+      "then": "__then_zb_done_35"
     },
     {
-      "id": "__then_head_28",
+      "id": "__then_zb_done_35",
       "op": "label"
     },
     {
@@ -2328,11 +5883,11 @@
       "op": "set"
     },
     {
-      "label": "__end_head_28",
+      "label": "__end_zb_done_35",
       "op": "goto"
     },
     {
-      "id": "__else_head_28",
+      "id": "__else_zb_done_35",
       "op": "label"
     },
     {
@@ -2341,29 +5896,29 @@
       "op": "set"
     },
     {
-      "id": "__end_head_28",
+      "id": "__end_zb_done_35",
       "op": "label"
     },
     {
-      "label": "__end_head_27",
+      "label": "__end_zb_done_34",
       "op": "goto"
     },
     {
-      "id": "__else_head_27",
+      "id": "__else_zb_done_34",
       "op": "label"
     },
     {
-      "id": "__end_head_27",
+      "id": "__end_zb_done_34",
       "op": "label"
     },
     {
-      "else": "__else_head_29",
+      "else": "__else_zb_done_36",
       "expr": "бой_бьёт == \"ноги\"",
       "op": "if",
-      "then": "__then_head_29"
+      "then": "__then_zb_done_36"
     },
     {
-      "id": "__then_head_29",
+      "id": "__then_zb_done_36",
       "op": "label"
     },
     {
@@ -2377,38 +5932,44 @@
       "op": "set"
     },
     {
-      "label": "__end_head_29",
+      "label": "__end_zb_done_36",
       "op": "goto"
     },
     {
-      "id": "__else_head_29",
+      "id": "__else_zb_done_36",
       "op": "label"
     },
     {
-      "id": "__end_head_29",
+      "id": "__end_zb_done_36",
       "op": "label"
+    },
+    {
+      "action": "shake",
+      "amplitude": 0.045,
+      "duration": 0.45,
+      "op": "camera"
     },
     {
       "color": "#ff3b30",
-      "duration": 0.25,
+      "duration": 0.3,
       "op": "flash"
     },
     {
-      "label": "__end_head_25",
+      "label": "__end_zb_done_31",
       "op": "goto"
     },
     {
-      "id": "__else_head_25",
+      "id": "__else_zb_done_31",
       "op": "label"
     },
     {
-      "else": "__else_head_30",
+      "else": "__else_zb_done_37",
       "expr": "бой_бьёт == \"\"",
       "op": "if",
-      "then": "__then_head_30"
+      "then": "__then_zb_done_37"
     },
     {
-      "id": "__then_head_30",
+      "id": "__then_zb_done_37",
       "op": "label"
     },
     {
@@ -2417,11 +5978,37 @@
       "op": "set"
     },
     {
-      "label": "__end_head_30",
+      "label": "__end_zb_done_37",
       "op": "goto"
     },
     {
-      "id": "__else_head_30",
+      "id": "__else_zb_done_37",
+      "op": "label"
+    },
+    {
+      "expr": "\"block\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_hands",
+      "op": "call"
+    },
+    {
+      "action": "play",
+      "channel": "sfx",
+      "op": "audio",
+      "url": "/content/audio/ec/block.ogg",
+      "volume": 0.9
+    },
+    {
+      "else": "__else_zb_done_38",
+      "expr": "бой_бьёт == бой_защита",
+      "op": "if",
+      "then": "__then_zb_done_38"
+    },
+    {
+      "id": "__then_zb_done_38",
       "op": "label"
     },
     {
@@ -2430,21 +6017,38 @@
       "op": "set"
     },
     {
-      "id": "__end_head_30",
+      "label": "__end_zb_done_38",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_38",
       "op": "label"
     },
     {
-      "id": "__end_head_25",
+      "expr": "бой_вести + \"Вторая зона стойки поймала удар — \" + (get(зона_вин, бой_защита2, бой_защита2)) + \" была закрыта. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "id": "__end_zb_done_38",
       "op": "label"
     },
     {
-      "else": "__else_head_31",
+      "id": "__end_zb_done_37",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_31",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_39",
       "expr": "бой_хп \u003c= 0",
       "op": "if",
-      "then": "__then_head_31"
+      "then": "__then_zb_done_39"
     },
     {
-      "id": "__then_head_31",
+      "id": "__then_zb_done_39",
       "op": "label"
     },
     {
@@ -2453,21 +6057,21 @@
       "op": "set"
     },
     {
-      "label": "__end_head_31",
+      "label": "__end_zb_done_39",
       "op": "goto"
     },
     {
-      "id": "__else_head_31",
+      "id": "__else_zb_done_39",
       "op": "label"
     },
     {
-      "else": "__else_head_32",
+      "else": "__else_zb_done_40",
       "expr": "здоровье \u003c= 0",
       "op": "if",
-      "then": "__then_head_32"
+      "then": "__then_zb_done_40"
     },
     {
-      "id": "__then_head_32",
+      "id": "__then_zb_done_40",
       "op": "label"
     },
     {
@@ -2476,49 +6080,49 @@
       "op": "set"
     },
     {
-      "label": "__end_head_32",
+      "label": "__end_zb_done_40",
       "op": "goto"
     },
     {
-      "id": "__else_head_32",
+      "id": "__else_zb_done_40",
       "op": "label"
     },
     {
-      "id": "__end_head_32",
+      "id": "__end_zb_done_40",
       "op": "label"
     },
     {
-      "id": "__end_head_31",
+      "id": "__end_zb_done_39",
       "op": "label"
     },
     {
-      "else": "__else_head_33",
+      "else": "__else_zb_done_41",
       "expr": "бой_итог == \"\"",
       "op": "if",
-      "then": "__then_head_33"
+      "then": "__then_zb_done_41"
     },
     {
-      "id": "__then_head_33",
+      "id": "__then_zb_done_41",
       "op": "label"
     },
     {
-      "else": "__else_head_34",
+      "else": "__else_zb_done_42",
       "expr": "бой_ноги_врага == 0",
       "op": "if",
-      "then": "__then_head_34"
+      "then": "__then_zb_done_42"
     },
     {
-      "id": "__then_head_34",
+      "id": "__then_zb_done_42",
       "op": "label"
     },
     {
-      "else": "__else_head_35",
+      "else": "__else_zb_done_43",
       "expr": "бой_хп * 100 / бой_хп0 \u003c (get(враг_трус, бой_враг, 40))",
       "op": "if",
-      "then": "__then_head_35"
+      "then": "__then_zb_done_43"
     },
     {
-      "id": "__then_head_35",
+      "id": "__then_zb_done_43",
       "op": "label"
     },
     {
@@ -2527,69 +6131,69 @@
       "op": "set"
     },
     {
-      "label": "__end_head_35",
+      "label": "__end_zb_done_43",
       "op": "goto"
     },
     {
-      "id": "__else_head_35",
+      "id": "__else_zb_done_43",
       "op": "label"
     },
     {
-      "id": "__end_head_35",
+      "id": "__end_zb_done_43",
       "op": "label"
     },
     {
-      "label": "__end_head_34",
+      "label": "__end_zb_done_42",
       "op": "goto"
     },
     {
-      "id": "__else_head_34",
+      "id": "__else_zb_done_42",
       "op": "label"
     },
     {
-      "id": "__end_head_34",
+      "id": "__end_zb_done_42",
       "op": "label"
     },
     {
-      "label": "__end_head_33",
+      "label": "__end_zb_done_41",
       "op": "goto"
     },
     {
-      "id": "__else_head_33",
+      "id": "__else_zb_done_41",
       "op": "label"
     },
     {
-      "id": "__end_head_33",
+      "id": "__end_zb_done_41",
       "op": "label"
     },
     {
-      "else": "__else_head_36",
+      "else": "__else_zb_done_44",
       "expr": "бой_итог == \"\"",
       "op": "if",
-      "then": "__then_head_36"
+      "then": "__then_zb_done_44"
     },
     {
-      "id": "__then_head_36",
+      "id": "__then_zb_done_44",
       "op": "label"
     },
     {
-      "else": "__else_head_37",
+      "else": "__else_zb_done_45",
       "expr": "бой_ход \u003e= бой_лимит",
       "op": "if",
-      "then": "__then_head_37"
+      "then": "__then_zb_done_45"
     },
     {
-      "id": "__then_head_37",
+      "id": "__then_zb_done_45",
       "op": "label"
     },
     {
-      "else": "__else_head_38",
+      "else": "__else_zb_done_46",
       "expr": "бой_хп * 100 / бой_хп0 \u003c (floor(здоровье * 100 / max((20 + ((1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1))) - 1) * 6), 1)))",
       "op": "if",
-      "then": "__then_head_38"
+      "then": "__then_zb_done_46"
     },
     {
-      "id": "__then_head_38",
+      "id": "__then_zb_done_46",
       "op": "label"
     },
     {
@@ -2598,11 +6202,11 @@
       "op": "set"
     },
     {
-      "label": "__end_head_38",
+      "label": "__end_zb_done_46",
       "op": "goto"
     },
     {
-      "id": "__else_head_38",
+      "id": "__else_zb_done_46",
       "op": "label"
     },
     {
@@ -2611,41 +6215,41 @@
       "op": "set"
     },
     {
-      "id": "__end_head_38",
+      "id": "__end_zb_done_46",
       "op": "label"
     },
     {
-      "label": "__end_head_37",
+      "label": "__end_zb_done_45",
       "op": "goto"
     },
     {
-      "id": "__else_head_37",
+      "id": "__else_zb_done_45",
       "op": "label"
     },
     {
-      "id": "__end_head_37",
+      "id": "__end_zb_done_45",
       "op": "label"
     },
     {
-      "label": "__end_head_36",
+      "label": "__end_zb_done_44",
       "op": "goto"
     },
     {
-      "id": "__else_head_36",
+      "id": "__else_zb_done_44",
       "op": "label"
     },
     {
-      "id": "__end_head_36",
+      "id": "__end_zb_done_44",
       "op": "label"
     },
     {
-      "else": "__else_head_39",
+      "else": "__else_zb_done_47",
       "expr": "бой_дерётся == 1",
       "op": "if",
-      "then": "__then_head_39"
+      "then": "__then_zb_done_47"
     },
     {
-      "id": "__then_head_39",
+      "id": "__then_zb_done_47",
       "op": "label"
     },
     {
@@ -2654,13 +6258,13 @@
       "op": "set"
     },
     {
-      "else": "__else_head_40",
+      "else": "__else_zb_done_48",
       "expr": "бой_шаг \u003e= (len((get(паттерн, бой_враг, паттерн_умолч))))",
       "op": "if",
-      "then": "__then_head_40"
+      "then": "__then_zb_done_48"
     },
     {
-      "id": "__then_head_40",
+      "id": "__then_zb_done_48",
       "op": "label"
     },
     {
@@ -2669,35 +6273,35 @@
       "op": "set"
     },
     {
-      "label": "__end_head_40",
+      "label": "__end_zb_done_48",
       "op": "goto"
     },
     {
-      "id": "__else_head_40",
+      "id": "__else_zb_done_48",
       "op": "label"
     },
     {
-      "id": "__end_head_40",
+      "id": "__end_zb_done_48",
       "op": "label"
     },
     {
-      "label": "__end_head_39",
+      "label": "__end_zb_done_47",
       "op": "goto"
     },
     {
-      "id": "__else_head_39",
+      "id": "__else_zb_done_47",
       "op": "label"
     },
     {
-      "id": "__end_head_39",
+      "id": "__end_zb_done_47",
       "op": "label"
     },
     {
-      "label": "__loop_head_6",
+      "label": "__loop_zb_done_4",
       "op": "goto"
     },
     {
-      "id": "__end_head_6",
+      "id": "__end_zb_done_4",
       "op": "label"
     },
     {
@@ -2720,75 +6324,103 @@
       "op": "set"
     },
     {
-      "else": "__else_head_41",
+      "else": "__else_zb_done_49",
       "expr": "бой_итог == \"убил\"",
       "op": "if",
-      "then": "__then_head_41"
+      "then": "__then_zb_done_49"
     },
     {
-      "id": "__then_head_41",
+      "id": "__then_zb_done_49",
       "op": "label"
     },
     {
       "expr": "1",
       "key": "бой_победа",
       "op": "set"
+    },
+    {
+      "expr": "4",
+      "key": "fp_distance",
+      "op": "set"
+    },
+    {
+      "expr": "\"hurt\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_enemy",
+      "op": "call"
     },
     {
       "op": "say",
       "text": "{бой_враг} складывается и больше не встаёт. Ходов ушло {бой_ход}."
     },
     {
-      "label": "__end_head_41",
+      "label": "__end_zb_done_49",
       "op": "goto"
     },
     {
-      "id": "__else_head_41",
+      "id": "__else_zb_done_49",
       "op": "label"
     },
     {
-      "id": "__end_head_41",
+      "id": "__end_zb_done_49",
       "op": "label"
     },
     {
-      "else": "__else_head_42",
+      "else": "__else_zb_done_50",
       "expr": "бой_итог == \"прогнал\"",
       "op": "if",
-      "then": "__then_head_42"
+      "then": "__then_zb_done_50"
     },
     {
-      "id": "__then_head_42",
+      "id": "__then_zb_done_50",
       "op": "label"
     },
     {
       "expr": "1",
       "key": "бой_победа",
       "op": "set"
+    },
+    {
+      "expr": "7",
+      "key": "fp_distance",
+      "op": "set"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_enemy",
+      "op": "call"
     },
     {
       "op": "say",
       "text": "{бой_враг} рвёт дистанцию и уходит — у него осталось {бой_хп} здоровья, и рисковать он не стал."
     },
     {
-      "label": "__end_head_42",
+      "label": "__end_zb_done_50",
       "op": "goto"
     },
     {
-      "id": "__else_head_42",
+      "id": "__else_zb_done_50",
       "op": "label"
     },
     {
-      "id": "__end_head_42",
+      "id": "__end_zb_done_50",
       "op": "label"
     },
     {
-      "else": "__else_head_43",
+      "else": "__else_zb_done_51",
       "expr": "бой_итог == \"выстоял\"",
       "op": "if",
-      "then": "__then_head_43"
+      "then": "__then_zb_done_51"
     },
     {
-      "id": "__then_head_43",
+      "id": "__then_zb_done_51",
       "op": "label"
     },
     {
@@ -2797,87 +6429,136 @@
       "op": "set"
     },
     {
+      "expr": "7",
+      "key": "fp_distance",
+      "op": "set"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_enemy",
+      "op": "call"
+    },
+    {
       "op": "say",
       "text": "Вы оба выдохлись, но хуже ему. {бой_враг} отступает первым — у него {бой_хп} из {бой_хп0}."
     },
     {
-      "label": "__end_head_43",
+      "label": "__end_zb_done_51",
       "op": "goto"
     },
     {
-      "id": "__else_head_43",
+      "id": "__else_zb_done_51",
       "op": "label"
     },
     {
-      "id": "__end_head_43",
+      "id": "__end_zb_done_51",
       "op": "label"
     },
     {
-      "else": "__else_head_44",
+      "else": "__else_zb_done_52",
       "expr": "бой_итог == \"отступил\"",
       "op": "if",
-      "then": "__then_head_44"
+      "then": "__then_zb_done_52"
     },
     {
-      "id": "__then_head_44",
+      "id": "__then_zb_done_52",
       "op": "label"
+    },
+    {
+      "expr": "6",
+      "key": "fp_distance",
+      "op": "set"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_enemy",
+      "op": "call"
     },
     {
       "op": "say",
       "text": "Ты больше не держишь стойку и разрываешь дистанцию сам. Противнику осталось {бой_хп} из {бой_хп0} — ты его не добил."
     },
     {
-      "label": "__end_head_44",
+      "label": "__end_zb_done_52",
       "op": "goto"
     },
     {
-      "id": "__else_head_44",
+      "id": "__else_zb_done_52",
       "op": "label"
     },
     {
-      "id": "__end_head_44",
+      "id": "__end_zb_done_52",
       "op": "label"
     },
     {
-      "else": "__else_head_45",
+      "else": "__else_zb_done_53",
       "expr": "бой_итог == \"пал\"",
       "op": "if",
-      "then": "__then_head_45"
+      "then": "__then_zb_done_53"
     },
     {
-      "id": "__then_head_45",
+      "id": "__then_zb_done_53",
       "op": "label"
+    },
+    {
+      "expr": "1",
+      "key": "fp_distance",
+      "op": "set"
+    },
+    {
+      "expr": "\"attack\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_enemy",
+      "op": "call"
     },
     {
       "op": "say",
       "text": "Ноги не держат, и земля оказывается ближе, чем ты думал."
     },
     {
-      "label": "__end_head_45",
+      "label": "__end_zb_done_53",
       "op": "goto"
     },
     {
-      "id": "__else_head_45",
+      "id": "__else_zb_done_53",
       "op": "label"
     },
     {
-      "id": "__end_head_45",
+      "id": "__end_zb_done_53",
       "op": "label"
     },
     {
-      "else": "__else_head_46",
+      "else": "__else_zb_done_54",
       "expr": "бой_победа == 1",
       "op": "if",
-      "then": "__then_head_46"
+      "then": "__then_zb_done_54"
     },
     {
-      "id": "__then_head_46",
+      "id": "__then_zb_done_54",
       "op": "label"
     },
     {
       "color": "#ffd76a",
       "duration": 0.35,
       "op": "flash"
+    },
+    {
+      "action": "play",
+      "channel": "sfx",
+      "op": "audio",
+      "url": "/content/audio/ec/win.ogg",
+      "volume": 0.9
     },
     {
       "expr": "победы + 1",
@@ -2904,13 +6585,13 @@
       "text": "Опыта {(floor((get(враг_хп, бой_враг, 10)) / 8) + get(враг_урон, бой_враг, 3))}, и с него упал кристалл {(get(враг_стихия, бой_враг, \"земля\"))}."
     },
     {
-      "else": "__else_head_47",
+      "else": "__else_zb_done_55",
       "expr": "(1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1))) \u003e бой_ранее",
       "op": "if",
-      "then": "__then_head_47"
+      "then": "__then_zb_done_55"
     },
     {
-      "id": "__then_head_47",
+      "id": "__then_zb_done_55",
       "op": "label"
     },
     {
@@ -2919,29 +6600,36 @@
       "text": "⬆ Новый уровень: {(1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1)))} — {(get(титулы, (1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1))) - 1, \"Легенда\"))}"
     },
     {
-      "label": "__end_head_47",
+      "label": "__end_zb_done_55",
       "op": "goto"
     },
     {
-      "id": "__else_head_47",
+      "id": "__else_zb_done_55",
       "op": "label"
     },
     {
-      "id": "__end_head_47",
+      "id": "__end_zb_done_55",
       "op": "label"
     },
     {
-      "label": "__end_head_46",
+      "label": "__end_zb_done_54",
       "op": "goto"
     },
     {
-      "id": "__else_head_46",
+      "id": "__else_zb_done_54",
       "op": "label"
     },
     {
       "color": "#ff3b30",
-      "duration": 0.25,
+      "duration": 0.3,
       "op": "flash"
+    },
+    {
+      "action": "play",
+      "channel": "sfx",
+      "op": "audio",
+      "url": "/content/audio/ec/lose.ogg",
+      "volume": 0.9
     },
     {
       "expr": "поражения + 1",
@@ -2949,8 +6637,12 @@
       "op": "set"
     },
     {
-      "id": "__end_head_46",
+      "id": "__end_zb_done_54",
       "op": "label"
+    },
+    {
+      "label": "__fn_ecfp_hide",
+      "op": "call"
     },
     {
       "op": "return"
@@ -2960,13 +6652,326 @@
       "op": "label"
     },
     {
-      "color": "#ffd76a",
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/ec/block.ogg"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/ec/hit.ogg"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/ec/lose.ogg"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/ec/step.ogg"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/ec/whoosh.ogg"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/ec/win.ogg"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/music/beanfeast.mp3"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/music/dramatic_boi.mp3"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/music/dramatic_boi_v5.mp3"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/music/frozen_winter.mp3"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/music/hope.mp3"
+    },
+    {
+      "kind": "audio",
+      "op": "preload",
+      "url": "/content/audio/music/woo_scary.mp3"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/bg/ec/abyss.jpg"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/bg/ec/arctic.jpg"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/bg/ec/crystal_catacombs.jpg"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/bg/ec/dead_city.jpg"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/bg/ec/desert.jpg"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/bg/ec/efiria.jpg"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/bg/ec/geysers.jpg"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/bg/ec/glass_waste.jpg"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/bg/ec/moon.jpg"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/bg/ec/road_north.jpg"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/bg/ec/shining_zone.jpg"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/bg/ec/spirit_forest.jpg"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/bg/ec/taiga.jpg"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/bg/ec/technogard.jpg"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/bg/ec/temple_fire.jpg"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_cast_v2/cyberguard.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_cast_v2/druid.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_cast_v2/necromancer.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_cast_v2/niharis.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_cast_v2/skeleton.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_cast_v2/spirit.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_cast_v2/techno.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_cast_v2/tyrant.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_fp/hands_sword_attack.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_fp/hands_sword_block.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_fp/hands_sword_idle.png?v=tight2"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_fp/skeleton_attack.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_fp/skeleton_hurt.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_fp/skeleton_idle.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/action_attack.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/action_back.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/action_block.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/action_forward.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_hero_v2/body_armor.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_hero_v2/body_traveler.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_hero_v2/face_angry.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_hero_v2/face_neutral.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_hero_v2/face_smile.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_hero_v2/face_worried.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_hero_v2/weapon_none.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_hero_v2/weapon_sword.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/zone_guard_body.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/zone_guard_head.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/zone_guard_legs.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/zone_hit_body.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/zone_hit_head.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/zone_hit_legs.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/timer_bar.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/sprites/ec_combat_ui/hud_panel.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
+      "url": "/content/ui/frames/ec_panel.png"
+    },
+    {
+      "action": "play",
+      "channel": "music",
+      "loop": true,
+      "op": "audio",
+      "url": "/content/audio/music/beanfeast.mp3"
+    },
+    {
+      "hide": true,
       "id": "hud",
-      "op": "text",
-      "size": 34,
-      "text": "⚡ {репутация} · друзей {len(союзники)} · стихий {len(стихии)} · ◆{кристаллы}",
-      "x": 3,
-      "y": 5
+      "op": "text"
     },
     {
       "id": "technogard",
@@ -2982,33 +6987,33 @@
       "text": "Ворота собраны из шести бронеплит и трёхсот заклёпок. Над ними прибита\nтабличка, а на табличке от руки дописано — ГОСТЕЙ ПРИНИМАЕМ. СНАЧАЛА ПО ДЕЛУ."
     },
     {
-      "else": "__nf_head_1",
+      "else": "__nf_zb_done_1",
       "expr": "(has(стихии, \"молния\"))",
       "op": "if",
       "then": "ворота_разряд"
     },
     {
-      "id": "__nf_head_1",
+      "id": "__nf_zb_done_1",
       "op": "label"
     },
     {
-      "else": "__nf_head_2",
+      "else": "__nf_zb_done_2",
       "expr": "фракция == \"Техногард\"",
       "op": "if",
       "then": "ворота_свои"
     },
     {
-      "id": "__nf_head_2",
+      "id": "__nf_zb_done_2",
       "op": "label"
     },
     {
-      "else": "__nf_head_3",
+      "else": "__nf_zb_done_3",
       "expr": "фракция == \"Эфирия\"",
       "op": "if",
       "then": "ворота_пошлина"
     },
     {
-      "id": "__nf_head_3",
+      "id": "__nf_zb_done_3",
       "op": "label"
     },
     {
@@ -3489,8 +7494,8 @@
     },
     {
       "action": "shake",
-      "amplitude": 0.04,
-      "duration": 0.5,
+      "amplitude": 0.045,
+      "duration": 0.45,
       "op": "camera"
     },
     {
@@ -3615,7 +7620,7 @@
     },
     {
       "color": "#ff3b30",
-      "duration": 0.25,
+      "duration": 0.3,
       "op": "flash"
     },
     {
