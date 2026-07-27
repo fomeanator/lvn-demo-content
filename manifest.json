@@ -3052,7 +3052,9 @@
           "button_hover_image": "/content/ui/frames/ec_panel.png",
           "button_slice": 55
         }
-      }
+      },
+      "cover_url": "/content/bg/ec/village.jpg",
+      "bg_url": "/content/bg/ec/efiria.jpg"
     }
   ],
   "ui": {

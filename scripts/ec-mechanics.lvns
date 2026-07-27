@@ -494,8 +494,8 @@ def rainoff particles type=rain on=false
 // ─── 4.4. HUD ────────────────────────────────────────────────────────
 // В режиме чтения сцена остаётся чистой. Статы доступны в меню, а отдельный
 // компактный bhud появляется только внутри боя.
-def hud text hud hide
-def hudon text hud hide
+def hud text hud x=3 y=5 size=34 color=#ffd76a
+def hudon text hud x=3 y=5 size=28 color=#ffd76a «⚡ Ур.{lvl()} {title()}   |   ♥️ {здоровье}/{maxhp()}   |   💎 Кристаллы: {gemsall()}   |   🏆 Репутация: {репутация}»
 def hudoff text hud hide
 def levelup hint text="⬆ Новый уровень: {lvl()} — {title()}" duration=3
 

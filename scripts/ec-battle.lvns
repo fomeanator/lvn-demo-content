@@ -1195,7 +1195,7 @@ func battle(бой_враг, бой_лимит) {
     бой_победа = 1
     // Труп: кости рассыпаются и ОСТАЮТСЯ лежать — их прячет только смена
     // сцены в главе (obj id=fp_enemy show=false), не конец боя.
-    obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_death.png" x=0.5 y=0.84 width=0.92 anchor="0.5,0.5" z=10
+    obj id=fp_enemy sprite_url="/content/sprites/ec_combat_fp/skeleton_death.png" x=0.5 y=0.70 width=0.58 anchor="0.5,0.5" z=10
     audio channel=sfx action=play url="/content/audio/ec/hit.ogg" volume=1
     «{бой_враг} складывается и больше не встаёт. Ходов ушло {бой_ход}.»
   } else {
