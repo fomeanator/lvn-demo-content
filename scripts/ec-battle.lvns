@@ -293,6 +293,8 @@ func ecfp_hide() {
   obj id=fp_enemy show=false
   obj id=fp_hands show=false
   obj id=fp_hudbg show=false
+  obj id=fp_ehudbg show=false
+  text ehud hide
   text dmg_e hide
   text dmg_p hide
   zbhide()
@@ -660,7 +662,7 @@ func flee(f) { return get(враг_трус, f, 40) }
 //  4. ПРЕСЕТЫ БОЯ
 // ══════════════════════════════════════════════════════════════════════
 // Боевая полоска живёт НИЖЕ обычного hud (y=5), чтобы не наезжать на него.
-def bhudon text bhud x=4 y=10 size=24 color=#f1e4c9 «{бой_враг} {бой_хп}/{бой_хп0}   ♥ {здоровье}/{maxhp()}   ⚡ {бой_стихия}   ↔ {fp_distance}   ⏳ {бой_ход}/{бой_лимит}»
+def bhudon text bhud x=4 y=10 size=24 color=#f1e4c9 «♥ {здоровье}/{maxhp()}   ⚡ {бой_стихия}   ⏳ {бой_ход}/{бой_лимит}»
 def bhudoff text bhud hide
 
 // ══════════════════════════════════════════════════════════════════════
@@ -729,7 +731,11 @@ func battle(бой_враг, бой_лимит) {
 
   // Плашка под боевой HUD: жёлтый текст на светлом небе не читался, теперь
   // он лежит на тёмной коже с золотыми кромками (вырез из рамки темы).
-  obj id=fp_hudbg sprite_url="/content/sprites/ec_combat_ui/hud_panel.png" x=0.45 y=0.112 width=0.88 height=0.058 anchor="0.5,0.5" z=85 opacity=0.94
+  obj id=fp_hudbg sprite_url="/content/sprites/ec_combat_ui/hud_panel.png" x=0.26 y=0.112 width=0.48 height=0.058 anchor="0.5,0.5" z=85 opacity=0.94
+  // Бабл врага — его цифры живут ПРЯМО НАД НИМ, не в общей строке:
+  // ♥ хп и дистанция; текст реактивный, обновляется сам.
+  obj id=fp_ehudbg sprite_url="/content/sprites/ec_combat_ui/hud_panel.png" x=0.5 y=0.235 width=0.24 height=0.048 anchor="0.5,0.5" z=85 opacity=0.9
+  text ehud x=41.5 y=22.3 size=22 color=#f1e4c9 «♥ {бой_хп}/{бой_хп0}   ↔ {fp_distance}»
   bhudon
   // Правила — ровно один раз за прохождение, а не перед каждой схваткой.
   if бой_обучен == 0 {
