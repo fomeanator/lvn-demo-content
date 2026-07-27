@@ -292,6 +292,7 @@ func ecfp_hands(pose) {
 func ecfp_hide() {
   obj id=fp_enemy show=false
   obj id=fp_hands show=false
+  obj id=fp_hudbg show=false
   text dmg_e hide
   text dmg_p hide
   zbhide()
@@ -715,6 +716,7 @@ func battle(бой_враг, бой_лимит) {
   preload url="/content/sprites/ec_combat_ui/zone_guard_body.png" kind=sprite
   preload url="/content/sprites/ec_combat_ui/zone_guard_legs.png" kind=sprite
   preload url="/content/sprites/ec_combat_ui/timer_bar.png" kind=sprite
+  preload url="/content/sprites/ec_combat_ui/hud_panel.png" kind=sprite
   preload url="/content/audio/ec/whoosh.ogg" kind=audio
   preload url="/content/audio/ec/hit.ogg" kind=audio
   preload url="/content/audio/ec/block.ogg" kind=audio
@@ -725,6 +727,9 @@ func battle(бой_враг, бой_лимит) {
   ecfp_enemy("idle")
   ecfp_hands("idle")
 
+  // Плашка под боевой HUD: жёлтый текст на светлом небе не читался, теперь
+  // он лежит на тёмной коже с золотыми кромками (вырез из рамки темы).
+  obj id=fp_hudbg sprite_url="/content/sprites/ec_combat_ui/hud_panel.png" x=0.5 y=0.095 width=1.0 height=0.075 anchor="0.5,0.5" z=85 opacity=0.94
   bhudon
   // Правила — ровно один раз за прохождение, а не перед каждой схваткой.
   if бой_обучен == 0 {

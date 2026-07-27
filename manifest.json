@@ -2277,6 +2277,70 @@
         }
       ],
       "subtitle": "Последовательный показ всех Spine-сцен (арт: Анна)"
+    },
+    {
+      "id": "ec",
+      "name": "Elemental Chronicles",
+      "seasons": [
+        {
+          "chapters": [
+            {
+              "bg_url": "/content/bg/ec/village.jpg",
+              "id": "ec-ch01",
+              "name": "01",
+              "number": 1,
+              "script_url": "/content/scripts/ec-ch01.lvn"
+            },
+            {
+              "bg_url": "/content/bg/ec/efiria.jpg",
+              "id": "ec-ch02",
+              "name": "02",
+              "number": 2,
+              "script_url": "/content/scripts/ec-ch02.lvn"
+            },
+            {
+              "bg_url": "/content/bg/ec/technogard.jpg",
+              "id": "ec-ch03",
+              "name": "03",
+              "number": 3,
+              "script_url": "/content/scripts/ec-ch03.lvn"
+            },
+            {
+              "bg_url": "/content/bg/ec/temple_fire.jpg",
+              "id": "ec-ch04",
+              "name": "04",
+              "number": 4,
+              "script_url": "/content/scripts/ec-ch04.lvn"
+            },
+            {
+              "bg_url": "/content/bg/ec/shining_zone.jpg",
+              "id": "ec-ch05",
+              "name": "05",
+              "number": 5,
+              "script_url": "/content/scripts/ec-ch05.lvn"
+            },
+            {
+              "bg_url": "/content/bg/ec/efiria.jpg",
+              "id": "ec-ch06",
+              "name": "06",
+              "number": 6,
+              "script_url": "/content/scripts/ec-ch06.lvn"
+            }
+          ]
+        }
+      ],
+      "subtitle": "",
+      "ui": {
+        "dialogue": {
+          "panel_image": "/content/ui/frames/ec_panel.png",
+          "panel_slice": 110,
+          "panel_padding_x": 34,
+          "panel_padding_y": 26,
+          "text_color": "#f1e4c9",
+          "speaker_color": "#e3b24a",
+          "corner_radius": 0
+        }
+      }
     }
   ],
   "ui": {

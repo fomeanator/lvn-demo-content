@@ -63,3 +63,5 @@ preload url="/content/sprites/ec_combat_ui/zone_hit_body.png" kind=sprite
 preload url="/content/sprites/ec_combat_ui/zone_hit_head.png" kind=sprite
 preload url="/content/sprites/ec_combat_ui/zone_hit_legs.png" kind=sprite
 preload url="/content/sprites/ec_combat_ui/timer_bar.png" kind=sprite
+preload url="/content/sprites/ec_combat_ui/hud_panel.png" kind=sprite
+preload url="/content/ui/frames/ec_panel.png" kind=sprite
