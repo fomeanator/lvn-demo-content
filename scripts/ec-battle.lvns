@@ -305,7 +305,7 @@ func ecfp_hide() {
   // открывается уже чистым кадром.
   fx blink=1 dur=0.35
   wait ms=420
-  fx off dur=0.6
+  fxreset dur=0.6
   // После победы кости остаются лежать до смены сцены.
   if бой_итог == "убил" -> ecfp_hide_rest
   obj id=fp_enemy show=false
@@ -771,6 +771,11 @@ func flee(f) { return get(враг_трус, f, 40) }
 // место под системную кнопку меню; системный progress HUD скрыт темой титула.
 def bhudon text bhud x=5 y=5.6 size=21 color=#f1e4c9 «♥{здоровье}/{maxhp()}  ⚡{бой_стихия}  |  ☠{бой_хп}/{бой_хп0}  ↔{fp_distance}  ⏳{бой_ход}/{бой_лимит}»
 def bhudoff text bhud hide
+// Полный сброс кадровых эффектов ЯВНЫМИ полями — в отличие от «fx off»
+// переживает хвост dur=… (плавное открытие). Компилятор понимает голое
+// «fx off», но не «fx off dur=…» — эта форма выпадала из скрипта, и веки
+// после боя не открывались.
+def fxreset fx vignette=0 grain=0 chromatic=0 scanlines=0 pixelate=0 glitch=0 bloom=0 rays=0 distort=0 frost=0 blink=0 invert=0 saturation=1 contrast=1 tint=#ffffff
 
 // ══════════════════════════════════════════════════════════════════════
 //  5. САМ БОЙ — ПРОЦЕДУРА
