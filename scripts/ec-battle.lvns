@@ -301,9 +301,11 @@ func ecfp_hands(pose) {
 
 // ─── 0.4. Убрать постановку (конец боя) ──────────────────────────────
 func ecfp_hide() {
-  // Полный сброс кадровых эффектов: ни блум победы, ни серость поражения
-  // не утекают в главу.
-  fx off
+  // Выход из боя: веки смыкаются, тёмное фэнтези гаснет под ними, и глава
+  // открывается уже чистым кадром.
+  fx blink=1 dur=0.35
+  wait ms=420
+  fx off dur=0.6
   // После победы кости остаются лежать до смены сцены.
   if бой_итог == "убил" -> ecfp_hide_rest
   obj id=fp_enemy show=false
@@ -421,7 +423,7 @@ func zbturn() {
   -> zb_menu
 
   :zb_menu
-  fx vignette=0.32 grain=0.08
+  fx vignette=0.5 grain=0.12 saturation=0.72 contrast=1.18 tint=#ccd2e4 bloom=0.22 dur=0.8
   obj id=fp_action_attack sprite_url="/content/sprites/ec_combat_ui/action_attack.png" x=0.15 y=0.74 width=0.13 height=0.13 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_hit"
   obj id=fp_action_block sprite_url="/content/sprites/ec_combat_ui/action_block.png" x=0.38 y=0.74 width=0.13 height=0.13 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_guard"
   obj id=fp_action_forward sprite_url="/content/sprites/ec_combat_ui/action_forward.png" x=0.62 y=0.74 width=0.13 height=0.13 anchor="0.5,0.5" z=90 opacity=0.96 hover_opacity=0.72 on_click="zb_fwd"
@@ -833,6 +835,9 @@ func battle(бой_враг, бой_лимит) {
   preload url="/content/audio/ec/step.ogg" kind=audio
   preload url="/content/audio/ec/win.ogg" kind=audio
   preload url="/content/audio/ec/lose.ogg" kind=audio
+  // ── Вход в бой: мир смыкает веки — и открывает их уже в тёмном фэнтези.
+  fx blink=1 dur=0.22
+  wait ms=320
   fp_distance = fdist(бой_враг)
   ecfp_enemy("idle")
   ecfp_hands("idle")
@@ -846,6 +851,8 @@ func battle(бой_враг, бой_лимит) {
   // Полоса не лезет под кнопку меню благодаря правому запасу.
   obj id=fp_hudbg sprite_url="/content/sprites/ec_combat_ui/hud_panel.png" x=0.41 y=0.060 width=0.78 height=0.058 anchor="0.5,0.5" z=85 opacity=0.96
   bhudon
+  fx blink=0 dur=0.6
+  fx vignette=0.5 grain=0.12 saturation=0.72 contrast=1.18 tint=#ccd2e4 bloom=0.22 dur=0.8
   // Правила — ровно один раз за прохождение, а не перед каждой схваткой.
   if бой_обучен == 0 {
     // ⚠ БЕЗ ДВОЕТОЧИЯ. Двоеточие в однострочной «…» наррации делает из неё
@@ -925,11 +932,11 @@ func battle(бой_враг, бой_лимит) {
     text dmg_e hide
     text dmg_p hide
     fx frost=0 dur=0.6
-    // Тревога: на последней трети здоровья виньетка сжимается.
+    // Тревога: на последней трети здоровья виньетка душит и кадр краснеет.
     if hppct() < 34 {
-      fx vignette=0.55 grain=0.14 dur=0.8
+      fx vignette=0.7 grain=0.2 saturation=0.62 contrast=1.22 tint=#e4bebe dur=0.8
     } else {
-      fx vignette=0.32 grain=0.08 dur=0.8
+      fx vignette=0.5 grain=0.12 saturation=0.72 contrast=1.18 tint=#ccd2e4 bloom=0.22 dur=0.8
     }
     if бой_идёт == 1 {
       ecfp_enemy("idle")
@@ -1115,9 +1122,15 @@ func battle(бой_враг, бой_лимит) {
       }
       здоровье = hurt(бой_урон_он)
       text dmg_p x=42 y=64 size=56 color=#ff6b5e «−{бой_урон_он}»
-      // Миг боли: изображение на долю секунды расщепляется.
+      // Миг боли: изображение на долю секунды расщепляется; тяжёлый
+      // замах (сила 150+) бьёт негативом.
       fx chromatic=0.8 dur=0.05
       fx chromatic=0 dur=0.3
+      if бой_сила >= 150 {
+        fx invert=0.4 dur=0.05
+        fx invert=0 dur=0.3
+      } else {
+      }
       // Стихия врага красит удар: лёд морозит края, огонь обжигает кадр,
       // тьма сжимает виньетку.
       if foeel(бой_враг) == "лёд" {
