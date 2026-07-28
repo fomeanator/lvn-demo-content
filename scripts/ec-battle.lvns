@@ -301,6 +301,9 @@ func ecfp_hands(pose) {
 
 // ─── 0.4. Убрать постановку (конец боя) ──────────────────────────────
 func ecfp_hide() {
+  // Полный сброс кадровых эффектов: ни блум победы, ни серость поражения
+  // не утекают в главу.
+  fx off
   // После победы кости остаются лежать до смены сцены.
   if бой_итог == "убил" -> ecfp_hide_rest
   obj id=fp_enemy show=false
@@ -922,6 +925,12 @@ func battle(бой_враг, бой_лимит) {
     text dmg_e hide
     text dmg_p hide
     fx frost=0 dur=0.6
+    // Тревога: на последней трети здоровья виньетка сжимается.
+    if hppct() < 34 {
+      fx vignette=0.55 grain=0.14 dur=0.8
+    } else {
+      fx vignette=0.32 grain=0.08 dur=0.8
+    }
     if бой_идёт == 1 {
       ecfp_enemy("idle")
       // Наезд: спрайт врос из глубины, а не телепортировался.
@@ -1030,6 +1039,9 @@ func battle(бой_враг, бой_лимит) {
       } else {
       }
       if бой_атака == "казнь" {
+        // Мир на миг обесцвечивается — решающий удар.
+        fx saturation=0.15 dur=0.12
+        fx saturation=1 dur=0.8
         бой_вести = "Ты вкладываешь всё в один удар — и он входит точно. "
       } else {
         бой_вести = "Ты бьёшь в " + zacc(бой_атака) + " — прошло, минус " + бой_урон + ". "
@@ -1103,13 +1115,29 @@ func battle(бой_враг, бой_лимит) {
       }
       здоровье = hurt(бой_урон_он)
       text dmg_p x=42 y=64 size=56 color=#ff6b5e «−{бой_урон_он}»
-      // Лёд по тебе — иней ползёт с краёв экрана.
+      // Миг боли: изображение на долю секунды расщепляется.
+      fx chromatic=0.8 dur=0.05
+      fx chromatic=0 dur=0.3
+      // Стихия врага красит удар: лёд морозит края, огонь обжигает кадр,
+      // тьма сжимает виньетку.
       if foeel(бой_враг) == "лёд" {
         fx frost=0.6 dur=0.3
       } else {
       }
+      if foeel(бой_враг) == "огонь" {
+        fx tint=#ffb080 dur=0.08
+        fx tint=#ffffff dur=0.6
+      } else {
+      }
+      if foeel(бой_враг) == "тьма" {
+        fx vignette=0.7 dur=0.1
+        fx vignette=0.32 dur=0.6
+      } else {
+      }
       // Вампиризм: враг пьёт часть нанесённого.
       if fvamp(бой_враг) > 0 {
+        sfx id=fp_enemy glow=0.8 glow_color=#c33a2e dur=0.15
+        sfx id=fp_enemy glow=0 dur=0.6
         бой_лечи = max(floor(бой_урон_он * fvamp(бой_враг) / 100), 1)
         бой_хп = min(бой_хп + бой_лечи, бой_хп0)
         бой_вести = бой_вести + "Он пьёт твою боль — вернул себе " + бой_лечи + ". "
@@ -1160,6 +1188,8 @@ func battle(бой_враг, бой_лимит) {
         бой_вести = бой_вести + "Этот ход он не бил. "
       } else {
         ecfp_hands("block")
+        sfx id=fp_hands glow=0.6 glow_color=#9fc4ff dur=0.1
+        sfx id=fp_hands glow=0 dur=0.4
         audio channel=sfx action=play url="/content/audio/ec/block.ogg" volume=.9
         if бой_бьёт == бой_защита {
           бой_вести = бой_вести + "Ты закрыл " + zacc(бой_защита) + " — его удар ушёл в защиту. "
@@ -1279,6 +1309,7 @@ func battle(бой_враг, бой_лимит) {
 
   if бой_победа == 1 {
     winfx
+    fx bloom=0.55 dur=0.5
     audio channel=sfx action=play url="/content/audio/ec/win.ogg" volume=.9
     победы = победы + 1
     бой_ранее = lvl()
@@ -1291,6 +1322,8 @@ func battle(бой_враг, бой_лимит) {
     }
   } else {
     hurtfx
+    // Мир в полцвета — поражение доигрывает реплики итога серым.
+    fx saturation=0.35 vignette=0.5 dur=1
     audio channel=sfx action=play url="/content/audio/ec/lose.ogg" volume=.9
     поражения = поражения + 1
   }
