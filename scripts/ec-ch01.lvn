@@ -1326,6 +1326,21 @@
       "op": "set"
     },
     {
+      "expr": "{}",
+      "key": "враг_вамп",
+      "op": "set"
+    },
+    {
+      "expr": "{}",
+      "key": "враг_кислота",
+      "op": "set"
+    },
+    {
+      "expr": "{}",
+      "key": "враг_шипы",
+      "op": "set"
+    },
+    {
       "label": "__fnskip_ecfp_enemy",
       "op": "goto"
     },
@@ -2243,9 +2258,55 @@
       "op": "label"
     },
     {
+      "blink": 1,
+      "dur": 0.35,
+      "op": "fx"
+    },
+    {
+      "ms": 420,
+      "op": "wait"
+    },
+    {
+      "blink": 0,
+      "bloom": 0,
+      "chromatic": 0,
+      "contrast": 1,
+      "distort": 0,
+      "dur": 0.6,
+      "frost": 0,
+      "glitch": 0,
+      "grain": 0,
+      "invert": 0,
+      "op": "fx",
+      "pixelate": 0,
+      "rays": 0,
+      "saturation": 1,
+      "scanlines": 0,
+      "tint": "#ffffff",
+      "vignette": 0
+    },
+    {
+      "else": "__nf_ecfp_hands_done_1",
+      "expr": "бой_итог == \"убил\"",
+      "op": "if",
+      "then": "ecfp_hide_rest"
+    },
+    {
+      "id": "__nf_ecfp_hands_done_1",
+      "op": "label"
+    },
+    {
       "id": "fp_enemy",
       "op": "obj",
       "show": false
+    },
+    {
+      "label": "ecfp_hide_rest",
+      "op": "goto"
+    },
+    {
+      "id": "ecfp_hide_rest",
+      "op": "label"
     },
     {
       "id": "fp_hands",
@@ -2301,93 +2362,93 @@
       "op": "label"
     },
     {
-      "else": "__nf_ecfp_hands_done_1",
+      "else": "__nf_ecfp_hide_rest_1",
       "expr": "бой_стихия == \"огонь\"",
       "op": "if",
       "then": "wfx_fire"
     },
     {
-      "id": "__nf_ecfp_hands_done_1",
+      "id": "__nf_ecfp_hide_rest_1",
       "op": "label"
     },
     {
-      "else": "__nf_ecfp_hands_done_2",
+      "else": "__nf_ecfp_hide_rest_2",
       "expr": "бой_стихия == \"лёд\"",
       "op": "if",
       "then": "wfx_freezing"
     },
     {
-      "id": "__nf_ecfp_hands_done_2",
+      "id": "__nf_ecfp_hide_rest_2",
       "op": "label"
     },
     {
-      "else": "__nf_ecfp_hands_done_3",
+      "else": "__nf_ecfp_hide_rest_3",
       "expr": "бой_стихия == \"тьма\"",
       "op": "if",
       "then": "wfx_midnight"
     },
     {
-      "id": "__nf_ecfp_hands_done_3",
+      "id": "__nf_ecfp_hide_rest_3",
       "op": "label"
     },
     {
-      "else": "__nf_ecfp_hands_done_4",
+      "else": "__nf_ecfp_hide_rest_4",
       "expr": "бой_стихия == \"свет\"",
       "op": "if",
       "then": "wfx_sunburn"
     },
     {
-      "id": "__nf_ecfp_hands_done_4",
+      "id": "__nf_ecfp_hide_rest_4",
       "op": "label"
     },
     {
-      "else": "__nf_ecfp_hands_done_5",
+      "else": "__nf_ecfp_hide_rest_5",
       "expr": "бой_стихия == \"молния\"",
       "op": "if",
       "then": "wfx_bluefire"
     },
     {
-      "id": "__nf_ecfp_hands_done_5",
+      "id": "__nf_ecfp_hide_rest_5",
       "op": "label"
     },
     {
-      "else": "__nf_ecfp_hands_done_6",
+      "else": "__nf_ecfp_hide_rest_6",
       "expr": "бой_стихия == \"вода\"",
       "op": "if",
       "then": "wfx_bubbles"
     },
     {
-      "id": "__nf_ecfp_hands_done_6",
+      "id": "__nf_ecfp_hide_rest_6",
       "op": "label"
     },
     {
-      "else": "__nf_ecfp_hands_done_7",
+      "else": "__nf_ecfp_hide_rest_7",
       "expr": "бой_стихия == \"ветер\"",
       "op": "if",
       "then": "wfx_vortex"
     },
     {
-      "id": "__nf_ecfp_hands_done_7",
+      "id": "__nf_ecfp_hide_rest_7",
       "op": "label"
     },
     {
-      "else": "__nf_ecfp_hands_done_8",
+      "else": "__nf_ecfp_hide_rest_8",
       "expr": "бой_стихия == \"кристалл\"",
       "op": "if",
       "then": "wfx_crystal"
     },
     {
-      "id": "__nf_ecfp_hands_done_8",
+      "id": "__nf_ecfp_hide_rest_8",
       "op": "label"
     },
     {
-      "else": "__nf_ecfp_hands_done_9",
+      "else": "__nf_ecfp_hide_rest_9",
       "expr": "бой_стихия == \"хаос\"",
       "op": "if",
       "then": "wfx_phantom"
     },
     {
-      "id": "__nf_ecfp_hands_done_9",
+      "id": "__nf_ecfp_hide_rest_9",
       "op": "label"
     },
     {
@@ -2852,6 +2913,11 @@
       "op": "label"
     },
     {
+      "id": "fp_action_exec",
+      "op": "obj",
+      "show": false
+    },
+    {
       "id": "fp_action_attack",
       "op": "obj",
       "show": false
@@ -2959,6 +3025,16 @@
       "op": "label"
     },
     {
+      "bloom": 0.22,
+      "contrast": 1.18,
+      "dur": 0.8,
+      "grain": 0.12,
+      "op": "fx",
+      "saturation": 0.72,
+      "tint": "#ccd2e4",
+      "vignette": 0.5
+    },
+    {
       "anchor": "0.5,0.5",
       "height": 0.13,
       "hover_opacity": 0.72,
@@ -3015,11 +3091,89 @@
       "z": 90
     },
     {
+      "else": "__nf_zb_menu_1",
+      "expr": "бой_хп * 100 / бой_хп0 \u003c= 20",
+      "op": "if",
+      "then": "zb_menu_exec"
+    },
+    {
+      "id": "__nf_zb_menu_1",
+      "op": "label"
+    },
+    {
       "op": "say",
       "text": "Твой ход."
     },
     {
       "label": "zb_menu",
+      "op": "goto"
+    },
+    {
+      "id": "zb_menu_exec",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "height": 0.17,
+      "hover_opacity": 0.7,
+      "id": "fp_action_exec",
+      "on_click": "zb_exec",
+      "op": "obj",
+      "opacity": 0.98,
+      "sprite_url": "/content/sprites/ec_combat_ui/zone_hit_head.png",
+      "width": 0.17,
+      "x": 0.5,
+      "y": 0.4,
+      "z": 91
+    },
+    {
+      "op": "say",
+      "text": "Твой ход. Он едва держится — можно кончить одним ударом."
+    },
+    {
+      "label": "zb_menu_exec",
+      "op": "goto"
+    },
+    {
+      "id": "zb_exec",
+      "op": "label"
+    },
+    {
+      "label": "__fn_zbhide",
+      "op": "call"
+    },
+    {
+      "else": "__nf_zb_exec_1",
+      "expr": "fp_distance \u003e 2",
+      "op": "if",
+      "then": "zb_far"
+    },
+    {
+      "id": "__nf_zb_exec_1",
+      "op": "label"
+    },
+    {
+      "expr": "\"казнь\"",
+      "key": "бой_атака",
+      "op": "set"
+    },
+    {
+      "expr": "\"\"",
+      "key": "бой_защита",
+      "op": "set"
+    },
+    {
+      "expr": "\"\"",
+      "key": "бой_защита2",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "бой_глухо",
+      "op": "set"
+    },
+    {
+      "label": "zb_done",
       "op": "goto"
     },
     {
@@ -4352,6 +4506,16 @@
     },
     {
       "expr": "0",
+      "key": "бой_кровь_врага",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "бой_кровь_моя",
+      "op": "set"
+    },
+    {
+      "expr": "0",
       "key": "бой_ноги_мои",
       "op": "set"
     },
@@ -4477,6 +4641,11 @@
     {
       "kind": "sprite",
       "op": "preload",
+      "url": "/content/sprites/ec_combat_fp/skeleton_death.png"
+    },
+    {
+      "kind": "sprite",
+      "op": "preload",
       "url": "/content/sprites/ec_combat_ui/action_attack.png"
     },
     {
@@ -4565,6 +4734,15 @@
       "url": "/content/audio/ec/lose.ogg"
     },
     {
+      "blink": 1,
+      "dur": 0.22,
+      "op": "fx"
+    },
+    {
+      "ms": 320,
+      "op": "wait"
+    },
+    {
       "expr": "(get(враг_даль, бой_враг, 4))",
       "key": "fp_distance",
       "op": "set"
@@ -4588,6 +4766,15 @@
       "op": "call"
     },
     {
+      "label": "__fn_ecfp_weapfx",
+      "op": "call"
+    },
+    {
+      "grain": 0.08,
+      "op": "fx",
+      "vignette": 0.32
+    },
+    {
       "anchor": "0.5,0.5",
       "height": 0.058,
       "id": "fp_hudbg",
@@ -4609,6 +4796,21 @@
       "y": 5.6
     },
     {
+      "blink": 0,
+      "dur": 0.6,
+      "op": "fx"
+    },
+    {
+      "bloom": 0.22,
+      "contrast": 1.18,
+      "dur": 0.8,
+      "grain": 0.12,
+      "op": "fx",
+      "saturation": 0.72,
+      "tint": "#ccd2e4",
+      "vignette": 0.5
+    },
+    {
       "else": "__else_zb_done_3",
       "expr": "бой_обучен == 0",
       "op": "if",
@@ -4624,7 +4826,7 @@
     },
     {
       "op": "say",
-      "text": "Удар проходит, если не совпал с тем, что закрывает противник. Голова оглушает, ноги отнимают побег, корпус бьёт больнее всех. Перед выбором смотри, как он стоит — у каждого свой порядок, и его можно выучить."
+      "text": "Удар проходит, если не совпал с тем, что закрывает противник. Голова оглушает, ноги отнимают побег, корпус бьёт больнее всех и оставляет рану — она тянет по единице здоровья каждый ход. Перед выбором смотри, как он стоит — у каждого свой порядок, и его можно выучить."
     },
     {
       "op": "say",
@@ -4910,13 +5112,59 @@
       "op": "text"
     },
     {
+      "dur": 0.6,
+      "frost": 0,
+      "op": "fx"
+    },
+    {
       "else": "__else_zb_done_10",
-      "expr": "бой_идёт == 1",
+      "expr": "(floor(здоровье * 100 / max((20 + ((1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1))) - 1) * 6), 1))) \u003c 34",
       "op": "if",
       "then": "__then_zb_done_10"
     },
     {
       "id": "__then_zb_done_10",
+      "op": "label"
+    },
+    {
+      "contrast": 1.22,
+      "dur": 0.8,
+      "grain": 0.2,
+      "op": "fx",
+      "saturation": 0.62,
+      "tint": "#e4bebe",
+      "vignette": 0.7
+    },
+    {
+      "label": "__end_zb_done_10",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_10",
+      "op": "label"
+    },
+    {
+      "bloom": 0.22,
+      "contrast": 1.18,
+      "dur": 0.8,
+      "grain": 0.12,
+      "op": "fx",
+      "saturation": 0.72,
+      "tint": "#ccd2e4",
+      "vignette": 0.5
+    },
+    {
+      "id": "__end_zb_done_10",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_11",
+      "expr": "бой_идёт == 1",
+      "op": "if",
+      "then": "__then_zb_done_11"
+    },
+    {
+      "id": "__then_zb_done_11",
       "op": "label"
     },
     {
@@ -4959,21 +5207,21 @@
       "volume": 0.8
     },
     {
-      "label": "__end_zb_done_10",
+      "label": "__end_zb_done_11",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_10",
+      "id": "__else_zb_done_11",
       "op": "label"
     },
     {
-      "else": "__else_zb_done_11",
+      "else": "__else_zb_done_12",
       "expr": "бой_дерётся == 0",
       "op": "if",
-      "then": "__then_zb_done_11"
+      "then": "__then_zb_done_12"
     },
     {
-      "id": "__then_zb_done_11",
+      "id": "__then_zb_done_12",
       "op": "label"
     },
     {
@@ -4986,11 +5234,11 @@
       "op": "call"
     },
     {
-      "label": "__end_zb_done_11",
+      "label": "__end_zb_done_12",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_11",
+      "id": "__else_zb_done_12",
       "op": "label"
     },
     {
@@ -5003,11 +5251,11 @@
       "op": "call"
     },
     {
-      "id": "__end_zb_done_11",
+      "id": "__end_zb_done_12",
       "op": "label"
     },
     {
-      "id": "__end_zb_done_10",
+      "id": "__end_zb_done_11",
       "op": "label"
     },
     {
@@ -5020,13 +5268,13 @@
       "op": "call"
     },
     {
-      "else": "__else_zb_done_12",
+      "else": "__else_zb_done_13",
       "expr": "бой_стан == 1",
       "op": "if",
-      "then": "__then_zb_done_12"
+      "then": "__then_zb_done_13"
     },
     {
-      "id": "__then_zb_done_12",
+      "id": "__then_zb_done_13",
       "op": "label"
     },
     {
@@ -5059,15 +5307,29 @@
       "text": "{бой_тычок}"
     },
     {
+      "blink": 1,
+      "dur": 0.14,
+      "op": "fx"
+    },
+    {
+      "ms": 300,
+      "op": "wait"
+    },
+    {
+      "blink": 0,
+      "dur": 0.4,
+      "op": "fx"
+    },
+    {
       "op": "say",
       "text": "В голове звенит, картинка плывёт. Этот ход ты проваливаешь — только смотришь."
     },
     {
-      "label": "__end_zb_done_12",
+      "label": "__end_zb_done_13",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_12",
+      "id": "__else_zb_done_13",
       "op": "label"
     },
     {
@@ -5079,7 +5341,7 @@
       "op": "call"
     },
     {
-      "id": "__end_zb_done_12",
+      "id": "__end_zb_done_13",
       "op": "label"
     },
     {
@@ -5088,18 +5350,8 @@
       "op": "set"
     },
     {
-      "else": "__else_zb_done_13",
-      "expr": "бой_атака != \"\"",
-      "op": "if",
-      "then": "__then_zb_done_13"
-    },
-    {
-      "id": "__then_zb_done_13",
-      "op": "label"
-    },
-    {
       "else": "__else_zb_done_14",
-      "expr": "бой_атака != бой_закр",
+      "expr": "бой_атака == \"казнь\"",
       "op": "if",
       "then": "__then_zb_done_14"
     },
@@ -5108,8 +5360,8 @@
       "op": "label"
     },
     {
-      "expr": "1",
-      "key": "бой_попал",
+      "expr": "\"\"",
+      "key": "бой_закр",
       "op": "set"
     },
     {
@@ -5125,25 +5377,8 @@
       "op": "label"
     },
     {
-      "label": "__end_zb_done_13",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_13",
-      "op": "label"
-    },
-    {
-      "id": "__end_zb_done_13",
-      "op": "label"
-    },
-    {
-      "expr": "0",
-      "key": "бой_попал_он",
-      "op": "set"
-    },
-    {
       "else": "__else_zb_done_15",
-      "expr": "бой_бьёт != \"\"",
+      "expr": "бой_атака != \"\"",
       "op": "if",
       "then": "__then_zb_done_15"
     },
@@ -5153,7 +5388,7 @@
     },
     {
       "else": "__else_zb_done_16",
-      "expr": "бой_бьёт != бой_защита",
+      "expr": "бой_атака != бой_закр",
       "op": "if",
       "then": "__then_zb_done_16"
     },
@@ -5162,31 +5397,9 @@
       "op": "label"
     },
     {
-      "else": "__else_zb_done_17",
-      "expr": "бой_бьёт != бой_защита2",
-      "op": "if",
-      "then": "__then_zb_done_17"
-    },
-    {
-      "id": "__then_zb_done_17",
-      "op": "label"
-    },
-    {
       "expr": "1",
-      "key": "бой_попал_он",
+      "key": "бой_попал",
       "op": "set"
-    },
-    {
-      "label": "__end_zb_done_17",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_17",
-      "op": "label"
-    },
-    {
-      "id": "__end_zb_done_17",
-      "op": "label"
     },
     {
       "label": "__end_zb_done_16",
@@ -5213,18 +5426,23 @@
       "op": "label"
     },
     {
-      "expr": "100",
-      "key": "бой_вес",
+      "expr": "0",
+      "key": "бой_попал_он",
       "op": "set"
     },
     {
-      "expr": "100",
-      "key": "бой_вес_он",
-      "op": "set"
+      "else": "__else_zb_done_17",
+      "expr": "бой_бьёт != \"\"",
+      "op": "if",
+      "then": "__then_zb_done_17"
+    },
+    {
+      "id": "__then_zb_done_17",
+      "op": "label"
     },
     {
       "else": "__else_zb_done_18",
-      "expr": "бой_попал == 1",
+      "expr": "бой_бьёт != бой_защита",
       "op": "if",
       "then": "__then_zb_done_18"
     },
@@ -5234,7 +5452,7 @@
     },
     {
       "else": "__else_zb_done_19",
-      "expr": "бой_попал_он == 1",
+      "expr": "бой_бьёт != бой_защита2",
       "op": "if",
       "then": "__then_zb_done_19"
     },
@@ -5243,13 +5461,8 @@
       "op": "label"
     },
     {
-      "expr": "(get(зона_вес, бой_атака + \"\u003e\" + бой_бьёт, 100))",
-      "key": "бой_вес",
-      "op": "set"
-    },
-    {
-      "expr": "(get(зона_вес, бой_бьёт + \"\u003e\" + бой_атака, 100))",
-      "key": "бой_вес_он",
+      "expr": "1",
+      "key": "бой_попал_он",
       "op": "set"
     },
     {
@@ -5277,13 +5490,89 @@
       "op": "label"
     },
     {
+      "label": "__end_zb_done_17",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_17",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_17",
+      "op": "label"
+    },
+    {
+      "expr": "100",
+      "key": "бой_вес",
+      "op": "set"
+    },
+    {
+      "expr": "100",
+      "key": "бой_вес_он",
+      "op": "set"
+    },
+    {
       "else": "__else_zb_done_20",
-      "expr": "бой_атака != \"\"",
+      "expr": "бой_попал == 1",
       "op": "if",
       "then": "__then_zb_done_20"
     },
     {
       "id": "__then_zb_done_20",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_21",
+      "expr": "бой_попал_он == 1",
+      "op": "if",
+      "then": "__then_zb_done_21"
+    },
+    {
+      "id": "__then_zb_done_21",
+      "op": "label"
+    },
+    {
+      "expr": "(get(зона_вес, бой_атака + \"\u003e\" + бой_бьёт, 100))",
+      "key": "бой_вес",
+      "op": "set"
+    },
+    {
+      "expr": "(get(зона_вес, бой_бьёт + \"\u003e\" + бой_атака, 100))",
+      "key": "бой_вес_он",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_21",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_21",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_21",
+      "op": "label"
+    },
+    {
+      "label": "__end_zb_done_20",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_20",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_20",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_22",
+      "expr": "бой_атака != \"\"",
+      "op": "if",
+      "then": "__then_zb_done_22"
+    },
+    {
+      "id": "__then_zb_done_22",
       "op": "label"
     },
     {
@@ -5330,15 +5619,15 @@
       "volume": 0.9
     },
     {
-      "label": "__end_zb_done_20",
+      "label": "__end_zb_done_22",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_20",
+      "id": "__else_zb_done_22",
       "op": "label"
     },
     {
-      "id": "__end_zb_done_20",
+      "id": "__end_zb_done_22",
       "op": "label"
     },
     {
@@ -5347,13 +5636,13 @@
       "op": "set"
     },
     {
-      "else": "__else_zb_done_21",
+      "else": "__else_zb_done_23",
       "expr": "бой_попал == 1",
       "op": "if",
-      "then": "__then_zb_done_21"
+      "then": "__then_zb_done_23"
     },
     {
-      "id": "__then_zb_done_21",
+      "id": "__then_zb_done_23",
       "op": "label"
     },
     {
@@ -5398,6 +5687,18 @@
       "op": "anim"
     },
     {
+      "dur": 0.04,
+      "flash": 1,
+      "id": "fp_enemy",
+      "op": "sfx"
+    },
+    {
+      "dur": 0.28,
+      "flash": 0,
+      "id": "fp_enemy",
+      "op": "sfx"
+    },
+    {
       "action": "play",
       "channel": "sfx",
       "op": "audio",
@@ -5405,18 +5706,45 @@
       "volume": 1
     },
     {
+      "else": "__else_zb_done_24",
+      "expr": "бой_атака == \"казнь\"",
+      "op": "if",
+      "then": "__then_zb_done_24"
+    },
+    {
+      "id": "__then_zb_done_24",
+      "op": "label"
+    },
+    {
+      "expr": "бой_хп",
+      "key": "бой_урон",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_24",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_24",
+      "op": "label"
+    },
+    {
       "expr": "(max(floor((max(floor(((get(сила, бой_стихия, 1)) + мощь + (1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1)))) * (get(преимущество, бой_стихия + \"\u003e\" + (get(враг_стихия, бой_враг, \"земля\")), 100)) / 100), 1)) * (get(зона_урон, бой_атака, 100)) / 100 * бой_вес / 100), 1))",
       "key": "бой_урон",
       "op": "set"
     },
     {
-      "else": "__else_zb_done_22",
-      "expr": "бой_атака == \"корпус\"",
-      "op": "if",
-      "then": "__then_zb_done_22"
+      "id": "__end_zb_done_24",
+      "op": "label"
     },
     {
-      "id": "__then_zb_done_22",
+      "else": "__else_zb_done_25",
+      "expr": "бой_атака == \"корпус\"",
+      "op": "if",
+      "then": "__then_zb_done_25"
+    },
+    {
+      "id": "__then_zb_done_25",
       "op": "label"
     },
     {
@@ -5425,15 +5753,15 @@
       "op": "set"
     },
     {
-      "label": "__end_zb_done_22",
+      "label": "__end_zb_done_25",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_22",
+      "id": "__else_zb_done_25",
       "op": "label"
     },
     {
-      "id": "__end_zb_done_22",
+      "id": "__end_zb_done_25",
       "op": "label"
     },
     {
@@ -5451,77 +5779,8 @@
       "y": 26
     },
     {
-      "expr": "\"Ты бьёшь в \" + (get(зона_вин, бой_атака, бой_атака)) + \" — прошло, минус \" + бой_урон + \". \"",
-      "key": "бой_вести",
-      "op": "set"
-    },
-    {
-      "else": "__else_zb_done_23",
-      "expr": "бой_вес == 150",
-      "op": "if",
-      "then": "__then_zb_done_23"
-    },
-    {
-      "id": "__then_zb_done_23",
-      "op": "label"
-    },
-    {
-      "expr": "бой_вести + \"Твоя зона перебила его зону, удар вошёл глубже. \"",
-      "key": "бой_вести",
-      "op": "set"
-    },
-    {
-      "label": "__end_zb_done_23",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_23",
-      "op": "label"
-    },
-    {
-      "id": "__end_zb_done_23",
-      "op": "label"
-    },
-    {
-      "else": "__else_zb_done_24",
-      "expr": "бой_вес == 70",
-      "op": "if",
-      "then": "__then_zb_done_24"
-    },
-    {
-      "id": "__then_zb_done_24",
-      "op": "label"
-    },
-    {
-      "expr": "бой_вести + \"Его зона оказалась старше твоей, вышло вскользь. \"",
-      "key": "бой_вести",
-      "op": "set"
-    },
-    {
-      "label": "__end_zb_done_24",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_24",
-      "op": "label"
-    },
-    {
-      "id": "__end_zb_done_24",
-      "op": "label"
-    },
-    {
-      "else": "__else_zb_done_25",
-      "expr": "бой_атака == \"голова\"",
-      "op": "if",
-      "then": "__then_zb_done_25"
-    },
-    {
-      "id": "__then_zb_done_25",
-      "op": "label"
-    },
-    {
       "else": "__else_zb_done_26",
-      "expr": "бой_дерётся == 1",
+      "expr": "(get(враг_шипы, бой_враг, 0)) \u003e 0",
       "op": "if",
       "then": "__then_zb_done_26"
     },
@@ -5530,12 +5789,17 @@
       "op": "label"
     },
     {
-      "expr": "1",
-      "key": "бой_стан_врага",
+      "expr": "max(floor(бой_урон * (get(враг_шипы, бой_враг, 0)) / 100), 1)",
+      "key": "бой_отр",
       "op": "set"
     },
     {
-      "expr": "бой_вести + \"Голова у него мотнулась — следующий ход он потеряет. \"",
+      "expr": "(max(здоровье - бой_отр, 0))",
+      "key": "здоровье",
+      "op": "set"
+    },
+    {
+      "expr": "бой_вести + \"Осколки брызжут в тебя — минус \" + бой_отр + \". \"",
       "key": "бой_вести",
       "op": "set"
     },
@@ -5548,29 +5812,12 @@
       "op": "label"
     },
     {
-      "expr": "бой_вести + \"Он и так не в себе, мотать второй раз нечего. \"",
-      "key": "бой_вести",
-      "op": "set"
-    },
-    {
       "id": "__end_zb_done_26",
       "op": "label"
     },
     {
-      "label": "__end_zb_done_25",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_25",
-      "op": "label"
-    },
-    {
-      "id": "__end_zb_done_25",
-      "op": "label"
-    },
-    {
       "else": "__else_zb_done_27",
-      "expr": "бой_атака == \"ноги\"",
+      "expr": "бой_атака == \"казнь\"",
       "op": "if",
       "then": "__then_zb_done_27"
     },
@@ -5579,13 +5826,40 @@
       "op": "label"
     },
     {
-      "expr": "бой_вести + \"Ноги подрублены, теперь он не убежит. \"",
+      "dur": 0.12,
+      "op": "fx",
+      "saturation": 0.15
+    },
+    {
+      "dur": 0.8,
+      "op": "fx",
+      "saturation": 1
+    },
+    {
+      "expr": "\"Ты вкладываешь всё в один удар — и он входит точно. \"",
       "key": "бой_вести",
       "op": "set"
     },
     {
+      "label": "__end_zb_done_27",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_27",
+      "op": "label"
+    },
+    {
+      "expr": "\"Ты бьёшь в \" + (get(зона_вин, бой_атака, бой_атака)) + \" — прошло, минус \" + бой_урон + \". \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "id": "__end_zb_done_27",
+      "op": "label"
+    },
+    {
       "else": "__else_zb_done_28",
-      "expr": "бой_уклон \u003e 0",
+      "expr": "бой_вес == 150",
       "op": "if",
       "then": "__then_zb_done_28"
     },
@@ -5594,7 +5868,7 @@
       "op": "label"
     },
     {
-      "expr": "бой_вести + \"И уворачиваться ему больше нечем. \"",
+      "expr": "бой_вести + \"Твоя зона перебила его зону, удар вошёл глубже. \"",
       "key": "бой_вести",
       "op": "set"
     },
@@ -5611,6 +5885,188 @@
       "op": "label"
     },
     {
+      "else": "__else_zb_done_29",
+      "expr": "бой_вес == 70",
+      "op": "if",
+      "then": "__then_zb_done_29"
+    },
+    {
+      "id": "__then_zb_done_29",
+      "op": "label"
+    },
+    {
+      "expr": "бой_вести + \"Его зона оказалась старше твоей, вышло вскользь. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_29",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_29",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_29",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_30",
+      "expr": "бой_атака == \"голова\"",
+      "op": "if",
+      "then": "__then_zb_done_30"
+    },
+    {
+      "id": "__then_zb_done_30",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_31",
+      "expr": "бой_дерётся == 1",
+      "op": "if",
+      "then": "__then_zb_done_31"
+    },
+    {
+      "id": "__then_zb_done_31",
+      "op": "label"
+    },
+    {
+      "expr": "1",
+      "key": "бой_стан_врага",
+      "op": "set"
+    },
+    {
+      "expr": "бой_вести + \"Голова у него мотнулась — следующий ход он потеряет. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_31",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_31",
+      "op": "label"
+    },
+    {
+      "expr": "бой_вести + \"Он и так не в себе, мотать второй раз нечего. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "id": "__end_zb_done_31",
+      "op": "label"
+    },
+    {
+      "label": "__end_zb_done_30",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_30",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_30",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_32",
+      "expr": "бой_атака == \"корпус\"",
+      "op": "if",
+      "then": "__then_zb_done_32"
+    },
+    {
+      "id": "__then_zb_done_32",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_33",
+      "expr": "бой_кровь_врага == 0",
+      "op": "if",
+      "then": "__then_zb_done_33"
+    },
+    {
+      "id": "__then_zb_done_33",
+      "op": "label"
+    },
+    {
+      "expr": "1",
+      "key": "бой_кровь_врага",
+      "op": "set"
+    },
+    {
+      "expr": "бой_вести + \"Удар оставил трещину — она будет тянуть из него по единице каждый ход. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_33",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_33",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_33",
+      "op": "label"
+    },
+    {
+      "label": "__end_zb_done_32",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_32",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_32",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_34",
+      "expr": "бой_атака == \"ноги\"",
+      "op": "if",
+      "then": "__then_zb_done_34"
+    },
+    {
+      "id": "__then_zb_done_34",
+      "op": "label"
+    },
+    {
+      "expr": "бой_вести + \"Ноги подрублены, теперь он не убежит. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "else": "__else_zb_done_35",
+      "expr": "бой_уклон \u003e 0",
+      "op": "if",
+      "then": "__then_zb_done_35"
+    },
+    {
+      "id": "__then_zb_done_35",
+      "op": "label"
+    },
+    {
+      "expr": "бой_вести + \"И уворачиваться ему больше нечем. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_35",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_35",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_35",
+      "op": "label"
+    },
+    {
       "expr": "1",
       "key": "бой_ноги_врага",
       "op": "set"
@@ -5621,33 +6077,33 @@
       "op": "set"
     },
     {
-      "label": "__end_zb_done_27",
+      "label": "__end_zb_done_34",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_27",
+      "id": "__else_zb_done_34",
       "op": "label"
     },
     {
-      "id": "__end_zb_done_27",
+      "id": "__end_zb_done_34",
       "op": "label"
     },
     {
-      "label": "__end_zb_done_21",
+      "label": "__end_zb_done_23",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_21",
+      "id": "__else_zb_done_23",
       "op": "label"
     },
     {
-      "else": "__else_zb_done_29",
+      "else": "__else_zb_done_36",
       "expr": "бой_атака == \"\"",
       "op": "if",
-      "then": "__then_zb_done_29"
+      "then": "__then_zb_done_36"
     },
     {
-      "id": "__then_zb_done_29",
+      "id": "__then_zb_done_36",
       "op": "label"
     },
     {
@@ -5656,11 +6112,11 @@
       "op": "set"
     },
     {
-      "label": "__end_zb_done_29",
+      "label": "__end_zb_done_36",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_29",
+      "id": "__else_zb_done_36",
       "op": "label"
     },
     {
@@ -5676,21 +6132,21 @@
       "op": "set"
     },
     {
-      "id": "__end_zb_done_29",
+      "id": "__end_zb_done_36",
       "op": "label"
     },
     {
-      "id": "__end_zb_done_21",
+      "id": "__end_zb_done_23",
       "op": "label"
     },
     {
-      "else": "__else_zb_done_30",
+      "else": "__else_zb_done_37",
       "expr": "бой_бьёт != \"\"",
       "op": "if",
-      "then": "__then_zb_done_30"
+      "then": "__then_zb_done_37"
     },
     {
-      "id": "__then_zb_done_30",
+      "id": "__then_zb_done_37",
       "op": "label"
     },
     {
@@ -5734,25 +6190,25 @@
       "op": "anim"
     },
     {
-      "label": "__end_zb_done_30",
+      "label": "__end_zb_done_37",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_30",
+      "id": "__else_zb_done_37",
       "op": "label"
     },
     {
-      "id": "__end_zb_done_30",
+      "id": "__end_zb_done_37",
       "op": "label"
     },
     {
-      "else": "__else_zb_done_31",
+      "else": "__else_zb_done_38",
       "expr": "бой_попал_он == 1",
       "op": "if",
-      "then": "__then_zb_done_31"
+      "then": "__then_zb_done_38"
     },
     {
-      "id": "__then_zb_done_31",
+      "id": "__then_zb_done_38",
       "op": "label"
     },
     {
@@ -5761,13 +6217,13 @@
       "op": "set"
     },
     {
-      "else": "__else_zb_done_32",
+      "else": "__else_zb_done_39",
       "expr": "бой_глухо == 1",
       "op": "if",
-      "then": "__then_zb_done_32"
+      "then": "__then_zb_done_39"
     },
     {
-      "id": "__then_zb_done_32",
+      "id": "__then_zb_done_39",
       "op": "label"
     },
     {
@@ -5788,11 +6244,11 @@
       "op": "set"
     },
     {
-      "label": "__end_zb_done_32",
+      "label": "__end_zb_done_39",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_32",
+      "id": "__else_zb_done_39",
       "op": "label"
     },
     {
@@ -5803,7 +6259,7 @@
       "volume": 1
     },
     {
-      "id": "__end_zb_done_32",
+      "id": "__end_zb_done_39",
       "op": "label"
     },
     {
@@ -5821,252 +6277,18 @@
       "y": 64
     },
     {
-      "expr": "бой_вести + \"Он достаёт тебя в \" + (get(зона_вин, бой_бьёт, бой_бьёт)) + \" — минус \" + бой_урон_он + \". \"",
-      "key": "бой_вести",
-      "op": "set"
+      "chromatic": 0.8,
+      "dur": 0.05,
+      "op": "fx"
     },
     {
-      "else": "__else_zb_done_33",
-      "expr": "бой_сила \u003e= 200",
-      "op": "if",
-      "then": "__then_zb_done_33"
-    },
-    {
-      "id": "__then_zb_done_33",
-      "op": "label"
-    },
-    {
-      "expr": "бой_вести + \"Замах был не зря, удар вдвое. \"",
-      "key": "бой_вести",
-      "op": "set"
-    },
-    {
-      "label": "__end_zb_done_33",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_33",
-      "op": "label"
-    },
-    {
-      "id": "__end_zb_done_33",
-      "op": "label"
-    },
-    {
-      "else": "__else_zb_done_34",
-      "expr": "бой_бьёт == \"голова\"",
-      "op": "if",
-      "then": "__then_zb_done_34"
-    },
-    {
-      "id": "__then_zb_done_34",
-      "op": "label"
-    },
-    {
-      "else": "__else_zb_done_35",
-      "expr": "бой_атака != \"\"",
-      "op": "if",
-      "then": "__then_zb_done_35"
-    },
-    {
-      "id": "__then_zb_done_35",
-      "op": "label"
-    },
-    {
-      "expr": "1",
-      "key": "бой_стан",
-      "op": "set"
-    },
-    {
-      "expr": "бой_вести + \"В затылке гудит — следующий ход ты потеряешь. \"",
-      "key": "бой_вести",
-      "op": "set"
-    },
-    {
-      "label": "__end_zb_done_35",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_35",
-      "op": "label"
-    },
-    {
-      "expr": "бой_вести + \"Хуже уже не будет, ты и так не здесь. \"",
-      "key": "бой_вести",
-      "op": "set"
-    },
-    {
-      "id": "__end_zb_done_35",
-      "op": "label"
-    },
-    {
-      "label": "__end_zb_done_34",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_34",
-      "op": "label"
-    },
-    {
-      "id": "__end_zb_done_34",
-      "op": "label"
-    },
-    {
-      "else": "__else_zb_done_36",
-      "expr": "бой_бьёт == \"ноги\"",
-      "op": "if",
-      "then": "__then_zb_done_36"
-    },
-    {
-      "id": "__then_zb_done_36",
-      "op": "label"
-    },
-    {
-      "expr": "1",
-      "key": "бой_ноги_мои",
-      "op": "set"
-    },
-    {
-      "expr": "бой_вести + \"Нога подламывается. Убежать ты уже не сможешь. \"",
-      "key": "бой_вести",
-      "op": "set"
-    },
-    {
-      "label": "__end_zb_done_36",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_36",
-      "op": "label"
-    },
-    {
-      "id": "__end_zb_done_36",
-      "op": "label"
-    },
-    {
-      "action": "shake",
-      "amplitude": 0.045,
-      "duration": 0.45,
-      "op": "camera"
-    },
-    {
-      "color": "#ff3b30",
-      "duration": 0.3,
-      "op": "flash"
-    },
-    {
-      "label": "__end_zb_done_31",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_31",
-      "op": "label"
-    },
-    {
-      "else": "__else_zb_done_37",
-      "expr": "бой_бьёт == \"\"",
-      "op": "if",
-      "then": "__then_zb_done_37"
-    },
-    {
-      "id": "__then_zb_done_37",
-      "op": "label"
-    },
-    {
-      "expr": "бой_вести + \"Этот ход он не бил. \"",
-      "key": "бой_вести",
-      "op": "set"
-    },
-    {
-      "label": "__end_zb_done_37",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_37",
-      "op": "label"
-    },
-    {
-      "expr": "\"block\"",
-      "key": "pose",
-      "op": "set"
-    },
-    {
-      "label": "__fn_ecfp_hands",
-      "op": "call"
-    },
-    {
-      "action": "play",
-      "channel": "sfx",
-      "op": "audio",
-      "url": "/content/audio/ec/block.ogg",
-      "volume": 0.9
-    },
-    {
-      "else": "__else_zb_done_38",
-      "expr": "бой_бьёт == бой_защита",
-      "op": "if",
-      "then": "__then_zb_done_38"
-    },
-    {
-      "id": "__then_zb_done_38",
-      "op": "label"
-    },
-    {
-      "expr": "бой_вести + \"Ты закрыл \" + (get(зона_вин, бой_защита, бой_защита)) + \" — его удар ушёл в защиту. \"",
-      "key": "бой_вести",
-      "op": "set"
-    },
-    {
-      "label": "__end_zb_done_38",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_38",
-      "op": "label"
-    },
-    {
-      "expr": "бой_вести + \"Вторая зона стойки поймала удар — \" + (get(зона_вин, бой_защита2, бой_защита2)) + \" была закрыта. \"",
-      "key": "бой_вести",
-      "op": "set"
-    },
-    {
-      "id": "__end_zb_done_38",
-      "op": "label"
-    },
-    {
-      "id": "__end_zb_done_37",
-      "op": "label"
-    },
-    {
-      "id": "__end_zb_done_31",
-      "op": "label"
-    },
-    {
-      "else": "__else_zb_done_39",
-      "expr": "бой_хп \u003c= 0",
-      "op": "if",
-      "then": "__then_zb_done_39"
-    },
-    {
-      "id": "__then_zb_done_39",
-      "op": "label"
-    },
-    {
-      "expr": "\"убил\"",
-      "key": "бой_итог",
-      "op": "set"
-    },
-    {
-      "label": "__end_zb_done_39",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_39",
-      "op": "label"
+      "chromatic": 0,
+      "dur": 0.3,
+      "op": "fx"
     },
     {
       "else": "__else_zb_done_40",
-      "expr": "здоровье \u003c= 0",
+      "expr": "бой_сила \u003e= 150",
       "op": "if",
       "then": "__then_zb_done_40"
     },
@@ -6075,9 +6297,14 @@
       "op": "label"
     },
     {
-      "expr": "\"пал\"",
-      "key": "бой_итог",
-      "op": "set"
+      "dur": 0.05,
+      "invert": 0.4,
+      "op": "fx"
+    },
+    {
+      "dur": 0.3,
+      "invert": 0,
+      "op": "fx"
     },
     {
       "label": "__end_zb_done_40",
@@ -6092,12 +6319,8 @@
       "op": "label"
     },
     {
-      "id": "__end_zb_done_39",
-      "op": "label"
-    },
-    {
       "else": "__else_zb_done_41",
-      "expr": "бой_итог == \"\"",
+      "expr": "(get(враг_стихия, бой_враг, \"земля\")) == \"лёд\"",
       "op": "if",
       "then": "__then_zb_done_41"
     },
@@ -6106,53 +6329,9 @@
       "op": "label"
     },
     {
-      "else": "__else_zb_done_42",
-      "expr": "бой_ноги_врага == 0",
-      "op": "if",
-      "then": "__then_zb_done_42"
-    },
-    {
-      "id": "__then_zb_done_42",
-      "op": "label"
-    },
-    {
-      "else": "__else_zb_done_43",
-      "expr": "бой_хп * 100 / бой_хп0 \u003c (get(враг_трус, бой_враг, 40))",
-      "op": "if",
-      "then": "__then_zb_done_43"
-    },
-    {
-      "id": "__then_zb_done_43",
-      "op": "label"
-    },
-    {
-      "expr": "\"прогнал\"",
-      "key": "бой_итог",
-      "op": "set"
-    },
-    {
-      "label": "__end_zb_done_43",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_43",
-      "op": "label"
-    },
-    {
-      "id": "__end_zb_done_43",
-      "op": "label"
-    },
-    {
-      "label": "__end_zb_done_42",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_42",
-      "op": "label"
-    },
-    {
-      "id": "__end_zb_done_42",
-      "op": "label"
+      "dur": 0.3,
+      "frost": 0.6,
+      "op": "fx"
     },
     {
       "label": "__end_zb_done_41",
@@ -6167,8 +6346,72 @@
       "op": "label"
     },
     {
+      "else": "__else_zb_done_42",
+      "expr": "(get(враг_стихия, бой_враг, \"земля\")) == \"огонь\"",
+      "op": "if",
+      "then": "__then_zb_done_42"
+    },
+    {
+      "id": "__then_zb_done_42",
+      "op": "label"
+    },
+    {
+      "dur": 0.08,
+      "op": "fx",
+      "tint": "#ffb080"
+    },
+    {
+      "dur": 0.6,
+      "op": "fx",
+      "tint": "#ffffff"
+    },
+    {
+      "label": "__end_zb_done_42",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_42",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_42",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_43",
+      "expr": "(get(враг_стихия, бой_враг, \"земля\")) == \"тьма\"",
+      "op": "if",
+      "then": "__then_zb_done_43"
+    },
+    {
+      "id": "__then_zb_done_43",
+      "op": "label"
+    },
+    {
+      "dur": 0.1,
+      "op": "fx",
+      "vignette": 0.7
+    },
+    {
+      "dur": 0.6,
+      "op": "fx",
+      "vignette": 0.32
+    },
+    {
+      "label": "__end_zb_done_43",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_43",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_43",
+      "op": "label"
+    },
+    {
       "else": "__else_zb_done_44",
-      "expr": "бой_итог == \"\"",
+      "expr": "(get(враг_вамп, бой_враг, 0)) \u003e 0",
       "op": "if",
       "then": "__then_zb_done_44"
     },
@@ -6177,8 +6420,48 @@
       "op": "label"
     },
     {
+      "dur": 0.15,
+      "glow": 0.8,
+      "glow_color": "#c33a2e",
+      "id": "fp_enemy",
+      "op": "sfx"
+    },
+    {
+      "dur": 0.6,
+      "glow": 0,
+      "id": "fp_enemy",
+      "op": "sfx"
+    },
+    {
+      "expr": "max(floor(бой_урон_он * (get(враг_вамп, бой_враг, 0)) / 100), 1)",
+      "key": "бой_лечи",
+      "op": "set"
+    },
+    {
+      "expr": "min(бой_хп + бой_лечи, бой_хп0)",
+      "key": "бой_хп",
+      "op": "set"
+    },
+    {
+      "expr": "бой_вести + \"Он пьёт твою боль — вернул себе \" + бой_лечи + \". \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_44",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_44",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_44",
+      "op": "label"
+    },
+    {
       "else": "__else_zb_done_45",
-      "expr": "бой_ход \u003e= бой_лимит",
+      "expr": "(get(враг_кислота, бой_враг, 0)) \u003e 0",
       "op": "if",
       "then": "__then_zb_done_45"
     },
@@ -6188,7 +6471,7 @@
     },
     {
       "else": "__else_zb_done_46",
-      "expr": "бой_хп * 100 / бой_хп0 \u003c (floor(здоровье * 100 / max((20 + ((1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1))) - 1) * 6), 1)))",
+      "expr": "броня \u003e 0",
       "op": "if",
       "then": "__then_zb_done_46"
     },
@@ -6197,8 +6480,13 @@
       "op": "label"
     },
     {
-      "expr": "\"выстоял\"",
-      "key": "бой_итог",
+      "expr": "броня - 1",
+      "key": "броня",
+      "op": "set"
+    },
+    {
+      "expr": "бой_вести + \"Кислота съедает броню — осталось \" + броня + \". \"",
+      "key": "бой_вести",
       "op": "set"
     },
     {
@@ -6208,11 +6496,6 @@
     {
       "id": "__else_zb_done_46",
       "op": "label"
-    },
-    {
-      "expr": "\"отступил\"",
-      "key": "бой_итог",
-      "op": "set"
     },
     {
       "id": "__end_zb_done_46",
@@ -6231,20 +6514,13 @@
       "op": "label"
     },
     {
-      "label": "__end_zb_done_44",
-      "op": "goto"
-    },
-    {
-      "id": "__else_zb_done_44",
-      "op": "label"
-    },
-    {
-      "id": "__end_zb_done_44",
-      "op": "label"
+      "expr": "бой_вести + \"Он достаёт тебя в \" + (get(зона_вин, бой_бьёт, бой_бьёт)) + \" — минус \" + бой_урон_он + \". \"",
+      "key": "бой_вести",
+      "op": "set"
     },
     {
       "else": "__else_zb_done_47",
-      "expr": "бой_дерётся == 1",
+      "expr": "бой_сила \u003e= 200",
       "op": "if",
       "then": "__then_zb_done_47"
     },
@@ -6253,13 +6529,25 @@
       "op": "label"
     },
     {
-      "expr": "бой_шаг + 1",
-      "key": "бой_шаг",
+      "expr": "бой_вести + \"Замах был не зря, удар вдвое. \"",
+      "key": "бой_вести",
       "op": "set"
     },
     {
+      "label": "__end_zb_done_47",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_47",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_47",
+      "op": "label"
+    },
+    {
       "else": "__else_zb_done_48",
-      "expr": "бой_шаг \u003e= (len((get(паттерн, бой_враг, паттерн_умолч))))",
+      "expr": "бой_бьёт == \"голова\"",
       "op": "if",
       "then": "__then_zb_done_48"
     },
@@ -6268,9 +6556,41 @@
       "op": "label"
     },
     {
-      "expr": "0",
-      "key": "бой_шаг",
+      "else": "__else_zb_done_49",
+      "expr": "бой_атака != \"\"",
+      "op": "if",
+      "then": "__then_zb_done_49"
+    },
+    {
+      "id": "__then_zb_done_49",
+      "op": "label"
+    },
+    {
+      "expr": "1",
+      "key": "бой_стан",
       "op": "set"
+    },
+    {
+      "expr": "бой_вести + \"В затылке гудит — следующий ход ты потеряешь. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_49",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_49",
+      "op": "label"
+    },
+    {
+      "expr": "бой_вести + \"Хуже уже не будет, ты и так не здесь. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "id": "__end_zb_done_49",
+      "op": "label"
     },
     {
       "label": "__end_zb_done_48",
@@ -6285,15 +6605,519 @@
       "op": "label"
     },
     {
-      "label": "__end_zb_done_47",
-      "op": "goto"
+      "else": "__else_zb_done_50",
+      "expr": "бой_бьёт == \"корпус\"",
+      "op": "if",
+      "then": "__then_zb_done_50"
     },
     {
-      "id": "__else_zb_done_47",
+      "id": "__then_zb_done_50",
       "op": "label"
     },
     {
-      "id": "__end_zb_done_47",
+      "else": "__else_zb_done_51",
+      "expr": "бой_кровь_моя == 0",
+      "op": "if",
+      "then": "__then_zb_done_51"
+    },
+    {
+      "id": "__then_zb_done_51",
+      "op": "label"
+    },
+    {
+      "expr": "1",
+      "key": "бой_кровь_моя",
+      "op": "set"
+    },
+    {
+      "expr": "бой_вести + \"Под рёбрами горячо — рана будет кровить по единице в ход. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_51",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_51",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_51",
+      "op": "label"
+    },
+    {
+      "label": "__end_zb_done_50",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_50",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_50",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_52",
+      "expr": "бой_бьёт == \"ноги\"",
+      "op": "if",
+      "then": "__then_zb_done_52"
+    },
+    {
+      "id": "__then_zb_done_52",
+      "op": "label"
+    },
+    {
+      "expr": "1",
+      "key": "бой_ноги_мои",
+      "op": "set"
+    },
+    {
+      "expr": "бой_вести + \"Нога подламывается. Убежать ты уже не сможешь. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_52",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_52",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_52",
+      "op": "label"
+    },
+    {
+      "action": "shake",
+      "amplitude": 0.045,
+      "duration": 0.45,
+      "op": "camera"
+    },
+    {
+      "color": "#ff3b30",
+      "duration": 0.3,
+      "op": "flash"
+    },
+    {
+      "label": "__end_zb_done_38",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_38",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_53",
+      "expr": "бой_бьёт == \"\"",
+      "op": "if",
+      "then": "__then_zb_done_53"
+    },
+    {
+      "id": "__then_zb_done_53",
+      "op": "label"
+    },
+    {
+      "expr": "бой_вести + \"Этот ход он не бил. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_53",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_53",
+      "op": "label"
+    },
+    {
+      "expr": "\"block\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_ecfp_hands",
+      "op": "call"
+    },
+    {
+      "dur": 0.1,
+      "glow": 0.6,
+      "glow_color": "#9fc4ff",
+      "id": "fp_hands",
+      "op": "sfx"
+    },
+    {
+      "dur": 0.4,
+      "glow": 0,
+      "id": "fp_hands",
+      "op": "sfx"
+    },
+    {
+      "action": "play",
+      "channel": "sfx",
+      "op": "audio",
+      "url": "/content/audio/ec/block.ogg",
+      "volume": 0.9
+    },
+    {
+      "else": "__else_zb_done_54",
+      "expr": "бой_бьёт == бой_защита",
+      "op": "if",
+      "then": "__then_zb_done_54"
+    },
+    {
+      "id": "__then_zb_done_54",
+      "op": "label"
+    },
+    {
+      "expr": "бой_вести + \"Ты закрыл \" + (get(зона_вин, бой_защита, бой_защита)) + \" — его удар ушёл в защиту. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_54",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_54",
+      "op": "label"
+    },
+    {
+      "expr": "бой_вести + \"Вторая зона стойки поймала удар — \" + (get(зона_вин, бой_защита2, бой_защита2)) + \" была закрыта. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "id": "__end_zb_done_54",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_53",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_38",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_55",
+      "expr": "бой_кровь_врага == 1",
+      "op": "if",
+      "then": "__then_zb_done_55"
+    },
+    {
+      "id": "__then_zb_done_55",
+      "op": "label"
+    },
+    {
+      "expr": "max(бой_хп - 1, 0)",
+      "key": "бой_хп",
+      "op": "set"
+    },
+    {
+      "expr": "бой_вести + \"Трещина расходится — минус ещё один. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_55",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_55",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_55",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_56",
+      "expr": "бой_кровь_моя == 1",
+      "op": "if",
+      "then": "__then_zb_done_56"
+    },
+    {
+      "id": "__then_zb_done_56",
+      "op": "label"
+    },
+    {
+      "expr": "(max(здоровье - 1, 0))",
+      "key": "здоровье",
+      "op": "set"
+    },
+    {
+      "expr": "бой_вести + \"Рана кровит. \"",
+      "key": "бой_вести",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_56",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_56",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_56",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_57",
+      "expr": "бой_хп \u003c= 0",
+      "op": "if",
+      "then": "__then_zb_done_57"
+    },
+    {
+      "id": "__then_zb_done_57",
+      "op": "label"
+    },
+    {
+      "expr": "\"убил\"",
+      "key": "бой_итог",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_57",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_57",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_58",
+      "expr": "здоровье \u003c= 0",
+      "op": "if",
+      "then": "__then_zb_done_58"
+    },
+    {
+      "id": "__then_zb_done_58",
+      "op": "label"
+    },
+    {
+      "expr": "\"пал\"",
+      "key": "бой_итог",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_58",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_58",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_58",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_57",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_59",
+      "expr": "бой_итог == \"\"",
+      "op": "if",
+      "then": "__then_zb_done_59"
+    },
+    {
+      "id": "__then_zb_done_59",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_60",
+      "expr": "бой_ноги_врага == 0",
+      "op": "if",
+      "then": "__then_zb_done_60"
+    },
+    {
+      "id": "__then_zb_done_60",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_61",
+      "expr": "бой_хп * 100 / бой_хп0 \u003c (get(враг_трус, бой_враг, 40))",
+      "op": "if",
+      "then": "__then_zb_done_61"
+    },
+    {
+      "id": "__then_zb_done_61",
+      "op": "label"
+    },
+    {
+      "expr": "\"прогнал\"",
+      "key": "бой_итог",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_61",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_61",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_61",
+      "op": "label"
+    },
+    {
+      "label": "__end_zb_done_60",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_60",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_60",
+      "op": "label"
+    },
+    {
+      "label": "__end_zb_done_59",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_59",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_59",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_62",
+      "expr": "бой_итог == \"\"",
+      "op": "if",
+      "then": "__then_zb_done_62"
+    },
+    {
+      "id": "__then_zb_done_62",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_63",
+      "expr": "бой_ход \u003e= бой_лимит",
+      "op": "if",
+      "then": "__then_zb_done_63"
+    },
+    {
+      "id": "__then_zb_done_63",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_64",
+      "expr": "бой_хп * 100 / бой_хп0 \u003c (floor(здоровье * 100 / max((20 + ((1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1))) - 1) * 6), 1)))",
+      "op": "if",
+      "then": "__then_zb_done_64"
+    },
+    {
+      "id": "__then_zb_done_64",
+      "op": "label"
+    },
+    {
+      "expr": "\"выстоял\"",
+      "key": "бой_итог",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_64",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_64",
+      "op": "label"
+    },
+    {
+      "expr": "\"отступил\"",
+      "key": "бой_итог",
+      "op": "set"
+    },
+    {
+      "id": "__end_zb_done_64",
+      "op": "label"
+    },
+    {
+      "label": "__end_zb_done_63",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_63",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_63",
+      "op": "label"
+    },
+    {
+      "label": "__end_zb_done_62",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_62",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_62",
+      "op": "label"
+    },
+    {
+      "else": "__else_zb_done_65",
+      "expr": "бой_дерётся == 1",
+      "op": "if",
+      "then": "__then_zb_done_65"
+    },
+    {
+      "id": "__then_zb_done_65",
+      "op": "label"
+    },
+    {
+      "expr": "бой_шаг + 1",
+      "key": "бой_шаг",
+      "op": "set"
+    },
+    {
+      "else": "__else_zb_done_66",
+      "expr": "бой_шаг \u003e= (len((get(паттерн, бой_враг, паттерн_умолч))))",
+      "op": "if",
+      "then": "__then_zb_done_66"
+    },
+    {
+      "id": "__then_zb_done_66",
+      "op": "label"
+    },
+    {
+      "expr": "0",
+      "key": "бой_шаг",
+      "op": "set"
+    },
+    {
+      "label": "__end_zb_done_66",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_66",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_66",
+      "op": "label"
+    },
+    {
+      "label": "__end_zb_done_65",
+      "op": "goto"
+    },
+    {
+      "id": "__else_zb_done_65",
+      "op": "label"
+    },
+    {
+      "id": "__end_zb_done_65",
       "op": "label"
     },
     {
@@ -6324,13 +7148,13 @@
       "op": "set"
     },
     {
-      "else": "__else_zb_done_49",
+      "else": "__else_zb_done_67",
       "expr": "бой_итог == \"убил\"",
       "op": "if",
-      "then": "__then_zb_done_49"
+      "then": "__then_zb_done_67"
     },
     {
-      "id": "__then_zb_done_49",
+      "id": "__then_zb_done_67",
       "op": "label"
     },
     {
@@ -6339,43 +7163,46 @@
       "op": "set"
     },
     {
-      "expr": "4",
-      "key": "fp_distance",
-      "op": "set"
+      "anchor": "0.5,0.5",
+      "id": "fp_enemy",
+      "op": "obj",
+      "sprite_url": "/content/sprites/ec_combat_fp/skeleton_death.png",
+      "width": 0.58,
+      "x": 0.5,
+      "y": 0.7,
+      "z": 10
     },
     {
-      "expr": "\"hurt\"",
-      "key": "pose",
-      "op": "set"
-    },
-    {
-      "label": "__fn_ecfp_enemy",
-      "op": "call"
+      "action": "play",
+      "channel": "sfx",
+      "op": "audio",
+      "url": "/content/audio/ec/hit.ogg",
+      "volume": 1
     },
     {
       "op": "say",
       "text": "{бой_враг} складывается и больше не встаёт. Ходов ушло {бой_ход}."
     },
     {
-      "label": "__end_zb_done_49",
+      "label": "__end_zb_done_67",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_49",
+      "id": "__else_zb_done_67",
       "op": "label"
     },
     {
-      "id": "__end_zb_done_49",
+      "id": "__end_zb_done_67",
       "op": "label"
     },
     {
-      "else": "__else_zb_done_50",
+      "else": "__else_zb_done_68",
       "expr": "бой_итог == \"прогнал\"",
       "op": "if",
-      "then": "__then_zb_done_50"
+      "then": "__then_zb_done_68"
     },
     {
-      "id": "__then_zb_done_50",
+      "id": "__then_zb_done_68",
       "op": "label"
     },
     {
@@ -6402,25 +7229,25 @@
       "text": "{бой_враг} рвёт дистанцию и уходит — у него осталось {бой_хп} здоровья, и рисковать он не стал."
     },
     {
-      "label": "__end_zb_done_50",
+      "label": "__end_zb_done_68",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_50",
+      "id": "__else_zb_done_68",
       "op": "label"
     },
     {
-      "id": "__end_zb_done_50",
+      "id": "__end_zb_done_68",
       "op": "label"
     },
     {
-      "else": "__else_zb_done_51",
+      "else": "__else_zb_done_69",
       "expr": "бой_итог == \"выстоял\"",
       "op": "if",
-      "then": "__then_zb_done_51"
+      "then": "__then_zb_done_69"
     },
     {
-      "id": "__then_zb_done_51",
+      "id": "__then_zb_done_69",
       "op": "label"
     },
     {
@@ -6447,25 +7274,25 @@
       "text": "Вы оба выдохлись, но хуже ему. {бой_враг} отступает первым — у него {бой_хп} из {бой_хп0}."
     },
     {
-      "label": "__end_zb_done_51",
+      "label": "__end_zb_done_69",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_51",
+      "id": "__else_zb_done_69",
       "op": "label"
     },
     {
-      "id": "__end_zb_done_51",
+      "id": "__end_zb_done_69",
       "op": "label"
     },
     {
-      "else": "__else_zb_done_52",
+      "else": "__else_zb_done_70",
       "expr": "бой_итог == \"отступил\"",
       "op": "if",
-      "then": "__then_zb_done_52"
+      "then": "__then_zb_done_70"
     },
     {
-      "id": "__then_zb_done_52",
+      "id": "__then_zb_done_70",
       "op": "label"
     },
     {
@@ -6487,25 +7314,25 @@
       "text": "Ты больше не держишь стойку и разрываешь дистанцию сам. Противнику осталось {бой_хп} из {бой_хп0} — ты его не добил."
     },
     {
-      "label": "__end_zb_done_52",
+      "label": "__end_zb_done_70",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_52",
+      "id": "__else_zb_done_70",
       "op": "label"
     },
     {
-      "id": "__end_zb_done_52",
+      "id": "__end_zb_done_70",
       "op": "label"
     },
     {
-      "else": "__else_zb_done_53",
+      "else": "__else_zb_done_71",
       "expr": "бой_итог == \"пал\"",
       "op": "if",
-      "then": "__then_zb_done_53"
+      "then": "__then_zb_done_71"
     },
     {
-      "id": "__then_zb_done_53",
+      "id": "__then_zb_done_71",
       "op": "label"
     },
     {
@@ -6527,31 +7354,36 @@
       "text": "Ноги не держат, и земля оказывается ближе, чем ты думал."
     },
     {
-      "label": "__end_zb_done_53",
+      "label": "__end_zb_done_71",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_53",
+      "id": "__else_zb_done_71",
       "op": "label"
     },
     {
-      "id": "__end_zb_done_53",
+      "id": "__end_zb_done_71",
       "op": "label"
     },
     {
-      "else": "__else_zb_done_54",
+      "else": "__else_zb_done_72",
       "expr": "бой_победа == 1",
       "op": "if",
-      "then": "__then_zb_done_54"
+      "then": "__then_zb_done_72"
     },
     {
-      "id": "__then_zb_done_54",
+      "id": "__then_zb_done_72",
       "op": "label"
     },
     {
       "color": "#ffd76a",
       "duration": 0.35,
       "op": "flash"
+    },
+    {
+      "bloom": 0.55,
+      "dur": 0.5,
+      "op": "fx"
     },
     {
       "action": "play",
@@ -6585,13 +7417,13 @@
       "text": "Опыта {(floor((get(враг_хп, бой_враг, 10)) / 8) + get(враг_урон, бой_враг, 3))}, и с него упал кристалл {(get(враг_стихия, бой_враг, \"земля\"))}."
     },
     {
-      "else": "__else_zb_done_55",
+      "else": "__else_zb_done_73",
       "expr": "(1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1))) \u003e бой_ранее",
       "op": "if",
-      "then": "__then_zb_done_55"
+      "then": "__then_zb_done_73"
     },
     {
-      "id": "__then_zb_done_55",
+      "id": "__then_zb_done_73",
       "op": "label"
     },
     {
@@ -6600,29 +7432,35 @@
       "text": "⬆ Новый уровень: {(1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1)))} — {(get(титулы, (1 + (min(floor(опыт / max(get(пороги, 0, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 1, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 2, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 3, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 4, 99999), 1)), 1)) + (min(floor(опыт / max(get(пороги, 5, 99999), 1)), 1))) - 1, \"Легенда\"))}"
     },
     {
-      "label": "__end_zb_done_55",
+      "label": "__end_zb_done_73",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_55",
+      "id": "__else_zb_done_73",
       "op": "label"
     },
     {
-      "id": "__end_zb_done_55",
+      "id": "__end_zb_done_73",
       "op": "label"
     },
     {
-      "label": "__end_zb_done_54",
+      "label": "__end_zb_done_72",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_54",
+      "id": "__else_zb_done_72",
       "op": "label"
     },
     {
       "color": "#ff3b30",
       "duration": 0.3,
       "op": "flash"
+    },
+    {
+      "dur": 1,
+      "op": "fx",
+      "saturation": 0.35,
+      "vignette": 0.5
     },
     {
       "action": "play",
@@ -6637,7 +7475,7 @@
       "op": "set"
     },
     {
-      "id": "__end_zb_done_54",
+      "id": "__end_zb_done_72",
       "op": "label"
     },
     {
@@ -6674,13 +7512,13 @@
       "op": "call"
     },
     {
-      "else": "__else_zb_done_56",
+      "else": "__else_zb_done_74",
       "expr": "бой_итог == \"пал\"",
       "op": "if",
-      "then": "__then_zb_done_56"
+      "then": "__then_zb_done_74"
     },
     {
-      "id": "__then_zb_done_56",
+      "id": "__then_zb_done_74",
       "op": "label"
     },
     {
@@ -6694,15 +7532,15 @@
       "op": "set"
     },
     {
-      "label": "__end_zb_done_56",
+      "label": "__end_zb_done_74",
       "op": "goto"
     },
     {
-      "id": "__else_zb_done_56",
+      "id": "__else_zb_done_74",
       "op": "label"
     },
     {
-      "id": "__end_zb_done_56",
+      "id": "__end_zb_done_74",
       "op": "label"
     },
     {
@@ -6711,316 +7549,6 @@
     {
       "id": "__fnskip_battle_fp_skeleton",
       "op": "label"
-    },
-    {
-      "kind": "audio",
-      "op": "preload",
-      "url": "/content/audio/ec/block.ogg"
-    },
-    {
-      "kind": "audio",
-      "op": "preload",
-      "url": "/content/audio/ec/hit.ogg"
-    },
-    {
-      "kind": "audio",
-      "op": "preload",
-      "url": "/content/audio/ec/lose.ogg"
-    },
-    {
-      "kind": "audio",
-      "op": "preload",
-      "url": "/content/audio/ec/step.ogg"
-    },
-    {
-      "kind": "audio",
-      "op": "preload",
-      "url": "/content/audio/ec/whoosh.ogg"
-    },
-    {
-      "kind": "audio",
-      "op": "preload",
-      "url": "/content/audio/ec/win.ogg"
-    },
-    {
-      "kind": "audio",
-      "op": "preload",
-      "url": "/content/audio/music/beanfeast.mp3"
-    },
-    {
-      "kind": "audio",
-      "op": "preload",
-      "url": "/content/audio/music/dramatic_boi.mp3"
-    },
-    {
-      "kind": "audio",
-      "op": "preload",
-      "url": "/content/audio/music/dramatic_boi_v5.mp3"
-    },
-    {
-      "kind": "audio",
-      "op": "preload",
-      "url": "/content/audio/music/frozen_winter.mp3"
-    },
-    {
-      "kind": "audio",
-      "op": "preload",
-      "url": "/content/audio/music/hope.mp3"
-    },
-    {
-      "kind": "audio",
-      "op": "preload",
-      "url": "/content/audio/music/woo_scary.mp3"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/bg/ec/abyss.jpg"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/bg/ec/arctic.jpg"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/bg/ec/crystal_catacombs.jpg"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/bg/ec/dead_city.jpg"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/bg/ec/desert.jpg"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/bg/ec/efiria.jpg"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/bg/ec/geysers.jpg"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/bg/ec/glass_waste.jpg"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/bg/ec/moon.jpg"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/bg/ec/road_north.jpg"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/bg/ec/shining_zone.jpg"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/bg/ec/spirit_forest.jpg"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/bg/ec/taiga.jpg"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/bg/ec/technogard.jpg"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/bg/ec/temple_fire.jpg"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_cast_v2/cyberguard.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_cast_v2/druid.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_cast_v2/necromancer.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_cast_v2/niharis.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_cast_v2/skeleton.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_cast_v2/spirit.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_cast_v2/techno.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_cast_v2/tyrant.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_fp/hands_sword_attack.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_fp/hands_sword_block.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_fp/hands_sword_idle.png?v=tight2"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_fp/skeleton_attack.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_fp/skeleton_hurt.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_fp/skeleton_idle.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_ui/action_attack.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_ui/action_back.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_ui/action_block.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_ui/action_forward.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_hero_v2/body_armor.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_hero_v2/body_traveler.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_hero_v2/face_angry.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_hero_v2/face_neutral.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_hero_v2/face_smile.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_hero_v2/face_worried.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_hero_v2/weapon_none.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_hero_v2/weapon_sword.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_ui/zone_guard_body.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_ui/zone_guard_head.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_ui/zone_guard_legs.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_ui/zone_hit_body.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_ui/zone_hit_head.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_ui/zone_hit_legs.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_ui/timer_bar.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/sprites/ec_combat_ui/hud_panel.png"
-    },
-    {
-      "kind": "sprite",
-      "op": "preload",
-      "url": "/content/ui/frames/ec_panel.png"
     },
     {
       "kind": "sprite",
@@ -7145,9 +7673,13 @@
       "url": "/content/audio/music/hope.mp3"
     },
     {
-      "hide": true,
+      "color": "#ffd76a",
       "id": "hud",
-      "op": "text"
+      "op": "text",
+      "size": 34,
+      "text": "⚡ репутация {репутация}   стихий {len(стихии)}   кристаллов {(sum(vals(сумка)))}",
+      "x": 3,
+      "y": 5
     },
     {
       "id": "spirit_forest",
@@ -7155,14 +7687,36 @@
       "sprite_url": "/content/bg/ec/spirit_forest.jpg"
     },
     {
+      "fov": 50,
+      "id": "meadow",
+      "op": "bg3d",
+      "pitch": 1,
+      "x": 44,
+      "y": 4.7,
+      "yaw": -8,
+      "z": 48
+    },
+    {
+      "contrast": 0.92,
+      "dur": 0.8,
+      "grain": 0.05,
+      "op": "fx",
+      "saturation": 0.68,
+      "tint": "#eadfe8",
+      "vignette": 0.34
+    },
+    {
       "emotion": "neutral",
       "flip": "true",
+      "height": 0.94,
       "id": "ec_hero",
       "op": "actor",
       "outfit": "traveler",
       "position": "left",
       "show": true,
-      "weapon": "sword"
+      "weapon": "sword",
+      "x": 0.26,
+      "y": 0.98
     },
     {
       "op": "say",
@@ -7176,21 +7730,54 @@
       "var": "имя"
     },
     {
+      "dur": 0.5,
+      "fov": 47,
+      "op": "bg3d",
+      "pitch": 1,
+      "x": 44,
+      "y": 4.7,
+      "yaw": -8,
+      "z": 52
+    },
+    {
       "op": "say",
       "text": "Где я? И почему у меня в руке чужой меч?",
       "who": "{имя}"
     },
     {
+      "dur": 0.6,
+      "fov": 54,
+      "op": "bg3d",
+      "pitch": 4,
+      "x": 46,
+      "y": 4.7,
+      "yaw": -110,
+      "z": 72
+    },
+    {
       "emotion": "angry",
+      "height": 0.94,
       "id": "ec_niharis",
       "op": "actor",
-      "position": "center",
-      "show": true
+      "position": "right",
+      "show": true,
+      "x": 0.74,
+      "y": 0.98
     },
     {
       "op": "say",
       "text": "Ты в Эфирии. Я — Нихарис, и обычно люди видят меня один раз.",
       "who": "Нихарис"
+    },
+    {
+      "dur": 0.45,
+      "fov": 43,
+      "op": "bg3d",
+      "pitch": 4,
+      "x": 46,
+      "y": 4.7,
+      "yaw": -110,
+      "z": 72
     },
     {
       "op": "say",
@@ -7272,6 +7859,26 @@
       "sprite_url": "/content/bg/ec/road_north.jpg"
     },
     {
+      "dur": 0.6,
+      "fov": 54,
+      "id": "meadow",
+      "op": "bg3d",
+      "pitch": 2,
+      "x": 56,
+      "y": 4.7,
+      "yaw": 95,
+      "z": 48
+    },
+    {
+      "contrast": 1.05,
+      "dur": 0.5,
+      "grain": 0.1,
+      "op": "fx",
+      "saturation": 0.7,
+      "tint": "#d8dfe8",
+      "vignette": 0.42
+    },
+    {
       "action": "shake",
       "amplitude": 0.04,
       "duration": 0.5,
@@ -7310,19 +7917,13 @@
       "op": "call"
     },
     {
-      "emotion": "neutral",
-      "flip": "true",
-      "id": "ec_hero",
-      "op": "actor",
-      "outfit": "traveler",
-      "position": "left",
-      "show": true,
-      "weapon": "sword"
-    },
-    {
-      "hide": true,
+      "color": "#ffd76a",
       "id": "hud",
-      "op": "text"
+      "op": "text",
+      "size": 34,
+      "text": "⚡ репутация {репутация}   стихий {len(стихии)}   кристаллов {(sum(vals(сумка)))}",
+      "x": 3,
+      "y": 5
     },
     {
       "else": "__nf_бой_1",
@@ -7350,11 +7951,33 @@
       "show": false
     },
     {
+      "dur": 0.45,
+      "fov": 50,
+      "op": "bg3d",
+      "pitch": 2,
+      "x": 56,
+      "y": 4.7,
+      "yaw": 95,
+      "z": 48
+    },
+    {
+      "contrast": 0.92,
+      "dur": 0.6,
+      "grain": 0.05,
+      "op": "fx",
+      "saturation": 0.68,
+      "tint": "#eadfe8",
+      "vignette": 0.34
+    },
+    {
       "emotion": "calm",
+      "height": 0.94,
       "id": "ec_niharis",
       "op": "actor",
-      "position": "center",
-      "show": true
+      "position": "right",
+      "show": true,
+      "x": 0.74,
+      "y": 0.98
     },
     {
       "op": "say",
@@ -7404,11 +8027,33 @@
       "show": false
     },
     {
+      "dur": 0.45,
+      "fov": 50,
+      "op": "bg3d",
+      "pitch": 2,
+      "x": 56,
+      "y": 4.7,
+      "yaw": 95,
+      "z": 48
+    },
+    {
+      "contrast": 0.9,
+      "dur": 0.6,
+      "grain": 0.07,
+      "op": "fx",
+      "saturation": 0.58,
+      "tint": "#d8dce6",
+      "vignette": 0.42
+    },
+    {
       "emotion": "calm",
+      "height": 0.94,
       "id": "ec_niharis",
       "op": "actor",
-      "position": "center",
-      "show": true
+      "position": "right",
+      "show": true,
+      "x": 0.74,
+      "y": 0.98
     },
     {
       "op": "say",
@@ -7460,6 +8105,17 @@
       "show": false
     },
     {
+      "dur": 0.6,
+      "fov": 50,
+      "id": "meadow",
+      "op": "bg3d",
+      "pitch": 1,
+      "x": 44,
+      "y": 4.7,
+      "yaw": -8,
+      "z": 52
+    },
+    {
       "op": "say",
       "text": "Ты не стал драться. Ты стучал в двери, орал, тащил за руки — и вывел в лес\nвсех, включая старуху, которая до последнего собирала горшки."
     },
@@ -7487,7 +8143,7 @@
       "op": "label"
     },
     {
-      "duration": 0.8,
+      "duration": 0.35,
       "op": "fade",
       "to": "black"
     },
@@ -7505,9 +8161,46 @@
       "show": false
     },
     {
+      "id": "ec_hero",
+      "op": "actor",
+      "show": false
+    },
+    {
+      "fov": 58,
+      "op": "bg3d",
+      "pitch": 18,
+      "x": 50,
+      "y": 18,
+      "yaw": 0,
+      "z": 28
+    },
+    {
+      "duration": 0.5,
+      "op": "fade",
+      "to": "clear"
+    },
+    {
+      "ms": 1500,
+      "op": "wait"
+    },
+    {
+      "duration": 0.8,
+      "op": "fade",
+      "to": "black"
+    },
+    {
+      "id": "fp_enemy",
+      "op": "obj",
+      "show": false
+    },
+    {
       "id": "efiria",
       "op": "bg",
       "sprite_url": "/content/bg/ec/efiria.jpg"
+    },
+    {
+      "off": true,
+      "op": "fx"
     },
     {
       "duration": 0.8,

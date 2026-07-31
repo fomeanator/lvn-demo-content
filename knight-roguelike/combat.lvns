@@ -1,0 +1,386 @@
+// ═══════════════════════════════════════════════════════════════════
+// «Рыцарь одного дня» — БОЕВОЕ ЯДРО (дистанционный бой, дистанция 1..9)
+// ═══════════════════════════════════════════════════════════════════
+// Подключается главой первой строкой после `scene`:
+//     include "combat.lvns"
+//
+// Что внутри: отрисовка (враг крупным планом + руки с мечом снизу), ход
+// игрока (глаголы, часть — заготовки будущих ступеней), детерминированный
+// ИИ врага (три обобщённых профиля) и разрешение исхода схватки.
+//
+// ─── Правила файла ────────────────────────────────────────────────────
+// 1. Весь бой — ОДНА процедура `run_combat()`. Она читает/пишет переменные,
+//    которые ГЛАВА обязана выставить перед вызовом (список ниже) — обычный
+//    подключаемый модуль, а не изолированная песочница.
+// 2. Урон в этой версии ПОЛНОСТЬЮ детерминирован — ни rand(), ни chance()
+//    не решают, проходим ли замок (design.md П2 и §5: «случайность на
+//    приправу, не на скелет»). rand() трогает только НАЧАЛЬНУЮ дистанцию
+//    подхода (глава задаёт её через rand(3,7)) — это длина пути к схватке,
+//    а не её исход.
+// 3. Ступени героя живут в `global.step_*` — они переживают смерть и НИ РАЗУ
+//    не присваиваются в этом файле, только читаются. Открывает их design.md
+//    по мере заполнения лестницы (§2), не эта заготовка.
+//
+// ─── Будущие глаголы — куда добавлять новые ────────────────────────────
+// Уже названы в design.md/ТЗ, но без ступени в лестнице (§2 там же ещё "?"):
+//   global.step_jump             — длинный шаг/прыжок на 2 клетки
+//   global.step_throw            — бросок: дальний урон, тратит предмет забега
+//   global.step_dual             — двойной удар: два взмаха за один ход
+//   global.step_first_shot_block — пассивный блок ПЕРВОГО дальнего выстрела
+// Каждый уже вписан в меню `player_turn()` под своим `expr=` и в `pt_*`-ветку
+// разрешения. Новый глагол ступени N добавляется тем же способом: одна
+// строка меню + одна ветка разрешения — see `player_turn()` ниже.
+//
+// ─── Новый противник-замок — куда добавлять ────────────────────────────
+// Скелет v1 — единственный. Следующий замок заводится главой: она выставляет
+// enemy_name/enemy_rank/enemy_ai/enemy_hp/enemy_maxhp/enemy_atk (и, если
+// enemy_ai == "ranged", enemy_pref_range) и вызывает run_combat() — само
+// боевое ядро трогать не нужно. Новый ГЕНЕРИЧЕСКИЙ профиль ИИ (не один из
+// трёх ниже) добавляется веткой внутри `enemy_take_turn()`.
+//
+// ─── Контракт вызова ────────────────────────────────────────────────────
+// Глава обязана выставить перед run_combat():
+//   hp, maxhp                — здоровье героя (сгорает со смертью/днём)
+//   distance                  — целая дистанция 1..9
+//   enemy_hp, enemy_maxhp     — здоровье противника
+//   enemy_name, enemy_rank    — подписи для HUD и текста (честный ярлык, §3)
+//   enemy_ai                  — "aggressive_melee" | "cautious_melee" | "ranged"
+//   enemy_atk                 — урон одного попадания врага
+//   enemy_pref_range          — только для enemy_ai == "ranged"
+// После run_combat() глава читает `combat_outcome`:
+//   "win"     — противник повержен
+//   "dead"    — герой пал (hp <= 0)
+//   "timeout" — раунды кончились без исхода — явный обрыв, НЕ soft-lock (§8 ТЗ)
+
+// ══════════════════════════════════════════════════════════════════════
+//  1. ОТРИСОВКА — враг крупным планом, руки снизу
+// ══════════════════════════════════════════════════════════════════════
+// Динамическое h/scale от переменной в obj/actor не поддерживается движком
+// (числовые поля — только литералы), поэтому размер врага — таблица из трёх
+// дистанционных зон × три позы. Зоны, а не 9 отдельных шагов: провал в
+// движке одинаковый, а веток втрое меньше — это честный компромисс v1
+// (см. README «Ограничения»).
+
+func render_enemy(pose) {
+  if pose == "attack" -> re_attack
+  if pose == "hurt" -> re_hurt
+  -> re_idle
+
+  :re_attack
+  if distance <= 3 -> re_a_close
+  if distance <= 6 -> re_a_mid
+  -> re_a_far
+  :re_a_close
+  obj id=enemy sprite_url="/content/knight-roguelike/assets/enemies/skeleton_attack.png" x=0.5 y=0.55 width=0.58 height=0.65 anchor="0.5,0.5" z=5
+  -> re_done
+  :re_a_mid
+  obj id=enemy sprite_url="/content/knight-roguelike/assets/enemies/skeleton_attack.png" x=0.5 y=0.55 width=0.42 height=0.48 anchor="0.5,0.5" z=5
+  -> re_done
+  :re_a_far
+  obj id=enemy sprite_url="/content/knight-roguelike/assets/enemies/skeleton_attack.png" x=0.5 y=0.55 width=0.28 height=0.32 anchor="0.5,0.5" z=5
+  -> re_done
+
+  :re_hurt
+  if distance <= 3 -> re_h_close
+  if distance <= 6 -> re_h_mid
+  -> re_h_far
+  :re_h_close
+  obj id=enemy sprite_url="/content/knight-roguelike/assets/enemies/skeleton_hurt.png" x=0.5 y=0.55 width=0.58 height=0.65 anchor="0.5,0.5" z=5
+  -> re_done
+  :re_h_mid
+  obj id=enemy sprite_url="/content/knight-roguelike/assets/enemies/skeleton_hurt.png" x=0.5 y=0.55 width=0.42 height=0.48 anchor="0.5,0.5" z=5
+  -> re_done
+  :re_h_far
+  obj id=enemy sprite_url="/content/knight-roguelike/assets/enemies/skeleton_hurt.png" x=0.5 y=0.55 width=0.28 height=0.32 anchor="0.5,0.5" z=5
+  -> re_done
+
+  :re_idle
+  if distance <= 3 -> re_i_close
+  if distance <= 6 -> re_i_mid
+  -> re_i_far
+  :re_i_close
+  obj id=enemy sprite_url="/content/knight-roguelike/assets/enemies/skeleton_idle.png" x=0.5 y=0.55 width=0.58 height=0.65 anchor="0.5,0.5" z=5
+  -> re_done
+  :re_i_mid
+  obj id=enemy sprite_url="/content/knight-roguelike/assets/enemies/skeleton_idle.png" x=0.5 y=0.55 width=0.42 height=0.48 anchor="0.5,0.5" z=5
+  -> re_done
+  :re_i_far
+  obj id=enemy sprite_url="/content/knight-roguelike/assets/enemies/skeleton_idle.png" x=0.5 y=0.55 width=0.28 height=0.32 anchor="0.5,0.5" z=5
+  -> re_done
+
+  :re_done
+}
+
+// Руки не зависят от дистанции — только от того, что герой сейчас делает.
+func render_hands(pose) {
+  if pose == "attack" -> rh_attack
+  if pose == "block" -> rh_block
+  -> rh_idle
+  :rh_attack
+  obj id=fp_hands sprite_url="/content/knight-roguelike/assets/fp/hands_sword_attack.png" x=0.5 y=1.0 width=0.55 anchor="0.5,1" z=20
+  -> rh_done
+  :rh_block
+  obj id=fp_hands sprite_url="/content/knight-roguelike/assets/fp/hands_sword_block.png" x=0.5 y=1.0 width=0.55 anchor="0.5,1" z=20
+  -> rh_done
+  :rh_idle
+  obj id=fp_hands sprite_url="/content/knight-roguelike/assets/fp/hands_sword_idle.png" x=0.5 y=1.0 width=0.55 anchor="0.5,1" z=20
+  -> rh_done
+  :rh_done
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  2. ХОД ИГРОКА
+// ══════════════════════════════════════════════════════════════════════
+// Каждый вариант меню только помечает `last_action` (тело выбора — flat,
+// компилятор не пускает туда if/call, см. LANGUAGE.md §5) — всё разрешение
+// (движение, урон, видео) идёт ПОСЛЕ выбора, одним каскадом.
+
+func player_turn() {
+  last_action = ""
+
+  - ⚔ Взмах мечом {
+    last_action = "swing"
+  }
+  - 🛡 Блок {
+    last_action = "block"
+  }
+  - ▶ Шаг вперёд {
+    last_action = "approach"
+  }
+  - ◀ Шаг назад {
+    last_action = "retreat"
+  }
+  - ⏩ Длинный шаг expr="global.step_jump >= 1" {
+    last_action = "jump"
+  }
+  - ⚔⚔ Двойной удар expr="global.step_dual >= 1" {
+    last_action = "dual"
+  }
+  - 🪨 Бросок expr="global.step_throw >= 1 && run_throw_charges >= 1" {
+    last_action = "throw"
+  }
+
+  if last_action == "approach" -> pt_approach
+  if last_action == "retreat" -> pt_retreat
+  if last_action == "swing" -> pt_swing
+  if last_action == "block" -> pt_block
+  if last_action == "jump" -> pt_jump
+  if last_action == "dual" -> pt_dual
+  -> pt_throw
+
+  :pt_approach
+  distance = max(1, distance - 1)
+  render_hands("idle")
+  Ты делаешь шаг вперёд.
+  -> pt_done
+
+  :pt_retreat
+  distance = min(9, distance + 1)
+  render_hands("idle")
+  Ты отступаешь на шаг, не выпуская противника из виду.
+  -> pt_done
+
+  :pt_swing
+  render_hands("attack")
+  if distance <= 1 -> pt_swing_hit
+  -> pt_swing_miss
+  :pt_swing_hit
+  enemy_hp = enemy_hp - 1
+  render_enemy("hurt")
+  Клинок достаёт скелета — кость раскалывается с сухим треском.
+  -> pt_done
+  :pt_swing_miss
+  Меч рассекает пустой воздух — до противника ещё далеко.
+  -> pt_done
+
+  :pt_block
+  player_blocking = 1
+  render_hands("block")
+  Ты вскидываешь меч в защитную стойку.
+  -> pt_done
+
+  // ─── Заготовка ступени "?" (design.md §2, строка "длинный шаг" ещё не
+  //     заполнена) — видна только при global.step_jump >= 1.
+  :pt_jump
+  distance = max(1, distance - 2)
+  render_hands("idle")
+  Рывок вперёд — дистанция тает быстрее, чем противник успевает среагировать.
+  -> pt_done
+
+  // ─── Заготовка ступени "?" — двойной удар, видна при global.step_dual >= 1.
+  :pt_dual
+  render_hands("attack")
+  if distance <= 1 -> pt_dual_hit
+  -> pt_dual_miss
+  :pt_dual_hit
+  enemy_hp = enemy_hp - 2
+  render_enemy("hurt")
+  Два взмаха подряд — сталь бьёт дважды прежде, чем скелет успевает отшатнуться.
+  -> pt_done
+  :pt_dual_miss
+  Оба взмаха уходят в пустоту — слишком далеко для одного шага.
+  -> pt_done
+
+  // ─── Заготовка ступени 3 «Дистанция (метание)», глагол «бросок»
+  //     (design.md §2). run_throw_charges — задел под будущий инвентарь
+  //     забега; в этой сборке он всегда 0, предметов ещё нет, и живая игра
+  //     сюда не попадает (см. expr= выше) — только каркас на будущее.
+  :pt_throw
+  run_throw_charges = run_throw_charges - 1
+  enemy_hp = enemy_hp - 1
+  render_hands("attack")
+  Точный бросок находит цель на расстоянии.
+  -> pt_done
+
+  :pt_done
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  3. ИИ ВРАГА — детерминированный, три обобщённых профиля
+// ══════════════════════════════════════════════════════════════════════
+// Ни одного rand()/chance() — противник читается ДО боя (ранг, §3 design.md)
+// и ведёт себя ровно так, как обещал. Один и тот же профиль обслуживает
+// любое число будущих противников — новый замок выставляет только числа
+// (enemy_atk, enemy_pref_range), не новую ветку кода.
+//
+// ─── Таблица решений ────────────────────────────────────────────────────
+// aggressive_melee (v1 — скелет «Низший»):
+//   distance <= 1              → бьёт (или натыкается на блок)
+//   distance > 1               → шаг вперёд
+//
+// cautious_melee (задел под будущий замок — держит и выманивает,
+// трёхфазный детерминированный цикл, БЕЗ кубика):
+//   фаза 0, дистанция < 2      → отступает                | фаза → 1
+//   фаза 0, дистанция >= 2     → выжидает, не раскрываясь  | фаза → 1
+//   фаза 1, дистанция < 2      → отступает                | фаза → 2
+//   фаза 1, дистанция >= 2     → выжидает                  | фаза → 2
+//   фаза 2 (любая дистанция)   → рывок на дистанцию 1, бьёт | фаза → 0
+//
+// ranged (задел под будущий замок — держит preferred_range):
+//   distance < enemy_pref_range  → отходит
+//   distance > enemy_pref_range  → приближается
+//   distance == enemy_pref_range → стреляет (первый выстрел — под
+//                                  global.step_first_shot_block, см. ниже)
+
+func enemy_take_turn() {
+  if enemy_ai == "aggressive_melee" -> ai_aggr
+  if enemy_ai == "cautious_melee" -> ai_caut
+  -> ai_ranged
+
+  :ai_aggr
+  if distance <= 1 -> ai_aggr_hit
+  distance = max(1, distance - 1)
+  render_enemy("idle")
+  Скелет делает шаг навстречу, кости лязгают друг о друга.
+  -> ai_done
+  :ai_aggr_hit
+  render_enemy("attack")
+  if player_blocking == 1 -> ai_aggr_blocked
+  hp = hp - enemy_atk
+  Скелет бьёт наотмашь — удар проходит.
+  -> ai_done
+  :ai_aggr_blocked
+  Удар звенит о клинок — блок держит.
+  -> ai_done
+
+  :ai_caut
+  if enemy_phase == 2 -> ai_caut_lunge
+  if distance < 2 -> ai_caut_retreat
+  render_enemy("idle")
+  Противник выжидает, не раскрываясь.
+  enemy_phase = enemy_phase + 1
+  -> ai_done
+  :ai_caut_retreat
+  distance = min(9, distance + 1)
+  render_enemy("idle")
+  Противник уходит с дистанции, не желая рисковать.
+  enemy_phase = enemy_phase + 1
+  -> ai_done
+  :ai_caut_lunge
+  distance = 1
+  render_enemy("attack")
+  if player_blocking == 1 -> ai_caut_blocked
+  hp = hp - enemy_atk
+  enemy_phase = 0
+  Рывок — противник закрывает дистанцию одним движением и бьёт.
+  -> ai_done
+  :ai_caut_blocked
+  enemy_phase = 0
+  Рывок наткнулся на блок.
+  -> ai_done
+
+  :ai_ranged
+  if distance < enemy_pref_range -> ai_ranged_back
+  if distance > enemy_pref_range -> ai_ranged_close
+  -> ai_ranged_shoot
+  :ai_ranged_back
+  distance = min(9, distance + 1)
+  render_enemy("idle")
+  Противник пятится, держа дистанцию для выстрела.
+  -> ai_done
+  :ai_ranged_close
+  distance = max(1, distance - 1)
+  render_enemy("idle")
+  Противник подступает ближе.
+  -> ai_done
+  :ai_ranged_shoot
+  render_enemy("attack")
+  enemy_shots_fired = enemy_shots_fired + 1
+  if enemy_shots_fired <= 1 -> ai_ranged_first
+  -> ai_ranged_normal
+  // ─── Заготовка ступени "?" — пассивный блок первого дальнего выстрела.
+  :ai_ranged_first
+  if global.step_first_shot_block >= 1 -> ai_ranged_first_blocked
+  -> ai_ranged_normal
+  :ai_ranged_first_blocked
+  Первый выстрел ты видел заранее — уходишь с линии до того, как тетива спущена.
+  -> ai_done
+  :ai_ranged_normal
+  if player_blocking == 1 -> ai_ranged_blocked
+  hp = hp - enemy_atk
+  Стрела бьёт точно.
+  -> ai_done
+  :ai_ranged_blocked
+  Ты успеваешь подставить клинок под выстрел.
+  -> ai_done
+
+  :ai_done
+}
+
+// ══════════════════════════════════════════════════════════════════════
+//  4. САМА СХВАТКА — процедура, вызываемая главой
+// ══════════════════════════════════════════════════════════════════════
+
+func run_combat() {
+  combat_round = 0
+  combat_max_rounds = 20 // явный предел — обрыв без исхода честно засчитан "timeout" (ТЗ §8), не soft-lock
+  combat_outcome = ""
+  player_blocking = 0
+  enemy_phase = 0
+  enemy_shots_fired = 0
+
+  render_enemy("idle")
+  render_hands("idle")
+
+  while combat_outcome == "" {
+    combat_round = combat_round + 1
+    player_blocking = 0
+    render_enemy("idle")
+
+    player_turn()
+
+    if enemy_hp <= 0 {
+      combat_outcome = "win"
+    } else {
+      enemy_take_turn()
+      if hp <= 0 {
+        combat_outcome = "dead"
+      } else {
+        if combat_round >= combat_max_rounds {
+          combat_outcome = "timeout"
+        } else {
+        }
+      }
+    }
+  }
+}

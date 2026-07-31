@@ -1,0 +1,4052 @@
+{
+  "scene": "knight-duel-proto",
+  "script": [
+    {
+      "expr": "{}",
+      "key": "икона",
+      "op": "set"
+    },
+    {
+      "expr": "put(икона, \"удар\", \"⚔\")",
+      "key": "икона",
+      "op": "set"
+    },
+    {
+      "expr": "put(икона, \"блок\", \"🛡\")",
+      "key": "икона",
+      "op": "set"
+    },
+    {
+      "expr": "put(икона, \"оглушение\", \"💫\")",
+      "key": "икона",
+      "op": "set"
+    },
+    {
+      "expr": "put(икона, \"пробив\", \"🔨\")",
+      "key": "икона",
+      "op": "set"
+    },
+    {
+      "expr": "put(икона, \"стан\", \"😵\")",
+      "key": "икона",
+      "op": "set"
+    },
+    {
+      "expr": "list(\"удар\", \"удар\", \"блок\", \"удар\", \"блок\")",
+      "key": "паттерн_обычный",
+      "op": "set"
+    },
+    {
+      "expr": "list(\"удар\", \"блок\", \"удар\", \"удар\", \"удар\")",
+      "key": "паттерн_ярость",
+      "op": "set"
+    },
+    {
+      "label": "__fnskip_foe_sprite",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_foe_sprite",
+      "op": "label"
+    },
+    {
+      "else": "__nf_head_1",
+      "expr": "pose == \"attack\"",
+      "op": "if",
+      "then": "вс_атака"
+    },
+    {
+      "id": "__nf_head_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_head_2",
+      "expr": "pose == \"hurt\"",
+      "op": "if",
+      "then": "вс_ранен"
+    },
+    {
+      "id": "__nf_head_2",
+      "op": "label"
+    },
+    {
+      "label": "вс_покой",
+      "op": "goto"
+    },
+    {
+      "id": "вс_атака",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "duel_enemy",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/enemies/skeleton_attack.png",
+      "width": 0.36,
+      "x": 0.5,
+      "y": 0.48,
+      "z": 5
+    },
+    {
+      "label": "вс_готово",
+      "op": "goto"
+    },
+    {
+      "id": "вс_ранен",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "duel_enemy",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/enemies/skeleton_hurt.png",
+      "width": 0.36,
+      "x": 0.5,
+      "y": 0.48,
+      "z": 5
+    },
+    {
+      "label": "вс_готово",
+      "op": "goto"
+    },
+    {
+      "id": "вс_покой",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "duel_enemy",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/enemies/skeleton_idle.png",
+      "width": 0.36,
+      "x": 0.5,
+      "y": 0.48,
+      "z": 5
+    },
+    {
+      "label": "вс_готово",
+      "op": "goto"
+    },
+    {
+      "id": "вс_готово",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_foe_sprite",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_hands",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_hands",
+      "op": "label"
+    },
+    {
+      "else": "__nf_вс_готово_1",
+      "expr": "pose == \"attack\"",
+      "op": "if",
+      "then": "рк_атака"
+    },
+    {
+      "id": "__nf_вс_готово_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_вс_готово_2",
+      "expr": "pose == \"block\"",
+      "op": "if",
+      "then": "рк_блок"
+    },
+    {
+      "id": "__nf_вс_готово_2",
+      "op": "label"
+    },
+    {
+      "label": "рк_покой",
+      "op": "goto"
+    },
+    {
+      "id": "рк_атака",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,1",
+      "id": "duel_hands",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/fp/hands_sword_attack.png",
+      "width": 0.55,
+      "x": 0.5,
+      "y": 1,
+      "z": 20
+    },
+    {
+      "label": "рк_готово",
+      "op": "goto"
+    },
+    {
+      "id": "рк_блок",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,1",
+      "id": "duel_hands",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/fp/hands_sword_block.png",
+      "width": 0.55,
+      "x": 0.5,
+      "y": 1,
+      "z": 20
+    },
+    {
+      "label": "рк_готово",
+      "op": "goto"
+    },
+    {
+      "id": "рк_покой",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,1",
+      "id": "duel_hands",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/fp/hands_sword_idle.png",
+      "width": 0.55,
+      "x": 0.5,
+      "y": 1,
+      "z": 20
+    },
+    {
+      "label": "рк_готово",
+      "op": "goto"
+    },
+    {
+      "id": "рк_готово",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_hands",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_buttons_show",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_buttons_show",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "btn_strike",
+      "on_click": "дп_удар",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_strike.png",
+      "width": 0.11,
+      "x": 0.16,
+      "y": 0.26,
+      "z": 40
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "btn_block",
+      "on_click": "дп_блок",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_block.png",
+      "width": 0.11,
+      "x": 0.32,
+      "y": 0.26,
+      "z": 40
+    },
+    {
+      "else": "__nf_рк_готово_1",
+      "expr": "навык == \"оглушение\"",
+      "op": "if",
+      "then": "кп_огл"
+    },
+    {
+      "id": "__nf_рк_готово_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_рк_готово_2",
+      "expr": "навык == \"пробив\"",
+      "op": "if",
+      "then": "кп_проб"
+    },
+    {
+      "id": "__nf_рк_готово_2",
+      "op": "label"
+    },
+    {
+      "label": "кп_сброс",
+      "op": "goto"
+    },
+    {
+      "id": "кп_огл",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "btn_skill",
+      "on_click": "дп_оглушение",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_stun.png",
+      "width": 0.11,
+      "x": 0.48,
+      "y": 0.26,
+      "z": 40
+    },
+    {
+      "label": "кп_сброс",
+      "op": "goto"
+    },
+    {
+      "id": "кп_проб",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "btn_skill",
+      "on_click": "дп_пробив",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_break.png",
+      "width": 0.11,
+      "x": 0.48,
+      "y": 0.26,
+      "z": 40
+    },
+    {
+      "label": "кп_сброс",
+      "op": "goto"
+    },
+    {
+      "id": "кп_сброс",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "btn_reset",
+      "on_click": "дп_сброс",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_reset.png",
+      "width": 0.08,
+      "x": 0.86,
+      "y": 0.26,
+      "z": 40
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_buttons_show",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_buttons_hide",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_buttons_hide",
+      "op": "label"
+    },
+    {
+      "id": "btn_strike",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "btn_block",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "btn_skill",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "btn_reset",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_buttons_hide",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_slot_kind",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_slot_kind",
+      "op": "label"
+    },
+    {
+      "expr": "\"пусто\"",
+      "key": "сл_вид",
+      "op": "set"
+    },
+    {
+      "else": "__else_кп_сброс_1",
+      "expr": "i \u003e= тактов",
+      "op": "if",
+      "then": "__then_кп_сброс_1"
+    },
+    {
+      "id": "__then_кп_сброс_1",
+      "op": "label"
+    },
+    {
+      "expr": "\"выкл\"",
+      "key": "сл_вид",
+      "op": "set"
+    },
+    {
+      "label": "__end_кп_сброс_1",
+      "op": "goto"
+    },
+    {
+      "id": "__else_кп_сброс_1",
+      "op": "label"
+    },
+    {
+      "else": "__else_кп_сброс_2",
+      "expr": "i \u003c len(план)",
+      "op": "if",
+      "then": "__then_кп_сброс_2"
+    },
+    {
+      "id": "__then_кп_сброс_2",
+      "op": "label"
+    },
+    {
+      "expr": "get(план, i, \"пусто\")",
+      "key": "сл_вид",
+      "op": "set"
+    },
+    {
+      "label": "__end_кп_сброс_2",
+      "op": "goto"
+    },
+    {
+      "id": "__else_кп_сброс_2",
+      "op": "label"
+    },
+    {
+      "id": "__end_кп_сброс_2",
+      "op": "label"
+    },
+    {
+      "id": "__end_кп_сброс_1",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_slot_kind",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_slot1",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_slot1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_кп_сброс_1",
+      "expr": "d == \"удар\"",
+      "op": "if",
+      "then": "с1у"
+    },
+    {
+      "id": "__nf_кп_сброс_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_кп_сброс_2",
+      "expr": "d == \"блок\"",
+      "op": "if",
+      "then": "с1б"
+    },
+    {
+      "id": "__nf_кп_сброс_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_кп_сброс_3",
+      "expr": "d == \"оглушение\"",
+      "op": "if",
+      "then": "с1о"
+    },
+    {
+      "id": "__nf_кп_сброс_3",
+      "op": "label"
+    },
+    {
+      "else": "__nf_кп_сброс_4",
+      "expr": "d == \"пробив\"",
+      "op": "if",
+      "then": "с1п"
+    },
+    {
+      "id": "__nf_кп_сброс_4",
+      "op": "label"
+    },
+    {
+      "else": "__nf_кп_сброс_5",
+      "expr": "d == \"выкл\"",
+      "op": "if",
+      "then": "с1в"
+    },
+    {
+      "id": "__nf_кп_сброс_5",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot1",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/slot_empty.png",
+      "width": 0.075,
+      "x": 0.3,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с1г",
+      "op": "goto"
+    },
+    {
+      "id": "с1у",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot1",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_strike.png",
+      "width": 0.075,
+      "x": 0.3,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с1г",
+      "op": "goto"
+    },
+    {
+      "id": "с1б",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot1",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_block.png",
+      "width": 0.075,
+      "x": 0.3,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с1г",
+      "op": "goto"
+    },
+    {
+      "id": "с1о",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot1",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_stun.png",
+      "width": 0.075,
+      "x": 0.3,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с1г",
+      "op": "goto"
+    },
+    {
+      "id": "с1п",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot1",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_break.png",
+      "width": 0.075,
+      "x": 0.3,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с1г",
+      "op": "goto"
+    },
+    {
+      "id": "с1в",
+      "op": "label"
+    },
+    {
+      "id": "slot1",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "label": "с1г",
+      "op": "goto"
+    },
+    {
+      "id": "с1г",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_slot1",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_slot2",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_slot2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с1г_1",
+      "expr": "d == \"удар\"",
+      "op": "if",
+      "then": "с2у"
+    },
+    {
+      "id": "__nf_с1г_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с1г_2",
+      "expr": "d == \"блок\"",
+      "op": "if",
+      "then": "с2б"
+    },
+    {
+      "id": "__nf_с1г_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с1г_3",
+      "expr": "d == \"оглушение\"",
+      "op": "if",
+      "then": "с2о"
+    },
+    {
+      "id": "__nf_с1г_3",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с1г_4",
+      "expr": "d == \"пробив\"",
+      "op": "if",
+      "then": "с2п"
+    },
+    {
+      "id": "__nf_с1г_4",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с1г_5",
+      "expr": "d == \"выкл\"",
+      "op": "if",
+      "then": "с2в"
+    },
+    {
+      "id": "__nf_с1г_5",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot2",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/slot_empty.png",
+      "width": 0.075,
+      "x": 0.4,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с2г",
+      "op": "goto"
+    },
+    {
+      "id": "с2у",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot2",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_strike.png",
+      "width": 0.075,
+      "x": 0.4,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с2г",
+      "op": "goto"
+    },
+    {
+      "id": "с2б",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot2",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_block.png",
+      "width": 0.075,
+      "x": 0.4,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с2г",
+      "op": "goto"
+    },
+    {
+      "id": "с2о",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot2",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_stun.png",
+      "width": 0.075,
+      "x": 0.4,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с2г",
+      "op": "goto"
+    },
+    {
+      "id": "с2п",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot2",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_break.png",
+      "width": 0.075,
+      "x": 0.4,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с2г",
+      "op": "goto"
+    },
+    {
+      "id": "с2в",
+      "op": "label"
+    },
+    {
+      "id": "slot2",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "label": "с2г",
+      "op": "goto"
+    },
+    {
+      "id": "с2г",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_slot2",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_slot3",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_slot3",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с2г_1",
+      "expr": "d == \"удар\"",
+      "op": "if",
+      "then": "с3у"
+    },
+    {
+      "id": "__nf_с2г_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с2г_2",
+      "expr": "d == \"блок\"",
+      "op": "if",
+      "then": "с3б"
+    },
+    {
+      "id": "__nf_с2г_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с2г_3",
+      "expr": "d == \"оглушение\"",
+      "op": "if",
+      "then": "с3о"
+    },
+    {
+      "id": "__nf_с2г_3",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с2г_4",
+      "expr": "d == \"пробив\"",
+      "op": "if",
+      "then": "с3п"
+    },
+    {
+      "id": "__nf_с2г_4",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с2г_5",
+      "expr": "d == \"выкл\"",
+      "op": "if",
+      "then": "с3в"
+    },
+    {
+      "id": "__nf_с2г_5",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot3",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/slot_empty.png",
+      "width": 0.075,
+      "x": 0.5,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с3г",
+      "op": "goto"
+    },
+    {
+      "id": "с3у",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot3",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_strike.png",
+      "width": 0.075,
+      "x": 0.5,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с3г",
+      "op": "goto"
+    },
+    {
+      "id": "с3б",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot3",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_block.png",
+      "width": 0.075,
+      "x": 0.5,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с3г",
+      "op": "goto"
+    },
+    {
+      "id": "с3о",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot3",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_stun.png",
+      "width": 0.075,
+      "x": 0.5,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с3г",
+      "op": "goto"
+    },
+    {
+      "id": "с3п",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot3",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_break.png",
+      "width": 0.075,
+      "x": 0.5,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с3г",
+      "op": "goto"
+    },
+    {
+      "id": "с3в",
+      "op": "label"
+    },
+    {
+      "id": "slot3",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "label": "с3г",
+      "op": "goto"
+    },
+    {
+      "id": "с3г",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_slot3",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_slot4",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_slot4",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с3г_1",
+      "expr": "d == \"удар\"",
+      "op": "if",
+      "then": "с4у"
+    },
+    {
+      "id": "__nf_с3г_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с3г_2",
+      "expr": "d == \"блок\"",
+      "op": "if",
+      "then": "с4б"
+    },
+    {
+      "id": "__nf_с3г_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с3г_3",
+      "expr": "d == \"оглушение\"",
+      "op": "if",
+      "then": "с4о"
+    },
+    {
+      "id": "__nf_с3г_3",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с3г_4",
+      "expr": "d == \"пробив\"",
+      "op": "if",
+      "then": "с4п"
+    },
+    {
+      "id": "__nf_с3г_4",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с3г_5",
+      "expr": "d == \"выкл\"",
+      "op": "if",
+      "then": "с4в"
+    },
+    {
+      "id": "__nf_с3г_5",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot4",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/slot_empty.png",
+      "width": 0.075,
+      "x": 0.6,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с4г",
+      "op": "goto"
+    },
+    {
+      "id": "с4у",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot4",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_strike.png",
+      "width": 0.075,
+      "x": 0.6,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с4г",
+      "op": "goto"
+    },
+    {
+      "id": "с4б",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot4",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_block.png",
+      "width": 0.075,
+      "x": 0.6,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с4г",
+      "op": "goto"
+    },
+    {
+      "id": "с4о",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot4",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_stun.png",
+      "width": 0.075,
+      "x": 0.6,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с4г",
+      "op": "goto"
+    },
+    {
+      "id": "с4п",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot4",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_break.png",
+      "width": 0.075,
+      "x": 0.6,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с4г",
+      "op": "goto"
+    },
+    {
+      "id": "с4в",
+      "op": "label"
+    },
+    {
+      "id": "slot4",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "label": "с4г",
+      "op": "goto"
+    },
+    {
+      "id": "с4г",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_slot4",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_slot5",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_slot5",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с4г_1",
+      "expr": "d == \"удар\"",
+      "op": "if",
+      "then": "с5у"
+    },
+    {
+      "id": "__nf_с4г_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с4г_2",
+      "expr": "d == \"блок\"",
+      "op": "if",
+      "then": "с5б"
+    },
+    {
+      "id": "__nf_с4г_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с4г_3",
+      "expr": "d == \"оглушение\"",
+      "op": "if",
+      "then": "с5о"
+    },
+    {
+      "id": "__nf_с4г_3",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с4г_4",
+      "expr": "d == \"пробив\"",
+      "op": "if",
+      "then": "с5п"
+    },
+    {
+      "id": "__nf_с4г_4",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с4г_5",
+      "expr": "d == \"выкл\"",
+      "op": "if",
+      "then": "с5в"
+    },
+    {
+      "id": "__nf_с4г_5",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot5",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/slot_empty.png",
+      "width": 0.075,
+      "x": 0.7,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с5г",
+      "op": "goto"
+    },
+    {
+      "id": "с5у",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot5",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_strike.png",
+      "width": 0.075,
+      "x": 0.7,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с5г",
+      "op": "goto"
+    },
+    {
+      "id": "с5б",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot5",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_block.png",
+      "width": 0.075,
+      "x": 0.7,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с5г",
+      "op": "goto"
+    },
+    {
+      "id": "с5о",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot5",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_stun.png",
+      "width": 0.075,
+      "x": 0.7,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с5г",
+      "op": "goto"
+    },
+    {
+      "id": "с5п",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "slot5",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/icon_break.png",
+      "width": 0.075,
+      "x": 0.7,
+      "y": 0.1,
+      "z": 40
+    },
+    {
+      "label": "с5г",
+      "op": "goto"
+    },
+    {
+      "id": "с5в",
+      "op": "label"
+    },
+    {
+      "id": "slot5",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "label": "с5г",
+      "op": "goto"
+    },
+    {
+      "id": "с5г",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_slot5",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_slots_draw",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_slots_draw",
+      "op": "label"
+    },
+    {
+      "expr": "0",
+      "key": "i",
+      "op": "set"
+    },
+    {
+      "label": "__fn_slot_kind",
+      "op": "call"
+    },
+    {
+      "expr": "сл_вид",
+      "key": "d",
+      "op": "set"
+    },
+    {
+      "label": "__fn_slot1",
+      "op": "call"
+    },
+    {
+      "expr": "1",
+      "key": "i",
+      "op": "set"
+    },
+    {
+      "label": "__fn_slot_kind",
+      "op": "call"
+    },
+    {
+      "expr": "сл_вид",
+      "key": "d",
+      "op": "set"
+    },
+    {
+      "label": "__fn_slot2",
+      "op": "call"
+    },
+    {
+      "expr": "2",
+      "key": "i",
+      "op": "set"
+    },
+    {
+      "label": "__fn_slot_kind",
+      "op": "call"
+    },
+    {
+      "expr": "сл_вид",
+      "key": "d",
+      "op": "set"
+    },
+    {
+      "label": "__fn_slot3",
+      "op": "call"
+    },
+    {
+      "expr": "3",
+      "key": "i",
+      "op": "set"
+    },
+    {
+      "label": "__fn_slot_kind",
+      "op": "call"
+    },
+    {
+      "expr": "сл_вид",
+      "key": "d",
+      "op": "set"
+    },
+    {
+      "label": "__fn_slot4",
+      "op": "call"
+    },
+    {
+      "expr": "4",
+      "key": "i",
+      "op": "set"
+    },
+    {
+      "label": "__fn_slot_kind",
+      "op": "call"
+    },
+    {
+      "expr": "сл_вид",
+      "key": "d",
+      "op": "set"
+    },
+    {
+      "label": "__fn_slot5",
+      "op": "call"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_slots_draw",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_slots_hide",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_slots_hide",
+      "op": "label"
+    },
+    {
+      "id": "slot1",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "slot2",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "slot3",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "slot4",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "slot5",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_slots_hide",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_skill_hud",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_skill_hud",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с5г_1",
+      "expr": "навык == \"оглушение\"",
+      "op": "if",
+      "then": "нх_огл"
+    },
+    {
+      "id": "__nf_с5г_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_с5г_2",
+      "expr": "навык == \"пробив\"",
+      "op": "if",
+      "then": "нх_проб"
+    },
+    {
+      "id": "__nf_с5г_2",
+      "op": "label"
+    },
+    {
+      "label": "нх_готово",
+      "op": "goto"
+    },
+    {
+      "id": "нх_огл",
+      "op": "label"
+    },
+    {
+      "anchor": "1,0",
+      "color": "#c4b06a",
+      "id": "skillhud",
+      "op": "text",
+      "size": 26,
+      "text": "💫 {влад_оглушение}% · ст.{min(1 + floor(влад_оглушение / 25), 4)}",
+      "x": 97,
+      "y": 3
+    },
+    {
+      "label": "нх_готово",
+      "op": "goto"
+    },
+    {
+      "id": "нх_проб",
+      "op": "label"
+    },
+    {
+      "anchor": "1,0",
+      "color": "#a884c6",
+      "id": "skillhud",
+      "op": "text",
+      "size": 26,
+      "text": "🔨 {влад_пробив}% · ст.{min(1 + floor(влад_пробив / 25), 4)}",
+      "x": 97,
+      "y": 3
+    },
+    {
+      "label": "нх_готово",
+      "op": "goto"
+    },
+    {
+      "id": "нх_готово",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_skill_hud",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_foe_bar",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_foe_bar",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "foe_bar_bg",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_back.png",
+      "width": 0.22,
+      "x": 0.5,
+      "y": 0.17,
+      "z": 30
+    },
+    {
+      "else": "__nf_нх_готово_1",
+      "expr": "враг_хп \u003e= 8",
+      "op": "if",
+      "then": "фб8"
+    },
+    {
+      "id": "__nf_нх_готово_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_нх_готово_2",
+      "expr": "враг_хп == 7",
+      "op": "if",
+      "then": "фб7"
+    },
+    {
+      "id": "__nf_нх_готово_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_нх_готово_3",
+      "expr": "враг_хп == 6",
+      "op": "if",
+      "then": "фб6"
+    },
+    {
+      "id": "__nf_нх_готово_3",
+      "op": "label"
+    },
+    {
+      "else": "__nf_нх_готово_4",
+      "expr": "враг_хп == 5",
+      "op": "if",
+      "then": "фб5"
+    },
+    {
+      "id": "__nf_нх_готово_4",
+      "op": "label"
+    },
+    {
+      "else": "__nf_нх_готово_5",
+      "expr": "враг_хп == 4",
+      "op": "if",
+      "then": "фб4"
+    },
+    {
+      "id": "__nf_нх_готово_5",
+      "op": "label"
+    },
+    {
+      "else": "__nf_нх_готово_6",
+      "expr": "враг_хп == 3",
+      "op": "if",
+      "then": "фб3"
+    },
+    {
+      "id": "__nf_нх_готово_6",
+      "op": "label"
+    },
+    {
+      "else": "__nf_нх_готово_7",
+      "expr": "враг_хп == 2",
+      "op": "if",
+      "then": "фб2"
+    },
+    {
+      "id": "__nf_нх_готово_7",
+      "op": "label"
+    },
+    {
+      "else": "__nf_нх_готово_8",
+      "expr": "враг_хп == 1",
+      "op": "if",
+      "then": "фб1"
+    },
+    {
+      "id": "__nf_нх_готово_8",
+      "op": "label"
+    },
+    {
+      "id": "foe_bar_fill",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "label": "фбг",
+      "op": "goto"
+    },
+    {
+      "id": "фб8",
+      "op": "label"
+    },
+    {
+      "anchor": "0,0.5",
+      "id": "foe_bar_fill",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_foe.png",
+      "width": 0.22,
+      "x": 0.39,
+      "y": 0.17,
+      "z": 31
+    },
+    {
+      "label": "фбг",
+      "op": "goto"
+    },
+    {
+      "id": "фб7",
+      "op": "label"
+    },
+    {
+      "anchor": "0,0.5",
+      "id": "foe_bar_fill",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_foe.png",
+      "width": 0.193,
+      "x": 0.39,
+      "y": 0.17,
+      "z": 31
+    },
+    {
+      "label": "фбг",
+      "op": "goto"
+    },
+    {
+      "id": "фб6",
+      "op": "label"
+    },
+    {
+      "anchor": "0,0.5",
+      "id": "foe_bar_fill",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_foe.png",
+      "width": 0.165,
+      "x": 0.39,
+      "y": 0.17,
+      "z": 31
+    },
+    {
+      "label": "фбг",
+      "op": "goto"
+    },
+    {
+      "id": "фб5",
+      "op": "label"
+    },
+    {
+      "anchor": "0,0.5",
+      "id": "foe_bar_fill",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_foe.png",
+      "width": 0.138,
+      "x": 0.39,
+      "y": 0.17,
+      "z": 31
+    },
+    {
+      "label": "фбг",
+      "op": "goto"
+    },
+    {
+      "id": "фб4",
+      "op": "label"
+    },
+    {
+      "anchor": "0,0.5",
+      "id": "foe_bar_fill",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_foe.png",
+      "width": 0.11,
+      "x": 0.39,
+      "y": 0.17,
+      "z": 31
+    },
+    {
+      "label": "фбг",
+      "op": "goto"
+    },
+    {
+      "id": "фб3",
+      "op": "label"
+    },
+    {
+      "anchor": "0,0.5",
+      "id": "foe_bar_fill",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_foe.png",
+      "width": 0.083,
+      "x": 0.39,
+      "y": 0.17,
+      "z": 31
+    },
+    {
+      "label": "фбг",
+      "op": "goto"
+    },
+    {
+      "id": "фб2",
+      "op": "label"
+    },
+    {
+      "anchor": "0,0.5",
+      "id": "foe_bar_fill",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_foe.png",
+      "width": 0.055,
+      "x": 0.39,
+      "y": 0.17,
+      "z": 31
+    },
+    {
+      "label": "фбг",
+      "op": "goto"
+    },
+    {
+      "id": "фб1",
+      "op": "label"
+    },
+    {
+      "anchor": "0,0.5",
+      "id": "foe_bar_fill",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_foe.png",
+      "width": 0.028,
+      "x": 0.39,
+      "y": 0.17,
+      "z": 31
+    },
+    {
+      "label": "фбг",
+      "op": "goto"
+    },
+    {
+      "id": "фбг",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_foe_bar",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_hero_bar",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_hero_bar",
+      "op": "label"
+    },
+    {
+      "anchor": "0.5,0.5",
+      "id": "hero_bar_bg",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_back.png",
+      "width": 0.3,
+      "x": 0.5,
+      "y": 0.74,
+      "z": 30
+    },
+    {
+      "else": "__nf_фбг_1",
+      "expr": "дуэль_хп \u003e= 6",
+      "op": "if",
+      "then": "гб6"
+    },
+    {
+      "id": "__nf_фбг_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_фбг_2",
+      "expr": "дуэль_хп == 5",
+      "op": "if",
+      "then": "гб5"
+    },
+    {
+      "id": "__nf_фбг_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_фбг_3",
+      "expr": "дуэль_хп == 4",
+      "op": "if",
+      "then": "гб4"
+    },
+    {
+      "id": "__nf_фбг_3",
+      "op": "label"
+    },
+    {
+      "else": "__nf_фбг_4",
+      "expr": "дуэль_хп == 3",
+      "op": "if",
+      "then": "гб3"
+    },
+    {
+      "id": "__nf_фбг_4",
+      "op": "label"
+    },
+    {
+      "else": "__nf_фбг_5",
+      "expr": "дуэль_хп == 2",
+      "op": "if",
+      "then": "гб2"
+    },
+    {
+      "id": "__nf_фбг_5",
+      "op": "label"
+    },
+    {
+      "else": "__nf_фбг_6",
+      "expr": "дуэль_хп == 1",
+      "op": "if",
+      "then": "гб1"
+    },
+    {
+      "id": "__nf_фбг_6",
+      "op": "label"
+    },
+    {
+      "id": "hero_bar_fill",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "label": "гбг",
+      "op": "goto"
+    },
+    {
+      "id": "гб6",
+      "op": "label"
+    },
+    {
+      "anchor": "0,0.5",
+      "id": "hero_bar_fill",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_hero.png",
+      "width": 0.3,
+      "x": 0.35,
+      "y": 0.74,
+      "z": 31
+    },
+    {
+      "label": "гбг",
+      "op": "goto"
+    },
+    {
+      "id": "гб5",
+      "op": "label"
+    },
+    {
+      "anchor": "0,0.5",
+      "id": "hero_bar_fill",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_hero.png",
+      "width": 0.25,
+      "x": 0.35,
+      "y": 0.74,
+      "z": 31
+    },
+    {
+      "label": "гбг",
+      "op": "goto"
+    },
+    {
+      "id": "гб4",
+      "op": "label"
+    },
+    {
+      "anchor": "0,0.5",
+      "id": "hero_bar_fill",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_hero.png",
+      "width": 0.2,
+      "x": 0.35,
+      "y": 0.74,
+      "z": 31
+    },
+    {
+      "label": "гбг",
+      "op": "goto"
+    },
+    {
+      "id": "гб3",
+      "op": "label"
+    },
+    {
+      "anchor": "0,0.5",
+      "id": "hero_bar_fill",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_hero.png",
+      "width": 0.15,
+      "x": 0.35,
+      "y": 0.74,
+      "z": 31
+    },
+    {
+      "label": "гбг",
+      "op": "goto"
+    },
+    {
+      "id": "гб2",
+      "op": "label"
+    },
+    {
+      "anchor": "0,0.5",
+      "id": "hero_bar_fill",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_hero.png",
+      "width": 0.1,
+      "x": 0.35,
+      "y": 0.74,
+      "z": 31
+    },
+    {
+      "label": "гбг",
+      "op": "goto"
+    },
+    {
+      "id": "гб1",
+      "op": "label"
+    },
+    {
+      "anchor": "0,0.5",
+      "id": "hero_bar_fill",
+      "op": "obj",
+      "sprite_url": "/content/packages/lvn-duel/ui/bar_hero.png",
+      "width": 0.05,
+      "x": 0.35,
+      "y": 0.74,
+      "z": 31
+    },
+    {
+      "label": "гбг",
+      "op": "goto"
+    },
+    {
+      "id": "гбг",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_hero_bar",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_bars_hide",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_bars_hide",
+      "op": "label"
+    },
+    {
+      "id": "foe_bar_bg",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "foe_bar_fill",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "hero_bar_bg",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "id": "hero_bar_fill",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_bars_hide",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_beat_wait",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_beat_wait",
+      "op": "label"
+    },
+    {
+      "else": "__nf_гбг_1",
+      "expr": "тактов \u003c= 1",
+      "op": "if",
+      "then": "бв1"
+    },
+    {
+      "id": "__nf_гбг_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_гбг_2",
+      "expr": "тактов == 2",
+      "op": "if",
+      "then": "бв2"
+    },
+    {
+      "id": "__nf_гбг_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_гбг_3",
+      "expr": "тактов == 3",
+      "op": "if",
+      "then": "бв3"
+    },
+    {
+      "id": "__nf_гбг_3",
+      "op": "label"
+    },
+    {
+      "else": "__nf_гбг_4",
+      "expr": "тактов == 4",
+      "op": "if",
+      "then": "бв4"
+    },
+    {
+      "id": "__nf_гбг_4",
+      "op": "label"
+    },
+    {
+      "ms": 1200,
+      "op": "wait"
+    },
+    {
+      "label": "бв_готово",
+      "op": "goto"
+    },
+    {
+      "id": "бв1",
+      "op": "label"
+    },
+    {
+      "ms": 6000,
+      "op": "wait"
+    },
+    {
+      "label": "бв_готово",
+      "op": "goto"
+    },
+    {
+      "id": "бв2",
+      "op": "label"
+    },
+    {
+      "ms": 3000,
+      "op": "wait"
+    },
+    {
+      "label": "бв_готово",
+      "op": "goto"
+    },
+    {
+      "id": "бв3",
+      "op": "label"
+    },
+    {
+      "ms": 2000,
+      "op": "wait"
+    },
+    {
+      "label": "бв_готово",
+      "op": "goto"
+    },
+    {
+      "id": "бв4",
+      "op": "label"
+    },
+    {
+      "ms": 1500,
+      "op": "wait"
+    },
+    {
+      "label": "бв_готово",
+      "op": "goto"
+    },
+    {
+      "id": "бв_готово",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_beat_wait",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_tell_update",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_tell_update",
+      "op": "label"
+    },
+    {
+      "else": "__nf_бв_готово_1",
+      "expr": "враг_стан \u003e= 1",
+      "op": "if",
+      "then": "ты_стан"
+    },
+    {
+      "id": "__nf_бв_готово_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_бв_готово_2",
+      "expr": "(get(враг_паттерн, (враг_шаг - floor(враг_шаг / (len(враг_паттерн))) * (len(враг_паттерн))), \"удар\")) == \"удар\"",
+      "op": "if",
+      "then": "ты_удар"
+    },
+    {
+      "id": "__nf_бв_готово_2",
+      "op": "label"
+    },
+    {
+      "expr": "\"Он вжимается за щит: первым тактом закроется.\"",
+      "key": "тычок_текст",
+      "op": "set"
+    },
+    {
+      "label": "ты_готово",
+      "op": "goto"
+    },
+    {
+      "id": "ты_стан",
+      "op": "label"
+    },
+    {
+      "expr": "\"Он ещё качается после оглушения — первый такт твой.\"",
+      "key": "тычок_текст",
+      "op": "set"
+    },
+    {
+      "label": "ты_готово",
+      "op": "goto"
+    },
+    {
+      "id": "ты_удар",
+      "op": "label"
+    },
+    {
+      "expr": "\"Костяные пальцы сжали рукоять: первым тактом — удар.\"",
+      "key": "тычок_текст",
+      "op": "set"
+    },
+    {
+      "label": "ты_готово",
+      "op": "goto"
+    },
+    {
+      "id": "ты_готово",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_tell_update",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_resolve_beat",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_resolve_beat",
+      "op": "label"
+    },
+    {
+      "expr": "0",
+      "key": "урон_мне",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "урон_ему",
+      "op": "set"
+    },
+    {
+      "expr": "\"\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "else": "__nf_ты_готово_1",
+      "expr": "его_ход == \"стан\"",
+      "op": "if",
+      "then": "рт_стан"
+    },
+    {
+      "id": "__nf_ты_готово_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ты_готово_2",
+      "expr": "мой_ход == \"удар\" \u0026\u0026 его_ход == \"удар\"",
+      "op": "if",
+      "then": "рт_уу"
+    },
+    {
+      "id": "__nf_ты_готово_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ты_готово_3",
+      "expr": "мой_ход == \"удар\" \u0026\u0026 его_ход == \"блок\"",
+      "op": "if",
+      "then": "рт_уб"
+    },
+    {
+      "id": "__nf_ты_готово_3",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ты_готово_4",
+      "expr": "мой_ход == \"блок\" \u0026\u0026 его_ход == \"удар\"",
+      "op": "if",
+      "then": "рт_бу"
+    },
+    {
+      "id": "__nf_ты_готово_4",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ты_готово_5",
+      "expr": "мой_ход == \"блок\" \u0026\u0026 его_ход == \"блок\"",
+      "op": "if",
+      "then": "рт_бб"
+    },
+    {
+      "id": "__nf_ты_готово_5",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ты_готово_6",
+      "expr": "мой_ход == \"оглушение\" \u0026\u0026 его_ход == \"удар\"",
+      "op": "if",
+      "then": "рт_оу"
+    },
+    {
+      "id": "__nf_ты_готово_6",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ты_готово_7",
+      "expr": "мой_ход == \"оглушение\" \u0026\u0026 его_ход == \"блок\"",
+      "op": "if",
+      "then": "рт_об"
+    },
+    {
+      "id": "__nf_ты_готово_7",
+      "op": "label"
+    },
+    {
+      "else": "__nf_ты_готово_8",
+      "expr": "мой_ход == \"пробив\" \u0026\u0026 его_ход == \"блок\"",
+      "op": "if",
+      "then": "рт_пб"
+    },
+    {
+      "id": "__nf_ты_готово_8",
+      "op": "label"
+    },
+    {
+      "label": "рт_пу",
+      "op": "goto"
+    },
+    {
+      "id": "рт_стан",
+      "op": "label"
+    },
+    {
+      "else": "__nf_рт_стан_1",
+      "expr": "мой_ход == \"удар\"",
+      "op": "if",
+      "then": "рт_стан_удар"
+    },
+    {
+      "id": "__nf_рт_стан_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_рт_стан_2",
+      "expr": "мой_ход == \"пробив\"",
+      "op": "if",
+      "then": "рт_стан_пробив"
+    },
+    {
+      "id": "__nf_рт_стан_2",
+      "op": "label"
+    },
+    {
+      "else": "__nf_рт_стан_3",
+      "expr": "мой_ход == \"оглушение\"",
+      "op": "if",
+      "then": "рт_стан_огл"
+    },
+    {
+      "id": "__nf_рт_стан_3",
+      "op": "label"
+    },
+    {
+      "expr": "\"он плывёт — такт впустую.\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "label": "рт_применить",
+      "op": "goto"
+    },
+    {
+      "id": "рт_стан_удар",
+      "op": "label"
+    },
+    {
+      "expr": "2",
+      "key": "урон_ему",
+      "op": "set"
+    },
+    {
+      "expr": "\"по оглушённому: −2!\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "label": "рт_применить",
+      "op": "goto"
+    },
+    {
+      "id": "рт_стан_пробив",
+      "op": "label"
+    },
+    {
+      "expr": "2",
+      "key": "урон_ему",
+      "op": "set"
+    },
+    {
+      "expr": "min(влад_пробив + 3, 100)",
+      "key": "влад_пробив",
+      "op": "set"
+    },
+    {
+      "duration": 2,
+      "op": "hint",
+      "text": "🔨 Пробив +3 — урон по открытому"
+    },
+    {
+      "expr": "\"пробив по открытому: −2!\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "label": "рт_применить",
+      "op": "goto"
+    },
+    {
+      "id": "рт_стан_огл",
+      "op": "label"
+    },
+    {
+      "expr": "min(влад_оглушение + 1, 100)",
+      "key": "влад_оглушение",
+      "op": "set"
+    },
+    {
+      "duration": 2,
+      "op": "hint",
+      "text": "💫 Оглушение +1 — в молоко (он и так оглушён)"
+    },
+    {
+      "expr": "\"он и так оглушён — мимо.\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "label": "рт_применить",
+      "op": "goto"
+    },
+    {
+      "id": "рт_уу",
+      "op": "label"
+    },
+    {
+      "else": "__nf_рт_уу_1",
+      "expr": "темп_мой \u003e темп_врага",
+      "op": "if",
+      "then": "рт_уу_я"
+    },
+    {
+      "id": "__nf_рт_уу_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_рт_уу_2",
+      "expr": "темп_врага \u003e темп_мой",
+      "op": "if",
+      "then": "рт_уу_он"
+    },
+    {
+      "id": "__nf_рт_уу_2",
+      "op": "label"
+    },
+    {
+      "expr": "1",
+      "key": "урон_мне",
+      "op": "set"
+    },
+    {
+      "expr": "1",
+      "key": "урон_ему",
+      "op": "set"
+    },
+    {
+      "expr": "\"размен: −1 обоим.\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "label": "рт_применить",
+      "op": "goto"
+    },
+    {
+      "id": "рт_уу_я",
+      "op": "label"
+    },
+    {
+      "expr": "2",
+      "key": "урон_ему",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "темп_мой",
+      "op": "set"
+    },
+    {
+      "else": "__else_рт_уу_я_1",
+      "expr": "враг_хп - 2 \u003e 0",
+      "op": "if",
+      "then": "__then_рт_уу_я_1"
+    },
+    {
+      "id": "__then_рт_уу_я_1",
+      "op": "label"
+    },
+    {
+      "expr": "1",
+      "key": "урон_мне",
+      "op": "set"
+    },
+    {
+      "expr": "\"твой темп: −2 ему, −1 тебе.\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "label": "__end_рт_уу_я_1",
+      "op": "goto"
+    },
+    {
+      "id": "__else_рт_уу_я_1",
+      "op": "label"
+    },
+    {
+      "expr": "\"твой темп: добил!\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "id": "__end_рт_уу_я_1",
+      "op": "label"
+    },
+    {
+      "label": "рт_применить",
+      "op": "goto"
+    },
+    {
+      "id": "рт_уу_он",
+      "op": "label"
+    },
+    {
+      "expr": "2",
+      "key": "урон_мне",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "темп_врага",
+      "op": "set"
+    },
+    {
+      "else": "__else_рт_уу_он_1",
+      "expr": "дуэль_хп - 2 \u003e 0",
+      "op": "if",
+      "then": "__then_рт_уу_он_1"
+    },
+    {
+      "id": "__then_рт_уу_он_1",
+      "op": "label"
+    },
+    {
+      "expr": "1",
+      "key": "урон_ему",
+      "op": "set"
+    },
+    {
+      "expr": "\"его темп: −2 тебе, −1 ему.\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "label": "__end_рт_уу_он_1",
+      "op": "goto"
+    },
+    {
+      "id": "__else_рт_уу_он_1",
+      "op": "label"
+    },
+    {
+      "expr": "\"его темп: ты падаешь.\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "id": "__end_рт_уу_он_1",
+      "op": "label"
+    },
+    {
+      "label": "рт_применить",
+      "op": "goto"
+    },
+    {
+      "id": "рт_уб",
+      "op": "label"
+    },
+    {
+      "expr": "темп_врага + 1",
+      "key": "темп_врага",
+      "op": "set"
+    },
+    {
+      "expr": "\"в щит: +1 темп ему.\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "label": "рт_применить",
+      "op": "goto"
+    },
+    {
+      "id": "рт_бу",
+      "op": "label"
+    },
+    {
+      "expr": "темп_мой + 1",
+      "key": "темп_мой",
+      "op": "set"
+    },
+    {
+      "expr": "\"блок: +1 темп тебе.\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "label": "рт_применить",
+      "op": "goto"
+    },
+    {
+      "id": "рт_бб",
+      "op": "label"
+    },
+    {
+      "expr": "\"оба закрылись.\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "label": "рт_применить",
+      "op": "goto"
+    },
+    {
+      "id": "рт_оу",
+      "op": "label"
+    },
+    {
+      "expr": "2",
+      "key": "огл_порог",
+      "op": "set"
+    },
+    {
+      "else": "__else_рт_оу_1",
+      "expr": "влад_оглушение \u003e= 25",
+      "op": "if",
+      "then": "__then_рт_оу_1"
+    },
+    {
+      "id": "__then_рт_оу_1",
+      "op": "label"
+    },
+    {
+      "expr": "1",
+      "key": "огл_порог",
+      "op": "set"
+    },
+    {
+      "label": "__end_рт_оу_1",
+      "op": "goto"
+    },
+    {
+      "id": "__else_рт_оу_1",
+      "op": "label"
+    },
+    {
+      "id": "__end_рт_оу_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_рт_оу_1",
+      "expr": "темп_мой \u003e= огл_порог",
+      "op": "if",
+      "then": "рт_оу_есть"
+    },
+    {
+      "id": "__nf_рт_оу_1",
+      "op": "label"
+    },
+    {
+      "expr": "1",
+      "key": "урон_мне",
+      "op": "set"
+    },
+    {
+      "expr": "min(влад_оглушение + 1, 100)",
+      "key": "влад_оглушение",
+      "op": "set"
+    },
+    {
+      "duration": 2,
+      "op": "hint",
+      "text": "💫 Оглушение +1 — не хватило темпа"
+    },
+    {
+      "expr": "\"без темпа: −1 тебе.\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "label": "рт_применить",
+      "op": "goto"
+    },
+    {
+      "id": "рт_оу_есть",
+      "op": "label"
+    },
+    {
+      "expr": "темп_мой - огл_порог",
+      "key": "темп_мой",
+      "op": "set"
+    },
+    {
+      "expr": "1",
+      "key": "враг_стан",
+      "op": "set"
+    },
+    {
+      "else": "__else_рт_оу_есть_1",
+      "expr": "влад_оглушение \u003e= 50",
+      "op": "if",
+      "then": "__then_рт_оу_есть_1"
+    },
+    {
+      "id": "__then_рт_оу_есть_1",
+      "op": "label"
+    },
+    {
+      "expr": "2",
+      "key": "враг_стан",
+      "op": "set"
+    },
+    {
+      "label": "__end_рт_оу_есть_1",
+      "op": "goto"
+    },
+    {
+      "id": "__else_рт_оу_есть_1",
+      "op": "label"
+    },
+    {
+      "id": "__end_рт_оу_есть_1",
+      "op": "label"
+    },
+    {
+      "expr": "min(влад_оглушение + 3, 100)",
+      "key": "влад_оглушение",
+      "op": "set"
+    },
+    {
+      "duration": 2,
+      "op": "hint",
+      "text": "💫 Оглушение +3 — сработало!"
+    },
+    {
+      "expr": "\"оглушил — он теряет такт!\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "label": "рт_применить",
+      "op": "goto"
+    },
+    {
+      "id": "рт_об",
+      "op": "label"
+    },
+    {
+      "expr": "min(влад_оглушение + 1, 100)",
+      "key": "влад_оглушение",
+      "op": "set"
+    },
+    {
+      "duration": 2,
+      "op": "hint",
+      "text": "💫 Оглушение +1 — он был за щитом"
+    },
+    {
+      "expr": "\"в щит — мимо.\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "label": "рт_применить",
+      "op": "goto"
+    },
+    {
+      "id": "рт_пб",
+      "op": "label"
+    },
+    {
+      "expr": "2",
+      "key": "урон_ему",
+      "op": "set"
+    },
+    {
+      "else": "__else_рт_пб_1",
+      "expr": "влад_пробив \u003e= 50",
+      "op": "if",
+      "then": "__then_рт_пб_1"
+    },
+    {
+      "id": "__then_рт_пб_1",
+      "op": "label"
+    },
+    {
+      "expr": "3",
+      "key": "урон_ему",
+      "op": "set"
+    },
+    {
+      "label": "__end_рт_пб_1",
+      "op": "goto"
+    },
+    {
+      "id": "__else_рт_пб_1",
+      "op": "label"
+    },
+    {
+      "id": "__end_рт_пб_1",
+      "op": "label"
+    },
+    {
+      "expr": "темп_мой + 1",
+      "key": "темп_мой",
+      "op": "set"
+    },
+    {
+      "expr": "min(влад_пробив + 6, 100)",
+      "key": "влад_пробив",
+      "op": "set"
+    },
+    {
+      "duration": 2,
+      "op": "hint",
+      "text": "🔨 Пробив +6 — КРИТ сквозь щит!"
+    },
+    {
+      "expr": "\"сквозь щит: −\" + урон_ему + \", темп твой!\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "label": "рт_применить",
+      "op": "goto"
+    },
+    {
+      "id": "рт_пу",
+      "op": "label"
+    },
+    {
+      "expr": "2",
+      "key": "урон_мне",
+      "op": "set"
+    },
+    {
+      "else": "__else_рт_пу_1",
+      "expr": "влад_пробив \u003e= 25",
+      "op": "if",
+      "then": "__then_рт_пу_1"
+    },
+    {
+      "id": "__then_рт_пу_1",
+      "op": "label"
+    },
+    {
+      "expr": "1",
+      "key": "урон_мне",
+      "op": "set"
+    },
+    {
+      "label": "__end_рт_пу_1",
+      "op": "goto"
+    },
+    {
+      "id": "__else_рт_пу_1",
+      "op": "label"
+    },
+    {
+      "id": "__end_рт_пу_1",
+      "op": "label"
+    },
+    {
+      "expr": "min(влад_пробив + 1, 100)",
+      "key": "влад_пробив",
+      "op": "set"
+    },
+    {
+      "duration": 2,
+      "op": "hint",
+      "text": "🔨 Пробив +1 — он не закрывался"
+    },
+    {
+      "expr": "\"раскрылся: −\" + урон_мне + \" тебе.\"",
+      "key": "бит_суть",
+      "op": "set"
+    },
+    {
+      "label": "рт_применить",
+      "op": "goto"
+    },
+    {
+      "id": "рт_применить",
+      "op": "label"
+    },
+    {
+      "expr": "max(враг_хп - урон_ему, 0)",
+      "key": "враг_хп",
+      "op": "set"
+    },
+    {
+      "expr": "max(дуэль_хп - урон_мне, 0)",
+      "key": "дуэль_хп",
+      "op": "set"
+    },
+    {
+      "else": "__else_рт_применить_1",
+      "expr": "враг_хп \u003c= 0",
+      "op": "if",
+      "then": "__then_рт_применить_1"
+    },
+    {
+      "id": "__then_рт_применить_1",
+      "op": "label"
+    },
+    {
+      "expr": "\"победа\"",
+      "key": "дуэль_исход",
+      "op": "set"
+    },
+    {
+      "label": "__end_рт_применить_1",
+      "op": "goto"
+    },
+    {
+      "id": "__else_рт_применить_1",
+      "op": "label"
+    },
+    {
+      "id": "__end_рт_применить_1",
+      "op": "label"
+    },
+    {
+      "else": "__else_рт_применить_2",
+      "expr": "дуэль_хп \u003c= 0 \u0026\u0026 дуэль_исход == \"\"",
+      "op": "if",
+      "then": "__then_рт_применить_2"
+    },
+    {
+      "id": "__then_рт_применить_2",
+      "op": "label"
+    },
+    {
+      "expr": "\"пал\"",
+      "key": "дуэль_исход",
+      "op": "set"
+    },
+    {
+      "label": "__end_рт_применить_2",
+      "op": "goto"
+    },
+    {
+      "id": "__else_рт_применить_2",
+      "op": "label"
+    },
+    {
+      "id": "__end_рт_применить_2",
+      "op": "label"
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_resolve_beat",
+      "op": "label"
+    },
+    {
+      "label": "__fnskip_duel",
+      "op": "goto"
+    },
+    {
+      "id": "__fn_duel",
+      "op": "label"
+    },
+    {
+      "expr": "\"\"",
+      "key": "дуэль_исход",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "обмен",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "темп_мой",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "темп_врага",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "враг_шаг",
+      "op": "set"
+    },
+    {
+      "expr": "1",
+      "key": "враг_фаза",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "враг_стан",
+      "op": "set"
+    },
+    {
+      "expr": "паттерн_обычный",
+      "key": "враг_паттерн",
+      "op": "set"
+    },
+    {
+      "expr": "[]",
+      "key": "план",
+      "op": "set"
+    },
+    {
+      "expr": "\"\"",
+      "key": "бит_текст",
+      "op": "set"
+    },
+    {
+      "expr": "\"\"",
+      "key": "тычок_текст",
+      "op": "set"
+    },
+    {
+      "color": "#9a927f",
+      "id": "dayline",
+      "op": "text",
+      "size": 26,
+      "text": "День {день} · обмен {обмен}",
+      "x": 3,
+      "y": 3
+    },
+    {
+      "anchor": "0.5,0",
+      "color": "#e8e0d0",
+      "id": "foe_num",
+      "op": "text",
+      "size": 28,
+      "text": "{враг_хп}/{враг_хп_макс} ⚡{темп_врага}",
+      "x": 50,
+      "y": 11
+    },
+    {
+      "anchor": "0.5,0",
+      "color": "#e8e0d0",
+      "id": "hero_num",
+      "op": "text",
+      "size": 30,
+      "text": "{дуэль_хп}/{дуэль_хп_макс} ⚡{темп_мой}",
+      "x": 50,
+      "y": 68
+    },
+    {
+      "anchor": "0.5,0",
+      "color": "#c9b98a",
+      "id": "tellline",
+      "op": "text",
+      "size": 28,
+      "text": "{тычок_текст}",
+      "x": 50,
+      "y": 33
+    },
+    {
+      "anchor": "0.5,0",
+      "color": "#f1e4c9",
+      "id": "beatline",
+      "op": "text",
+      "size": 30,
+      "text": "{бит_текст}",
+      "x": 50,
+      "y": 61
+    },
+    {
+      "label": "__fn_skill_hud",
+      "op": "call"
+    },
+    {
+      "label": "__fn_foe_bar",
+      "op": "call"
+    },
+    {
+      "label": "__fn_hero_bar",
+      "op": "call"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_foe_sprite",
+      "op": "call"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_hands",
+      "op": "call"
+    },
+    {
+      "label": "дт_обмен",
+      "op": "goto"
+    },
+    {
+      "id": "дт_обмен",
+      "op": "label"
+    },
+    {
+      "expr": "обмен + 1",
+      "key": "обмен",
+      "op": "set"
+    },
+    {
+      "else": "__nf_дт_обмен_1",
+      "expr": "обмен \u003e 8",
+      "op": "if",
+      "then": "дт_ничья"
+    },
+    {
+      "id": "__nf_дт_обмен_1",
+      "op": "label"
+    },
+    {
+      "expr": "min(обмен, 5)",
+      "key": "тактов",
+      "op": "set"
+    },
+    {
+      "expr": "[]",
+      "key": "план",
+      "op": "set"
+    },
+    {
+      "expr": "\"\"",
+      "key": "бит_текст",
+      "op": "set"
+    },
+    {
+      "label": "__fn_tell_update",
+      "op": "call"
+    },
+    {
+      "label": "дп_план",
+      "op": "goto"
+    },
+    {
+      "id": "дп_план",
+      "op": "label"
+    },
+    {
+      "label": "__fn_slots_draw",
+      "op": "call"
+    },
+    {
+      "else": "__nf_дп_план_1",
+      "expr": "len(план) \u003e= тактов",
+      "op": "if",
+      "then": "дп_готово"
+    },
+    {
+      "id": "__nf_дп_план_1",
+      "op": "label"
+    },
+    {
+      "label": "__fn_buttons_show",
+      "op": "call"
+    },
+    {
+      "op": "say",
+      "text": "такт {len(план) + 1} из {тактов}.",
+      "who": "План"
+    },
+    {
+      "label": "дп_план",
+      "op": "goto"
+    },
+    {
+      "id": "дп_удар",
+      "op": "label"
+    },
+    {
+      "expr": "push(план, \"удар\")",
+      "key": "план",
+      "op": "set"
+    },
+    {
+      "label": "дп_план",
+      "op": "goto"
+    },
+    {
+      "id": "дп_блок",
+      "op": "label"
+    },
+    {
+      "expr": "push(план, \"блок\")",
+      "key": "план",
+      "op": "set"
+    },
+    {
+      "label": "дп_план",
+      "op": "goto"
+    },
+    {
+      "id": "дп_оглушение",
+      "op": "label"
+    },
+    {
+      "expr": "push(план, \"оглушение\")",
+      "key": "план",
+      "op": "set"
+    },
+    {
+      "label": "дп_план",
+      "op": "goto"
+    },
+    {
+      "id": "дп_пробив",
+      "op": "label"
+    },
+    {
+      "expr": "push(план, \"пробив\")",
+      "key": "план",
+      "op": "set"
+    },
+    {
+      "label": "дп_план",
+      "op": "goto"
+    },
+    {
+      "id": "дп_сброс",
+      "op": "label"
+    },
+    {
+      "expr": "[]",
+      "key": "план",
+      "op": "set"
+    },
+    {
+      "label": "дп_план",
+      "op": "goto"
+    },
+    {
+      "id": "дп_готово",
+      "op": "label"
+    },
+    {
+      "label": "__fn_buttons_hide",
+      "op": "call"
+    },
+    {
+      "expr": "\"\"",
+      "key": "тычок_текст",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "такт",
+      "op": "set"
+    },
+    {
+      "id": "__loop_дп_готово_1",
+      "op": "label"
+    },
+    {
+      "else": "__end_дп_готово_1",
+      "expr": "такт \u003c len(план) \u0026\u0026 дуэль_исход == \"\"",
+      "op": "if",
+      "then": "__body_дп_готово_1"
+    },
+    {
+      "id": "__body_дп_готово_1",
+      "op": "label"
+    },
+    {
+      "expr": "get(план, такт, \"блок\")",
+      "key": "мой_ход",
+      "op": "set"
+    },
+    {
+      "else": "__else_дп_готово_2",
+      "expr": "враг_стан \u003e= 1",
+      "op": "if",
+      "then": "__then_дп_готово_2"
+    },
+    {
+      "id": "__then_дп_готово_2",
+      "op": "label"
+    },
+    {
+      "expr": "\"стан\"",
+      "key": "его_ход",
+      "op": "set"
+    },
+    {
+      "expr": "враг_стан - 1",
+      "key": "враг_стан",
+      "op": "set"
+    },
+    {
+      "label": "__end_дп_готово_2",
+      "op": "goto"
+    },
+    {
+      "id": "__else_дп_готово_2",
+      "op": "label"
+    },
+    {
+      "expr": "(get(враг_паттерн, (враг_шаг - floor(враг_шаг / (len(враг_паттерн))) * (len(враг_паттерн))), \"удар\"))",
+      "key": "его_ход",
+      "op": "set"
+    },
+    {
+      "expr": "враг_шаг + 1",
+      "key": "враг_шаг",
+      "op": "set"
+    },
+    {
+      "id": "__end_дп_готово_2",
+      "op": "label"
+    },
+    {
+      "label": "__fn_resolve_beat",
+      "op": "call"
+    },
+    {
+      "label": "__fn_foe_bar",
+      "op": "call"
+    },
+    {
+      "label": "__fn_hero_bar",
+      "op": "call"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "поза_врага",
+      "op": "set"
+    },
+    {
+      "else": "__else_дп_готово_3",
+      "expr": "его_ход == \"удар\"",
+      "op": "if",
+      "then": "__then_дп_готово_3"
+    },
+    {
+      "id": "__then_дп_готово_3",
+      "op": "label"
+    },
+    {
+      "expr": "\"attack\"",
+      "key": "поза_врага",
+      "op": "set"
+    },
+    {
+      "label": "__end_дп_готово_3",
+      "op": "goto"
+    },
+    {
+      "id": "__else_дп_готово_3",
+      "op": "label"
+    },
+    {
+      "id": "__end_дп_готово_3",
+      "op": "label"
+    },
+    {
+      "else": "__else_дп_готово_4",
+      "expr": "урон_ему \u003e 0",
+      "op": "if",
+      "then": "__then_дп_готово_4"
+    },
+    {
+      "id": "__then_дп_готово_4",
+      "op": "label"
+    },
+    {
+      "expr": "\"hurt\"",
+      "key": "поза_врага",
+      "op": "set"
+    },
+    {
+      "label": "__end_дп_готово_4",
+      "op": "goto"
+    },
+    {
+      "id": "__else_дп_готово_4",
+      "op": "label"
+    },
+    {
+      "id": "__end_дп_готово_4",
+      "op": "label"
+    },
+    {
+      "expr": "поза_врага",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_foe_sprite",
+      "op": "call"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "поза_рук",
+      "op": "set"
+    },
+    {
+      "else": "__else_дп_готово_5",
+      "expr": "мой_ход == \"блок\"",
+      "op": "if",
+      "then": "__then_дп_готово_5"
+    },
+    {
+      "id": "__then_дп_готово_5",
+      "op": "label"
+    },
+    {
+      "expr": "\"block\"",
+      "key": "поза_рук",
+      "op": "set"
+    },
+    {
+      "label": "__end_дп_готово_5",
+      "op": "goto"
+    },
+    {
+      "id": "__else_дп_готово_5",
+      "op": "label"
+    },
+    {
+      "expr": "\"attack\"",
+      "key": "поза_рук",
+      "op": "set"
+    },
+    {
+      "id": "__end_дп_готово_5",
+      "op": "label"
+    },
+    {
+      "expr": "поза_рук",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_hands",
+      "op": "call"
+    },
+    {
+      "else": "__else_дп_готово_6",
+      "expr": "урон_ему \u003e 0",
+      "op": "if",
+      "then": "__then_дп_готово_6"
+    },
+    {
+      "id": "__then_дп_готово_6",
+      "op": "label"
+    },
+    {
+      "color": "white",
+      "duration": 0.25,
+      "op": "flash"
+    },
+    {
+      "label": "__end_дп_готово_6",
+      "op": "goto"
+    },
+    {
+      "id": "__else_дп_готово_6",
+      "op": "label"
+    },
+    {
+      "id": "__end_дп_готово_6",
+      "op": "label"
+    },
+    {
+      "else": "__else_дп_готово_7",
+      "expr": "урон_мне \u003e 0",
+      "op": "if",
+      "then": "__then_дп_готово_7"
+    },
+    {
+      "id": "__then_дп_готово_7",
+      "op": "label"
+    },
+    {
+      "action": "shake",
+      "amplitude": 0.02,
+      "duration": 0.35,
+      "op": "camera"
+    },
+    {
+      "label": "__end_дп_готово_7",
+      "op": "goto"
+    },
+    {
+      "id": "__else_дп_готово_7",
+      "op": "label"
+    },
+    {
+      "id": "__end_дп_готово_7",
+      "op": "label"
+    },
+    {
+      "expr": "\"Такт \" + (такт + 1) + \":  ты \" + get(икона, мой_ход, \"?\") + \" × он \" + get(икона, его_ход, \"?\") + \"  ·  \" + бит_суть",
+      "key": "бит_текст",
+      "op": "set"
+    },
+    {
+      "label": "__fn_beat_wait",
+      "op": "call"
+    },
+    {
+      "expr": "такт + 1",
+      "key": "такт",
+      "op": "set"
+    },
+    {
+      "label": "__loop_дп_готово_1",
+      "op": "goto"
+    },
+    {
+      "id": "__end_дп_готово_1",
+      "op": "label"
+    },
+    {
+      "label": "__fn_slots_hide",
+      "op": "call"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_foe_sprite",
+      "op": "call"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_hands",
+      "op": "call"
+    },
+    {
+      "else": "__nf_дп_готово_1",
+      "expr": "дуэль_исход != \"\"",
+      "op": "if",
+      "then": "дт_итог"
+    },
+    {
+      "id": "__nf_дп_готово_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_дп_готово_2",
+      "expr": "враг_фаза == 1 \u0026\u0026 враг_хп * 2 \u003c= враг_хп_макс",
+      "op": "if",
+      "then": "дт_ярость"
+    },
+    {
+      "id": "__nf_дп_готово_2",
+      "op": "label"
+    },
+    {
+      "label": "дт_сводка",
+      "op": "goto"
+    },
+    {
+      "id": "дт_ярость",
+      "op": "label"
+    },
+    {
+      "expr": "2",
+      "key": "враг_фаза",
+      "op": "set"
+    },
+    {
+      "expr": "паттерн_ярость",
+      "key": "враг_паттерн",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "враг_шаг",
+      "op": "set"
+    },
+    {
+      "expr": "\"attack\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_foe_sprite",
+      "op": "call"
+    },
+    {
+      "color": "red",
+      "duration": 0.4,
+      "op": "flash"
+    },
+    {
+      "op": "say",
+      "text": "Скелет ЗВЕРЕЕТ — песня меняется!"
+    },
+    {
+      "expr": "\"idle\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_foe_sprite",
+      "op": "call"
+    },
+    {
+      "label": "дт_сводка",
+      "op": "goto"
+    },
+    {
+      "id": "дт_сводка",
+      "op": "label"
+    },
+    {
+      "expr": "\"\"",
+      "key": "бит_текст",
+      "op": "set"
+    },
+    {
+      "else": "__nf_дт_сводка_1",
+      "expr": "обмен == 2 \u0026\u0026 навык_выбран == 0",
+      "op": "if",
+      "then": "дт_озарение"
+    },
+    {
+      "id": "__nf_дт_сводка_1",
+      "op": "label"
+    },
+    {
+      "label": "дт_обмен",
+      "op": "goto"
+    },
+    {
+      "id": "дт_озарение",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "Озарение. Тело удержит только одно движение."
+    },
+    {
+      "op": "choice",
+      "options": [
+        {
+          "body": [
+            {
+              "expr": "\"оглушение\"",
+              "key": "навык",
+              "op": "set"
+            },
+            {
+              "expr": "1",
+              "key": "влад_оглушение",
+              "op": "set"
+            }
+          ],
+          "text": "💫 Оглушение: против его удара, за темп"
+        },
+        {
+          "body": [
+            {
+              "expr": "\"пробив\"",
+              "key": "навык",
+              "op": "set"
+            },
+            {
+              "expr": "1",
+              "key": "влад_пробив",
+              "op": "set"
+            }
+          ],
+          "text": "🔨 Пробив: сквозь его блок, риск при промахе"
+        }
+      ]
+    },
+    {
+      "expr": "1",
+      "key": "навык_выбран",
+      "op": "set"
+    },
+    {
+      "label": "__fn_skill_hud",
+      "op": "call"
+    },
+    {
+      "op": "say",
+      "text": "промах +1, эффект +3, крит +6.",
+      "who": "Владение растёт от дела"
+    },
+    {
+      "label": "дт_обмен",
+      "op": "goto"
+    },
+    {
+      "id": "дт_ничья",
+      "op": "label"
+    },
+    {
+      "expr": "\"затянулась\"",
+      "key": "дуэль_исход",
+      "op": "set"
+    },
+    {
+      "op": "say",
+      "text": "Силы кончились раньше жизней. Вы расходитесь."
+    },
+    {
+      "label": "дт_итог",
+      "op": "goto"
+    },
+    {
+      "id": "дт_итог",
+      "op": "label"
+    },
+    {
+      "expr": "\"\"",
+      "key": "бит_текст",
+      "op": "set"
+    },
+    {
+      "expr": "\"\"",
+      "key": "тычок_текст",
+      "op": "set"
+    },
+    {
+      "hide": true,
+      "id": "dayline",
+      "op": "text"
+    },
+    {
+      "hide": true,
+      "id": "foe_num",
+      "op": "text"
+    },
+    {
+      "hide": true,
+      "id": "hero_num",
+      "op": "text"
+    },
+    {
+      "hide": true,
+      "id": "tellline",
+      "op": "text"
+    },
+    {
+      "hide": true,
+      "id": "beatline",
+      "op": "text"
+    },
+    {
+      "hide": true,
+      "id": "skillhud",
+      "op": "text"
+    },
+    {
+      "label": "__fn_bars_hide",
+      "op": "call"
+    },
+    {
+      "label": "__fn_buttons_hide",
+      "op": "call"
+    },
+    {
+      "label": "__fn_slots_hide",
+      "op": "call"
+    },
+    {
+      "else": "__nf_дт_итог_1",
+      "expr": "дуэль_исход == \"победа\"",
+      "op": "if",
+      "then": "ди_жив"
+    },
+    {
+      "id": "__nf_дт_итог_1",
+      "op": "label"
+    },
+    {
+      "id": "duel_enemy",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "label": "ди_готово",
+      "op": "goto"
+    },
+    {
+      "id": "ди_жив",
+      "op": "label"
+    },
+    {
+      "expr": "\"hurt\"",
+      "key": "pose",
+      "op": "set"
+    },
+    {
+      "label": "__fn_foe_sprite",
+      "op": "call"
+    },
+    {
+      "label": "ди_готово",
+      "op": "goto"
+    },
+    {
+      "id": "ди_готово",
+      "op": "label"
+    },
+    {
+      "id": "duel_hands",
+      "op": "obj",
+      "show": false
+    },
+    {
+      "op": "return"
+    },
+    {
+      "id": "__fnskip_duel",
+      "op": "label"
+    },
+    {
+      "expr": "0",
+      "key": "день",
+      "op": "set"
+    },
+    {
+      "expr": "\"\"",
+      "key": "навык",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "навык_выбран",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "влад_оглушение",
+      "op": "set"
+    },
+    {
+      "expr": "0",
+      "key": "влад_пробив",
+      "op": "set"
+    },
+    {
+      "expr": "\"Скелет\"",
+      "key": "враг_имя",
+      "op": "set"
+    },
+    {
+      "id": "bg_yard",
+      "op": "bg",
+      "sprite_url": "/content/packages/lvn-duel/ui/bg_yard.png"
+    },
+    {
+      "op": "say",
+      "text": "Тренировочный двор. Скелет не притворяется манекеном."
+    },
+    {
+      "op": "say",
+      "text": "Оба загадывают ходы наперёд — очередь растёт с каждым обменом. Блок его удара даёт тебе темп; чей темп — тот бьёт первым и вдвое. Его песня повторяется. Запоминай."
+    },
+    {
+      "label": "день_старт",
+      "op": "goto"
+    },
+    {
+      "id": "день_старт",
+      "op": "label"
+    },
+    {
+      "expr": "день + 1",
+      "key": "день",
+      "op": "set"
+    },
+    {
+      "expr": "6",
+      "key": "дуэль_хп",
+      "op": "set"
+    },
+    {
+      "expr": "6",
+      "key": "дуэль_хп_макс",
+      "op": "set"
+    },
+    {
+      "expr": "8",
+      "key": "враг_хп",
+      "op": "set"
+    },
+    {
+      "expr": "8",
+      "key": "враг_хп_макс",
+      "op": "set"
+    },
+    {
+      "else": "__nf_день_старт_1",
+      "expr": "день \u003e 1",
+      "op": "if",
+      "then": "день_повтор"
+    },
+    {
+      "id": "__nf_день_старт_1",
+      "op": "label"
+    },
+    {
+      "label": "день_бой",
+      "op": "goto"
+    },
+    {
+      "id": "день_повтор",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "День {день}. Всё то же. Кроме тебя."
+    },
+    {
+      "label": "день_бой",
+      "op": "goto"
+    },
+    {
+      "id": "день_бой",
+      "op": "label"
+    },
+    {
+      "label": "__fn_duel",
+      "op": "call"
+    },
+    {
+      "else": "__nf_день_бой_1",
+      "expr": "дуэль_исход == \"победа\"",
+      "op": "if",
+      "then": "победа"
+    },
+    {
+      "id": "__nf_день_бой_1",
+      "op": "label"
+    },
+    {
+      "else": "__nf_день_бой_2",
+      "expr": "дуэль_исход == \"пал\"",
+      "op": "if",
+      "then": "смерть"
+    },
+    {
+      "id": "__nf_день_бой_2",
+      "op": "label"
+    },
+    {
+      "label": "ничья",
+      "op": "goto"
+    },
+    {
+      "id": "смерть",
+      "op": "label"
+    },
+    {
+      "alpha": 0.85,
+      "duration": 0.6,
+      "op": "dim"
+    },
+    {
+      "op": "say",
+      "text": "тело с нуля, память — при тебе.",
+      "who": "Темнота. То же утро"
+    },
+    {
+      "alpha": 0,
+      "duration": 0.5,
+      "op": "dim"
+    },
+    {
+      "label": "день_старт",
+      "op": "goto"
+    },
+    {
+      "id": "ничья",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "День сгорел. Но песню ты слышал."
+    },
+    {
+      "label": "день_старт",
+      "op": "goto"
+    },
+    {
+      "id": "победа",
+      "op": "label"
+    },
+    {
+      "op": "say",
+      "text": "{день}.",
+      "who": "Кости осыпаются. Дней потрачено"
+    },
+    {
+      "op": "choice",
+      "options": [
+        {
+          "goto": "день_старт",
+          "text": "Ещё раз, с сохранённым владением"
+        },
+        {
+          "goto": "финал",
+          "text": "Хватит"
+        }
+      ]
+    },
+    {
+      "id": "финал",
+      "op": "label"
+    },
+    {
+      "label": "__end",
+      "op": "goto"
+    }
+  ]
+}

@@ -1,4 +1,52 @@
 {
+  "sets3d": {
+    "apartment": {
+      "fallback_resource": "Sets/apartment",
+      "platforms": {
+        "android": {
+          "url": "/content/sets/apartment.android.bundle",
+          "scene": false,
+          "asset": "apartment",
+          "hash": "97c2355558f9ec2f867bc2753fa94b51",
+          "bytes": 132661
+        }
+      }
+    },
+    "forest": {
+      "fallback_resource": "Sets/forest",
+      "platforms": {
+        "android": {
+          "url": "/content/sets/forest.android.bundle",
+          "scene": false,
+          "asset": "forest",
+          "hash": "15169177010123bdc8fcfbc4dfd3995d",
+          "bytes": 5094238
+        }
+      }
+    },
+    "blacksmith": {
+      "platforms": {
+        "android": {
+          "url": "/content/sets/blacksmith.android.bundle",
+          "scene": false,
+          "asset": "blacksmith",
+          "hash": "5eaff50bff152c78ec0c24ec6ba612cb",
+          "bytes": 71245147
+        }
+      }
+    },
+    "meadow": {
+      "platforms": {
+        "android": {
+          "url": "/content/sets/meadow.android.bundle",
+          "scene": false,
+          "asset": "meadow",
+          "hash": "39fee8d7d78c7d5a1153ae55a1de8b9f",
+          "bytes": 12790855
+        }
+      }
+    }
+  },
   "economy": {
     "debug_grant": {
       "amount": 100,
@@ -2592,6 +2640,22 @@
     }
   },
   "titles": [
+    {
+      "id": "bg3d_demo",
+      "name": "3D-сцена вместо фона",
+      "type": "novel",
+      "seasons": [
+        {
+          "chapters": [
+            {
+              "id": "bg3d-demo",
+              "name": "Один набор — много ракурсов",
+              "script_url": "/content/scripts/bg3d-demo.lvn"
+            }
+          ]
+        }
+      ]
+    },
     {
       "cover_url": "/content/bg/fantasy_forest.jpg",
       "id": "tour",
@@ -25351,6 +25415,23 @@
       },
       "cover_url": "/content/bg/ec/cover.jpg",
       "bg_url": "/content/bg/ec/efiria.jpg"
+    },
+    {
+      "id": "knight-duel",
+      "name": "Рыцарь одного дня — дуэль",
+      "subtitle": "Дуэль-инкрементор: очередь растёт, темп решает",
+      "seasons": [
+        {
+          "chapters": [
+            {
+              "id": "knight-duel-ch01",
+              "name": "01",
+              "number": 1,
+              "script_url": "/content/scripts/knight-duel-ch01.lvn"
+            }
+          ]
+        }
+      ]
     }
   ],
   "ui": {
@@ -25476,5 +25557,6 @@
       "remove_text": "Снять",
       "title": "Гардероб"
     }
-  }
+  },
+  "rev": 1
 }

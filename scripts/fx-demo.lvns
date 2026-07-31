@@ -20,6 +20,7 @@ sfx id=ec_niharis off
 - Стили: сон, сепия, постер, кино -> стили
 - Комбо-пресеты -> комбо
 - Спрайтовые эффекты персонажа -> спрайтовые
+- Манхва-ауры: рыцарь, меч, молнии, руны -> ауры
 - Выключить и выйти -> финал
 
 :спрайтовые
@@ -62,6 +63,51 @@ sfx id=ec_niharis rim=0.9 rim_color=#ffd56d
 sfx id=ec_niharis shake=0.5
 «ДРОЖЬ — спрайт трясёт от удара, холода или ярости.  ›  sfx id=… shake=0.5»
 sfx id=ec_niharis off
+-> каталог
+
+:ауры
+fx off
+bg /content/bg/ec/spirit_forest.jpg
+sfx id=ec_niharis off
+actor ec_niharis show=false
+actor ec_hero center neutral outfit=armor weapon=sword
+sfx id=ec_hero aura=0.78 aura_style=basic dur=0.7
+«БАЗОВАЯ АУРА — спокойное серебряное дыхание силы без стихии.  ›  aura_style=basic»
+sfx id=ec_hero aura_style=guard
+«ЗАЩИТА — цельная голубая оболочка обходит героя и читается как барьер.  ›  aura_style=guard»
+sfx id=ec_hero aura_style=fire
+«ОГОНЬ — неровные языки энергии поднимаются вдоль силуэта.  ›  aura_style=fire»
+sfx id=ec_hero aura_style=frost
+«ЛЁД — холодное свечение разбивается на острые кристаллические блики.  ›  aura_style=frost»
+sfx id=ec_hero aura_style=storm
+«ГРОЗА — нервные всплески рвут контур короткими импульсами.  ›  aura_style=storm»
+sfx id=ec_hero aura_style=shadow
+«ТЬМА — тяжёлый фиолетовый дым медленно стекает вокруг фигуры.  ›  aura_style=shadow»
+sfx id=ec_hero aura_style=holy
+«СВЕТ — ровная золотая энергия расходится лучами.  ›  aura_style=holy»
+fx space=0.86 space_x=0.5 space_y=0.44 space_radius=0.27 space_color=#8f48ff dur=0.7
+sfx id=ec_hero aura=0.5 aura_style=space
+«ПРОСТРАНСТВО — чёрное ядро и фиолетовая орбита изгибают весь кадр вокруг героя, как гравитационная линза.  ›  aura_style=space + fx space=0.86»
+fx off
+sfx id=ec_hero off
+sfx id=ec_hero aura=1 aura_style=distortion
+«ИСКАЖЕНИЕ — внутри контура вязкая чернота, снаружи медленно ползёт красный ломаный разлом.  ›  aura_style=distortion»
+sfx id=ec_hero aura=1 aura_style=spirit aura_color=#3657ff aura_color2=#d8fbff dur=0.45
+«ДУХОВНАЯ АУРА — плотное синее ядро и живая светлая оболочка дышат вокруг единого силуэта.  ›  aura_style=spirit»
+sfx id=ec_hero aura=1 aura_style=ascendant aura_color=#1748ff aura_color2=#d8f7ff aura_size=1.2 aura_speed=0.8 aura_density=1.5 dur=0.55
+«ВОСХОЖДЕНИЕ — широкое синее пламя поднимается за рыцарем, а по внешнему краю текут чёрные живые жгуты.  ›  size=1.2 speed=0.8 density=1.5»
+sfx id=ec_hero part=weapon blade=1 blade_color=#c9f5ff dur=0.35
+«АУРА КЛИНКА — белое горячее ядро, плотный цветной ореол и широкое послесвечение.  ›  blade=1 blade_color=#c9f5ff»
+sfx id=ec_hero lightning=0.82 lightning_color=#d9f5ff
+«ПРОБУЖДЕНИЕ — рваные бело-голубые разряды вспыхивают по бокам рыцаря.  ›  lightning=0.82»
+sfx id=ec_hero runes=0.78 runes_color=#ffc85a
+«МАГИЧЕСКИЙ КРУГ — золотые кольца и знаки вращаются за фигурой.  ›  runes=0.78»
+sfx id=ec_hero aura=1 aura_style=storm aura_color=#68e7ff aura_color2=#b150ff lightning=0.46 runes=0.42 runes_color=#ffd56a
+sfx id=ec_hero part=weapon blade=1 blade_color=#e0fbff
+«РЫЦАРЬ МАНХВЫ — тело, клинок, молнии и печать работают одновременно, но не сливаются в одну неоновую кляксу.»
+sfx id=ec_hero off
+actor ec_hero show=false
+actor ec_niharis pose=stand emotion=calm
 -> каталог
 
 :в1
